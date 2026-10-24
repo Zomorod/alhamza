@@ -163,6 +163,8 @@ const translations = {
 };
 
 let currentLang = 'ar';
+const adminPassword = 'Med@212-07';
+let isAdminAuthenticated = false;
 
 // التشغيل الأولي
 document.addEventListener('DOMContentLoaded', () => {
@@ -363,7 +365,47 @@ function shareToWhatsApp(title, price, link) {
 // التحكم بالـ Modals
 function openAiAssistant() { document.getElementById('aiModal').classList.add('active'); }
 function closeAiAssistant() { document.getElementById('aiModal').classList.remove('active'); }
-function toggleAdminModal() { document.getElementById('adminModal').classList.toggle('active'); }
+function toggleAdminModal() {
+    const adminModal = document.getElementById('adminModal');
+    if (adminModal.classList.contains('active')) {
+        adminModal.classList.remove('active');
+        isAdminAuthenticated = false;
+        return;
+    }
+
+    if (isAdminAuthenticated) {
+        adminModal.classList.add('active');
+        return;
+    }
+
+    const loginModal = document.getElementById('adminLoginModal');
+    document.getElementById('adminPassword').value = '';
+    document.getElementById('adminLoginError').textContent = '';
+    loginModal.classList.add('active');
+    document.getElementById('adminPassword').focus();
+}
+
+function authenticateAdmin(event) {
+    event.preventDefault();
+    const passwordInput = document.getElementById('adminPassword');
+    if (passwordInput.value !== adminPassword) {
+        document.getElementById('adminLoginError').textContent = 'كلمة السر غير صحيحة. حاول مرة أخرى.';
+        passwordInput.value = '';
+        passwordInput.focus();
+        return;
+    }
+
+    isAdminAuthenticated = true;
+    document.getElementById('adminLoginModal').classList.remove('active');
+    document.getElementById('adminLoginError').textContent = '';
+    document.getElementById('adminModal').classList.add('active');
+}
+
+function closeAdminLogin() {
+    document.getElementById('adminLoginModal').classList.remove('active');
+    document.getElementById('adminLoginError').textContent = '';
+    document.getElementById('adminPassword').value = '';
+}
 
 // AI Assistant
 function handleAiKey(e) { if (e.key === 'Enter') askAiAssistant(); }

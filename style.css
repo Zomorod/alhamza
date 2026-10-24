@@ -644,6 +644,17 @@ body {
     max-width: 750px;
 }
 
+.admin-login-card {
+    max-width: 420px;
+}
+
+.admin-login-error {
+    min-height: 1.4em;
+    margin: 0 0 12px;
+    color: #ef4444;
+    font-size: 0.9rem;
+}
+
 @keyframes modalScale {
     from { transform: scale(0.9); opacity: 0; }
     to { transform: scale(1); opacity: 1; }

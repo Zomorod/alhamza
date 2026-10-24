@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl" id="htmlRoot">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">idarat lmaw9i3 bghita b password bash 
     <title>الهمزة - أحسن الصفقات وأقوى الهمزات </title>
     <!-- خطوط عصرية -->
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -153,6 +153,25 @@
                     <input type="text" id="aiUserInput" placeholder="مثال: بغيت مقلاة هوائية ولا سماعات أقل من 200 درهم..." onkeypress="handleAiKey(event)">
                     <button onclick="askAiAssistant()"><i class="ri-send-plane-fill"></i></button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="adminLoginModal" role="dialog" aria-modal="true" aria-labelledby="adminLoginTitle">
+        <div class="modal-card admin-login-card">
+            <div class="modal-header">
+                <h3 id="adminLoginTitle"><i class="ri-lock-line"></i> التحقق من كلمة السر</h3>
+                <button class="close-modal" type="button" onclick="closeAdminLogin()" aria-label="إغلاق"><i class="ri-close-line"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="adminLoginForm" onsubmit="authenticateAdmin(event)">
+                    <div class="form-group">
+                        <label for="adminPassword">كلمة السر</label>
+                        <input type="password" id="adminPassword" required autocomplete="current-password" autofocus>
+                    </div>
+                    <p class="admin-login-error" id="adminLoginError" role="alert" aria-live="polite"></p>
+                    <button type="submit" class="submit-product-btn"><i class="ri-login-box-line"></i> دخول لوحة الإدارة</button>
+                </form>
             </div>
         </div>
     </div>
