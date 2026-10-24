@@ -1,5 +1,5 @@
 // قاعدة بيانات المنتجات الابتدائية
-const API_BASE_URL = "";
+const API_BASE_URL = "https://alhamza-products-api.m939.workers.dev";
 let communityProducts = [];
 let products = [
     {
