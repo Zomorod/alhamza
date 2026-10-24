@@ -39,7 +39,7 @@ let products = [
         platform: "aliexpress",
         category: "fashion",
         image: "https://s.alicdn.com/@sc04/kf/H9039ddce488245589177ada99e726b54l.jpg_960x960q80.jpg",
-        affLink: "https://s.click.aliexpress.com/e/_example4"
+        affLink: "https://www.alibaba.com/product-detail/RZ001G-A-1-10-Brushless-New_1601929153137.html?spm=a2700.8293689.ggs_just_for_you.5.54662cefCtyYOX&priceId=89ddb720e8f248daa2c5ffbd856bac8c"
     }
 ];
 
