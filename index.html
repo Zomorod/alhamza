@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="htmlRoot">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الهمزة - أحسن الصفقات وأقوى الهمزات بالمغرب</title>
+    <!-- خطوط عصرية -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- مكتبة الأيقونات العصرية RemixIcon -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <!-- رابط ملف الـ CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="dark">
+
+    <!-- شريط الإعلانات العُلوي -->
+    <div class="top-announcement">
+        <i class="ri-fire-fill"></i>
+        <span id="announcementText">تخفيضات كبرى وصلت حتى لـ 80% على أروع المنتجات! التوصيل متوفر لجميع مدن المغرب.</span>
+        <div class="lang-selector">
+            <button onclick="setLanguage('ar')" class="lang-btn active">الدارجة</button>
+            <button onclick="setLanguage('fr')" class="lang-btn">FR</button>
+            <button onclick="setLanguage('en')" class="lang-btn">EN</button>
+        </div>
+    </div>
+
+    <!-- رأسية الموقع (Header) -->
+    <header class="site-header">
+        <div class="container header-container">
+            <a href="#" class="logo-box">
+                <div class="logo-main">
+                    <span class="logo-percent">%</span>
+                    <span class="logo-text">الهمزة</span>
+                </div>
+                <span class="logo-slogan" id="siteSlogan">أحسن الصفقات وأقوى الهمزات بالمغرب</span>
+            </a>
+
+            <div class="search-bar-container">
+                <i class="ri-search-line search-icon"></i>
+                <input type="text" id="searchInput" placeholder="قلّب على أي همزة، منتج، أو عرض..." oninput="filterProducts()">
+                <button class="ai-search-btn" onclick="openAiAssistant()">
+                    <i class="ri-robot-2-line"></i> مساعد AI
+                </button>
+            </div>
+
+            <div class="header-actions">
+                <button class="theme-toggle" onclick="toggleTheme()" title="تغيير المظهر">
+                    <i class="ri-sun-line" id="themeIcon"></i>
+                </button>
+                <button class="admin-trigger-btn" onclick="toggleAdminModal()">
+                    <i class="ri-settings-4-line"></i> <span data-i18n="adminPanel">إدارة الموقع</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- شريط التنقل والأصناف والمتاجر المباشرة -->
+    <nav class="categories-nav">
+        <div class="container categories-scroll">
+            <!-- الأصناف للتصفية -->
+            <button class="cat-chip active" onclick="filterCategory('all', this)"><i class="ri-apps-line"></i> <span data-i18n="allDeals">جميع الهمزات</span></button>
+            <button class="cat-chip" onclick="filterCategory('tech', this)"><i class="ri-smartphone-line"></i> <span data-i18n="catTech">تكنولوجيا وواتساب</span></button>
+            <button class="cat-chip" onclick="filterCategory('home', this)"><i class="ri-restaurant-line"></i> <span data-i18n="catHome">طبخ والمنزل</span></button>
+            <button class="cat-chip" onclick="filterCategory('fashion', this)"><i class="ri-t-shirt-line"></i> <span data-i18n="catFashion">أناقة وموضة</span></button>
+
+            <span class="nav-divider">|</span>
+
+            <!-- روابط المتاجر الحية (Live Store Links) -->
+            <a href="https://www.aliexpress.com" target="_blank" class="store-live-btn aliexpress"><i class="ri-shopping-bag-3-line"></i> AliExpress Live</a>
+            <a href="https://www.jumia.ma" target="_blank" class="store-live-btn jumia"><i class="ri-store-2-line"></i> Jumia Live</a>
+            <a href="https://www.alibaba.com" target="_blank" class="store-live-btn alibaba"><i class="ri-global-line"></i> Alibaba Live</a>
+            <a href="https://www.amazon.com" target="_blank" class="store-live-btn amazon"><i class="ri-amazon-line"></i> Amazon Live</a>
+        </div>
+    </nav>
+
+    <!-- بطاقة وصف الصنف والمنشور (تظهر ديناميكياً عند الضغط على الطبخ أو أي صنف) -->
+    <div class="container" id="categoryDescBox" style="display: none; margin-top: 25px;">
+        <div class="category-info-card">
+            <h3 id="catDescTitle"><i class="ri-information-fill"></i> تفاصيل الصنف</h3>
+            <p id="catDescText">وصف شامل ومفصل للهمزات المتاحة فـ هذا القسم...</p>
+        </div>
+    </div>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="main-content container">
+        
+        <!-- قسم الترويج السريع (Hero Banner) -->
+        <section class="hero-banner">
+            <div class="hero-content">
+                <span class="hero-badge"><i class="ri-percent-line"></i> <span data-i18n="heroBadge">همزات حصرية بالمغرب</span></span>
+                <h1 data-i18n="heroTitle">أقوى الهمزات والعروض الثرابية بأسعار خيالية!</h1>
+                <p data-i18n="heroDesc">كنجمعو ليك أروع المنتجات من أمازون، أليكسبريس وجوميا، وبمساعدة الذكاء الاصطناعي كنعطيوك الخلاصة وأحسن ثمن.</p>
+                <div class="hero-stats">
+                    <div><strong id="totalDealsCount">0+</strong> <span data-i18n="statDeals">همزة متوفرة</span></div>
+                    <div><strong>100%</strong> <span data-i18n="statSecure">روابط مضمونة</span></div>
+                    <div><strong>24/7</strong> <span data-i18n="statSupport">دعم فوري</span></div>
+                </div>
+            </div>
+            <div class="hero-card-preview">
+                <div class="live-ticker">
+                    <i class="ri-fire-fill"></i> <span data-i18n="liveDeal">صفقة ساخنة الآن!</span>
+                </div>
+                <div class="preview-card-inner">
+                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&auto=format&fit=crop" alt="Smartwatch">
+                    <h3>ساعة ذكية أصلية فائقة السرعة</h3>
+                    <div class="price-box">
+                        <span class="old-price">450 MAD</span>
+                        <span class="new-price">199 MAD</span>
+                    </div>
+                    <button class="buy-now-btn" onclick="shareToWhatsApp('ساعة ذكية أصلية', '199 MAD', '#')">
+                        <i class="ri-whatsapp-line"></i> <span data-i18n="orderWhatsapp">اطلب عبر واتساب</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- شبكة المنتجات (Products Grid) -->
+        <section class="products-section">
+            <div class="section-header">
+                <h2 id="sectionTitle"><i class="ri-fire-fill"></i> <span data-i18n="latestDeals">أحدث الهمزات اليوم</span></h2>
+                <div class="sort-dropdown">
+                    <select id="sortSelect" onchange="sortProducts()">
+                        <option value="newest" data-i18n="sortNew">الأحدث إضافتاً</option>
+                        <option value="price-low" data-i18n="sortLow">الثمن: من الأرخص للأغلى</option>
+                        <option value="price-high" data-i18n="sortHigh">الثمن: من الأغلى للأرخص</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- المنتجات -->
+            <div class="products-grid" id="productsGrid"></div>
+        </section>
+
+    </main>
+
+    <!-- نافذة المساعد الذكي AI Assistant Modal -->
+    <div class="modal-overlay" id="aiModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3><i class="ri-robot-2-line"></i> <span data-i18n="aiTitle">مساعد الهمزة الذكي (Gemini AI)</span></h3>
+                <button class="close-modal" onclick="closeAiAssistant()"><i class="ri-close-line"></i></button>
+            </div>
+            <div class="modal-body">
+                <p data-i18n="aiDesc">قل ليا ش بغيتي تشري ولا شحال الميزانية ديالك، وأنا نقترح عليك أحسن همزة كاين دابا:</p>
+                <div class="ai-chat-box" id="aiChatBox">
+                    <div class="ai-msg bot">أهلاً بك يا مهدي! أنا جاهز باش نعاونك تلقى أحسن المنتجات والصفقات. شنو بغيتي تقلب عليه اليوم؟</div>
+                </div>
+                <div class="ai-input-group">
+                    <input type="text" id="aiUserInput" placeholder="مثال: بغيت مقلاة هوائية ولا سماعات أقل من 200 درهم..." onkeypress="handleAiKey(event)">
+                    <button onclick="askAiAssistant()"><i class="ri-send-plane-fill"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة إدارة الموقع الإحترافية (Admin Management Modal) -->
+    <div class="modal-overlay" id="adminModal">
+        <div class="modal-card admin-modal-wide">
+            <div class="modal-header">
+                <h3><i class="ri-settings-4-fill"></i> <span>لوحة تسيير وإدارة الموقع</span></h3>
+                <button class="close-modal" onclick="toggleAdminModal()"><i class="ri-close-line"></i></button>
+            </div>
+            <div class="modal-body">
+                <!-- التبويبات الداخلية للإدارة -->
+                <div class="admin-tabs">
+                    <button class="tab-btn active" onclick="switchAdminTab('productsTab', this)"><i class="ri-list-check"></i> إدارة الهمزات والمنتجات</button>
+                    <button class="tab-btn" onclick="switchAdminTab('addProductTab', this)"><i class="ri-add-circle-line"></i> إضافة همزة جديدة</button>
+                    <button class="tab-btn" onclick="switchAdminTab('settingsTab', this)"><i class="ri-tools-line"></i> إعدادات الشعار والتواصل</button>
+                </div>
+
+                <!-- تبويب 1: قائمة المنتجات -->
+                <div id="productsTab" class="tab-content active">
+                    <div class="admin-table-container">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>الصورة</th>
+                                    <th>العنوان</th>
+                                    <th>الثمن</th>
+                                    <th>المنصة</th>
+                                    <th>إجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminProductsList"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- تبويب 2: إضافة همزة جديدة -->
+                <div id="addProductTab" class="tab-content">
+                    <form id="addProductForm" onsubmit="addNewProduct(event)">
+                        <div class="form-group">
+                            <label>عنوان المنتج والوصف:</label>
+                            <input type="text" id="newTitle" required placeholder="مثال: مقلاة هوائية بدون زيت 5 لتر">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>الثمن الحالي (بالدرهم):</label>
+                                <input type="text" id="newPrice" required placeholder="499 MAD">
+                            </div>
+                            <div class="form-group">
+                                <label>الثمن القديم:</label>
+                                <input type="text" id="newOldPrice" placeholder="900 MAD">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>المنصة:</label>
+                                <select id="newPlatform">
+                                    <option value="aliexpress">AliExpress</option>
+                                    <option value="amazon">Amazon</option>
+                                    <option value="jumia">Jumia</option>
+                                    <option value="alibaba">Alibaba</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>الصنف:</label>
+                                <select id="newCategory">
+                                    <option value="tech">تكنولوجيا</option>
+                                    <option value="home">طبخ والمنزل</option>
+                                    <option value="fashion">أناقة</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>رابط الصورة (URL):</label>
+                            <input type="url" id="newImage" required placeholder="https://...">
+                        </div>
+                        <div class="form-group">
+                            <label>رابط الإحالة (Affiliate Link):</label>
+                            <input type="url" id="newAffLink" required placeholder="https://s.click.aliexpress.com/...">
+                        </div>
+                        <button type="submit" class="submit-product-btn"><i class="ri-check-double-line"></i> حفظ ونشر الهمزة</button>
+                    </form>
+                </div>
+
+                <!-- تبويب 3: إعدادات العامة للموقع -->
+                <div id="settingsTab" class="tab-content">
+                    <form id="siteSettingsForm" onsubmit="saveSiteSettings(event)">
+                        <div class="form-group">
+                            <label>شعار الموقع (Slogan):</label>
+                            <input type="text" id="settingSlogan" value="أحسن الصفقات وأقوى الهمزات بالمغرب">
+                        </div>
+                        <div class="form-group">
+                            <label>رقم الواتساب الخاص بالدعم والتواصل:</label>
+                            <input type="text" id="settingPhone" value="+212726294311">
+                        </div>
+                        <div class="form-group">
+                            <label>البريد الإلكتروني المباشر:</label>
+                            <input type="email" id="settingEmail" value="mehdiabbad993@gmail.com">
+                        </div>
+                        <button type="submit" class="submit-product-btn"><i class="ri-save-line"></i> حفظ إعدادات الموقع</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- التذييل (Footer) -->
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <a href="#" class="logo-box">
+                    <div class="logo-main">
+                        <span class="logo-percent">%</span>
+                        <span class="logo-text">الهمزة</span>
+                    </div>
+                </a>
+                <p data-i18n="footerDesc">الوجهة الأولى للمغاربة لاكتشاف أفضل الصفقات، العروض الحصرية، وربط المشتريات العالمية والمحلية بكل سهولة وثقة.</p>
+            </div>
+            <div class="footer-col">
+                <h4 data-i18n="contactTitle">تواصل معنا المباشر</h4>
+                <p><i class="ri-whatsapp-line pistache-text"></i> WhatsApp: <a href="https://wa.me/212726294311" id="footerPhoneLink" target="_blank" class="pistache-phone-link">+212 726-294311</a></p>
+                <p><i class="ri-mail-line"></i> Email: <span id="footerEmailText">mehdiabbad993@gmail.com</span></p>
+            </div>
+            <div class="footer-col">
+                <h4 data-i18n="quickLinks">روابط سريعة</h4>
+                <ul>
+                    <li><a href="#" onclick="filterCategory('all', this)" data-i18n="allDeals">جميع الهمزات</a></li>
+                    <li><a href="#" onclick="openAiAssistant()" data-i18n="aiTitle">مساعد الذكاء الاصطناعي</a></li>
+                    <li><a href="#" onclick="toggleAdminModal()" data-i18n="adminPanel">لوحة المشرف</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 الهمزة - صُمم بكل حب لـ Mehdi Abbad. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <!-- زر الواتساب العائم العصري برقم بلون بيسطاش بارز جداً -->
+    <a href="https://wa.me/212726294311?text=سلام%20مهدي،%20بغيست%20نسول على شي منتج ف موقع الهمزة" class="floating-whatsapp" id="floatingWhatsappBtn" target="_blank" title="تواصل معنا عبر واتساب">
+        <i class="ri-whatsapp-fill"></i>
+        <span class="whatsapp-num-text" id="floatingWhatsappNum">+212 726-294311</span>
+    </a>
+
+    <!-- ملف الـ JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
