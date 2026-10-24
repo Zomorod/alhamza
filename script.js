@@ -38,7 +38,7 @@ let products = [
         oldPrice: "180 MAD",
         platform: "aliexpress",
         category: "fashion",
-        image: "https://images.unsplash.com/photo-1627123424574-724758594e93?w=500&auto=format&fit=crop",
+        image: "https://s.alicdn.com/@sc04/kf/H9039ddce488245589177ada99e726b54l.jpg_960x960q80.jpg",
         affLink: "https://s.click.aliexpress.com/e/_example4"
     }
 ];
