@@ -1,0 +1,11 @@
+name = "alhamza-products-api"
+main = "worker.js"
+compatibility_date = "2026-10-24"
+
+[vars]
+ALLOWED_ORIGINS = "https://YOUR-GITHUB-USERNAME.github.io"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "alhamza-products"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"

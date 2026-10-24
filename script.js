@@ -1,4 +1,6 @@
 // قاعدة بيانات المنتجات الابتدائية
+const API_BASE_URL = "";
+let communityProducts = [];
 let products = [
     {
         id: 1,
@@ -76,6 +78,8 @@ const translations = {
     ar: {
         announcementText: "تخفيضات كبرى وصلت حتى لـ 80% على أروع المنتجات! التوصيل متوفر لجميع مدن المغرب.",
         adminPanel: "إدارة الموقع",
+        suggestProduct: "اقترح منتج",
+        reviewSubmissions: "مراجعة اقتراحات المنتجات",
         allDeals: "جميع الهمزات",
         catTech: "تكنولوجيا وواتساب",
         catHome: "طبخ والمنزل",
@@ -105,6 +109,8 @@ const translations = {
     fr: {
         announcementText: "Méga soldes jusqu'à -80% sur les meilleurs produits ! Livraison partout au Maroc.",
         adminPanel: "Admin",
+        suggestProduct: "Proposer un produit",
+        reviewSubmissions: "Vérifier les propositions",
         allDeals: "Tous les Bons Plans",
         catTech: "Tech & Gadgets",
         catHome: "Cuisine & Maison",
@@ -134,6 +140,8 @@ const translations = {
     en: {
         announcementText: "Mega sales up to 80% off on top products! Delivery available across Morocco.",
         adminPanel: "Admin",
+        suggestProduct: "Suggest a product",
+        reviewSubmissions: "Review product suggestions",
         allDeals: "All Deals",
         catTech: "Tech & Gadgets",
         catHome: "Kitchen & Home",
@@ -163,15 +171,62 @@ const translations = {
 };
 
 let currentLang = 'ar';
-const adminPassword = 'Med@212-07';
 let isAdminAuthenticated = false;
+let adminSessionToken = "";
 
 // التشغيل الأولي
 document.addEventListener('DOMContentLoaded', () => {
-    renderProducts(products);
-    renderAdminProductsTable();
+    renderProducts(getAllProducts());
     updateStats();
+    loadApprovedProducts().catch(error => {
+        console.error('Failed to load approved products:', error);
+        document.getElementById('catalogStatus').textContent = error.message;
+    });
+
+    if (new URLSearchParams(window.location.search).get('admin') === '1') {
+        openAdminModal();
+    }
 });
+
+function getAllProducts() {
+    return [...products, ...communityProducts];
+}
+
+function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, character => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+    })[character]);
+}
+
+async function apiRequest(path, options = {}) {
+    if (!API_BASE_URL) {
+        throw new Error("خدمة اقتراح المنتجات مازال ما تجهزاتش. عاود المحاولة من بعد.");
+    }
+
+    const response = await fetch(`${API_BASE_URL}${path}`, {
+        ...options,
+        headers: {
+            ...(options.body ? { "Content-Type": "application/json" } : {}),
+            ...(options.token ? { Authorization: `Bearer ${options.token}` } : {}),
+            ...options.headers
+        }
+    });
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(result.error || "تعذر إكمال الطلب. عاود المحاولة.");
+    return result;
+}
+
+async function loadApprovedProducts() {
+    if (!API_BASE_URL) return;
+    const result = await apiRequest("/api/products");
+    communityProducts = result.products;
+    renderProducts(getAllProducts());
+    updateStats();
+}
 
 // عرض المنتجات
 function renderProducts(items) {
@@ -187,26 +242,29 @@ function renderProducts(items) {
         const card = document.createElement('div');
         card.className = 'product-card';
         card.innerHTML = `
-            <span class="product-badge">${product.platform}</span>
+            <span class="product-badge">${escapeHtml(product.platform)}</span>
             <div class="product-img-wrap">
-                <img src="${product.image}" alt="${product.title}">
+                <img src="${escapeHtml(product.image)}" alt="${escapeHtml(product.title)}">
             </div>
             <div class="product-body">
-                <h3 class="product-title">${product.title}</h3>
+                <h3 class="product-title">${escapeHtml(product.title)}</h3>
                 <div class="product-footer">
                     <div class="price-box">
-                        ${product.oldPrice ? `<span class="old-price">${product.oldPrice}</span>` : ''}
-                        <span class="new-price">${product.price}</span>
+                        ${product.oldPrice ? `<span class="old-price">${escapeHtml(product.oldPrice)}</span>` : ''}
+                        <span class="new-price">${escapeHtml(product.price)}</span>
                     </div>
                     <div class="product-actions">
-                        <a href="${product.affLink}" target="_blank" class="affiliate-btn">${translations[currentLang].viewDeal}</a>
-                        <button class="whatsapp-share-btn" onclick="shareToWhatsApp('${product.title}', '${product.price}', '${product.affLink}')" title="مشاركة عبر واتساب">
+                        <a href="${escapeHtml(product.affLink)}" target="_blank" rel="noopener noreferrer" class="affiliate-btn">${translations[currentLang].viewDeal}</a>
+                        <button class="whatsapp-share-btn" type="button" title="مشاركة عبر واتساب">
                             <i class="ri-whatsapp-line"></i>
                         </button>
                     </div>
                 </div>
             </div>
         `;
+        card.querySelector('.whatsapp-share-btn').addEventListener('click', () => {
+            shareToWhatsApp(product.title, product.price, product.affLink);
+        });
         grid.appendChild(card);
     });
 }
@@ -229,78 +287,72 @@ function filterCategory(cat, element) {
     }
 
     if (cat === 'all') {
-        renderProducts(products);
+        renderProducts(getAllProducts());
     } else if (['aliexpress', 'amazon', 'jumia', 'alibaba'].includes(cat)) {
-        renderProducts(products.filter(p => p.platform === cat));
+        renderProducts(getAllProducts().filter(p => p.platform === cat));
     } else {
-        renderProducts(products.filter(p => p.category === cat));
+        renderProducts(getAllProducts().filter(p => p.category === cat));
     }
 }
 
-// جدول الإدارة
-function renderAdminProductsTable() {
-    const tbody = document.getElementById('adminProductsList');
-    tbody.innerHTML = '';
+async function renderAdminProductsTable() {
+    const tbody = document.getElementById('pendingSubmissionsList');
+    tbody.replaceChildren();
+    const result = await apiRequest('/api/admin/submissions', { token: adminSessionToken });
 
-    products.forEach(p => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-            <td><img src="${p.image}" alt="img"></td>
-            <td><strong>${p.title}</strong></td>
-            <td><span style="color:var(--accent);">${p.price}</span></td>
-            <td><span class="product-badge" style="position:static;">${p.platform}</span></td>
-            <td>
-                <button class="delete-btn" onclick="deleteProduct(${p.id})"><i class="ri-delete-bin-line"></i> حذف</button>
-            </td>
-        `;
-        tbody.appendChild(tr);
+    if (result.submissions.length === 0) {
+        const row = document.createElement('tr');
+        const cell = document.createElement('td');
+        cell.colSpan = 4;
+        cell.textContent = 'ما كايناش اقتراحات معلقة دابا.';
+        row.appendChild(cell);
+        tbody.appendChild(row);
+        return;
+    }
+
+    result.submissions.forEach(submission => {
+        const row = document.createElement('tr');
+        const imageCell = document.createElement('td');
+        const image = document.createElement('img');
+        image.src = submission.image;
+        image.alt = submission.title;
+        imageCell.appendChild(image);
+
+        const productCell = document.createElement('td');
+        const title = document.createElement('strong');
+        title.textContent = submission.title;
+        const price = document.createElement('p');
+        price.textContent = `${submission.price}${submission.oldPrice ? ` (قديم: ${submission.oldPrice})` : ''}`;
+        const link = document.createElement('a');
+        link.href = submission.affLink;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.textContent = 'فتح رابط المنتج';
+        productCell.append(title, price, link);
+
+        const platformCell = document.createElement('td');
+        platformCell.textContent = submission.platform;
+        const actionsCell = document.createElement('td');
+        const approveButton = document.createElement('button');
+        approveButton.type = 'button';
+        approveButton.className = 'approve-btn';
+        approveButton.textContent = 'موافقة';
+        approveButton.addEventListener('click', () => reviewSubmission(submission.id, 'approve'));
+        const rejectButton = document.createElement('button');
+        rejectButton.type = 'button';
+        rejectButton.className = 'delete-btn';
+        rejectButton.textContent = 'رفض';
+        rejectButton.addEventListener('click', () => reviewSubmission(submission.id, 'reject'));
+        actionsCell.append(approveButton, rejectButton);
+
+        row.append(imageCell, productCell, platformCell, actionsCell);
+        tbody.appendChild(row);
     });
-}
-
-// حذف منتج
-function deleteProduct(id) {
-    if (confirm("واش متأكد بغيتي تمسح هاد الهمزة؟")) {
-        products = products.filter(p => p.id !== id);
-        renderProducts(products);
-        renderAdminProductsTable();
-        updateStats();
-    }
-}
-
-// تبديل تبويبات الإدارة
-function switchAdminTab(tabId, element) {
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-    
-    element.classList.add('active');
-    document.getElementById(tabId).classList.add('active');
-}
-
-// حفظ إعدادات الموقع
-function saveSiteSettings(e) {
-    e.preventDefault();
-    const slogan = document.getElementById('settingSlogan').value;
-    const phone = document.getElementById('settingPhone').value;
-    const email = document.getElementById('settingEmail').value;
-
-    siteConfig.slogan = slogan;
-    siteConfig.phone = phone;
-    siteConfig.cleanPhone = phone.replace(/[^0-9]/g, '');
-    siteConfig.email = email;
-
-    document.getElementById('siteSlogan').innerText = slogan;
-    document.getElementById('footerPhoneLink').innerText = phone;
-    document.getElementById('footerPhoneLink').href = `https://wa.me/${siteConfig.cleanPhone}`;
-    document.getElementById('footerEmailText').innerText = email;
-    document.getElementById('floatingWhatsappNum').innerText = phone;
-    document.getElementById('floatingWhatsappBtn').href = `https://wa.me/${siteConfig.cleanPhone}?text=سلام%20مهدي،%20بغيست%20نسول على شي منتج ف موقع الهمزة`;
-
-    alert("تم حفظ إعدادات الموقع بنجاح!");
 }
 
 // تحديث الإحصائيات
 function updateStats() {
-    document.getElementById('totalDealsCount').innerText = products.length + '+';
+    document.getElementById('totalDealsCount').innerText = getAllProducts().length + '+';
 }
 
 // تغيير اللغة
@@ -321,7 +373,7 @@ function setLanguage(lang) {
     });
 
     document.getElementById('announcementText').innerText = translations[lang].announcementText;
-    renderProducts(products);
+    renderProducts(getAllProducts());
 }
 
 // تبديل المظهر
@@ -339,12 +391,12 @@ function toggleTheme() {
 
 function filterProducts() {
     const query = document.getElementById('searchInput').value.toLowerCase();
-    renderProducts(products.filter(p => p.title.toLowerCase().includes(query) || p.platform.toLowerCase().includes(query)));
+    renderProducts(getAllProducts().filter(p => p.title.toLowerCase().includes(query) || p.platform.toLowerCase().includes(query)));
 }
 
 function sortProducts() {
     const sortBy = document.getElementById('sortSelect').value;
-    let sorted = [...products];
+    let sorted = getAllProducts();
 
     if (sortBy === 'price-low') {
         sorted.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
@@ -362,49 +414,132 @@ function shareToWhatsApp(title, price, link) {
     window.open(`https://wa.me/${siteConfig.cleanPhone}?text=${encodeURIComponent(text)}`, '_blank');
 }
 
-// التحكم بالـ Modals
+// التحكم بالنوافذ وإرسال اقتراحات المنتجات
 function openAiAssistant() { document.getElementById('aiModal').classList.add('active'); }
 function closeAiAssistant() { document.getElementById('aiModal').classList.remove('active'); }
-function toggleAdminModal() {
-    const adminModal = document.getElementById('adminModal');
-    if (adminModal.classList.contains('active')) {
-        adminModal.classList.remove('active');
-        isAdminAuthenticated = false;
-        return;
-    }
 
+function openSubmissionModal() {
+    document.getElementById('submissionFeedback').textContent = '';
+    document.getElementById('productSubmitModal').classList.add('active');
+}
+
+function closeSubmissionModal() {
+    document.getElementById('productSubmitModal').classList.remove('active');
+}
+
+async function submitProductSuggestion(event) {
+    event.preventDefault();
+    const form = document.getElementById('productSubmitForm');
+    const feedback = document.getElementById('submissionFeedback');
+    const submitButton = form.querySelector('button[type="submit"]');
+    const suggestion = {
+        title: document.getElementById('newTitle').value.trim(),
+        price: document.getElementById('newPrice').value.trim(),
+        oldPrice: document.getElementById('newOldPrice').value.trim(),
+        platform: document.getElementById('newPlatform').value,
+        category: document.getElementById('newCategory').value,
+        image: document.getElementById('newImage').value.trim(),
+        affLink: document.getElementById('newAffLink').value.trim()
+    };
+
+    submitButton.disabled = true;
+    feedback.className = 'form-feedback';
+    feedback.textContent = 'كنرسلو الاقتراح...';
+    try {
+        const result = await apiRequest('/api/submissions', {
+            method: 'POST',
+            body: JSON.stringify(suggestion)
+        });
+        feedback.classList.add('success');
+        feedback.textContent = result.message;
+        form.reset();
+    } catch (error) {
+        feedback.classList.add('error');
+        feedback.textContent = error.message;
+    } finally {
+        submitButton.disabled = false;
+    }
+}
+
+function openAdminModal() {
     if (isAdminAuthenticated) {
-        adminModal.classList.add('active');
+        document.getElementById('adminModal').classList.add('active');
+        renderAdminProductsTable().catch(error => {
+            document.getElementById('adminFeedback').textContent = error.message;
+        });
         return;
     }
-
-    const loginModal = document.getElementById('adminLoginModal');
     document.getElementById('adminPassword').value = '';
     document.getElementById('adminLoginError').textContent = '';
-    loginModal.classList.add('active');
+    document.getElementById('adminLoginModal').classList.add('active');
     document.getElementById('adminPassword').focus();
 }
 
-function authenticateAdmin(event) {
+function toggleAdminModal() {
+    document.getElementById('adminModal').classList.remove('active');
+    document.getElementById('adminLoginModal').classList.remove('active');
+    isAdminAuthenticated = false;
+    adminSessionToken = '';
+}
+
+async function authenticateAdmin(event) {
     event.preventDefault();
     const passwordInput = document.getElementById('adminPassword');
-    if (passwordInput.value !== adminPassword) {
-        document.getElementById('adminLoginError').textContent = 'كلمة السر غير صحيحة. حاول مرة أخرى.';
+    const error = document.getElementById('adminLoginError');
+    error.textContent = '';
+
+    let result;
+    try {
+        result = await apiRequest('/api/admin/login', {
+            method: 'POST',
+            body: JSON.stringify({ password: passwordInput.value })
+        });
+    } catch (loginError) {
+        error.textContent = loginError.message;
         passwordInput.value = '';
         passwordInput.focus();
         return;
     }
 
+    adminSessionToken = result.token;
     isAdminAuthenticated = true;
     document.getElementById('adminLoginModal').classList.remove('active');
-    document.getElementById('adminLoginError').textContent = '';
     document.getElementById('adminModal').classList.add('active');
+    document.getElementById('adminFeedback').textContent = '';
+    try {
+        await renderAdminProductsTable();
+    } catch (loadError) {
+        document.getElementById('adminFeedback').textContent = loadError.message;
+    }
 }
 
 function closeAdminLogin() {
     document.getElementById('adminLoginModal').classList.remove('active');
     document.getElementById('adminLoginError').textContent = '';
     document.getElementById('adminPassword').value = '';
+}
+
+async function reviewSubmission(id, action) {
+    const feedback = document.getElementById('adminFeedback');
+    feedback.className = 'form-feedback';
+    feedback.textContent = 'كنحدّثو الاقتراح...';
+    try {
+        await apiRequest(`/api/admin/submissions/${id}/${action}`, {
+            method: 'PATCH',
+            token: adminSessionToken
+        });
+        if (action === 'approve') await loadApprovedProducts();
+        await renderAdminProductsTable();
+        feedback.classList.add('success');
+        feedback.textContent = action === 'approve' ? 'توافق على المنتج وتزاد للموقع.' : 'ترفض الاقتراح.';
+    } catch (error) {
+        feedback.classList.add('error');
+        feedback.textContent = error.message;
+        if (error.message.includes('سجل الدخول')) {
+            toggleAdminModal();
+            openAdminModal();
+        }
+    }
 }
 
 // AI Assistant
@@ -431,27 +566,4 @@ function askAiAssistant() {
         chatBox.innerHTML += `<div class="ai-msg bot">${reply}</div>`;
         chatBox.scrollTop = chatBox.scrollHeight;
     }, 600);
-}
-
-// إضافة منتج جديد
-function addNewProduct(e) {
-    e.preventDefault();
-    const newProd = {
-        id: Date.now(),
-        title: document.getElementById('newTitle').value,
-        price: document.getElementById('newPrice').value.includes('MAD') ? document.getElementById('newPrice').value : document.getElementById('newPrice').value + ' MAD',
-        oldPrice: document.getElementById('newOldPrice').value ? (document.getElementById('newOldPrice').value.includes('MAD') ? document.getElementById('newOldPrice').value : document.getElementById('newOldPrice').value + ' MAD') : '',
-        platform: document.getElementById('newPlatform').value,
-        category: document.getElementById('newCategory').value,
-        image: document.getElementById('newImage').value,
-        affLink: document.getElementById('newAffLink').value
-    };
-
-    products.unshift(newProd);
-    renderProducts(products);
-    renderAdminProductsTable();
-    updateStats();
-    document.getElementById('addProductForm').reset();
-    switchAdminTab('productsTab', document.querySelectorAll('.tab-btn')[0]);
-    alert("تمت إضافة الهمزة بنجاح للواجهة الرئيسية!");
 }

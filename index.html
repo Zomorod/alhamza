@@ -47,8 +47,8 @@
                 <button class="theme-toggle" onclick="toggleTheme()" title="تغيير المظهر">
                     <i class="ri-sun-line" id="themeIcon"></i>
                 </button>
-                <button class="admin-trigger-btn" onclick="toggleAdminModal()">
-                    <i class="ri-settings-4-line"></i> <span data-i18n="adminPanel">إدارة الموقع</span>
+                <button class="admin-trigger-btn" onclick="openSubmissionModal()">
+                    <i class="ri-add-circle-line"></i> <span data-i18n="suggestProduct">اقترح منتج</span>
                 </button>
             </div>
         </div>
@@ -132,6 +132,7 @@
             </div>
 
             <!-- المنتجات -->
+            <p class="catalog-status" id="catalogStatus" role="status" aria-live="polite"></p>
             <div class="products-grid" id="productsGrid"></div>
         </section>
 
@@ -157,125 +158,104 @@
         </div>
     </div>
 
-    <div class="modal-overlay" id="adminLoginModal" role="dialog" aria-modal="true" aria-labelledby="adminLoginTitle">
+    <div class="modal-overlay" id="productSubmitModal" role="dialog" aria-modal="true" aria-labelledby="productSubmitTitle">
         <div class="modal-card admin-login-card">
             <div class="modal-header">
-                <h3 id="adminLoginTitle"><i class="ri-lock-line"></i> التحقق من كلمة السر</h3>
-                <button class="close-modal" type="button" onclick="closeAdminLogin()" aria-label="إغلاق"><i class="ri-close-line"></i></button>
+                <h3 id="productSubmitTitle"><i class="ri-add-circle-line"></i> اقترح منتجاً</h3>
+                <button class="close-modal" type="button" onclick="closeSubmissionModal()" aria-label="إغلاق"><i class="ri-close-line"></i></button>
             </div>
             <div class="modal-body">
-                <form id="adminLoginForm" onsubmit="authenticateAdmin(event)">
+                <p class="submission-note">اقتراحك غادي يبقى قيد المراجعة وما غاديش يبان فالموقع حتى تتم الموافقة عليه.</p>
+                <form id="productSubmitForm" onsubmit="submitProductSuggestion(event)">
                     <div class="form-group">
-                        <label for="adminPassword">كلمة السر</label>
-                        <input type="password" id="adminPassword" required autocomplete="current-password" autofocus>
+                        <label for="newTitle">عنوان المنتج والوصف</label>
+                        <input type="text" id="newTitle" required maxlength="180" placeholder="مثال: سماعات لاسلكية">
                     </div>
-                    <p class="admin-login-error" id="adminLoginError" role="alert" aria-live="polite"></p>
-                    <button type="submit" class="submit-product-btn"><i class="ri-login-box-line"></i> دخول لوحة الإدارة</button>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="newPrice">الثمن الحالي</label>
+                            <input type="text" id="newPrice" required maxlength="40" placeholder="199 DH">
+                        </div>
+                        <div class="form-group">
+                            <label for="newOldPrice">الثمن القديم (اختياري)</label>
+                            <input type="text" id="newOldPrice" maxlength="40" placeholder="299 DH">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="newPlatform">المنصة</label>
+                            <select id="newPlatform" required>
+                                <option value="aliexpress">AliExpress</option>
+                                <option value="amazon">Amazon</option>
+                                <option value="jumia">Jumia</option>
+                                <option value="alibaba">Alibaba</option>
+                                <option value="temu">Temu</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="newCategory">الصنف</label>
+                            <select id="newCategory" required>
+                                <option value="tech">تكنولوجيا</option>
+                                <option value="home">طبخ والمنزل</option>
+                                <option value="fashion">أناقة</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="newImage">رابط صورة المنتج (HTTPS)</label>
+                        <input type="url" id="newImage" required placeholder="https://...">
+                    </div>
+                    <div class="form-group">
+                        <label for="newAffLink">رابط المنتج أو الأفلييت (HTTPS)</label>
+                        <input type="url" id="newAffLink" required placeholder="https://...">
+                    </div>
+                    <p class="form-feedback" id="submissionFeedback" role="status" aria-live="polite"></p>
+                    <button type="submit" class="submit-product-btn"><i class="ri-send-plane-line"></i> إرسال للمراجعة</button>
                 </form>
             </div>
         </div>
     </div>
 
-    <!-- نافذة إدارة الموقع الإحترافية (Admin Management Modal) -->
+    <div class="modal-overlay" id="adminLoginModal" role="dialog" aria-modal="true" aria-labelledby="adminLoginTitle">
+        <div class="modal-card admin-login-card">
+            <div class="modal-header">
+                <h3 id="adminLoginTitle"><i class="ri-lock-line"></i> دخول مراجعة الاقتراحات</h3>
+                <button class="close-modal" type="button" onclick="closeAdminLogin()" aria-label="إغلاق"><i class="ri-close-line"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="adminLoginForm" onsubmit="authenticateAdmin(event)">
+                    <div class="form-group">
+                        <label for="adminPassword">كلمة سر الإدارة</label>
+                        <input type="password" id="adminPassword" required autocomplete="current-password">
+                    </div>
+                    <p class="admin-login-error" id="adminLoginError" role="alert" aria-live="polite"></p>
+                    <button type="submit" class="submit-product-btn"><i class="ri-login-box-line"></i> دخول</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <div class="modal-overlay" id="adminModal">
         <div class="modal-card admin-modal-wide">
             <div class="modal-header">
-                <h3><i class="ri-settings-4-fill"></i> <span>لوحة تسيير وإدارة الموقع</span></h3>
+                <h3><i class="ri-shield-check-line"></i> <span>مراجعة اقتراحات المنتجات</span></h3>
                 <button class="close-modal" onclick="toggleAdminModal()"><i class="ri-close-line"></i></button>
             </div>
             <div class="modal-body">
-                <!-- التبويبات الداخلية للإدارة -->
-                <div class="admin-tabs">
-                    <button class="tab-btn active" onclick="switchAdminTab('productsTab', this)"><i class="ri-list-check"></i> إدارة الهمزات والمنتجات</button>
-                    <button class="tab-btn" onclick="switchAdminTab('addProductTab', this)"><i class="ri-add-circle-line"></i> إضافة همزة جديدة</button>
-                    <button class="tab-btn" onclick="switchAdminTab('settingsTab', this)"><i class="ri-tools-line"></i> إعدادات الشعار والتواصل</button>
+                <p id="adminFeedback" class="form-feedback" role="status" aria-live="polite"></p>
+                <div class="admin-table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>الصورة</th>
+                                <th>المنتج والثمن</th>
+                                <th>المنصة</th>
+                                <th>الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pendingSubmissionsList"></tbody>
+                    </table>
                 </div>
-
-                <!-- تبويب 1: قائمة المنتجات -->
-                <div id="productsTab" class="tab-content active">
-                    <div class="admin-table-container">
-                        <table class="admin-table">
-                            <thead>
-                                <tr>
-                                    <th>الصورة</th>
-                                    <th>العنوان</th>
-                                    <th>الثمن</th>
-                                    <th>المنصة</th>
-                                    <th>إجراءات</th>
-                                </tr>
-                            </thead>
-                            <tbody id="adminProductsList"></tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- تبويب 2: إضافة همزة جديدة -->
-                <div id="addProductTab" class="tab-content">
-                    <form id="addProductForm" onsubmit="addNewProduct(event)">
-                        <div class="form-group">
-                            <label>عنوان المنتج والوصف:</label>
-                            <input type="text" id="newTitle" required placeholder="مثال: مقلاة هوائية بدون زيت 5 لتر">
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>الثمن الحالي (بالدرهم):</label>
-                                <input type="text" id="newPrice" required placeholder="499 MAD">
-                            </div>
-                            <div class="form-group">
-                                <label>الثمن القديم:</label>
-                                <input type="text" id="newOldPrice" placeholder="900 MAD">
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>المنصة:</label>
-                                <select id="newPlatform">
-                                    <option value="aliexpress">AliExpress</option>
-                                    <option value="amazon">Amazon</option>
-                                    <option value="jumia">Jumia</option>
-                                    <option value="alibaba">Alibaba</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>الصنف:</label>
-                                <select id="newCategory">
-                                    <option value="tech">تكنولوجيا</option>
-                                    <option value="home">طبخ والمنزل</option>
-                                    <option value="fashion">أناقة</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>رابط الصورة (URL):</label>
-                            <input type="url" id="newImage" required placeholder="https://...">
-                        </div>
-                        <div class="form-group">
-                            <label>رابط الإحالة (Affiliate Link):</label>
-                            <input type="url" id="newAffLink" required placeholder="https://s.click.aliexpress.com/...">
-                        </div>
-                        <button type="submit" class="submit-product-btn"><i class="ri-check-double-line"></i> حفظ ونشر الهمزة</button>
-                    </form>
-                </div>
-
-                <!-- تبويب 3: إعدادات العامة للموقع -->
-                <div id="settingsTab" class="tab-content">
-                    <form id="siteSettingsForm" onsubmit="saveSiteSettings(event)">
-                        <div class="form-group">
-                            <label>شعار الموقع (Slogan):</label>
-                            <input type="text" id="settingSlogan" value="أحسن الصفقات وأقوى الهمزات بالمغرب">
-                        </div>
-                        <div class="form-group">
-                            <label>رقم الواتساب الخاص بالدعم والتواصل:</label>
-                            <input type="text" id="settingPhone" value="+212726294311">
-                        </div>
-                        <div class="form-group">
-                            <label>البريد الإلكتروني المباشر:</label>
-                            <input type="email" id="settingEmail" value="mehdiabbad993@gmail.com">
-                        </div>
-                        <button type="submit" class="submit-product-btn"><i class="ri-save-line"></i> حفظ إعدادات الموقع</button>
-                    </form>
-                </div>
-
             </div>
         </div>
     </div>
@@ -302,7 +282,7 @@
                 <ul>
                     <li><a href="#" onclick="filterCategory('all', this)" data-i18n="allDeals">جميع الهمزات</a></li>
                     <li><a href="#" onclick="openAiAssistant()" data-i18n="aiTitle">مساعد الذكاء الاصطناعي</a></li>
-                    <li><a href="#" onclick="toggleAdminModal()" data-i18n="adminPanel">لوحة المشرف</a></li>
+                    <li><a href="?admin=1" data-i18n="reviewSubmissions">مراجعة اقتراحات المنتجات</a></li>
                 </ul>
             </div>
         </div>
