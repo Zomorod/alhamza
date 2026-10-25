@@ -1217,7 +1217,7 @@ body[data-theme="dark"] .hero-banner::before {
 .submit-product-btn {
     width: 100%;
     background: var(--accent);
-    color: white;
+    color: rgb(131, 248, 135);
     border: none;
     padding: 12px;
     border-radius: 10px;
