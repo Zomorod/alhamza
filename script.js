@@ -155,6 +155,21 @@ const categoryDescriptions = {
     }
 };
 
+const localizedCategoryDescriptions = {
+    fr: {
+        all: { title: "Toutes les offres", desc: "Parcourez les produits et offres disponibles au Maroc." },
+        tech: { title: "Technologie et électronique", desc: "Découvrez des produits connectés, des écouteurs, des montres et des accessoires." },
+        home: { title: "Cuisine et maison", desc: "Des appareils de cuisine et des accessoires pratiques pour la maison." },
+        fashion: { title: "Mode et style", desc: "Découvrez des vêtements, accessoires et articles de mode à prix réduits." }
+    },
+    en: {
+        all: { title: "All deals and offers", desc: "Browse all products and deals currently available in Morocco." },
+        tech: { title: "Technology and electronics", desc: "Explore smart products, wireless earbuds, watches, accessories, and chargers." },
+        home: { title: "Kitchen and home", desc: "Discover kitchen appliances and practical accessories for your home." },
+        fashion: { title: "Fashion and style", desc: "Browse clothing, accessories, and fashion finds at great prices." }
+    }
+};
+
 // معلومات الموقع
 let siteConfig = {
     phone: "+212726294311",
@@ -224,7 +239,7 @@ const translations = {
         catFashion: "Mode & Style",
         heroBadge: "Exclusif au Maroc",
         heroTitle: "Les meilleures offres et deals incroyables à prix cassés !",
-        heroDesc: "Nous regroupons les meilleurs produits d'Amazon, AliExpress et Jumia avec des conseils IA.",
+        heroDesc: "Nous sélectionnons des produits utiles et de bonnes offres sur les grandes plateformes, avec des prix clairs et des liens directs.",
         statDeals: "Bons plans dispo",
         statSecure: "Liens sécurisés",
         statSupport: "Support 24/7",
@@ -271,7 +286,7 @@ const translations = {
         catFashion: "Fashion & Style",
         heroBadge: "Exclusive in Morocco",
         heroTitle: "The Best Deals & Discounts at Incredible Prices!",
-        heroDesc: "We bring you top products from Amazon, AliExpress, and Jumia with AI-powered insights.",
+        heroDesc: "We curate useful products and great deals from popular shopping platforms, with clear prices and direct store links.",
         statDeals: "Active Deals",
         statSecure: "Secure Links",
         statSupport: "24/7 Support",
@@ -308,14 +323,218 @@ const translations = {
     }
 };
 
+const additionalTranslations = {
+    ar: {
+        siteTitle: "الهمزة - أحسن الصفقات وأقوى الهمزات",
+        siteSlogan: "أحسن الصفقات وأقوى الهمزات بالمغرب",
+        brandName: "الهمزة",
+        searchPlaceholder: "قلّب على أي همزة، منتج، أو عرض...",
+        aiSearchButton: "مساعد AI",
+        themeToggle: "تغيير المظهر",
+        homeLinkAria: "العودة إلى الصفحة الرئيسية",
+        aliexpressLive: "AliExpress مباشر",
+        jumiaLive: "Jumia مباشر",
+        alibabaLive: "Alibaba مباشر",
+        temuLive: "Temu مباشر",
+        amazonLive: "Amazon مباشر",
+        categoryDetails: "تفاصيل الصنف",
+        categoryDescription: "وصف شامل ومفصل للهمزات المتاحة فـ هذا القسم...",
+        temuOfferPrice: "29 DH",
+        catalogLoading: "",
+        aiGreeting: "أهلاً بك! أنا جاهز باش نعاونك تلقى أحسن المنتجات والصفقات. شنو بغيتي تقلب عليه اليوم؟",
+        aiPlaceholder: "مثال: بغيت مقلاة هوائية ولا سماعات أقل من 200 درهم...",
+        sendMessage: "إرسال",
+        close: "إغلاق",
+        suggestTitle: "اقترح منتجاً",
+        submissionNote: "اقتراحك غادي يبقى قيد المراجعة وما غاديش يبان فالموقع حتى تتم الموافقة عليه.",
+        productTitleLabel: "عنوان المنتج والوصف",
+        productTitlePlaceholder: "مثال: سماعات لاسلكية",
+        currentPrice: "الثمن الحالي",
+        oldPrice: "الثمن القديم (اختياري)",
+        platform: "المنصة",
+        category: "الصنف",
+        catTechShort: "تكنولوجيا",
+        catFashionShort: "أناقة",
+        imageUrl: "رابط صورة المنتج (HTTPS)",
+        productUrl: "رابط المنتج أو الأفلييت (HTTPS)",
+        submitForReview: "إرسال للمراجعة",
+        adminLoginTitle: "دخول مراجعة الاقتراحات",
+        adminPassword: "كلمة سر الإدارة",
+        login: "دخول",
+        image: "الصورة",
+        productAndPrice: "المنتج والثمن",
+        actions: "الإجراءات",
+        whatsapp: "WhatsApp:",
+        email: "البريد الإلكتروني:",
+        copyright: "© 2026 الهمزة - صُمم بكل حب لـ Mehdi Abbad. جميع الحقوق محفوظة.",
+        contactWhatsapp: "تواصل معنا عبر واتساب",
+        whatsappContactMessage: "سلام، بغيت نسول على شي منتج فموقع الهمزة",
+        emptyProducts: "ما كاين حتى منتج حالياً بهذا المعيار.",
+        productDetailsAria: "تفاصيل",
+        whatsappShare: "مشاركة عبر واتساب",
+        suggestionSending: "كنرسلو الاقتراح...",
+        suggestionSubmitted: "وصلنا اقتراحك، غادي يبقى قيد المراجعة حتى تتم الموافقة عليه.",
+        noPendingSuggestions: "ما كايناش اقتراحات معلقة دابا.",
+        openProductLink: "فتح رابط المنتج",
+        approve: "موافقة",
+        reject: "رفض",
+        adminUpdating: "كنحدّثو الاقتراح...",
+        productApproved: "توافق على المنتج وتزاد للموقع.",
+        productRejected: "ترفض الاقتراح.",
+        aiDefaultReply: "شوف المنتجات المتوفرة فالموقع، أو تواصل معنا عبر واتساب إلا بغيتي مساعدة.",
+        aiEarbudsReply: "تقدر تشوف السماعات اللاسلكية المتوفرة فالموقع وتأكد من الثمن الحالي فصفحة المتجر.",
+        aiKitchenReply: "تصفح قسم الطبخ والمنزل باش تشوف المنتجات والعروض المتوفرة حالياً."
+    },
+    fr: {
+        siteTitle: "Lhamzza - Les meilleures offres et promotions",
+        siteSlogan: "Les meilleures offres au Maroc",
+        brandName: "Lhamzza",
+        searchPlaceholder: "Rechercher des offres et des produits...",
+        aiSearchButton: "Assistant IA",
+        themeToggle: "Changer le thème",
+        homeLinkAria: "Retour à la page d’accueil",
+        aliexpressLive: "AliExpress en direct",
+        jumiaLive: "Jumia en direct",
+        alibabaLive: "Alibaba en direct",
+        temuLive: "Temu en direct",
+        amazonLive: "Amazon en direct",
+        categoryDetails: "Détails de la catégorie",
+        categoryDescription: "Découvrez les offres disponibles dans cette catégorie.",
+        temuOfferPrice: "29 DH",
+        catalogLoading: "",
+        aiGreeting: "Bonjour ! Je peux vous aider à trouver les meilleurs produits et offres. Que recherchez-vous ?",
+        aiPlaceholder: "Exemple : une friteuse ou des écouteurs à moins de 200 DH...",
+        sendMessage: "Envoyer",
+        close: "Fermer",
+        suggestTitle: "Proposer un produit",
+        submissionNote: "Votre proposition sera examinée et ne sera publiée qu’après approbation.",
+        productTitleLabel: "Nom et description du produit",
+        productTitlePlaceholder: "Exemple : écouteurs sans fil",
+        currentPrice: "Prix actuel",
+        oldPrice: "Ancien prix (facultatif)",
+        platform: "Plateforme",
+        category: "Catégorie",
+        catTechShort: "Technologie",
+        catFashionShort: "Mode",
+        imageUrl: "Lien de l’image du produit (HTTPS)",
+        productUrl: "Lien du produit ou d’affiliation (HTTPS)",
+        submitForReview: "Envoyer pour examen",
+        adminLoginTitle: "Connexion à la modération",
+        adminPassword: "Mot de passe administrateur",
+        login: "Connexion",
+        image: "Image",
+        productAndPrice: "Produit et prix",
+        actions: "Actions",
+        whatsapp: "WhatsApp :",
+        email: "E-mail :",
+        copyright: "© 2026 Lhamzza - Créé avec soin pour Mehdi Abbad. Tous droits réservés.",
+        contactWhatsapp: "Contactez-nous sur WhatsApp",
+        whatsappContactMessage: "Bonjour, j’aimerais poser une question sur un produit de Lhamzza",
+        emptyProducts: "Aucun produit ne correspond à ce critère.",
+        productDetailsAria: "Détails de",
+        whatsappShare: "Partager sur WhatsApp",
+        suggestionSending: "Envoi de votre proposition...",
+        suggestionSubmitted: "Votre proposition a été reçue et sera examinée avant publication.",
+        noPendingSuggestions: "Aucune proposition en attente.",
+        openProductLink: "Ouvrir le lien du produit",
+        approve: "Approuver",
+        reject: "Refuser",
+        adminUpdating: "Mise à jour de la proposition...",
+        productApproved: "Produit approuvé et ajouté au site.",
+        productRejected: "Proposition refusée.",
+        aiDefaultReply: "Consultez les produits disponibles ou contactez-nous sur WhatsApp pour obtenir de l’aide.",
+        aiEarbudsReply: "Consultez les écouteurs sans fil disponibles et vérifiez le prix actuel sur la boutique.",
+        aiKitchenReply: "Parcourez la catégorie cuisine et maison pour découvrir les offres disponibles."
+    },
+    en: {
+        siteTitle: "Lhamzza - The Best Deals and Shopping Offers",
+        siteSlogan: "The best deals and offers in Morocco",
+        brandName: "Lhamzza",
+        searchPlaceholder: "Search deals, products, and offers...",
+        aiSearchButton: "AI Assistant",
+        themeToggle: "Change theme",
+        homeLinkAria: "Return to the homepage",
+        aliexpressLive: "AliExpress Store",
+        jumiaLive: "Jumia Store",
+        alibabaLive: "Alibaba Store",
+        temuLive: "Temu Store",
+        amazonLive: "Amazon Store",
+        categoryDetails: "Category details",
+        categoryDescription: "Explore the offers available in this category.",
+        temuOfferPrice: "29 DH",
+        catalogLoading: "",
+        aiGreeting: "Welcome! I can help you find great products and deals. What are you looking for today?",
+        aiPlaceholder: "For example: an air fryer or earbuds under 200 DH...",
+        sendMessage: "Send",
+        close: "Close",
+        suggestTitle: "Suggest a product",
+        submissionNote: "Your suggestion will be reviewed and will not appear on the site until approved.",
+        productTitleLabel: "Product title and description",
+        productTitlePlaceholder: "For example: wireless earbuds",
+        currentPrice: "Current price",
+        oldPrice: "Old price (optional)",
+        platform: "Store",
+        category: "Category",
+        catTechShort: "Technology",
+        catFashionShort: "Fashion",
+        imageUrl: "Product image URL (HTTPS)",
+        productUrl: "Product or affiliate URL (HTTPS)",
+        submitForReview: "Submit for review",
+        adminLoginTitle: "Moderator sign in",
+        adminPassword: "Admin password",
+        login: "Sign in",
+        image: "Image",
+        productAndPrice: "Product and price",
+        actions: "Actions",
+        whatsapp: "WhatsApp:",
+        email: "Email:",
+        copyright: "© 2026 Lhamzza - Made with care for Mehdi Abbad. All rights reserved.",
+        contactWhatsapp: "Contact us on WhatsApp",
+        whatsappContactMessage: "Hello, I have a question about a product on Lhamzza",
+        emptyProducts: "No products match this filter.",
+        productDetailsAria: "Details for",
+        whatsappShare: "Share on WhatsApp",
+        suggestionSending: "Submitting your suggestion...",
+        suggestionSubmitted: "Your suggestion was received and will be reviewed before publication.",
+        noPendingSuggestions: "There are no pending suggestions.",
+        openProductLink: "Open product link",
+        approve: "Approve",
+        reject: "Reject",
+        adminUpdating: "Updating suggestion...",
+        productApproved: "Product approved and added to the site.",
+        productRejected: "Suggestion rejected.",
+        aiDefaultReply: "Browse the products currently available, or contact us on WhatsApp if you need help.",
+        aiEarbudsReply: "Browse the wireless earbuds available on the site and confirm the current price on the store page.",
+        aiKitchenReply: "Browse the Kitchen & Home category to see the products and offers currently available."
+    }
+};
+Object.assign(translations.ar, additionalTranslations.ar);
+Object.assign(translations.fr, additionalTranslations.fr);
+Object.assign(translations.en, additionalTranslations.en);
+
+const englishProductTitles = {
+    1: "TA210 wireless Bluetooth sports earbuds with ENC noise cancellation and four microphones",
+    2: "50 oz insulated stainless steel travel tumbler with handle and straw",
+    3: "AUTEL MaxiCOM MK900-TS bidirectional diagnostic scanner with TPMS",
+    4: "Double-sided gesture-controlled remote-control car with 4WD, drift, lights, and music",
+    5: "Lightweight multi-purpose sports vest with storage for a water bottle and phone",
+    6: "Warm winter slippers with thick soles, comfortable indoor shoes",
+    7: "Lightweight quick-dry breathable sports cap for outdoor activities",
+    8: "Adjustable lightweight finger and toe support with breathable design",
+    9: "115-piece magnetic precision screwdriver set for phones, computers, and watches",
+    10: "Portable USB-rechargeable mini nose hair trimmer",
+    11: "Dual-lens dash camera with 1080p front and 720p rear recording",
+    12: "Rechargeable 3-in-1 / 4-in-1 nose and ear hair trimmer for men",
+    13: "Anti-theft motorcycle backpack that converts to a secure crossbody bag"
+};
+
 let currentLang = 'ar';
+let currentCategory = 'all';
 let isAdminAuthenticated = false;
 let adminSessionToken = "";
 
 // التشغيل الأولي
 document.addEventListener('DOMContentLoaded', () => {
-    renderProducts(getAllProducts());
-    updateStats();
     const productId = new URLSearchParams(window.location.search).get('product');
     if (productId) {
         document.querySelector('.hero-banner').hidden = true;
@@ -325,6 +544,11 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('#productDetailView .product-detail-back span').textContent =
             translations[currentLang].detailBack;
     }
+
+    const savedLanguage = getSavedLanguage();
+    if (savedLanguage && translations[savedLanguage]) setLanguage(savedLanguage);
+    renderProducts(getAllProducts());
+    updateStats();
 
     loadApprovedProducts().catch(error => {
         console.error('Failed to load approved products:', error);
@@ -340,6 +564,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function getAllProducts() {
     return [...products, ...communityProducts];
+}
+
+function getSavedLanguage() {
+    try {
+        return localStorage.getItem('siteLanguage');
+    } catch (error) {
+        console.error('Could not read saved language preference:', error);
+        return null;
+    }
+}
+
+function getProductTitle(product) {
+    if (currentLang === 'en') {
+        return englishProductTitles[product.id] || product.title;
+    }
+    return product.title;
 }
 
 function escapeHtml(value) {
@@ -392,15 +632,18 @@ function renderProductDetail(productId) {
         return;
     }
 
-    const description = product.description || product.title;
+    const title = getProductTitle(product);
+    const description = currentLang === 'en'
+        ? (englishProductTitles[product.id] || product.description || title)
+        : (product.description || product.title);
     container.innerHTML = `
         <article class="product-detail-card">
             <div class="product-detail-image-wrap">
-                <img class="product-detail-image" src="${escapeHtml(product.image)}" alt="${escapeHtml(product.title)}">
+                <img class="product-detail-image" src="${escapeHtml(product.image)}" alt="${escapeHtml(title)}">
             </div>
             <div class="product-detail-content">
                 <span class="product-detail-badge">${escapeHtml(product.platform)}</span>
-                <h1>${escapeHtml(product.title)}</h1>
+                <h1>${escapeHtml(title)}</h1>
                 <p class="product-detail-description">${escapeHtml(description)}</p>
                 <div class="price-box product-detail-price">
                     ${product.oldPrice ? `<span class="old-price">${escapeHtml(product.oldPrice)}</span>` : ''}
@@ -453,22 +696,23 @@ function renderProducts(items) {
     grid.innerHTML = '';
 
     if (items.length === 0) {
-        grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-secondary); padding: 40px;">ما كاين حتى منتج حالياً بهذا المعيار.</p>`;
+        grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-secondary); padding: 40px;">${escapeHtml(translations[currentLang].emptyProducts)}</p>`;
         return;
     }
 
     items.forEach(product => {
+        const title = getProductTitle(product);
         const card = document.createElement('div');
         card.className = 'product-card';
         card.innerHTML = `
             <span class="product-badge">${escapeHtml(product.platform)}</span>
-            <a class="product-image-link" href="?product=${encodeURIComponent(product.id)}" aria-label="تفاصيل ${escapeHtml(product.title)}">
+            <a class="product-image-link" href="?product=${encodeURIComponent(product.id)}" aria-label="${escapeHtml(translations[currentLang].productDetailsAria)} ${escapeHtml(title)}">
                 <div class="product-img-wrap">
-                    <img src="${escapeHtml(product.image)}" alt="${escapeHtml(product.title)}" loading="lazy">
+                    <img src="${escapeHtml(product.image)}" alt="${escapeHtml(title)}" loading="lazy">
                 </div>
             </a>
             <div class="product-body">
-                <h3 class="product-title"><a class="product-title-link" href="?product=${encodeURIComponent(product.id)}">${escapeHtml(product.title)}</a></h3>
+                <h3 class="product-title"><a class="product-title-link" href="?product=${encodeURIComponent(product.id)}">${escapeHtml(title)}</a></h3>
                 <div class="product-footer">
                     <div class="price-box">
                         ${product.oldPrice ? `<span class="old-price">${escapeHtml(product.oldPrice)}</span>` : ''}
@@ -477,7 +721,7 @@ function renderProducts(items) {
                     </div>
                     <div class="product-actions">
                         <a href="?product=${encodeURIComponent(product.id)}" class="affiliate-btn">${escapeHtml(translations[currentLang].viewDetails)}</a>
-                        <button class="whatsapp-share-btn" type="button" title="مشاركة عبر واتساب">
+                        <button class="whatsapp-share-btn" type="button" title="${escapeHtml(translations[currentLang].whatsappShare)}" aria-label="${escapeHtml(translations[currentLang].whatsappShare)}">
                             <i class="ri-whatsapp-line"></i>
                         </button>
                     </div>
@@ -493,6 +737,7 @@ function renderProducts(items) {
 
 // الفلترة وإظهار وصف المنشور الصنف عند الضغط
 function filterCategory(cat, element) {
+    currentCategory = cat;
     document.querySelectorAll('.cat-chip').forEach(chip => chip.classList.remove('active'));
     element.classList.add('active');
 
@@ -500,10 +745,11 @@ function filterCategory(cat, element) {
     const titleEl = document.getElementById('catDescTitle');
     const textEl = document.getElementById('catDescText');
 
-    if (categoryDescriptions[cat]) {
+    const descriptions = localizedCategoryDescriptions[currentLang] || categoryDescriptions;
+    if (descriptions[cat]) {
         descBox.style.display = 'block';
-        titleEl.innerHTML = `<i class="ri-information-fill"></i> ${categoryDescriptions[cat].title}`;
-        textEl.innerText = categoryDescriptions[cat].desc;
+        titleEl.innerHTML = `<i class="ri-information-fill"></i> ${escapeHtml(descriptions[cat].title)}`;
+        textEl.innerText = descriptions[cat].desc;
     } else {
         descBox.style.display = 'none';
     }
@@ -526,7 +772,7 @@ async function renderAdminProductsTable() {
         const row = document.createElement('tr');
         const cell = document.createElement('td');
         cell.colSpan = 4;
-        cell.textContent = 'ما كايناش اقتراحات معلقة دابا.';
+        cell.textContent = translations[currentLang].noPendingSuggestions;
         row.appendChild(cell);
         tbody.appendChild(row);
         return;
@@ -544,12 +790,12 @@ async function renderAdminProductsTable() {
         const title = document.createElement('strong');
         title.textContent = submission.title;
         const price = document.createElement('p');
-        price.textContent = `${submission.price}${submission.oldPrice ? ` (قديم: ${submission.oldPrice})` : ''}`;
+        price.textContent = `${submission.price}${submission.oldPrice ? ` (${translations[currentLang].oldPrice}: ${submission.oldPrice})` : ''}`;
         const link = document.createElement('a');
         link.href = submission.affLink;
         link.target = '_blank';
         link.rel = 'noopener noreferrer';
-        link.textContent = 'فتح رابط المنتج';
+        link.textContent = translations[currentLang].openProductLink;
         productCell.append(title, price, link);
 
         const platformCell = document.createElement('td');
@@ -558,12 +804,12 @@ async function renderAdminProductsTable() {
         const approveButton = document.createElement('button');
         approveButton.type = 'button';
         approveButton.className = 'approve-btn';
-        approveButton.textContent = 'موافقة';
+        approveButton.textContent = translations[currentLang].approve;
         approveButton.addEventListener('click', () => reviewSubmission(submission.id, 'approve'));
         const rejectButton = document.createElement('button');
         rejectButton.type = 'button';
         rejectButton.className = 'delete-btn';
-        rejectButton.textContent = 'رفض';
+        rejectButton.textContent = translations[currentLang].reject;
         rejectButton.addEventListener('click', () => reviewSubmission(submission.id, 'reject'));
         actionsCell.append(approveButton, rejectButton);
 
@@ -579,28 +825,68 @@ function updateStats() {
 
 // تغيير اللغة
 function setLanguage(lang) {
+    if (!translations[lang]) return;
     currentLang = lang;
+    try {
+        localStorage.setItem('siteLanguage', lang);
+    } catch (error) {
+        console.error('Could not save language preference:', error);
+    }
     const root = document.getElementById('htmlRoot');
     root.setAttribute('lang', lang);
     root.setAttribute('dir', (lang === 'ar' ? 'rtl' : 'ltr'));
 
-    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-    event.target.classList.add('active');
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+    });
 
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
-        if (translations[lang][key]) {
-            el.innerText = translations[lang][key];
+        if (translations[lang][key] !== undefined) {
+            el.textContent = translations[lang][key];
         }
     });
 
-    document.getElementById('announcementText').innerText = translations[lang].announcementText;
-    renderProducts(getAllProducts());
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        el.setAttribute('placeholder', translations[lang][el.dataset.i18nPlaceholder]);
+    });
+    document.querySelectorAll('[data-i18n-title]').forEach(el => {
+        el.setAttribute('title', translations[lang][el.dataset.i18nTitle]);
+    });
+    document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+        el.setAttribute('aria-label', translations[lang][el.dataset.i18nAria]);
+    });
+    document.querySelectorAll('[data-i18n-alt]').forEach(el => {
+        el.setAttribute('alt', translations[lang][el.dataset.i18nAlt]);
+    });
+    document.title = translations[lang].siteTitle;
+    document.getElementById('floatingWhatsappBtn').href =
+        `https://wa.me/${siteConfig.cleanPhone}?text=${encodeURIComponent(translations[lang].whatsappContactMessage)}`;
+    const visibleProducts = currentCategory === 'all'
+        ? getAllProducts()
+        : getAllProducts().filter(product =>
+            ['aliexpress', 'amazon', 'jumia', 'alibaba', 'temu'].includes(currentCategory)
+                ? product.platform.toLowerCase() === currentCategory
+                : product.category === currentCategory
+        );
+    renderProducts(visibleProducts);
+    document.getElementById('announcementText').textContent = translations[lang].announcementText;
     const productId = new URLSearchParams(window.location.search).get('product');
     if (productId) {
         document.querySelector('#productDetailView .product-detail-back span').textContent =
             translations[lang].detailBack;
+        document.querySelector('#productDetailView .product-detail-back i').className =
+            lang === 'ar' ? 'ri-arrow-right-line' : 'ri-arrow-left-line';
         renderProductDetail(productId);
+    }
+    const visibleCategory = document.querySelector('.cat-chip.active')?.dataset.category;
+    if (visibleCategory && visibleCategory !== 'all') {
+        const categoryInfo = (localizedCategoryDescriptions[lang] || categoryDescriptions)[visibleCategory];
+        if (categoryInfo && document.getElementById('categoryDescBox').style.display !== 'none') {
+            document.getElementById('catDescTitle').innerHTML =
+                `<i class="ri-information-fill"></i> ${escapeHtml(categoryInfo.title)}`;
+            document.getElementById('catDescText').textContent = categoryInfo.desc;
+        }
     }
 }
 
@@ -619,7 +905,9 @@ function toggleTheme() {
 
 function filterProducts() {
     const query = document.getElementById('searchInput').value.toLowerCase();
-    renderProducts(getAllProducts().filter(p => p.title.toLowerCase().includes(query) || p.platform.toLowerCase().includes(query)));
+    renderProducts(getAllProducts().filter(p =>
+        getProductTitle(p).toLowerCase().includes(query) || p.platform.toLowerCase().includes(query)
+    ));
 }
 
 function sortProducts() {
@@ -659,7 +947,15 @@ function getProductPageUrl(productId) {
 
 function shareToWhatsApp(product) {
     const link = getProductPageUrl(product.id);
-    const text = `سلام، عجبني هاد العرض ف موقع الهمزة:\n\n*${product.title}*\nالثمن: *${product.price}*\nالرابط: ${link}`;
+    const greeting = currentLang === 'en'
+        ? "Hi, I found this deal on Lhamzza:"
+        : currentLang === 'fr'
+            ? "Bonjour, j’ai trouvé cette offre sur Lhamzza :"
+            : "سلام، عجبني هاد العرض ف موقع الهمزة:";
+    const title = getProductTitle(product);
+    const priceLabel = currentLang === 'en' ? "Price" : currentLang === 'fr' ? "Prix" : "الثمن";
+    const linkLabel = currentLang === 'en' ? "Link" : currentLang === 'fr' ? "Lien" : "الرابط";
+    const text = `${greeting}\n\n*${title}*\n${priceLabel}: *${product.price}*\n${linkLabel}: ${link}`;
     window.open(`https://wa.me/${siteConfig.cleanPhone}?text=${encodeURIComponent(text)}`, '_blank');
 }
 
@@ -729,14 +1025,14 @@ async function submitProductSuggestion(event) {
 
     submitButton.disabled = true;
     feedback.className = 'form-feedback';
-    feedback.textContent = 'كنرسلو الاقتراح...';
+    feedback.textContent = translations[currentLang].suggestionSending;
     try {
         const result = await apiRequest('/api/submissions', {
             method: 'POST',
             body: JSON.stringify(suggestion)
         });
         feedback.classList.add('success');
-        feedback.textContent = result.message;
+        feedback.textContent = translations[currentLang].suggestionSubmitted;
         form.reset();
     } catch (error) {
         feedback.classList.add('error');
@@ -807,7 +1103,7 @@ function closeAdminLogin() {
 async function reviewSubmission(id, action) {
     const feedback = document.getElementById('adminFeedback');
     feedback.className = 'form-feedback';
-    feedback.textContent = 'كنحدّثو الاقتراح...';
+    feedback.textContent = translations[currentLang].adminUpdating;
     try {
         await apiRequest(`/api/admin/submissions/${id}/${action}`, {
             method: 'PATCH',
@@ -816,7 +1112,9 @@ async function reviewSubmission(id, action) {
         if (action === 'approve') await loadApprovedProducts();
         await renderAdminProductsTable();
         feedback.classList.add('success');
-        feedback.textContent = action === 'approve' ? 'توافق على المنتج وتزاد للموقع.' : 'ترفض الاقتراح.';
+        feedback.textContent = action === 'approve'
+            ? translations[currentLang].productApproved
+            : translations[currentLang].productRejected;
     } catch (error) {
         feedback.classList.add('error');
         feedback.textContent = error.message;
@@ -842,11 +1140,13 @@ function askAiAssistant() {
     chatBox.scrollTop = chatBox.scrollHeight;
 
     setTimeout(() => {
-        let reply = "بناءً على طلبك، كنقترح عليك تشوف المنتجات المتوفرة حالياً فـ الهمزة ولا تواصل مع مهدي المباشر فالواتساب باش يعطيك الهمزة اللي حبت خاطرك!";
+        let reply = translations[currentLang].aiDefaultReply;
         const lower = query.toLowerCase();
-        if (lower.includes('سماع')) reply = "لقيت ليك سماعات TWS بـ 129 درهم فقط عوض 350 درهم! صفقة ممتازة بزاف وموجودة فالتصنيف الأول.";
-        else if (lower.includes('طبخ') || lower.includes('مقلاة')) reply = "قسم الطبخ فيه مقلاة هوائية 5 لتر بدون زيت بـ 499 درهم فقط فـ Jumia!";
-        else if (lower.includes('ساعة')) reply = "الساعات الذكية عليها تخفيض كبير حالياً، تواصل مع مهدي ف الواتساب يعطيك أحسن عرض.";
+        if (['سماع', 'earbud', 'headphone', 'headphone', 'écouteur'].some(term => lower.includes(term))) {
+            reply = translations[currentLang].aiEarbudsReply;
+        } else if (['طبخ', 'مقلاة', 'kitchen', 'cuisine', 'air fryer'].some(term => lower.includes(term))) {
+            reply = translations[currentLang].aiKitchenReply;
+        }
 
         chatBox.innerHTML += `<div class="ai-msg bot">${reply}</div>`;
         chatBox.scrollTop = chatBox.scrollHeight;

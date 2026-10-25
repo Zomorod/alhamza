@@ -14,15 +14,29 @@
 }
 
 [data-theme="light"] {
-    --bg-primary: #f8fafc;
+    --bg-primary: #fffaf5;
     --bg-secondary: #ffffff;
     --bg-card: #ffffff;
-    --text-primary: #0f172a;
-    --text-secondary: #64748b;
-    --accent: #d97706;
-    --accent-hover: #b45309;
-    --border: #e2e8f0;
+    --text-primary: #292524;
+    --text-secondary: #78716c;
+    --accent: #f97316;
+    --accent-hover: #ea580c;
+    --border: #fed7aa;
+    --hero-end: #fff1e6;
     --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="dark"] {
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-card: #1e293b;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --accent: #f59e0b;
+    --accent-hover: #d97706;
+    --border: #334155;
+    --hero-end: #1e293b;
+    --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
 }
 
 * {
@@ -307,7 +321,7 @@ body {
 
 /* Hero Banner */
 .hero-banner {
-    background: linear-gradient(135deg, var(--bg-secondary), var(--bg-card));
+    background: linear-gradient(135deg, var(--bg-secondary), var(--hero-end));
     border: 1px solid var(--border);
     border-radius: 20px;
     padding: 40px;
