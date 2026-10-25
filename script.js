@@ -187,7 +187,7 @@ const translations = {
         adminPanel: "إدارة الموقع",
         suggestProduct: "اقترح منتج",
         reviewSubmissions: "مراجعة اقتراحات المنتجات",
-        employeeWhatsapp: "WhatsApp الموظفة:",
+        employeeWhatsapp: "WhatsApp الموظف:",
         allDeals: "جميع الهمزات",
         catTech: "تكنولوجيا وواتساب",
         catHome: "طبخ والمنزل",
