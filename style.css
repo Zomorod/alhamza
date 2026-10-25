@@ -1171,10 +1171,18 @@ body[data-theme="dark"] {
 
 /* Footer */
 .site-footer {
-    background-color: var(--bg-secondary);
+    background-color: hsl(142, 30%, 40%);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M0 0H100V100H0Z' fill='%23fffaf0'/%3E%3Cpath d='M50 2 62 20 84 16 80 38 98 50 80 62 84 84 62 80 50 98 38 80 16 84 20 62 2 50 20 38 16 16 38 20Z' fill='none' stroke='%231e40af' stroke-opacity='.24' stroke-width='2'/%3E%3Cpath d='M50 2 50 20 38 20 50 34 62 20 50 20M98 50 80 50 80 38 66 50 80 62 80 50M50 98 50 80 62 80 50 66 38 80 50 80M2 50 20 50 20 62 34 50 20 38 20 50' fill='%230f766e' fill-opacity='.12' stroke='%230f766e' stroke-opacity='.24' stroke-width='1.5'/%3E%3Cpath d='M50 34 66 50 50 66 34 50Z' fill='%23f97316' fill-opacity='.13' stroke='%23b45309' stroke-opacity='.24' stroke-width='1.5'/%3E%3Cpath d='M0 0 20 20M100 0 80 20M0 100 20 80M100 100 80 80' stroke='%231e40af' stroke-opacity='.18' stroke-width='1.5'/%3E%3C/svg%3E");
+    background-size: 100px 100px;
+    background-attachment: fixed;
     border-top: 1px solid var(--border);
     padding: 50px 0 20px;
     margin-top: 60px;
+}
+
+body[data-theme="dark"] .site-footer {
+    background-color: #14212a;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M0 0H100V100H0Z' fill='%2314212a'/%3E%3Cpath d='M50 2 62 20 84 16 80 38 98 50 80 62 84 84 62 80 50 98 38 80 16 84 20 62 2 50 20 38 16 16 38 20Z' fill='none' stroke='%2360a5fa' stroke-opacity='.28' stroke-width='2'/%3E%3Cpath d='M50 2 50 20 38 20 50 34 62 20 50 20M98 50 80 50 80 38 66 50 80 62 80 50M50 98 50 80 62 80 50 66 38 80 50 80M2 50 20 50 20 62 34 50 20 38 20 50' fill='%232dd4bf' fill-opacity='.14' stroke='%232dd4bf' stroke-opacity='.26' stroke-width='1.5'/%3E%3Cpath d='M50 34 66 50 50 66 34 50Z' fill='%23fb923c' fill-opacity='.16' stroke='%23fdba74' stroke-opacity='.25' stroke-width='1.5'/%3E%3Cpath d='M0 0 20 20M100 0 80 20M0 100 20 80M100 100 80 80' stroke='%2360a5fa' stroke-opacity='.22' stroke-width='1.5'/%3E%3C/svg%3E");
 }
 
 .footer-grid {
