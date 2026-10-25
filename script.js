@@ -112,6 +112,16 @@ let products = [
         category: "tech",
         image: "https://img.kwcdn.com/product/fancy/1759a634-3e19-4850-869d-11c637e21637.jpg",
         affLink: "https://www.temu.com/ma-en/dual-lens-dashcam-high-definition-1080p-front-camera-720p-built-in-camera-24-hour-parking-monitoring--loop-recording--12-24-with-motion-detection-parking-assist-and-front-and-rear-dual-recording-g-601104621733414.html?top_gallery_url=https%3A%2F%2Fimg.kwcdn.com%2Fproduct%2Ffancy%2F1759a634-3e19-4850-869d-11c637e21637.jpg&spec_gallery_id=33390805795&_oak_page_source=10082&_x_ads_csite=pc_bottom_union&_x_sessn_id=nm6eukvy37&refer_page_name=afc_share_goods&refer_page_id=13788_1792960718880_b1vq59ydnf&refer_page_sn=13788"
+    },
+    {
+        id: 12,
+        title: "ماكينة احترافية قابلة للشحن لتشذيب شعر الأنف والأذن، أداة عناية شخصية للرجال 3 في 1 و4 في 1",
+        price: "140 DH",
+        oldPrice: "",
+        platform: "temu",
+        category: "tech",
+        image: "https://img.kwcdn.com/product/fancy/1c7b828f-88d2-4ab9-9e81-b341256faa0c.jpg",
+        affLink: "https://www.temu.com/ma-en/km-6630--3in1-4in1-professional-rechargeable-nose-ear-hair-trimmer-mens-personal-care-tool-g-601099542275155.html?top_gallery_url=https%3A%2F%2Fimg.kwcdn.com%2Fproduct%2Ffancy%2F1c7b828f-88d2-4ab9-9e81-b341256faa0c.jpg&spec_gallery_id=2476&_oak_page_source=10082&_x_ads_csite=pc_bottom_union&_x_sessn_id=nm6eukvy37&refer_page_name=afc_share_goods&refer_page_id=13788_1792960718880_b1vq59ydnf&refer_page_sn=13788"
     }
 ];
 
