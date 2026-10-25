@@ -354,12 +354,49 @@ body[data-theme="dark"] {
 .hero-banner::before {
     content: "";
     position: absolute;
-    z-index: -1;
-    inset: auto 0 0;
-    height: 72%;
-    opacity: 0.19;
+    z-index: 0;
+    inset: 0;
+    opacity: 0.34;
     pointer-events: none;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 320' fill='none'%3E%3Cpath d='M0 258c125-25 205 25 326 0s207 22 331 0 206 23 332 0 141 8 211 0v62H0z' fill='%230f766e' fill-opacity='.18'/%3E%3Cpath d='M0 273c110-22 202 24 322 0s210 22 333 0 209 20 330 0 146 10 215 0M0 290c110-20 202 22 322 0s210 20 333 0 209 18 330 0 146 8 215 0' stroke='%230f766e' stroke-opacity='.48' stroke-width='3'/%3E%3Cpath d='M82 252h410v-72H82zM118 180v-22h34v22m38 0v-22h34v22m38 0v-22h34v22m38 0v-22h34v22m38 0v-22h34v22m38 0v-22h34v22' fill='%23d97706' fill-opacity='.13' stroke='%23b45309' stroke-opacity='.42' stroke-width='3'/%3E%3Cpath d='M164 180v-37c0-20 16-36 36-36s36 16 36 36v37m58 0v-37c0-20 16-36 36-36s36 16 36 36v37m58 0v-37c0-20 16-36 36-36s36 16 36 36v37' stroke='%230f766e' stroke-opacity='.58' stroke-width='5'/%3E%3Cpath d='M286 100V60h24V25h39v35h24v40m-87-40h87m-71 0v40m55-40v40m-86 0h111' stroke='%23b45309' stroke-opacity='.58' stroke-width='5'/%3E%3Cpath d='M644 252h438v-24H644zm34-24v-54h34v54m38 0v-54h34v54m38 0v-54h34v54m38 0v-54h34v54m38 0v-54h34v54m38 0v-54h34v54m38 0v-54h34v54' fill='%23d97706' fill-opacity='.12' stroke='%23b45309' stroke-opacity='.4' stroke-width='3'/%3E%3Cpath d='M674 174V92h42V58h66v34h42v82m-150-82h150m-108 0v82m66-82v82' stroke='%230f766e' stroke-opacity='.58' stroke-width='5'/%3E%3Cpath d='M792 58V26h14V8h30v18h14v32m-58-32h58m-42 0v32m26-32v32' stroke='%23b45309' stroke-opacity='.58' stroke-width='5'/%3E%3Cpath d='M1048 226v-65m0 0c-21-10-30-26-28-47 19 4 31 17 28 47m0 0c20-9 29-26 27-46-18 4-30 17-27 46m0 65v-48m0 0c-15-8-20-20-19-34 14 3 21 13 19 34m0 0c14-7 20-19 19-33-13 3-20 13-19 33' stroke='%230f766e' stroke-opacity='.46' stroke-width='4'/%3E%3C/svg%3E") center bottom / 100% auto no-repeat;
+    background-image:
+        linear-gradient(90deg, rgba(255, 250, 245, 0.58), rgba(255, 250, 245, 0.84) 48%, rgba(255, 250, 245, 0.58)),
+        url("assets/hassan-ii-mosque.jpg"),
+        url("assets/hassan-tower-rabat.jpg");
+    background-size: 100% 100%, 55% 100%, 27% 82%;
+    background-position: center, left center, right center;
+    background-repeat: no-repeat;
+}
+
+body[data-theme="dark"] .hero-banner::before {
+    background-image:
+        linear-gradient(90deg, rgba(15, 23, 42, 0.55), rgba(15, 23, 42, 0.78) 48%, rgba(15, 23, 42, 0.55)),
+        url("assets/hassan-ii-mosque.jpg"),
+        url("assets/hassan-tower-rabat.jpg");
+}
+
+.hero-banner > * {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-photo-credit {
+    position: absolute !important;
+    z-index: 2 !important;
+    inset: auto auto 8px 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    max-width: calc(100% - 28px);
+    color: var(--text-secondary);
+    font-size: 0.62rem;
+    line-height: 1.3;
+    direction: ltr;
+}
+
+.hero-photo-credit a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
 }
 
 .hero-badge {
@@ -1324,6 +1361,10 @@ body[data-theme="dark"] .site-footer {
     .hero-banner {
         grid-template-columns: 1fr;
         padding: 25px;
+    }
+    .hero-banner::before {
+        background-size: 100% 100%, 72% 46%, 30% 38%;
+        background-position: center, left bottom, right bottom;
     }
     .footer-grid {
         grid-template-columns: 1fr;
