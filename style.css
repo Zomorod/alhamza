@@ -119,29 +119,30 @@ body[data-theme="dark"] {
 }
 
 .logo-percent {
-    background: var(--accent);
+    background: linear-gradient(145deg, #f97316, #c2410c);
     color: #ffffff;
     font-size: 1.2rem;
     font-weight: 900;
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 10px rgba(245, 158, 11, 0.4);
+    box-shadow: 0 4px 10px rgba(194, 65, 12, 0.22);
 }
 
 .logo-text {
     font-size: 1.8rem;
-    font-weight: 900;
-    color: #4285f4;
+    font-weight: 800;
+    color: #18324b;
     font-family: 'Outfit', 'Cairo', sans-serif;
-    letter-spacing: 0.035em;
-    background: linear-gradient(90deg, #4285f4 0 19%, #ea4335 19% 39%, #fbbc05 39% 58%, #34a853 58% 78%, #4285f4 78% 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    letter-spacing: 0.045em;
+    line-height: 1.15;
+}
+
+body[data-theme="dark"] .logo-text {
+    color: #f1f5f9;
 }
 
 .logo-slogan {
