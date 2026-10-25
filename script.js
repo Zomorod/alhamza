@@ -56,7 +56,7 @@ let products = [
     {
         id: 6,
         title: "بوت شتوي دافئ بنعل سميك وكعب، حذاء منزلي مريح للنساء، مقاسات كبيرة وتصميم موحد",
-        price: "الثمن حسب صفحة Temu",
+        price: "193 DH",
         oldPrice: "",
         platform: "temu",
         category: "fashion",
@@ -66,7 +66,7 @@ let products = [
     {
         id: 7,
         title: "كاسكيطة رياضية خفيفة للرجال والنساء، سريعة الجفاف وقابلة للتهوية للأنشطة الخارجية",
-        price: "الثمن حسب صفحة Temu",
+        price: "72 DH",
         oldPrice: "",
         platform: "temu",
         category: "fashion",
