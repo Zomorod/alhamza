@@ -122,6 +122,16 @@ let products = [
         category: "tech",
         image: "https://img.kwcdn.com/product/fancy/1c7b828f-88d2-4ab9-9e81-b341256faa0c.jpg",
         affLink: "https://www.temu.com/ma-en/km-6630--3in1-4in1-professional-rechargeable-nose-ear-hair-trimmer-mens-personal-care-tool-g-601099542275155.html?top_gallery_url=https%3A%2F%2Fimg.kwcdn.com%2Fproduct%2Ffancy%2F1c7b828f-88d2-4ab9-9e81-b341256faa0c.jpg&spec_gallery_id=2476&_oak_page_source=10082&_x_ads_csite=pc_bottom_union&_x_sessn_id=nm6eukvy37&refer_page_name=afc_share_goods&refer_page_id=13788_1792960718880_b1vq59ydnf&refer_page_sn=13788"
+    },
+    {
+        id: 13,
+        title: "حقيبة ظهر للدراجات النارية مضادة للسرقة، قابلة للتحويل إلى حقيبة كتف بقفل وجيوب آمنة",
+        price: "126 DH",
+        oldPrice: "",
+        platform: "temu",
+        category: "fashion",
+        image: "https://img.kwcdn.com/product/fancy/c3e9d06d-565b-45ee-9c4c-0fd819eccdaa.jpg",
+        affLink: "https://www.temu.com/ma-en/anti-theft-motorcycle-backpack-with-lock-convertible-crossbody-bag-zipper-closure-anti-theft-compartment-adjustable-shoulder-strap-suitable-for-commuting-travel-motorcycling-large-small-size-options-mens-secure-motorcycle-crossbody-bag-g-601103889089327.html?top_gallery_url=https%3A%2F%2Fimg.kwcdn.com%2Fproduct%2Ffancy%2Fc3e9d06d-565b-45ee-9c4c-0fd819eccdaa.jpg&spec_gallery_id=22209525617&_oak_page_source=10082&_x_ads_csite=pc_bottom_union&_x_sessn_id=nm6eukvy37&refer_page_name=afc_share_goods&refer_page_id=13788_1792960718880_b1vq59ydnf&refer_page_sn=13788"
     }
 ];
 
@@ -177,6 +187,7 @@ const translations = {
         sortNew: "الأحدث إضافتاً",
         sortLow: "الثمن: من الأرخص للأغلى",
         sortHigh: "الثمن: من الأغلى للأرخص",
+        firstTimeOffer: "عرض خاص للمستخدمين لأول مرة — حسب شروط المتجر",
         temuOfferTitle: "سويتشيرت رجالي بقبعة وسحاب مزدوج — عرض بـ 29 درهم",
         temuOfferDisclaimer: "العرض متاح مرة واحدة لكل مستخدم للتطبيق. الثمن والتخفيض ممكن يتبدلو؛ تأكد من التفاصيل فالصفحة.",
         temuOfferCta: "اكتشف العرض والمكافآت",
@@ -223,6 +234,7 @@ const translations = {
         sortNew: "Plus récents",
         sortLow: "Prix: Croissant",
         sortHigh: "Prix: Décroissant",
+        firstTimeOffer: "Offre spéciale pour les nouveaux utilisateurs — selon les conditions de la boutique",
         temuOfferTitle: "Sweat-shirt homme à capuche et double fermeture — offre à 29 DH",
         temuOfferDisclaimer: "Offre disponible une seule fois par utilisateur de l’application. Le prix et la réduction peuvent varier ; vérifiez les détails sur la page.",
         temuOfferCta: "Découvrir l’offre et les récompenses",
@@ -269,6 +281,7 @@ const translations = {
         sortNew: "Newest Added",
         sortLow: "Price: Low to High",
         sortHigh: "Price: High to Low",
+        firstTimeOffer: "Special offer for first-time users — subject to store terms",
         temuOfferTitle: "Men's hooded sweatshirt with double zipper — 29 DH offer",
         temuOfferDisclaimer: "Available once per app user. Price and discount may vary; check the offer page for details.",
         temuOfferCta: "Explore the offer and rewards",
@@ -392,6 +405,7 @@ function renderProductDetail(productId) {
                 <div class="price-box product-detail-price">
                     ${product.oldPrice ? `<span class="old-price">${escapeHtml(product.oldPrice)}</span>` : ''}
                     <span class="new-price">${escapeHtml(product.price)}</span>
+                    <span class="first-time-offer">${escapeHtml(translations[currentLang].firstTimeOffer)}</span>
                 </div>
                 <p class="product-detail-purchase-note">${escapeHtml(translations[currentLang].purchaseOnStore)}</p>
                 <div class="product-detail-actions">
@@ -459,6 +473,7 @@ function renderProducts(items) {
                     <div class="price-box">
                         ${product.oldPrice ? `<span class="old-price">${escapeHtml(product.oldPrice)}</span>` : ''}
                         <span class="new-price">${escapeHtml(product.price)}</span>
+                        <span class="first-time-offer">${escapeHtml(translations[currentLang].firstTimeOffer)}</span>
                     </div>
                     <div class="product-actions">
                         <a href="?product=${encodeURIComponent(product.id)}" class="affiliate-btn">${escapeHtml(translations[currentLang].viewDetails)}</a>

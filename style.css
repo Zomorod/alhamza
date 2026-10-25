@@ -442,6 +442,13 @@ body {
     font-weight: bold;
 }
 
+.first-time-offer {
+    flex-basis: 100%;
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    line-height: 1.45;
+}
+
 .buy-now-btn {
     width: 100%;
     background: var(--whatsapp);
@@ -685,6 +692,10 @@ body {
 
 .product-detail-price .new-price {
     font-size: 1.8rem;
+}
+
+.product-detail-price .first-time-offer {
+    font-size: 0.9rem;
 }
 
 .product-detail-purchase-note {
