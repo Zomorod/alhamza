@@ -16,8 +16,9 @@ let products = [
     {
         id: 2,
         title: "كوب سفر معزول حراريًا من الفولاذ المقاوم للصدأ سعة 50 أونصة مع مقبض وقش، سعة كبيرة مناسب للسيارة، يحافظ على الحرارة لمدة 12-24 ساعة",
-        price: "109 MAD",
-        oldPrice: "100 MAD",
+        price: "",
+        oldPrice: "",
+        priceVerified: false,
         platform: "Alibaba",
         category: "home",
         image: "https://s.alicdn.com/@sc04/kf/H658bbc5e1b8c4da4be5ae73e056e8aec4.png_960x960q80.jpg",
@@ -26,8 +27,9 @@ let products = [
     {
         id: 3,
         title: "أداة الفحص ثنائية الاتجاه AUTEL MaxiCOM MK900-TS بوظيفة TPMS الكاملة، بديل لـ MP900TS، 40+ خدمة تشخيص كاملة بجودة المصنع الأصلي، تدعم CAN FD وDoIP وFCA",
-        price: "89 MAD",
-        oldPrice: "6.968 MAD",
+        price: "",
+        oldPrice: "",
+        priceVerified: false,
         platform: "Alibaba",
         category: "tech",
         image: "https://s.alicdn.com/@sc04/kf/A59cb133189494c54acfec3deb52ddfd4x.jpg_960x960q80.jpg",
@@ -220,7 +222,7 @@ const translations = {
         viewDetails: "تفاصيل المنتج",
         checkoutAtStore: "كمل الشراء والدفع فالمتجر",
         purchaseOnStore: "منين تضغط على زر الشراء، غادي تمشي لمتجر المنتج باش تكمل الطلب وتخلص تما. الثمن النهائي والشحن كيتأكدو فصفحة المتجر.",
-        aiTitle: "مساعد الهمزة الذكي (Gemini AI)",
+        aiTitle: "مساعد AL_HAMZZA الذكي (Gemini AI)",
         aiDesc: "قل ليا ش بغيتي تشري ولا شحال الميزانية ديالك، وأنا نقترح عليك أحسن همزة كاين دابا:",
         footerDesc: "الوجهة الأولى للمغاربة لاكتشاف أفضل الصفقات، العروض الحصرية، وربط المشتريات العالمية والمحلية بكل سهولة وثقة.",
         contactTitle: "تواصل معنا المباشر",
@@ -267,7 +269,7 @@ const translations = {
         viewDetails: "Détails du produit",
         checkoutAtStore: "Continuer l’achat et payer sur la boutique",
         purchaseOnStore: "Le bouton vous redirigera vers la boutique du produit pour finaliser et payer la commande. Le prix final et la livraison sont confirmés sur sa page.",
-        aiTitle: "Assistant IA Lhamzza",
+        aiTitle: "Assistant IA AL_HAMZZA",
         aiDesc: "Dites-moi ce que vous cherchez ou votre budget, et je vous trouve la meilleure offre :",
         footerDesc: "La première destination des Marocains pour découvrir les meilleures offres et produits exclusifs.",
         contactTitle: "Contact Direct",
@@ -314,7 +316,7 @@ const translations = {
         viewDetails: "Product details",
         checkoutAtStore: "Continue to the store to buy and pay",
         purchaseOnStore: "The button will take you to the product store to complete and pay for your order. Confirm the final price and shipping on the store page.",
-        aiTitle: "Lhamzza AI Assistant",
+        aiTitle: "AL_HAMZZA AI Assistant",
         aiDesc: "Tell me what you want to buy or your budget, and I'll recommend the best deal:",
         footerDesc: "Morocco's premier destination to discover the best deals, exclusive offers, and trusted links.",
         contactTitle: "Direct Contact",
@@ -325,9 +327,9 @@ const translations = {
 
 const additionalTranslations = {
     ar: {
-        siteTitle: "الهمزة - أحسن الصفقات وأقوى الهمزات",
+        siteTitle: "AL_HAMZZA - أحسن الصفقات وأقوى الهمزات",
         siteSlogan: "أحسن الصفقات وأقوى الهمزات بالمغرب",
-        brandName: "الهمزة",
+        brandName: "AL_HAMZZA",
         searchPlaceholder: "قلّب على أي همزة، منتج، أو عرض...",
         aiSearchButton: "مساعد AI",
         themeToggle: "تغيير المظهر",
@@ -366,7 +368,7 @@ const additionalTranslations = {
         actions: "الإجراءات",
         whatsapp: "WhatsApp:",
         email: "البريد الإلكتروني:",
-        copyright: "© 2026 الهمزة - صُمم بكل حب لـ Mehdi Abbad. جميع الحقوق محفوظة.",
+        copyright: "© 2026 AL_HAMZZA - صُمم بكل حب لـ Mehdi Abbad. جميع الحقوق محفوظة.",
         contactWhatsapp: "تواصل معنا عبر واتساب",
         whatsappContactMessage: "سلام، بغيت نسول على شي منتج فموقع الهمزة",
         emptyProducts: "ما كاين حتى منتج حالياً بهذا المعيار.",
@@ -383,12 +385,13 @@ const additionalTranslations = {
         productRejected: "ترفض الاقتراح.",
         aiDefaultReply: "شوف المنتجات المتوفرة فالموقع، أو تواصل معنا عبر واتساب إلا بغيتي مساعدة.",
         aiEarbudsReply: "تقدر تشوف السماعات اللاسلكية المتوفرة فالموقع وتأكد من الثمن الحالي فصفحة المتجر.",
-        aiKitchenReply: "تصفح قسم الطبخ والمنزل باش تشوف المنتجات والعروض المتوفرة حالياً."
+        aiKitchenReply: "تصفح قسم الطبخ والمنزل باش تشوف المنتجات والعروض المتوفرة حالياً.",
+        priceAtStore: "راجع الثمن الحالي في المتجر"
     },
     fr: {
-        siteTitle: "Lhamzza - Les meilleures offres et promotions",
+        siteTitle: "AL_HAMZZA - Les meilleures offres et promotions",
         siteSlogan: "Les meilleures offres au Maroc",
-        brandName: "Lhamzza",
+        brandName: "AL_HAMZZA",
         searchPlaceholder: "Rechercher des offres et des produits...",
         aiSearchButton: "Assistant IA",
         themeToggle: "Changer le thème",
@@ -427,7 +430,7 @@ const additionalTranslations = {
         actions: "Actions",
         whatsapp: "WhatsApp :",
         email: "E-mail :",
-        copyright: "© 2026 Lhamzza - Créé avec soin pour Mehdi Abbad. Tous droits réservés.",
+        copyright: "© 2026 AL_HAMZZA - Créé avec soin pour Mehdi Abbad. Tous droits réservés.",
         contactWhatsapp: "Contactez-nous sur WhatsApp",
         whatsappContactMessage: "Bonjour, j’aimerais poser une question sur un produit de Lhamzza",
         emptyProducts: "Aucun produit ne correspond à ce critère.",
@@ -444,12 +447,13 @@ const additionalTranslations = {
         productRejected: "Proposition refusée.",
         aiDefaultReply: "Consultez les produits disponibles ou contactez-nous sur WhatsApp pour obtenir de l’aide.",
         aiEarbudsReply: "Consultez les écouteurs sans fil disponibles et vérifiez le prix actuel sur la boutique.",
-        aiKitchenReply: "Parcourez la catégorie cuisine et maison pour découvrir les offres disponibles."
+        aiKitchenReply: "Parcourez la catégorie cuisine et maison pour découvrir les offres disponibles.",
+        priceAtStore: "Voir le prix actuel en boutique"
     },
     en: {
-        siteTitle: "Lhamzza - The Best Deals and Shopping Offers",
+        siteTitle: "AL_HAMZZA - The Best Deals and Shopping Offers",
         siteSlogan: "The best deals and offers in Morocco",
-        brandName: "Lhamzza",
+        brandName: "AL_HAMZZA",
         searchPlaceholder: "Search deals, products, and offers...",
         aiSearchButton: "AI Assistant",
         themeToggle: "Change theme",
@@ -488,7 +492,7 @@ const additionalTranslations = {
         actions: "Actions",
         whatsapp: "WhatsApp:",
         email: "Email:",
-        copyright: "© 2026 Lhamzza - Made with care for Mehdi Abbad. All rights reserved.",
+        copyright: "© 2026 AL_HAMZZA - Made with care for Mehdi Abbad. All rights reserved.",
         contactWhatsapp: "Contact us on WhatsApp",
         whatsappContactMessage: "Hello, I have a question about a product on Lhamzza",
         emptyProducts: "No products match this filter.",
@@ -505,7 +509,8 @@ const additionalTranslations = {
         productRejected: "Suggestion rejected.",
         aiDefaultReply: "Browse the products currently available, or contact us on WhatsApp if you need help.",
         aiEarbudsReply: "Browse the wireless earbuds available on the site and confirm the current price on the store page.",
-        aiKitchenReply: "Browse the Kitchen & Home category to see the products and offers currently available."
+        aiKitchenReply: "Browse the Kitchen & Home category to see the products and offers currently available.",
+        priceAtStore: "Check the current price in the store"
     }
 };
 Object.assign(translations.ar, additionalTranslations.ar);
@@ -582,6 +587,12 @@ function getProductTitle(product) {
     return product.title;
 }
 
+function getProductPrice(product) {
+    return product.priceVerified === false
+        ? translations[currentLang].priceAtStore
+        : product.price;
+}
+
 function escapeHtml(value) {
     return String(value).replace(/[&<>"']/g, character => ({
         '&': '&amp;',
@@ -647,7 +658,7 @@ function renderProductDetail(productId) {
                 <p class="product-detail-description">${escapeHtml(description)}</p>
                 <div class="price-box product-detail-price">
                     ${product.oldPrice ? `<span class="old-price">${escapeHtml(product.oldPrice)}</span>` : ''}
-                    <span class="new-price">${escapeHtml(product.price)}</span>
+                    <span class="new-price">${escapeHtml(getProductPrice(product))}</span>
                     <span class="first-time-offer">${escapeHtml(translations[currentLang].firstTimeOffer)}</span>
                 </div>
                 <p class="product-detail-purchase-note">${escapeHtml(translations[currentLang].purchaseOnStore)}</p>
@@ -716,7 +727,7 @@ function renderProducts(items) {
                 <div class="product-footer">
                     <div class="price-box">
                         ${product.oldPrice ? `<span class="old-price">${escapeHtml(product.oldPrice)}</span>` : ''}
-                        <span class="new-price">${escapeHtml(product.price)}</span>
+                        <span class="new-price">${escapeHtml(getProductPrice(product))}</span>
                         <span class="first-time-offer">${escapeHtml(translations[currentLang].firstTimeOffer)}</span>
                     </div>
                     <div class="product-actions">
@@ -948,22 +959,22 @@ function getProductPageUrl(productId) {
 function shareToWhatsApp(product) {
     const link = getProductPageUrl(product.id);
     const greeting = currentLang === 'en'
-        ? "Hi, I found this deal on Lhamzza:"
+        ? "Hi, I found this deal on AL_HAMZZA:"
         : currentLang === 'fr'
-            ? "Bonjour, j’ai trouvé cette offre sur Lhamzza :"
-            : "سلام، عجبني هاد العرض ف موقع الهمزة:";
+            ? "Bonjour, j’ai trouvé cette offre sur AL_HAMZZA :"
+            : "سلام، عجبني هاد العرض ف موقع AL_HAMZZA:";
     const title = getProductTitle(product);
     const priceLabel = currentLang === 'en' ? "Price" : currentLang === 'fr' ? "Prix" : "الثمن";
     const linkLabel = currentLang === 'en' ? "Link" : currentLang === 'fr' ? "Lien" : "الرابط";
-    const text = `${greeting}\n\n*${title}*\n${priceLabel}: *${product.price}*\n${linkLabel}: ${link}`;
+    const text = `${greeting}\n\n*${title}*\n${priceLabel}: *${getProductPrice(product)}*\n${linkLabel}: ${link}`;
     window.open(`https://wa.me/${siteConfig.cleanPhone}?text=${encodeURIComponent(text)}`, '_blank');
 }
 
 async function shareProductWithApps(product, feedback) {
     const url = getProductPageUrl(product.id);
     const data = {
-        title: product.title,
-        text: `${product.title} - ${product.price}`,
+        title: getProductTitle(product),
+        text: `${getProductTitle(product)} - ${getProductPrice(product)}`,
         url
     };
 

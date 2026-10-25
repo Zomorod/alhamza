@@ -43,8 +43,13 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Tajawal', 'Poppins', sans-serif;
+    font-family: 'Cairo', 'Outfit', sans-serif;
     transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html[lang="en"] *,
+html[lang="fr"] * {
+    font-family: 'Outfit', 'Cairo', sans-serif;
 }
 
 body {
@@ -54,9 +59,10 @@ body {
 }
 
 .container {
-    max-width: 1200px;
+    width: 100%;
+    max-width: none;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 clamp(14px, 2vw, 32px);
 }
 
 /* شريط الإعلانات العُلوي */
@@ -123,6 +129,8 @@ body {
     font-size: 1.8rem;
     font-weight: 900;
     color: var(--text-primary);
+    font-family: 'Outfit', 'Cairo', sans-serif;
+    letter-spacing: 0.035em;
 }
 
 .logo-slogan {
@@ -324,8 +332,8 @@ body {
     background: linear-gradient(135deg, var(--bg-secondary), var(--hero-end));
     border: 1px solid var(--border);
     border-radius: 20px;
-    padding: 40px;
-    margin: 30px 0;
+    padding: clamp(24px, 3vw, 48px);
+    margin: 22px 0;
     display: grid;
     grid-template-columns: 1.2fr 0.8fr;
     gap: 30px;
@@ -381,11 +389,27 @@ body {
 }
 
 .hero-card-preview {
-    background: var(--bg-primary);
+    background-color: #fffaf0;
+    background-image:
+        repeating-conic-gradient(from 22.5deg at 50% 50%, transparent 0deg 38deg, rgba(249, 115, 22, 0.12) 38deg 45deg, transparent 45deg 90deg),
+        repeating-linear-gradient(45deg, transparent 0 17px, rgba(15, 118, 110, 0.12) 17px 19px, transparent 19px 36px),
+        repeating-linear-gradient(-45deg, transparent 0 17px, rgba(249, 115, 22, 0.12) 17px 19px, transparent 19px 36px);
+    background-size: 72px 72px;
     border: 1px solid var(--border);
     border-radius: 15px;
     padding: 15px;
     position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 0 35px rgba(255, 255, 255, 0.72);
+}
+
+.preview-card-inner {
+    position: relative;
+    z-index: 1;
+    padding: 10px;
+    border-radius: 12px;
+    background: rgba(255, 250, 240, 0.9);
+    backdrop-filter: blur(1px);
 }
 
 .live-ticker {
@@ -401,6 +425,7 @@ body {
     display: flex;
     align-items: center;
     gap: 4px;
+    z-index: 2;
 }
 
 .temu-hero-visual {
@@ -486,7 +511,7 @@ body {
 
 /* شبكة المنتجات */
 .products-section {
-    margin: 40px 0;
+    margin: 26px 0 40px;
 }
 
 .section-header {
@@ -520,8 +545,8 @@ body {
 
 .products-grid {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 18px;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: clamp(12px, 1.3vw, 20px);
 }
 
 .hero-banner[hidden],
@@ -1243,6 +1268,18 @@ body {
 
 .floating-whatsapp:hover i, .floating-whatsapp:hover .whatsapp-num-text {
     color: #0f172a;
+}
+
+@media (max-width: 1200px) {
+    .products-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 960px) {
+    .products-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
 }
 
 @media (max-width: 768px) {
