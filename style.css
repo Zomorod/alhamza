@@ -54,8 +54,21 @@ html[lang="fr"] * {
 
 body {
     background-color: var(--bg-primary);
+    background-image:
+        repeating-conic-gradient(from 45deg at 50% 50%, transparent 0deg 42deg, rgba(194, 65, 12, 0.045) 42deg 45deg, transparent 45deg 87deg, rgba(13, 148, 136, 0.045) 87deg 90deg),
+        repeating-linear-gradient(0deg, transparent 0 47px, rgba(194, 65, 12, 0.035) 47px 48px, transparent 48px 96px),
+        repeating-linear-gradient(90deg, transparent 0 47px, rgba(13, 148, 136, 0.035) 47px 48px, transparent 48px 96px);
+    background-size: 96px 96px;
+    background-attachment: fixed;
     color: var(--text-primary);
     min-height: 100vh;
+}
+
+body[data-theme="dark"] {
+    background-image:
+        repeating-conic-gradient(from 45deg at 50% 50%, transparent 0deg 42deg, rgba(251, 146, 60, 0.055) 42deg 45deg, transparent 45deg 87deg, rgba(45, 212, 191, 0.055) 87deg 90deg),
+        repeating-linear-gradient(0deg, transparent 0 47px, rgba(251, 146, 60, 0.04) 47px 48px, transparent 48px 96px),
+        repeating-linear-gradient(90deg, transparent 0 47px, rgba(45, 212, 191, 0.04) 47px 48px, transparent 48px 96px);
 }
 
 .container {
