@@ -130,6 +130,10 @@ const translations = {
         temuOfferTitle: "سويتشيرت رجالي بقبعة وسحاب مزدوج — عرض بـ 29 درهم",
         temuOfferDisclaimer: "العرض متاح مرة واحدة لكل مستخدم للتطبيق. الثمن والتخفيض ممكن يتبدلو؛ تأكد من التفاصيل فالصفحة.",
         temuOfferCta: "اكتشف العرض والمكافآت",
+        detailBack: "رجوع للمنتجات",
+        detailNotFound: "المنتج غير موجود",
+        detailNotFoundText: "يمكن تحيد أو الرابط ما بقاش صالح.",
+        detailShare: "مشاركة عبر واتساب",
         aiTitle: "مساعد الهمزة الذكي (Gemini AI)",
         aiDesc: "قل ليا ش بغيتي تشري ولا شحال الميزانية ديالك، وأنا نقترح عليك أحسن همزة كاين دابا:",
         footerDesc: "الوجهة الأولى للمغاربة لاكتشاف أفضل الصفقات، العروض الحصرية، وربط المشتريات العالمية والمحلية بكل سهولة وثقة.",
@@ -162,6 +166,10 @@ const translations = {
         temuOfferTitle: "Sweat-shirt homme à capuche et double fermeture — offre à 29 DH",
         temuOfferDisclaimer: "Offre disponible une seule fois par utilisateur de l’application. Le prix et la réduction peuvent varier ; vérifiez les détails sur la page.",
         temuOfferCta: "Découvrir l’offre et les récompenses",
+        detailBack: "Retour aux produits",
+        detailNotFound: "Produit introuvable",
+        detailNotFoundText: "Ce produit a peut-être été retiré ou le lien n’est plus valide.",
+        detailShare: "Partager sur WhatsApp",
         aiTitle: "Assistant IA Lhamzza",
         aiDesc: "Dites-moi ce que vous cherchez ou votre budget, et je vous trouve la meilleure offre :",
         footerDesc: "La première destination des Marocains pour découvrir les meilleures offres et produits exclusifs.",
@@ -194,6 +202,10 @@ const translations = {
         temuOfferTitle: "Men's hooded sweatshirt with double zipper — 29 DH offer",
         temuOfferDisclaimer: "Available once per app user. Price and discount may vary; check the offer page for details.",
         temuOfferCta: "Explore the offer and rewards",
+        detailBack: "Back to products",
+        detailNotFound: "Product not found",
+        detailNotFoundText: "This product may have been removed or the link is no longer valid.",
+        detailShare: "Share on WhatsApp",
         aiTitle: "Lhamzza AI Assistant",
         aiDesc: "Tell me what you want to buy or your budget, and I'll recommend the best deal:",
         footerDesc: "Morocco's premier destination to discover the best deals, exclusive offers, and trusted links.",
@@ -211,12 +223,24 @@ let adminSessionToken = "";
 document.addEventListener('DOMContentLoaded', () => {
     renderProducts(getAllProducts());
     updateStats();
+    const productId = new URLSearchParams(window.location.search).get('product');
+    if (productId) {
+        document.querySelector('.hero-banner').hidden = true;
+        document.querySelector('.products-section').hidden = true;
+        document.getElementById('categoryDescBox').hidden = true;
+        document.getElementById('productDetailView').hidden = false;
+        document.querySelector('#productDetailView .product-detail-back span').textContent =
+            translations[currentLang].detailBack;
+    }
+
     loadApprovedProducts().catch(error => {
         console.error('Failed to load approved products:', error);
         document.getElementById('catalogStatus').textContent = error.message;
+    }).finally(() => {
+        if (productId) renderProductDetail(productId);
     });
 
-    if (new URLSearchParams(window.location.search).get('admin') === '1') {
+    if (!productId && new URLSearchParams(window.location.search).get('admin') === '1') {
         openAdminModal();
     }
 });
@@ -261,6 +285,52 @@ async function loadApprovedProducts() {
     updateStats();
 }
 
+function renderProductDetail(productId) {
+    const product = getAllProducts().find(item => String(item.id) === productId);
+    const container = document.getElementById('productDetailContent');
+
+    if (!product) {
+        container.innerHTML = `
+            <div class="product-detail-not-found">
+                <h1>${escapeHtml(translations[currentLang].detailNotFound)}</h1>
+                <p>${escapeHtml(translations[currentLang].detailNotFoundText)}</p>
+            </div>
+        `;
+        return;
+    }
+
+    const description = product.description || product.title;
+    container.innerHTML = `
+        <article class="product-detail-card">
+            <div class="product-detail-image-wrap">
+                <img class="product-detail-image" src="${escapeHtml(product.image)}" alt="${escapeHtml(product.title)}">
+            </div>
+            <div class="product-detail-content">
+                <span class="product-detail-badge">${escapeHtml(product.platform)}</span>
+                <h1>${escapeHtml(product.title)}</h1>
+                <p class="product-detail-description">${escapeHtml(description)}</p>
+                <div class="price-box product-detail-price">
+                    ${product.oldPrice ? `<span class="old-price">${escapeHtml(product.oldPrice)}</span>` : ''}
+                    <span class="new-price">${escapeHtml(product.price)}</span>
+                </div>
+                <div class="product-detail-actions">
+                    <a class="product-detail-buy" href="${escapeHtml(product.affLink)}" target="_blank" rel="noopener noreferrer">
+                        <i class="ri-shopping-bag-line" aria-hidden="true"></i>
+                        ${escapeHtml(translations[currentLang].viewDeal)}
+                    </a>
+                    <button class="product-detail-share" type="button">
+                        <i class="ri-whatsapp-line" aria-hidden="true"></i>
+                        ${escapeHtml(translations[currentLang].detailShare)}
+                    </button>
+                </div>
+            </div>
+        </article>
+    `;
+    container.querySelector('.product-detail-share').addEventListener('click', () => {
+        shareToWhatsApp(product.title, product.price, product.affLink);
+    });
+}
+
 // عرض المنتجات
 function renderProducts(items) {
     const grid = document.getElementById('productsGrid');
@@ -276,11 +346,13 @@ function renderProducts(items) {
         card.className = 'product-card';
         card.innerHTML = `
             <span class="product-badge">${escapeHtml(product.platform)}</span>
-            <div class="product-img-wrap">
-                <img src="${escapeHtml(product.image)}" alt="${escapeHtml(product.title)}">
-            </div>
+            <a class="product-image-link" href="?product=${encodeURIComponent(product.id)}" aria-label="تفاصيل ${escapeHtml(product.title)}">
+                <div class="product-img-wrap">
+                    <img src="${escapeHtml(product.image)}" alt="${escapeHtml(product.title)}" loading="lazy">
+                </div>
+            </a>
             <div class="product-body">
-                <h3 class="product-title">${escapeHtml(product.title)}</h3>
+                <h3 class="product-title"><a class="product-title-link" href="?product=${encodeURIComponent(product.id)}">${escapeHtml(product.title)}</a></h3>
                 <div class="product-footer">
                     <div class="price-box">
                         ${product.oldPrice ? `<span class="old-price">${escapeHtml(product.oldPrice)}</span>` : ''}
@@ -321,7 +393,7 @@ function filterCategory(cat, element) {
 
     if (cat === 'all') {
         renderProducts(getAllProducts());
-    } else if (['aliexpress', 'amazon', 'jumia', 'alibaba'].includes(cat)) {
+    } else if (['aliexpress', 'amazon', 'jumia', 'alibaba', 'temu'].includes(cat)) {
         renderProducts(getAllProducts().filter(p => p.platform === cat));
     } else {
         renderProducts(getAllProducts().filter(p => p.category === cat));
@@ -407,6 +479,12 @@ function setLanguage(lang) {
 
     document.getElementById('announcementText').innerText = translations[lang].announcementText;
     renderProducts(getAllProducts());
+    const productId = new URLSearchParams(window.location.search).get('product');
+    if (productId) {
+        document.querySelector('#productDetailView .product-detail-back span').textContent =
+            translations[lang].detailBack;
+        renderProductDetail(productId);
+    }
 }
 
 // تبديل المظهر
