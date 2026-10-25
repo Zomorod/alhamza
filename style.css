@@ -135,9 +135,13 @@ body[data-theme="dark"] {
 .logo-text {
     font-size: 1.8rem;
     font-weight: 900;
-    color: var(--text-primary);
+    color: #4285f4;
     font-family: 'Outfit', 'Cairo', sans-serif;
     letter-spacing: 0.035em;
+    background: linear-gradient(90deg, #4285f4 0 19%, #ea4335 19% 39%, #fbbc05 39% 58%, #34a853 58% 78%, #4285f4 78% 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .logo-slogan {
@@ -1255,7 +1259,7 @@ body[data-theme="dark"] .site-footer {
 }
 
 .footer-col p {
-    color: var(--text-secondary);
+    color: #374151;
     font-size: 0.9rem;
     line-height: 1.6;
     margin-top: 15px;
@@ -1264,6 +1268,25 @@ body[data-theme="dark"] .site-footer {
 .footer-col h4 {
     font-size: 1.1rem;
     margin-bottom: 15px;
+    color: #182b3a;
+}
+
+.site-footer .footer-col {
+    padding: 20px;
+    border: 1px solid rgba(15, 118, 110, 0.16);
+    border-radius: 16px;
+    background: rgba(255, 252, 245, 0.94);
+    box-shadow: 0 8px 24px rgba(32, 61, 54, 0.1);
+    backdrop-filter: blur(5px);
+}
+
+.site-footer .footer-col .logo-box {
+    width: fit-content;
+    margin-inline-start: auto;
+}
+
+.site-footer .footer-col .logo-slogan {
+    color: #365c50;
 }
 
 .footer-col ul {
@@ -1274,22 +1297,22 @@ body[data-theme="dark"] .site-footer {
 }
 
 .footer-col ul a {
-    color: var(--text-secondary);
+    color: #374151;
     text-decoration: none;
     font-size: 0.9rem;
 }
 
 .footer-col ul a:hover {
-    color: var(--accent);
+    color: #b45309;
 }
 
 /* لون الواتساب والرقم باللون البيسطاش */
 .pistache-text {
-    color: var(--pistache-bright);
+    color: #087f5b;
 }
 
 .pistache-phone-link {
-    color: var(--pistache-bright) !important;
+    color: #087f5b !important;
     font-weight: 800;
     text-decoration: none;
     letter-spacing: 0.5px;
@@ -1303,8 +1326,30 @@ body[data-theme="dark"] .site-footer {
     text-align: center;
     border-top: 1px solid var(--border);
     padding-top: 20px;
-    color: var(--text-secondary);
+    color: #374151;
     font-size: 0.85rem;
+}
+
+body[data-theme="dark"] .site-footer .footer-col {
+    background: rgba(20, 33, 42, 0.94);
+    border-color: rgba(94, 234, 212, 0.22);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+}
+
+body[data-theme="dark"] .footer-col p,
+body[data-theme="dark"] .footer-col h4,
+body[data-theme="dark"] .footer-col ul a,
+body[data-theme="dark"] .footer-bottom {
+    color: #e2e8f0;
+}
+
+body[data-theme="dark"] .site-footer .footer-col .logo-slogan {
+    color: #99d7c4;
+}
+
+body[data-theme="dark"] .pistache-text,
+body[data-theme="dark"] .pistache-phone-link {
+    color: #6ee7b7 !important;
 }
 
 /* زر الواتساب العائم بلون بيسطاش (Pistachio Green) */
