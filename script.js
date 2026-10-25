@@ -82,6 +82,26 @@ let products = [
         category: "fashion",
         image: "https://img.kwcdn.com/product/fancy/6b5c1f59-29d1-46f0-bef6-0a8cabd3ae98.jpg",
         affLink: "https://www.temu.com/ma-en/adjustable-unisex-lightweight-and-sturdy-finger-and-toe-support-breathable-design-suitable-for--use-posture-support-ideal-gift-for-fathers-day-mothers-day-and-valentines-day--essentials-and-suitable-g-601101585341280.html?top_gallery_url=https%3A%2F%2Fimg.kwcdn.com%2Fproduct%2Ffancy%2F6b5c1f59-29d1-46f0-bef6-0a8cabd3ae98.jpg&spec_gallery_id=224105&_oak_page_source=10082&_x_ads_csite=pc_bottom_union&_x_sessn_id=nm6eukvy37&refer_page_name=afc_share_goods&refer_page_id=13788_1792960718880_b1vq59ydnf&refer_page_sn=13788"
+    },
+    {
+        id: 9,
+        title: "طقم مفكات دقيقة من 115 قطعة، مغناطيسي لإصلاح الهواتف والحواسيب والساعات",
+        price: "169 DH",
+        oldPrice: "",
+        platform: "temu",
+        category: "tech",
+        image: "https://img.kwcdn.com/product/fancy/30d164ab-b1ad-44af-9316-9683eb2b32df.jpg",
+        affLink: "https://www.temu.com/ma-en/115pcs-precision-screwdriver-set-made-of-vanadium-magnetic-repair-tool-kit-non-slip-ergonomic-handle-suitable-for-electronics-phones-laptops-watches-shockproof-round-dome-head-hexagonal--phillips-head-silvery-gray-g-601100079348477.html?_oak_mp_inf=EP310KWo1ogBGi5jYXRlZ29yeV9saXN0XzNiZTk4MWQzMDFjNTQ0NzFhMmNiMGZhNWY4NmY4ODA4IJajsaaXNA%3D%3D&top_gallery_url=https%3A%2F%2Fimg.kwcdn.com%2Fproduct%2Ffancy%2F30d164ab-b1ad-44af-9316-9683eb2b32df.jpg&spec_gallery_id=601100079348477&refer_page_sn=10012&freesia_scene=3&_oak_freesia_scene=3&_oak_rec_ext_1=MTY5MDA&_oak_gallery_order=1835469549%2C1191912542%2C1851876603%2C419386715%2C1420387295&refer_page_el_sn=200064&ab_scene=1&_x_ads_csite=pc_bottom_union&_x_sessn_id=nm6eukvy37&refer_page_name=category&refer_page_id=10012_1792960910820_7v5gq6ex9a"
+    },
+    {
+        id: 10,
+        title: "ماكينة صغيرة محمولة لتشذيب شعر الأنف، قابلة للشحن عبر USB",
+        price: "76 DH",
+        oldPrice: "",
+        platform: "temu",
+        category: "tech",
+        image: "https://img.kwcdn.com/product/fancy/6309e6ef-7a5c-42c3-b418-8cd6785a9b79.jpg",
+        affLink: "https://www.temu.com/ma-en/1pc-nose-hair-trimmer-mini-portable-fashion--display-usb-charging-g-601103681288943.html?top_gallery_url=https%3A%2F%2Fimg.kwcdn.com%2Fproduct%2Ffancy%2F6309e6ef-7a5c-42c3-b418-8cd6785a9b79.jpg&spec_gallery_id=21312515987&_oak_page_source=10082&_x_ads_csite=pc_bottom_union&_x_sessn_id=nm6eukvy37&refer_page_name=afc_share_goods&refer_page_id=13788_1792960718880_b1vq59ydnf&refer_page_sn=13788"
     }
 ];
 
