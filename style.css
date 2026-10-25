@@ -54,21 +54,15 @@ html[lang="fr"] * {
 
 body {
     background-color: var(--bg-primary);
-    background-image:
-        repeating-conic-gradient(from 45deg at 50% 50%, transparent 0deg 42deg, rgba(194, 65, 12, 0.07) 42deg 45deg, transparent 45deg 87deg, rgba(13, 148, 136, 0.07) 87deg 90deg),
-        repeating-linear-gradient(0deg, transparent 0 47px, rgba(194, 65, 12, 0.055) 47px 48px, transparent 48px 96px),
-        repeating-linear-gradient(90deg, transparent 0 47px, rgba(13, 148, 136, 0.055) 47px 48px, transparent 48px 96px);
-    background-size: 96px 96px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cpath d='M60 3 74 24 96 24 96 46 117 60 96 74 96 96 74 96 60 117 46 96 24 96 24 74 3 60 24 46 24 24 46 24Z' fill='none' stroke='%230f766e' stroke-opacity='.16' stroke-width='1.5'/%3E%3Cpath d='M60 12 68 40 94 26 80 52 108 60 80 68 94 94 68 80 60 108 52 80 26 94 40 68 12 60 40 52 26 26 52 40Z' fill='%23f97316' fill-opacity='.055' stroke='%23b45309' stroke-opacity='.12' stroke-width='1'/%3E%3Cpath d='M60 36 66 54 84 60 66 66 60 84 54 66 36 60 54 54Z' fill='%230f766e' fill-opacity='.07'/%3E%3Cpath d='M60 3 60 12M117 60 108 60M60 117 60 108M3 60 12 60' stroke='%23b45309' stroke-opacity='.14' stroke-width='1.5'/%3E%3C/svg%3E");
+    background-size: 120px 120px;
     background-attachment: fixed;
     color: var(--text-primary);
     min-height: 100vh;
 }
 
 body[data-theme="dark"] {
-    background-image:
-        repeating-conic-gradient(from 45deg at 50% 50%, transparent 0deg 42deg, rgba(251, 146, 60, 0.075) 42deg 45deg, transparent 45deg 87deg, rgba(45, 212, 191, 0.075) 87deg 90deg),
-        repeating-linear-gradient(0deg, transparent 0 47px, rgba(251, 146, 60, 0.055) 47px 48px, transparent 48px 96px),
-        repeating-linear-gradient(90deg, transparent 0 47px, rgba(45, 212, 191, 0.055) 47px 48px, transparent 48px 96px);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cpath d='M60 3 74 24 96 24 96 46 117 60 96 74 96 96 74 96 60 117 46 96 24 96 24 74 3 60 24 46 24 24 46 24Z' fill='none' stroke='%232dd4bf' stroke-opacity='.2' stroke-width='1.5'/%3E%3Cpath d='M60 12 68 40 94 26 80 52 108 60 80 68 94 94 68 80 60 108 52 80 26 94 40 68 12 60 40 52 26 26 52 40Z' fill='%23fb923c' fill-opacity='.07' stroke='%23fdba74' stroke-opacity='.18' stroke-width='1'/%3E%3Cpath d='M60 36 66 54 84 60 66 66 60 84 54 66 36 60 54 54Z' fill='%232dd4bf' fill-opacity='.1'/%3E%3Cpath d='M60 3 60 12M117 60 108 60M60 117 60 108M3 60 12 60' stroke='%23fdba74' stroke-opacity='.2' stroke-width='1.5'/%3E%3C/svg%3E");
 }
 
 .container {
@@ -1102,7 +1096,7 @@ body[data-theme="dark"] {
 
 .ai-msg.user {
     background: var(--accent);
-    color: white;
+    color: rgb(208, 139, 139);
     align-self: flex-end;
 }
 
