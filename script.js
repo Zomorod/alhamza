@@ -134,6 +134,16 @@ const translations = {
         detailNotFound: "المنتج غير موجود",
         detailNotFoundText: "يمكن تحيد أو الرابط ما بقاش صالح.",
         detailShare: "مشاركة عبر واتساب",
+        shareFacebook: "Facebook",
+        shareSnapchat: "Snapchat / تطبيقات أخرى",
+        copyProductLink: "نسخ رابط المنتج",
+        productLinkCopied: "تنسخ رابط صفحة المنتج. تقدر تلصقو فـ Snapchat أو أي تطبيق.",
+        productLinkCopyFailed: "ما قدرناش ننسخو الرابط تلقائياً. ها هو باش تنسخو:",
+        shareCancelled: "تلغات المشاركة.",
+        shareFailed: "ما قدرناش نشاركو المنتج. جرب تنسخ الرابط.",
+        viewDetails: "تفاصيل المنتج",
+        checkoutAtStore: "كمل الشراء والدفع فالمتجر",
+        purchaseOnStore: "منين تضغط على زر الشراء، غادي تمشي لمتجر المنتج باش تكمل الطلب وتخلص تما. الثمن النهائي والشحن كيتأكدو فصفحة المتجر.",
         aiTitle: "مساعد الهمزة الذكي (Gemini AI)",
         aiDesc: "قل ليا ش بغيتي تشري ولا شحال الميزانية ديالك، وأنا نقترح عليك أحسن همزة كاين دابا:",
         footerDesc: "الوجهة الأولى للمغاربة لاكتشاف أفضل الصفقات، العروض الحصرية، وربط المشتريات العالمية والمحلية بكل سهولة وثقة.",
@@ -170,6 +180,16 @@ const translations = {
         detailNotFound: "Produit introuvable",
         detailNotFoundText: "Ce produit a peut-être été retiré ou le lien n’est plus valide.",
         detailShare: "Partager sur WhatsApp",
+        shareFacebook: "Facebook",
+        shareSnapchat: "Snapchat / autres applications",
+        copyProductLink: "Copier le lien du produit",
+        productLinkCopied: "Lien de la page produit copié. Vous pouvez le coller dans Snapchat ou une autre application.",
+        productLinkCopyFailed: "Impossible de copier automatiquement. Voici le lien à copier :",
+        shareCancelled: "Partage annulé.",
+        shareFailed: "Impossible de partager le produit. Essayez de copier le lien.",
+        viewDetails: "Détails du produit",
+        checkoutAtStore: "Continuer l’achat et payer sur la boutique",
+        purchaseOnStore: "Le bouton vous redirigera vers la boutique du produit pour finaliser et payer la commande. Le prix final et la livraison sont confirmés sur sa page.",
         aiTitle: "Assistant IA Lhamzza",
         aiDesc: "Dites-moi ce que vous cherchez ou votre budget, et je vous trouve la meilleure offre :",
         footerDesc: "La première destination des Marocains pour découvrir les meilleures offres et produits exclusifs.",
@@ -206,6 +226,16 @@ const translations = {
         detailNotFound: "Product not found",
         detailNotFoundText: "This product may have been removed or the link is no longer valid.",
         detailShare: "Share on WhatsApp",
+        shareFacebook: "Facebook",
+        shareSnapchat: "Snapchat / other apps",
+        copyProductLink: "Copy product link",
+        productLinkCopied: "Product page link copied. You can paste it into Snapchat or another app.",
+        productLinkCopyFailed: "Couldn't copy automatically. Copy this link:",
+        shareCancelled: "Sharing cancelled.",
+        shareFailed: "Couldn't share the product. Try copying the link.",
+        viewDetails: "Product details",
+        checkoutAtStore: "Continue to the store to buy and pay",
+        purchaseOnStore: "The button will take you to the product store to complete and pay for your order. Confirm the final price and shipping on the store page.",
         aiTitle: "Lhamzza AI Assistant",
         aiDesc: "Tell me what you want to buy or your budget, and I'll recommend the best deal:",
         footerDesc: "Morocco's premier destination to discover the best deals, exclusive offers, and trusted links.",
@@ -313,21 +343,43 @@ function renderProductDetail(productId) {
                     ${product.oldPrice ? `<span class="old-price">${escapeHtml(product.oldPrice)}</span>` : ''}
                     <span class="new-price">${escapeHtml(product.price)}</span>
                 </div>
+                <p class="product-detail-purchase-note">${escapeHtml(translations[currentLang].purchaseOnStore)}</p>
                 <div class="product-detail-actions">
                     <a class="product-detail-buy" href="${escapeHtml(product.affLink)}" target="_blank" rel="noopener noreferrer">
                         <i class="ri-shopping-bag-line" aria-hidden="true"></i>
-                        ${escapeHtml(translations[currentLang].viewDeal)}
+                        ${escapeHtml(translations[currentLang].checkoutAtStore)}
                     </a>
+                </div>
+                <div class="product-detail-share-actions" aria-label="${escapeHtml(translations[currentLang].detailShare)}">
                     <button class="product-detail-share" type="button">
                         <i class="ri-whatsapp-line" aria-hidden="true"></i>
                         ${escapeHtml(translations[currentLang].detailShare)}
                     </button>
+                    <a class="product-detail-share product-detail-share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(getProductPageUrl(product.id))}" target="_blank" rel="noopener noreferrer">
+                        <i class="ri-facebook-fill" aria-hidden="true"></i>
+                        ${escapeHtml(translations[currentLang].shareFacebook)}
+                    </a>
+                    <button class="product-detail-share product-detail-share-snapchat" type="button">
+                        <i class="ri-snapchat-fill" aria-hidden="true"></i>
+                        ${escapeHtml(translations[currentLang].shareSnapchat)}
+                    </button>
+                    <button class="product-detail-share product-detail-copy-link" type="button">
+                        <i class="ri-links-line" aria-hidden="true"></i>
+                        ${escapeHtml(translations[currentLang].copyProductLink)}
+                    </button>
                 </div>
+                <p class="product-share-feedback" role="status" aria-live="polite"></p>
             </div>
         </article>
     `;
     container.querySelector('.product-detail-share').addEventListener('click', () => {
-        shareToWhatsApp(product.title, product.price, product.affLink);
+        shareToWhatsApp(product);
+    });
+    container.querySelector('.product-detail-share-snapchat').addEventListener('click', () => {
+        shareProductWithApps(product, container.querySelector('.product-share-feedback'));
+    });
+    container.querySelector('.product-detail-copy-link').addEventListener('click', () => {
+        copyProductLink(product, container.querySelector('.product-share-feedback'));
     });
 }
 
@@ -359,7 +411,7 @@ function renderProducts(items) {
                         <span class="new-price">${escapeHtml(product.price)}</span>
                     </div>
                     <div class="product-actions">
-                        <a href="${escapeHtml(product.affLink)}" target="_blank" rel="noopener noreferrer" class="affiliate-btn">${translations[currentLang].viewDeal}</a>
+                        <a href="?product=${encodeURIComponent(product.id)}" class="affiliate-btn">${escapeHtml(translations[currentLang].viewDetails)}</a>
                         <button class="whatsapp-share-btn" type="button" title="مشاركة عبر واتساب">
                             <i class="ri-whatsapp-line"></i>
                         </button>
@@ -368,7 +420,7 @@ function renderProducts(items) {
             </div>
         `;
         card.querySelector('.whatsapp-share-btn').addEventListener('click', () => {
-            shareToWhatsApp(product.title, product.price, product.affLink);
+            shareToWhatsApp(product);
         });
         grid.appendChild(card);
     });
@@ -532,9 +584,54 @@ function sortProducts() {
 }
 
 // مشاركة الواتساب
-function shareToWhatsApp(title, price, link) {
-    const text = `سلام مهدي، عجبني هاد العرض ف موقع الهمزة:\n\n*${title}*\nالثمن: *${price}*\nالرابط: ${link}`;
+function getProductPageUrl(productId) {
+    const url = new URL(window.location.href);
+    url.search = '';
+    url.hash = '';
+    url.searchParams.set('product', productId);
+    return url.href;
+}
+
+function shareToWhatsApp(product) {
+    const link = getProductPageUrl(product.id);
+    const text = `سلام، عجبني هاد العرض ف موقع الهمزة:\n\n*${product.title}*\nالثمن: *${product.price}*\nالرابط: ${link}`;
     window.open(`https://wa.me/${siteConfig.cleanPhone}?text=${encodeURIComponent(text)}`, '_blank');
+}
+
+async function shareProductWithApps(product, feedback) {
+    const url = getProductPageUrl(product.id);
+    const data = {
+        title: product.title,
+        text: `${product.title} - ${product.price}`,
+        url
+    };
+
+    if (!navigator.share) {
+        await copyProductLink(product, feedback);
+        return;
+    }
+
+    try {
+        await navigator.share(data);
+    } catch (error) {
+        if (error.name === 'AbortError') {
+            feedback.textContent = translations[currentLang].shareCancelled;
+            return;
+        }
+        console.error('Product sharing failed:', error);
+        feedback.textContent = translations[currentLang].shareFailed;
+    }
+}
+
+async function copyProductLink(product, feedback) {
+    const url = getProductPageUrl(product.id);
+    try {
+        await navigator.clipboard.writeText(url);
+        feedback.textContent = translations[currentLang].productLinkCopied;
+    } catch (error) {
+        console.error('Copying product link failed:', error);
+        feedback.textContent = `${translations[currentLang].productLinkCopyFailed} ${url}`;
+    }
 }
 
 // التحكم بالنوافذ وإرسال اقتراحات المنتجات

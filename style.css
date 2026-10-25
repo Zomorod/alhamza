@@ -687,12 +687,26 @@ body {
     font-size: 1.8rem;
 }
 
+.product-detail-purchase-note {
+    margin: 8px 0 16px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.7;
+}
+
 .product-detail-actions {
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 12px;
     margin-top: auto;
+}
+
+.product-detail-share-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 12px;
 }
 
 .product-detail-buy,
@@ -718,6 +732,29 @@ body {
 
 .product-detail-share {
     background: var(--whatsapp);
+}
+
+.product-detail-share-facebook {
+    background: #1877f2;
+}
+
+.product-detail-share-snapchat {
+    background: #fffc00;
+    color: #111;
+}
+
+.product-detail-copy-link {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+}
+
+.product-share-feedback {
+    min-height: 1.5em;
+    margin-top: 8px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
 }
 
 .product-detail-not-found {
