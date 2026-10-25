@@ -4,13 +4,13 @@ let communityProducts = [];
 let products = [
     {
         id: 1,
-        title: "سماعات بلوتوث لاسلكية مقاومة للماء TWS",
-        price: "129 MAD",
-        oldPrice: "350 MAD",
-        platform: "aliexpress",
+        title: "سماعات بلوتوث لاسلكية TA210 رياضية، مع عزل ENC وأربعة ميكروفونات للمكالمات",
+        price: "132 DH",
+        oldPrice: "",
+        platform: "temu",
         category: "tech",
-        image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=500&auto=format&fit=crop",
-        affLink: "https://s.click.aliexpress.com/e/_example1"
+        image: "https://img.kwcdn.com/product/fancy/90a25bfe-3d69-46ab-8ba8-c93989cef6a5.jpg",
+        affLink: "https://www.temu.com/ma-en/-ta210-wireless-bluetooth-earbuds-long--sports-in-ear-enc-intelligent-noise-cancellation-for-4-mic-calls--white-black-gift-design-g-605886336571370.html?_oak_mp_inf=EOqv9r7O4YkBGhhiZXN0X3NlbGxlcnNfbGlzdF96c3I5bTkg3Ovep5c0&top_gallery_url=https%3A%2F%2Fimg.kwcdn.com%2Fproduct%2Ffancy%2F90a25bfe-3d69-46ab-8ba8-c93989cef6a5.jpg&spec_gallery_id=43565064869&refer_page_sn=10125&freesia_scene=114&_oak_freesia_scene=114&_oak_rec_ext_1=MTMyMDA&refer_page_el_sn=201345&ab_scene=1&_x_ads_csite=pc_bottom_union&_x_sessn_id=nm6eukvy37&refer_page_name=best_sellers&refer_page_id=10125_1792963742773_0r0chldzav"
     },
     
     {
@@ -35,13 +35,13 @@ let products = [
     },
     {
         id: 4,
-        title: "سيارة تحكم عن بعد RZ001G-A بمقياس 1/10، شاحنة جديدة بمحرك بدون فرش، ناقل حركة تفاضلي مركزي، ممتصات صدمات ألومنيوم، جهاز إرسال، لعبة PVC جاهزة للتشغيل",
-        price: "70000 MAD",
-        oldPrice: "180 MAD",
-        platform: "aliexpress",
-        category: "fashion",
-        image: "https://s.alicdn.com/@sc04/kf/H9039ddce488245589177ada99e726b54l.jpg_960x960q80.jpg",
-        affLink: "https://www.alibaba.com/product-detail/RZ001G-A-1-10-Brushless-New_1601929153137.html?spm=a2700.8293689.ggs_just_for_you.5.54662cefCtyYOX&priceId=89ddb720e8f248daa2c5ffbd856bac8c"
+        title: "سيارة تحكم عن بعد مزدوجة الجوانب بالتحكم بالإيماءات، دفع رباعي مع انجراف وأضواء وموسيقى",
+        price: "490 DH",
+        oldPrice: "",
+        platform: "temu",
+        category: "tech",
+        image: "https://img.kwcdn.com/product/fancy/72673517-37db-41c5-bc39-47015d9fcc5e.jpg",
+        affLink: "https://www.temu.com/ma-en/-spray-double-sided-remote-control-car-gesture-2-4-wheel-drive-drift-light-music-toys-g-601099553415589.html?_oak_mp_inf=EKXD7Kqm1ogBGiA2ZTZlNThhZjJlM2E0ZTUxOWJiNmRlNzBlMjQzOWI2YyCNgdunlzQ%3D&top_gallery_url=https%3A%2F%2Fimg.kwcdn.com%2Fproduct%2Ffancy%2F72673517-37db-41c5-bc39-47015d9fcc5e.jpg&spec_gallery_id=3698&refer_page_sn=10009&freesia_scene=2&_oak_freesia_scene=2&_oak_rec_ext_1=NDkwMDA&_oak_gallery_order=150052637&search_key=car%20game&refer_page_el_sn=200049&ab_scene=1&_x_ads_csite=pc_bottom_union&_x_sessn_id=nm6eukvy37&refer_page_name=search_result&refer_page_id=10009_1792963691316_57urb1j3kc"
     },
     {
         id: 5,
