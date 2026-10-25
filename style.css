@@ -1176,6 +1176,7 @@ body[data-theme="dark"] {
     background-size: 100px 100px;
     background-attachment: fixed;
     border-top: 1px solid var(--border);
+    box-shadow: 0 -12px 32px rgba(72, 187, 150, 0.28);
     padding: 50px 0 20px;
     margin-top: 60px;
 }
