@@ -52,6 +52,16 @@ let products = [
         category: "fashion",
         image: "https://img.kwcdn.com/product/fancy/7455f9d8-765a-460b-9ff9-f584170e0b2d.jpg",
         affLink: "https://www.temu.com/ma-en/new-lightweight-sports-vest-for-men-and-women-multi-functional-lightweight-storage-device-chest-bag-for-men-and-women--holds-a-water-bottle-and-phone-during-workouts-running-vest-outdoor-sports-gear-portable-storage-backpack-g-606215505586874.html?top_gallery_url=https%3A%2F%2Fimg.kwcdn.com%2Fproduct%2Ffancy%2F7455f9d8-765a-460b-9ff9-f584170e0b2d.jpg&spec_gallery_id=40823007246&_oak_page_source=10082&_x_ads_csite=search&_x_ads_channel=kol_affiliate&_x_cid=kol_affiliate&_x_vst_scene=adg&_x_campaign=affiliate&_x_sessn_id=nm6eukvy37&refer_page_name=afc_share_goods&refer_page_id=13788_1792954610260_hkbq658lyf&refer_page_sn=13788&__csr=1&__torl=1792954655173"
+    },
+    {
+        id: 6,
+        title: "بوت شتوي دافئ بنعل سميك وكعب، حذاء منزلي مريح للنساء، مقاسات كبيرة وتصميم موحد",
+        price: "الثمن حسب صفحة Temu",
+        oldPrice: "",
+        platform: "temu",
+        category: "fashion",
+        image: "https://img.kwcdn.com/product/fancy/6de6e9da-c6aa-47c8-9044-6d0f07ac7e61.jpg",
+        affLink: "https://temu.to/k/ed6xedl4n2f"
     }
 ];
 
@@ -412,9 +422,21 @@ function sortProducts() {
     let sorted = getAllProducts();
 
     if (sortBy === 'price-low') {
-        sorted.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+        sorted.sort((a, b) => {
+            const priceA = parseFloat(a.price);
+            const priceB = parseFloat(b.price);
+            if (Number.isNaN(priceA)) return 1;
+            if (Number.isNaN(priceB)) return -1;
+            return priceA - priceB;
+        });
     } else if (sortBy === 'price-high') {
-        sorted.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+        sorted.sort((a, b) => {
+            const priceA = parseFloat(a.price);
+            const priceB = parseFloat(b.price);
+            if (Number.isNaN(priceA)) return 1;
+            if (Number.isNaN(priceB)) return -1;
+            return priceB - priceA;
+        });
     } else {
         sorted.reverse();
     }
