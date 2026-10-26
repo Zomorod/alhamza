@@ -134,6 +134,16 @@ let products = [
         category: "fashion",
         image: "https://img.kwcdn.com/product/fancy/c3e9d06d-565b-45ee-9c4c-0fd819eccdaa.jpg",
         affLink: "https://www.temu.com/ma-en/anti-theft-motorcycle-backpack-with-lock-convertible-crossbody-bag-zipper-closure-anti-theft-compartment-adjustable-shoulder-strap-suitable-for-commuting-travel-motorcycling-large-small-size-options-mens-secure-motorcycle-crossbody-bag-g-601103889089327.html?top_gallery_url=https%3A%2F%2Fimg.kwcdn.com%2Fproduct%2Ffancy%2Fc3e9d06d-565b-45ee-9c4c-0fd819eccdaa.jpg&spec_gallery_id=22209525617&_oak_page_source=10082&_x_ads_csite=pc_bottom_union&_x_sessn_id=nm6eukvy37&refer_page_name=afc_share_goods&refer_page_id=13788_1792960718880_b1vq59ydnf&refer_page_sn=13788"
+    },
+    {
+        id: 14,
+        title: "ميدالية مفاتيح NFC إيبوكسي للمس، قابلة للبرمجة لروابط Google Reviews وFacebook وInstagram",
+        price: "19 DH",
+        oldPrice: "",
+        platform: "temu",
+        category: "tech",
+        image: "https://img.kwcdn.com/product/open/869e106833fb4d94a44037bfef614fb3-goods.jpeg",
+        affLink: "https://www.temu.com/ma-en/nfc-tap-epoxy-keychain-for-google-reviews-facebook-instagram-programmable-url-tag-for-iphone--customer----promotion-grow-your--g-607095453747405.html?_oak_mp_inf=EM2R9ubmhIoBGiBiZTVlNDliNTlhMmU0MjRiOGRmMDY0YzE0MmMzZDI1NCD8pu7QlzQ%3D&top_gallery_url=https%3A%2F%2Fimg.kwcdn.com%2Fproduct%2Fopen%2F869e106833fb4d94a44037bfef614fb3-goods.jpeg&spec_gallery_id=51516970173&refer_page_sn=10009&freesia_scene=2&_oak_freesia_scene=2&_oak_rec_ext_1=MTkwMA&_oak_gallery_order=1542843125%2C2104623216%2C768287810%2C1803272858%2C2072511815&search_key=afililate&refer_page_el_sn=200049&ab_scene=1&_x_ads_csite=pc_bottom_union&_x_sessn_id=nm6eukvy37&refer_page_name=search_result&refer_page_id=10009_1793049859077_buuepffc26"
     }
 ];
 
@@ -530,7 +540,8 @@ const englishProductTitles = {
     10: "Portable USB-rechargeable mini nose hair trimmer",
     11: "Dual-lens dash camera with 1080p front and 720p rear recording",
     12: "Rechargeable 3-in-1 / 4-in-1 nose and ear hair trimmer for men",
-    13: "Anti-theft motorcycle backpack that converts to a secure crossbody bag"
+    13: "Anti-theft motorcycle backpack that converts to a secure crossbody bag",
+    14: "Programmable NFC epoxy keychain for Google Reviews, Facebook, Instagram, and custom URLs"
 };
 
 let currentLang = 'ar';
