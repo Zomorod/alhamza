@@ -144,6 +144,16 @@ let products = [
         category: "tech",
         image: "https://img.kwcdn.com/product/open/869e106833fb4d94a44037bfef614fb3-goods.jpeg",
         affLink: "https://www.temu.com/ma-en/nfc-tap-epoxy-keychain-for-google-reviews-facebook-instagram-programmable-url-tag-for-iphone--customer----promotion-grow-your--g-607095453747405.html?_oak_mp_inf=EM2R9ubmhIoBGiBiZTVlNDliNTlhMmU0MjRiOGRmMDY0YzE0MmMzZDI1NCD8pu7QlzQ%3D&top_gallery_url=https%3A%2F%2Fimg.kwcdn.com%2Fproduct%2Fopen%2F869e106833fb4d94a44037bfef614fb3-goods.jpeg&spec_gallery_id=51516970173&refer_page_sn=10009&freesia_scene=2&_oak_freesia_scene=2&_oak_rec_ext_1=MTkwMA&_oak_gallery_order=1542843125%2C2104623216%2C768287810%2C1803272858%2C2072511815&search_key=afililate&refer_page_el_sn=200049&ab_scene=1&_x_ads_csite=pc_bottom_union&_x_sessn_id=nm6eukvy37&refer_page_name=search_result&refer_page_id=10009_1793049859077_buuepffc26"
+    },
+    {
+        id: 15,
+        title: "محفظة رجالية بتصميم كلاسيكي مطبوع، ناعمة وبخانات متعددة للبطاقات والهوية",
+        price: "46 DH",
+        oldPrice: "",
+        platform: "temu",
+        category: "fashion",
+        image: "https://img.kwcdn.com/product/fancy/62e1a664-8a4d-4c93-bddb-ec7e22f10ead.jpg",
+        affLink: "https://www.temu.com/ma-en/1-mens-vintage-credit-card-wallet--print-design--and-soft-multi-card-slot--id-card-holder--purse-great-gift---g-605915948393318.html?_oak_mp_inf=EObG%2BOa84okBGhZnb29kc19xdWhtcnBfcmVjb21tZW5kILC%2FvdGXNA%3D%3D&top_gallery_url=https%3A%2F%2Fimg.kwcdn.com%2Fproduct%2Ffancy%2F62e1a664-8a4d-4c93-bddb-ec7e22f10ead.jpg&spec_gallery_id=32600622619&refer_page_sn=10032&freesia_scene=11&_oak_freesia_scene=11&_oak_rec_ext_1=NDYwMA&_oak_gallery_order=1889977121%2C188015209%2C1200905879%2C1820568421%2C754588854&refer_page_el_sn=200444&ab_scene=1&_x_ads_csite=pc_bottom_union&_x_sessn_id=nm6eukvy37&refer_page_name=goods&refer_page_id=10032_1793050073878_mepzrjcgdx"
     }
 ];
 
@@ -541,7 +551,8 @@ const englishProductTitles = {
     11: "Dual-lens dash camera with 1080p front and 720p rear recording",
     12: "Rechargeable 3-in-1 / 4-in-1 nose and ear hair trimmer for men",
     13: "Anti-theft motorcycle backpack that converts to a secure crossbody bag",
-    14: "Programmable NFC epoxy keychain for Google Reviews, Facebook, Instagram, and custom URLs"
+    14: "Programmable NFC epoxy keychain for Google Reviews, Facebook, Instagram, and custom URLs",
+    15: "Men's vintage-style wallet with a printed design and multiple card and ID slots"
 };
 
 let currentLang = 'ar';
