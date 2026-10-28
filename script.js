@@ -154,6 +154,23 @@ let products = [
         category: "fashion",
         image: "https://img.kwcdn.com/product/fancy/62e1a664-8a4d-4c93-bddb-ec7e22f10ead.jpg",
         affLink: "https://www.temu.com/ma-en/1-mens-vintage-credit-card-wallet--print-design--and-soft-multi-card-slot--id-card-holder--purse-great-gift---g-605915948393318.html?_oak_mp_inf=EObG%2BOa84okBGhZnb29kc19xdWhtcnBfcmVjb21tZW5kILC%2FvdGXNA%3D%3D&top_gallery_url=https%3A%2F%2Fimg.kwcdn.com%2Fproduct%2Ffancy%2F62e1a664-8a4d-4c93-bddb-ec7e22f10ead.jpg&spec_gallery_id=32600622619&refer_page_sn=10032&freesia_scene=11&_oak_freesia_scene=11&_oak_rec_ext_1=NDYwMA&_oak_gallery_order=1889977121%2C188015209%2C1200905879%2C1820568421%2C754588854&refer_page_el_sn=200444&ab_scene=1&_x_ads_csite=pc_bottom_union&_x_sessn_id=nm6eukvy37&refer_page_name=goods&refer_page_id=10032_1793050073878_mepzrjcgdx"
+    },
+    {
+        id: 16,
+        title: "طبسيل الطاووس المغربي العتيق — Vintage Moroccan Taous Plate (Very Rare)",
+        description: "طبق تقليدي مغربي عريق بنقشة الطاووس والأزهار باللون الأزرق الملوكي والذهبي. قطعة فنية وأنيقة للديكور أو للتقديم والضيافة المغربية الأصيلة.",
+        descriptionEn: "A vintage Moroccan plate featuring peacock and floral motifs in royal blue and gold. An elegant decorative piece or serving plate for Moroccan hospitality.",
+        descriptionFr: "Un ancien plat marocain orné de motifs de paon et de fleurs en bleu royal et doré. Une pièce élégante pour la décoration ou le service.",
+        images: [
+            "https://i.etsystatic.com/62845644/r/il/c5e544/7768904807/il_1588xN.7768904807_t789.jpg",
+            "https://i.etsystatic.com/62845644/r/il/49d298/7720962570/il_1588xN.7720962570_h79y.jpg"
+        ],
+        price: "",
+        oldPrice: "",
+        platform: "AL_HAMZZA",
+        category: "home",
+        image: "https://i.etsystatic.com/62845644/r/il/c5e544/7768904807/il_1588xN.7768904807_t789.jpg",
+        contactOnly: true
     }
 ];
 
@@ -406,7 +423,10 @@ const additionalTranslations = {
         aiDefaultReply: "شوف المنتجات المتوفرة فالموقع، أو تواصل معنا عبر واتساب إلا بغيتي مساعدة.",
         aiEarbudsReply: "تقدر تشوف السماعات اللاسلكية المتوفرة فالموقع وتأكد من الثمن الحالي فصفحة المتجر.",
         aiKitchenReply: "تصفح قسم الطبخ والمنزل باش تشوف المنتجات والعروض المتوفرة حالياً.",
-        priceAtStore: "راجع الثمن الحالي في المتجر"
+        priceAtStore: "راجع الثمن الحالي في المتجر",
+        contactForPrice: "تواصل معنا لمعرفة الثمن",
+        contactForProduct: "للطلب أو الاستفسار على هاد المنتوج، تواصل معنا عبر واتساب.",
+        contactViaWhatsapp: "تواصل معنا عبر واتساب"
     },
     fr: {
         siteTitle: "AL_HAMZZA - Les meilleures offres et promotions",
@@ -468,7 +488,10 @@ const additionalTranslations = {
         aiDefaultReply: "Consultez les produits disponibles ou contactez-nous sur WhatsApp pour obtenir de l’aide.",
         aiEarbudsReply: "Consultez les écouteurs sans fil disponibles et vérifiez le prix actuel sur la boutique.",
         aiKitchenReply: "Parcourez la catégorie cuisine et maison pour découvrir les offres disponibles.",
-        priceAtStore: "Voir le prix actuel en boutique"
+        priceAtStore: "Voir le prix actuel en boutique",
+        contactForPrice: "Contactez-nous pour connaître le prix",
+        contactForProduct: "Pour commander ou obtenir des informations sur ce produit, contactez-nous sur WhatsApp.",
+        contactViaWhatsapp: "Nous contacter sur WhatsApp"
     },
     en: {
         siteTitle: "AL_HAMZZA - The Best Deals and Shopping Offers",
@@ -530,7 +553,10 @@ const additionalTranslations = {
         aiDefaultReply: "Browse the products currently available, or contact us on WhatsApp if you need help.",
         aiEarbudsReply: "Browse the wireless earbuds available on the site and confirm the current price on the store page.",
         aiKitchenReply: "Browse the Kitchen & Home category to see the products and offers currently available.",
-        priceAtStore: "Check the current price in the store"
+        priceAtStore: "Check the current price in the store",
+        contactForPrice: "Contact us for the price",
+        contactForProduct: "To order or ask about this product, contact us on WhatsApp.",
+        contactViaWhatsapp: "Contact us on WhatsApp"
     }
 };
 Object.assign(translations.ar, additionalTranslations.ar);
@@ -552,7 +578,8 @@ const englishProductTitles = {
     12: "Rechargeable 3-in-1 / 4-in-1 nose and ear hair trimmer for men",
     13: "Anti-theft motorcycle backpack that converts to a secure crossbody bag",
     14: "Programmable NFC epoxy keychain for Google Reviews, Facebook, Instagram, and custom URLs",
-    15: "Men's vintage-style wallet with a printed design and multiple card and ID slots"
+    15: "Men's vintage-style wallet with a printed design and multiple card and ID slots",
+    16: "Vintage Moroccan Taous Plate (Very Rare)"
 };
 
 let currentLang = 'ar';
@@ -610,6 +637,9 @@ function getProductTitle(product) {
 }
 
 function getProductPrice(product) {
+    if (product.contactOnly) {
+        return translations[currentLang].contactForPrice;
+    }
     return product.priceVerified === false
         ? translations[currentLang].priceAtStore
         : product.price;
@@ -667,12 +697,27 @@ function renderProductDetail(productId) {
 
     const title = getProductTitle(product);
     const description = currentLang === 'en'
-        ? (englishProductTitles[product.id] || product.description || title)
-        : (product.description || product.title);
+        ? (product.descriptionEn || englishProductTitles[product.id] || product.description || title)
+        : currentLang === 'fr'
+            ? (product.descriptionFr || product.description || product.title)
+            : (product.description || product.title);
+    const productImages = product.images || [product.image];
+    const contactOnly = product.contactOnly === true;
     container.innerHTML = `
         <article class="product-detail-card">
-            <div class="product-detail-image-wrap">
-                <img class="product-detail-image" src="${escapeHtml(product.image)}" alt="${escapeHtml(title)}">
+            <div class="product-detail-gallery">
+                <div class="product-detail-image-wrap">
+                    <img class="product-detail-image" src="${escapeHtml(product.image)}" alt="${escapeHtml(title)}">
+                </div>
+                ${productImages.length > 1 ? `
+                    <div class="product-detail-thumbnails" aria-label="${escapeHtml(title)}">
+                        ${productImages.map((image, index) => `
+                            <button class="product-detail-thumbnail${index === 0 ? ' active' : ''}" type="button" data-image="${escapeHtml(image)}" aria-label="${escapeHtml(title)} ${index + 1}">
+                                <img src="${escapeHtml(image)}" alt="">
+                            </button>
+                        `).join('')}
+                    </div>
+                ` : ''}
             </div>
             <div class="product-detail-content">
                 <span class="product-detail-badge">${escapeHtml(product.platform)}</span>
@@ -681,13 +726,13 @@ function renderProductDetail(productId) {
                 <div class="price-box product-detail-price">
                     ${product.oldPrice ? `<span class="old-price">${escapeHtml(product.oldPrice)}</span>` : ''}
                     <span class="new-price">${escapeHtml(getProductPrice(product))}</span>
-                    <span class="first-time-offer">${escapeHtml(translations[currentLang].firstTimeOffer)}</span>
+                    ${contactOnly ? '' : `<span class="first-time-offer">${escapeHtml(translations[currentLang].firstTimeOffer)}</span>`}
                 </div>
-                <p class="product-detail-purchase-note">${escapeHtml(translations[currentLang].purchaseOnStore)}</p>
+                <p class="product-detail-purchase-note">${escapeHtml(translations[currentLang][contactOnly ? 'contactForProduct' : 'purchaseOnStore'])}</p>
                 <div class="product-detail-actions">
-                    <a class="product-detail-buy" href="${escapeHtml(product.affLink)}" target="_blank" rel="noopener noreferrer">
-                        <i class="ri-shopping-bag-line" aria-hidden="true"></i>
-                        ${escapeHtml(translations[currentLang].checkoutAtStore)}
+                    <a class="product-detail-buy${contactOnly ? ' product-detail-contact' : ''}" href="${escapeHtml(contactOnly ? getContactProductUrl(product) : product.affLink)}" target="_blank" rel="noopener noreferrer">
+                        <i class="${contactOnly ? 'ri-whatsapp-line' : 'ri-shopping-bag-line'}" aria-hidden="true"></i>
+                        ${escapeHtml(translations[currentLang][contactOnly ? 'contactViaWhatsapp' : 'checkoutAtStore'])}
                     </a>
                 </div>
                 <div class="product-detail-share-actions" aria-label="${escapeHtml(translations[currentLang].detailShare)}">
@@ -712,8 +757,20 @@ function renderProductDetail(productId) {
             </div>
         </article>
     `;
+    container.querySelectorAll('.product-detail-thumbnail').forEach(button => {
+        button.addEventListener('click', () => {
+            container.querySelector('.product-detail-image').src = button.dataset.image;
+            container.querySelectorAll('.product-detail-thumbnail').forEach(thumbnail => {
+                thumbnail.classList.toggle('active', thumbnail === button);
+            });
+        });
+    });
     container.querySelector('.product-detail-share').addEventListener('click', () => {
-        shareToWhatsApp(product);
+        if (contactOnly) {
+            window.open(getContactProductUrl(product), '_blank', 'noopener,noreferrer');
+        } else {
+            shareToWhatsApp(product);
+        }
     });
     container.querySelector('.product-detail-share-snapchat').addEventListener('click', () => {
         shareProductWithApps(product, container.querySelector('.product-share-feedback'));
@@ -750,7 +807,7 @@ function renderProducts(items) {
                     <div class="price-box">
                         ${product.oldPrice ? `<span class="old-price">${escapeHtml(product.oldPrice)}</span>` : ''}
                         <span class="new-price">${escapeHtml(getProductPrice(product))}</span>
-                        <span class="first-time-offer">${escapeHtml(translations[currentLang].firstTimeOffer)}</span>
+                        ${product.contactOnly ? '' : `<span class="first-time-offer">${escapeHtml(translations[currentLang].firstTimeOffer)}</span>`}
                     </div>
                     <div class="product-actions">
                         <a href="?product=${encodeURIComponent(product.id)}" class="affiliate-btn">${escapeHtml(translations[currentLang].viewDetails)}</a>
@@ -762,7 +819,11 @@ function renderProducts(items) {
             </div>
         `;
         card.querySelector('.whatsapp-share-btn').addEventListener('click', () => {
-            shareToWhatsApp(product);
+            if (product.contactOnly) {
+                window.open(getContactProductUrl(product), '_blank', 'noopener,noreferrer');
+            } else {
+                shareToWhatsApp(product);
+            }
         });
         grid.appendChild(card);
     });
@@ -990,6 +1051,15 @@ function shareToWhatsApp(product) {
     const linkLabel = currentLang === 'en' ? "Link" : currentLang === 'fr' ? "Lien" : "الرابط";
     const text = `${greeting}\n\n*${title}*\n${priceLabel}: *${getProductPrice(product)}*\n${linkLabel}: ${link}`;
     window.open(`https://wa.me/${siteConfig.cleanPhone}?text=${encodeURIComponent(text)}`, '_blank');
+}
+
+function getContactProductUrl(product) {
+    const message = currentLang === 'en'
+        ? `Hi, I'm interested in this product: ${getProductTitle(product)}. Please share the price and details.`
+        : currentLang === 'fr'
+            ? `Bonjour, je suis intéressé(e) par ce produit : ${getProductTitle(product)}. Merci de m’indiquer le prix et les détails.`
+            : `سلام، بغيت نسول على ${getProductTitle(product)}. عافاك عطيني الثمن والتفاصيل.`;
+    return `https://wa.me/${siteConfig.cleanPhone}?text=${encodeURIComponent(message)}`;
 }
 
 async function shareProductWithApps(product, feedback) {
