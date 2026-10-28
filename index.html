@@ -125,29 +125,22 @@
 
         <section class="featured-picks" aria-label="أحسن صفقة">
             <div class="featured-header">
-                <span class="featured-tag"><i class="ri-flashlight-fill"></i> Best Deal</span>
-                <h2>أحسن صفقة اليوم</h2>
+                <span class="featured-tag"><i class="ri-flashlight-fill"></i> <span data-i18n="featuredDealBadge">Best Deal</span></span>
+                <h2 data-i18n="featuredDealHeading">أحسن صفقة اليوم</h2>
             </div>
 
             <div class="featured-viewport">
-                <div class="featured-track single-deal">
-                    <article class="featured-product emphasis">
-                        <div class="featured-image-wrap">
-                            <img src="https://img.kwcdn.com/product/fancy/511ca81b-a204-43b7-a51b-284afd8681b8.jpg?imageView2/2/w/800/q/70/format=avif" alt="سويتشيرت رجالي بقبعة وسحاب مزدوج">
-                        </div>
-                        <div class="featured-body">
-                            <span class="mini-badge">سعر خاص</span>
-                            <h3>سويتشيرت رجالي بقبعة وسحاب مزدوج</h3>
-                            <p>تصميم أنيق، قماش مريح، ومناسب للملابس اليومية والشتوية.</p>
-                            <div class="featured-meta">
-                                <strong>29 درهم</strong>
-                                <span>عرض خاص</span>
-                            </div>
-                            <a href="https://temu.to/k/edtftm7idw3" target="_blank" rel="noopener noreferrer">شوف العرض</a>
-                        </div>
-                    </article>
+                <div class="featured-track" id="featuredTrack" aria-live="polite"></div>
+                <div class="featured-controls">
+                    <button class="featured-arrow" id="featuredPrev" type="button" aria-label="الصفقة السابقة" data-i18n-aria="featuredPrevious">
+                        <i class="ri-arrow-right-s-line" aria-hidden="true"></i>
+                    </button>
+                    <button class="featured-arrow" id="featuredNext" type="button" aria-label="الصفقة التالية" data-i18n-aria="featuredNext">
+                        <i class="ri-arrow-left-s-line" aria-hidden="true"></i>
+                    </button>
                 </div>
             </div>
+            <div class="featured-dots" id="featuredDots" aria-label="اختيار الصفقة"></div>
         </section>
 
         <!-- شبكة المنتجات (Products Grid) -->
