@@ -379,6 +379,11 @@ const additionalTranslations = {
         categoryDetails: "تفاصيل الصنف",
         categoryDescription: "وصف شامل ومفصل للهمزات المتاحة فـ هذا القسم...",
         temuOfferPrice: "29 DH",
+        featuredDealBadge: "عرض خاص",
+        featuredDealHeading: "أحسن صفقة اليوم",
+        featuredPrevious: "الصفقة السابقة",
+        featuredNext: "الصفقة التالية",
+        featuredSlideLabel: "الصفقة",
         catalogLoading: "",
         aiGreeting: "أهلاً بك! أنا جاهز باش نعاونك تلقى أحسن المنتجات والصفقات. شنو بغيتي تقلب عليه اليوم؟",
         aiPlaceholder: "مثال: بغيت مقلاة هوائية ولا سماعات أقل من 200 درهم...",
@@ -444,6 +449,11 @@ const additionalTranslations = {
         categoryDetails: "Détails de la catégorie",
         categoryDescription: "Découvrez les offres disponibles dans cette catégorie.",
         temuOfferPrice: "29 DH",
+        featuredDealBadge: "Bon plan",
+        featuredDealHeading: "Meilleure offre du jour",
+        featuredPrevious: "Offre précédente",
+        featuredNext: "Offre suivante",
+        featuredSlideLabel: "Offre",
         catalogLoading: "",
         aiGreeting: "Bonjour ! Je peux vous aider à trouver les meilleurs produits et offres. Que recherchez-vous ?",
         aiPlaceholder: "Exemple : une friteuse ou des écouteurs à moins de 200 DH...",
@@ -509,6 +519,11 @@ const additionalTranslations = {
         categoryDetails: "Category details",
         categoryDescription: "Explore the offers available in this category.",
         temuOfferPrice: "29 DH",
+        featuredDealBadge: "Best Deal",
+        featuredDealHeading: "Today's Best Deal",
+        featuredPrevious: "Previous deal",
+        featuredNext: "Next deal",
+        featuredSlideLabel: "Deal",
         catalogLoading: "",
         aiGreeting: "Welcome! I can help you find great products and deals. What are you looking for today?",
         aiPlaceholder: "For example: an air fryer or earbuds under 200 DH...",
@@ -586,6 +601,8 @@ let currentLang = 'ar';
 let currentCategory = 'all';
 let isAdminAuthenticated = false;
 let adminSessionToken = "";
+let featuredDealIndex = 0;
+let featuredDealTimer = null;
 
 // التشغيل الأولي
 document.addEventListener('DOMContentLoaded', () => {
@@ -593,6 +610,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (productId) {
         document.querySelector('.hero-banner').hidden = true;
         document.querySelector('.products-section').hidden = true;
+        document.querySelector('.featured-picks').hidden = true;
         document.getElementById('categoryDescBox').hidden = true;
         document.getElementById('productDetailView').hidden = false;
         document.querySelector('#productDetailView .product-detail-back span').textContent =
@@ -602,6 +620,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const savedLanguage = getSavedLanguage();
     if (savedLanguage && translations[savedLanguage]) setLanguage(savedLanguage);
     renderProducts(getAllProducts());
+    renderFeaturedDeals();
     updateStats();
 
     loadApprovedProducts().catch(error => {
@@ -610,6 +629,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }).finally(() => {
         if (productId) renderProductDetail(productId);
     });
+
+    document.getElementById('featuredPrev').addEventListener('click', () => {
+        showFeaturedDeal(featuredDealIndex - 1);
+    });
+    document.getElementById('featuredNext').addEventListener('click', () => {
+        showFeaturedDeal(featuredDealIndex + 1);
+    });
+    if (!productId && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        featuredDealTimer = window.setInterval(() => {
+            showFeaturedDeal(featuredDealIndex + 1);
+        }, 4500);
+    }
 
     if (!productId && new URLSearchParams(window.location.search).get('admin') === '1') {
         openAdminModal();
@@ -645,6 +676,80 @@ function getProductPrice(product) {
         : product.price;
 }
 
+function renderFeaturedDeals() {
+    const track = document.getElementById('featuredTrack');
+    const dots = document.getElementById('featuredDots');
+    if (!track || !dots) return;
+
+    const deals = getAllProducts();
+    featuredDealIndex = deals.length ? featuredDealIndex % deals.length : 0;
+    track.innerHTML = deals.map((product, index) => {
+        const title = getProductTitle(product);
+        const description = currentLang === 'en'
+            ? (product.descriptionEn || product.description || '')
+            : currentLang === 'fr'
+                ? (product.descriptionFr || product.description || '')
+                : (product.description || '');
+        const image = product.images?.[0] || product.image;
+        const link = product.contactOnly
+            ? getContactProductUrl(product)
+            : (product.affLink || `?product=${encodeURIComponent(product.id)}`);
+        const contactClass = product.contactOnly ? 'featured-contact-link' : '';
+        const target = product.contactOnly || product.affLink
+            ? ' target="_blank" rel="noopener noreferrer"'
+            : '';
+
+        return `
+            <article class="featured-product" aria-label="${escapeHtml(title)}" aria-hidden="${index !== featuredDealIndex}">
+                <div class="featured-image-wrap">
+                    <img src="${escapeHtml(image)}" alt="${escapeHtml(title)}" loading="${index === featuredDealIndex ? 'eager' : 'lazy'}">
+                </div>
+                <div class="featured-body">
+                    <span class="mini-badge">${escapeHtml(translations[currentLang].featuredDealBadge)}</span>
+                    <h3>${escapeHtml(title)}</h3>
+                    ${description ? `<p>${escapeHtml(description)}</p>` : ''}
+                    <div class="featured-meta">
+                        <strong>${escapeHtml(getProductPrice(product))}</strong>
+                        ${product.oldPrice ? `<span class="old-price">${escapeHtml(product.oldPrice)}</span>` : ''}
+                    </div>
+                    <a class="${contactClass}" href="${escapeHtml(link)}"${target}>${escapeHtml(translations[currentLang].viewDeal)}</a>
+                </div>
+            </article>
+        `;
+    }).join('');
+
+    dots.innerHTML = deals.map((product, index) => `
+        <button class="featured-dot${index === featuredDealIndex ? ' active' : ''}" type="button"
+            aria-label="${escapeHtml(translations[currentLang].featuredSlideLabel)} ${index + 1}"
+            aria-current="${index === featuredDealIndex ? 'true' : 'false'}"
+            data-slide="${index}"></button>
+    `).join('');
+    dots.querySelectorAll('.featured-dot').forEach(button => {
+        button.addEventListener('click', () => showFeaturedDeal(Number(button.dataset.slide)));
+    });
+    updateFeaturedDealPosition();
+}
+
+function showFeaturedDeal(index) {
+    const count = getAllProducts().length;
+    if (!count) return;
+    featuredDealIndex = (index + count) % count;
+    document.querySelectorAll('#featuredTrack .featured-product').forEach((slide, slideIndex) => {
+        slide.setAttribute('aria-hidden', String(slideIndex !== featuredDealIndex));
+    });
+    document.querySelectorAll('#featuredDots .featured-dot').forEach((dot, dotIndex) => {
+        const isCurrent = dotIndex === featuredDealIndex;
+        dot.classList.toggle('active', isCurrent);
+        dot.setAttribute('aria-current', String(isCurrent));
+    });
+    updateFeaturedDealPosition();
+}
+
+function updateFeaturedDealPosition() {
+    const track = document.getElementById('featuredTrack');
+    if (track) track.style.transform = `translateX(-${featuredDealIndex * 100}%)`;
+}
+
 function escapeHtml(value) {
     return String(value).replace(/[&<>"']/g, character => ({
         '&': '&amp;',
@@ -678,6 +783,7 @@ async function loadApprovedProducts() {
     const result = await apiRequest("/api/products");
     communityProducts = result.products;
     renderProducts(getAllProducts());
+    renderFeaturedDeals();
     updateStats();
 }
 
@@ -964,6 +1070,7 @@ function setLanguage(lang) {
                 : product.category === currentCategory
         );
     renderProducts(visibleProducts);
+    renderFeaturedDeals();
     document.getElementById('announcementText').textContent = translations[lang].announcementText;
     const productId = new URLSearchParams(window.location.search).get('product');
     if (productId) {
