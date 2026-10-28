@@ -383,6 +383,7 @@ const additionalTranslations = {
         featuredDealHeading: "أحسن صفقة اليوم",
         featuredPrevious: "الصفقة السابقة",
         featuredNext: "الصفقة التالية",
+        featuredChoose: "اختيار الصفقة",
         featuredSlideLabel: "الصفقة",
         catalogLoading: "",
         aiGreeting: "أهلاً بك! أنا جاهز باش نعاونك تلقى أحسن المنتجات والصفقات. شنو بغيتي تقلب عليه اليوم؟",
@@ -453,6 +454,7 @@ const additionalTranslations = {
         featuredDealHeading: "Meilleure offre du jour",
         featuredPrevious: "Offre précédente",
         featuredNext: "Offre suivante",
+        featuredChoose: "Choisir une offre",
         featuredSlideLabel: "Offre",
         catalogLoading: "",
         aiGreeting: "Bonjour ! Je peux vous aider à trouver les meilleurs produits et offres. Que recherchez-vous ?",
@@ -523,6 +525,7 @@ const additionalTranslations = {
         featuredDealHeading: "Today's Best Deal",
         featuredPrevious: "Previous deal",
         featuredNext: "Next deal",
+        featuredChoose: "Choose a deal",
         featuredSlideLabel: "Deal",
         catalogLoading: "",
         aiGreeting: "Welcome! I can help you find great products and deals. What are you looking for today?",
@@ -602,7 +605,6 @@ let currentCategory = 'all';
 let isAdminAuthenticated = false;
 let adminSessionToken = "";
 let featuredDealIndex = 0;
-let featuredDealTimer = null;
 
 // التشغيل الأولي
 document.addEventListener('DOMContentLoaded', () => {
@@ -637,7 +639,7 @@ document.addEventListener('DOMContentLoaded', () => {
         showFeaturedDeal(featuredDealIndex + 1);
     });
     if (!productId && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        featuredDealTimer = window.setInterval(() => {
+        window.setInterval(() => {
             showFeaturedDeal(featuredDealIndex + 1);
         }, 4500);
     }
@@ -700,7 +702,7 @@ function renderFeaturedDeals() {
             : '';
 
         return `
-            <article class="featured-product" aria-label="${escapeHtml(title)}" aria-hidden="${index !== featuredDealIndex}">
+            <article class="featured-product" aria-label="${escapeHtml(title)}" aria-hidden="${index !== featuredDealIndex}"${index !== featuredDealIndex ? ' inert' : ''}>
                 <div class="featured-image-wrap">
                     <img src="${escapeHtml(image)}" alt="${escapeHtml(title)}" loading="${index === featuredDealIndex ? 'eager' : 'lazy'}">
                 </div>
@@ -735,7 +737,13 @@ function showFeaturedDeal(index) {
     if (!count) return;
     featuredDealIndex = (index + count) % count;
     document.querySelectorAll('#featuredTrack .featured-product').forEach((slide, slideIndex) => {
-        slide.setAttribute('aria-hidden', String(slideIndex !== featuredDealIndex));
+        const inactive = slideIndex !== featuredDealIndex;
+        slide.setAttribute('aria-hidden', String(inactive));
+        if (inactive) {
+            slide.setAttribute('inert', '');
+        } else {
+            slide.removeAttribute('inert');
+        }
     });
     document.querySelectorAll('#featuredDots .featured-dot').forEach((dot, dotIndex) => {
         const isCurrent = dotIndex === featuredDealIndex;
