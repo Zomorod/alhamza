@@ -145,20 +145,67 @@
 
         <!-- شبكة المنتجات (Products Grid) -->
         <section class="products-section">
-            <div class="section-header">
-                <h2 id="sectionTitle"><i class="ri-fire-fill"></i> <span data-i18n="latestDeals">أحدث الهمزات اليوم</span></h2>
-                <div class="sort-dropdown">
-                    <select id="sortSelect" onchange="sortProducts()">
-                        <option value="newest" data-i18n="sortNew">الأحدث إضافتاً</option>
-                        <option value="price-low" data-i18n="sortLow">الثمن: من الأرخص للأغلى</option>
-                        <option value="price-high" data-i18n="sortHigh">الثمن: من الأغلى للأرخص</option>
-                    </select>
+            <div id="categoryLanding">
+                <div class="section-header">
+                    <h2><i class="ri-apps-line"></i> <span data-i18n="categoriesHeading">تسوق حسب الصنف</span></h2>
+                </div>
+                <div class="category-cards-grid">
+                    <button class="category-card" type="button" onclick="openCatalogCategory('fashion')">
+                        <span class="category-card-icon"><i class="ri-t-shirt-line" aria-hidden="true"></i></span>
+                        <span class="category-card-title" data-i18n="catalogFashion">الأزياء والملابس</span>
+                        <i class="ri-arrow-left-line category-card-arrow" aria-hidden="true"></i>
+                    </button>
+                    <button class="category-card" type="button" onclick="openCatalogCategory('accessories')">
+                        <span class="category-card-icon"><i class="ri-vip-diamond-line" aria-hidden="true"></i></span>
+                        <span class="category-card-title" data-i18n="catalogAccessories">المجوهرات والإكسسوارات</span>
+                        <i class="ri-arrow-left-line category-card-arrow" aria-hidden="true"></i>
+                    </button>
+                    <button class="category-card" type="button" onclick="openCatalogCategory('electronics')">
+                        <span class="category-card-icon"><i class="ri-smartphone-line" aria-hidden="true"></i></span>
+                        <span class="category-card-title" data-i18n="catalogElectronics">الإلكترونيات والتكنولوجيا</span>
+                        <i class="ri-arrow-left-line category-card-arrow" aria-hidden="true"></i>
+                    </button>
+                    <button class="category-card" type="button" onclick="openCatalogCategory('home')">
+                        <span class="category-card-icon"><i class="ri-home-5-line" aria-hidden="true"></i></span>
+                        <span class="category-card-title" data-i18n="catalogHome">المنزل والمطبخ</span>
+                        <i class="ri-arrow-left-line category-card-arrow" aria-hidden="true"></i>
+                    </button>
+                    <button class="category-card" type="button" onclick="openCatalogCategory('beauty')">
+                        <span class="category-card-icon"><i class="ri-brush-line" aria-hidden="true"></i></span>
+                        <span class="category-card-title" data-i18n="catalogBeauty">الجمال والعناية الشخصية</span>
+                        <i class="ri-arrow-left-line category-card-arrow" aria-hidden="true"></i>
+                    </button>
+                    <button class="category-card" type="button" onclick="openCatalogCategory('shoes')">
+                        <span class="category-card-icon"><i class="ri-handbag-line" aria-hidden="true"></i></span>
+                        <span class="category-card-title" data-i18n="catalogShoes">الأحذية والحقائب</span>
+                        <i class="ri-arrow-left-line category-card-arrow" aria-hidden="true"></i>
+                    </button>
+                    <button class="category-card" type="button" onclick="openCatalogCategory('gaming')">
+                        <span class="category-card-icon"><i class="ri-gamepad-line" aria-hidden="true"></i></span>
+                        <span class="category-card-title" data-i18n="catalogGaming">الألعاب والأجهزة</span>
+                        <i class="ri-arrow-left-line category-card-arrow" aria-hidden="true"></i>
+                    </button>
                 </div>
             </div>
 
-            <!-- المنتجات -->
-            <p class="catalog-status" id="catalogStatus" role="status" aria-live="polite" data-i18n="catalogLoading"></p>
-            <div class="products-grid" id="productsGrid"></div>
+            <div id="categoryProductsPanel" hidden>
+                <div class="section-header category-products-header">
+                    <button class="category-back-btn" type="button" onclick="returnToCategories()">
+                        <i class="ri-arrow-right-line" aria-hidden="true"></i>
+                        <span data-i18n="backToCategories">العودة إلى الأصناف</span>
+                    </button>
+                    <h2 id="sectionTitle"><i class="ri-apps-line"></i> <span data-i18n="categoriesHeading">تسوق حسب الصنف</span></h2>
+                    <div class="sort-dropdown">
+                        <select id="sortSelect" onchange="sortProducts()">
+                            <option value="newest" data-i18n="sortNew">الأحدث إضافتاً</option>
+                            <option value="price-low" data-i18n="sortLow">الثمن: من الأرخص للأغلى</option>
+                            <option value="price-high" data-i18n="sortHigh">الثمن: من الأغلى للأرخص</option>
+                        </select>
+                    </div>
+                </div>
+                <p class="catalog-status" id="catalogStatus" role="status" aria-live="polite" data-i18n="catalogLoading"></p>
+                <div class="products-grid" id="productsGrid"></div>
+            </div>
         </section>
 
         <section class="product-detail-view" id="productDetailView" hidden>

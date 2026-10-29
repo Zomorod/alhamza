@@ -42,6 +42,7 @@ let products = [
         oldPrice: "",
         platform: "temu",
         category: "tech",
+        catalogCategory: "gaming",
         image: "https://img.kwcdn.com/product/fancy/72673517-37db-41c5-bc39-47015d9fcc5e.jpg",
         affLink: "https://www.temu.com/ma-en/-spray-double-sided-remote-control-car-gesture-2-4-wheel-drive-drift-light-music-toys-g-601099553415589.html?_oak_mp_inf=EKXD7Kqm1ogBGiA2ZTZlNThhZjJlM2E0ZTUxOWJiNmRlNzBlMjQzOWI2YyCNgdunlzQ%3D&top_gallery_url=https%3A%2F%2Fimg.kwcdn.com%2Fproduct%2Ffancy%2F72673517-37db-41c5-bc39-47015d9fcc5e.jpg&spec_gallery_id=3698&refer_page_sn=10009&freesia_scene=2&_oak_freesia_scene=2&_oak_rec_ext_1=NDkwMDA&_oak_gallery_order=150052637&search_key=car%20game&refer_page_el_sn=200049&ab_scene=1&_x_ads_csite=pc_bottom_union&_x_sessn_id=nm6eukvy37&refer_page_name=search_result&refer_page_id=10009_1792963691316_57urb1j3kc"
     },
@@ -62,6 +63,7 @@ let products = [
         oldPrice: "",
         platform: "temu",
         category: "fashion",
+        catalogCategory: "shoes",
         image: "https://img.kwcdn.com/product/fancy/6de6e9da-c6aa-47c8-9044-6d0f07ac7e61.jpg",
         affLink: "https://temu.to/k/ed6xedl4n2f"
     },
@@ -82,6 +84,7 @@ let products = [
         oldPrice: "",
         platform: "temu",
         category: "fashion",
+        catalogCategory: "beauty",
         image: "https://img.kwcdn.com/product/fancy/6b5c1f59-29d1-46f0-bef6-0a8cabd3ae98.jpg",
         affLink: "https://www.temu.com/ma-en/adjustable-unisex-lightweight-and-sturdy-finger-and-toe-support-breathable-design-suitable-for--use-posture-support-ideal-gift-for-fathers-day-mothers-day-and-valentines-day--essentials-and-suitable-g-601101585341280.html?top_gallery_url=https%3A%2F%2Fimg.kwcdn.com%2Fproduct%2Ffancy%2F6b5c1f59-29d1-46f0-bef6-0a8cabd3ae98.jpg&spec_gallery_id=224105&_oak_page_source=10082&_x_ads_csite=pc_bottom_union&_x_sessn_id=nm6eukvy37&refer_page_name=afc_share_goods&refer_page_id=13788_1792960718880_b1vq59ydnf&refer_page_sn=13788"
     },
@@ -102,6 +105,7 @@ let products = [
         oldPrice: "",
         platform: "temu",
         category: "tech",
+        catalogCategory: "beauty",
         image: "https://img.kwcdn.com/product/fancy/6309e6ef-7a5c-42c3-b418-8cd6785a9b79.jpg",
         affLink: "https://www.temu.com/ma-en/1pc-nose-hair-trimmer-mini-portable-fashion--display-usb-charging-g-601103681288943.html?top_gallery_url=https%3A%2F%2Fimg.kwcdn.com%2Fproduct%2Ffancy%2F6309e6ef-7a5c-42c3-b418-8cd6785a9b79.jpg&spec_gallery_id=21312515987&_oak_page_source=10082&_x_ads_csite=pc_bottom_union&_x_sessn_id=nm6eukvy37&refer_page_name=afc_share_goods&refer_page_id=13788_1792960718880_b1vq59ydnf&refer_page_sn=13788"
     },
@@ -122,6 +126,7 @@ let products = [
         oldPrice: "",
         platform: "temu",
         category: "tech",
+        catalogCategory: "beauty",
         image: "https://img.kwcdn.com/product/fancy/1c7b828f-88d2-4ab9-9e81-b341256faa0c.jpg",
         affLink: "https://www.temu.com/ma-en/km-6630--3in1-4in1-professional-rechargeable-nose-ear-hair-trimmer-mens-personal-care-tool-g-601099542275155.html?top_gallery_url=https%3A%2F%2Fimg.kwcdn.com%2Fproduct%2Ffancy%2F1c7b828f-88d2-4ab9-9e81-b341256faa0c.jpg&spec_gallery_id=2476&_oak_page_source=10082&_x_ads_csite=pc_bottom_union&_x_sessn_id=nm6eukvy37&refer_page_name=afc_share_goods&refer_page_id=13788_1792960718880_b1vq59ydnf&refer_page_sn=13788"
     },
@@ -132,6 +137,7 @@ let products = [
         oldPrice: "",
         platform: "temu",
         category: "fashion",
+        catalogCategory: "shoes",
         image: "https://img.kwcdn.com/product/fancy/c3e9d06d-565b-45ee-9c4c-0fd819eccdaa.jpg",
         affLink: "https://www.temu.com/ma-en/anti-theft-motorcycle-backpack-with-lock-convertible-crossbody-bag-zipper-closure-anti-theft-compartment-adjustable-shoulder-strap-suitable-for-commuting-travel-motorcycling-large-small-size-options-mens-secure-motorcycle-crossbody-bag-g-601103889089327.html?top_gallery_url=https%3A%2F%2Fimg.kwcdn.com%2Fproduct%2Ffancy%2Fc3e9d06d-565b-45ee-9c4c-0fd819eccdaa.jpg&spec_gallery_id=22209525617&_oak_page_source=10082&_x_ads_csite=pc_bottom_union&_x_sessn_id=nm6eukvy37&refer_page_name=afc_share_goods&refer_page_id=13788_1792960718880_b1vq59ydnf&refer_page_sn=13788"
     },
@@ -152,6 +158,7 @@ let products = [
         oldPrice: "",
         platform: "temu",
         category: "fashion",
+        catalogCategory: "accessories",
         image: "https://img.kwcdn.com/product/fancy/62e1a664-8a4d-4c93-bddb-ec7e22f10ead.jpg",
         affLink: "https://www.temu.com/ma-en/1-mens-vintage-credit-card-wallet--print-design--and-soft-multi-card-slot--id-card-holder--purse-great-gift---g-605915948393318.html?_oak_mp_inf=EObG%2BOa84okBGhZnb29kc19xdWhtcnBfcmVjb21tZW5kILC%2FvdGXNA%3D%3D&top_gallery_url=https%3A%2F%2Fimg.kwcdn.com%2Fproduct%2Ffancy%2F62e1a664-8a4d-4c93-bddb-ec7e22f10ead.jpg&spec_gallery_id=32600622619&refer_page_sn=10032&freesia_scene=11&_oak_freesia_scene=11&_oak_rec_ext_1=NDYwMA&_oak_gallery_order=1889977121%2C188015209%2C1200905879%2C1820568421%2C754588854&refer_page_el_sn=200444&ab_scene=1&_x_ads_csite=pc_bottom_union&_x_sessn_id=nm6eukvy37&refer_page_name=goods&refer_page_id=10032_1793050073878_mepzrjcgdx"
     },
@@ -378,6 +385,17 @@ const additionalTranslations = {
         amazonLive: "Amazon مباشر",
         categoryDetails: "تفاصيل الصنف",
         categoryDescription: "وصف شامل ومفصل للهمزات المتاحة فـ هذا القسم...",
+        categoriesHeading: "تسوق حسب الصنف",
+        catalogFashion: "الأزياء والملابس",
+        catalogAccessories: "المجوهرات والإكسسوارات",
+        catalogElectronics: "الإلكترونيات والتكنولوجيا",
+        catalogHome: "المنزل والمطبخ",
+        catalogBeauty: "الجمال والعناية الشخصية",
+        catalogShoes: "الأحذية والحقائب",
+        catalogGaming: "الألعاب والأجهزة",
+        backToCategories: "العودة إلى الأصناف",
+        searchResults: "نتائج البحث",
+        emptyProducts: "لا توجد منتجات في هذا الصنف حالياً.",
         temuOfferPrice: "29 DH",
         featuredDealBadge: "عرض خاص",
         featuredDealHeading: "أحسن صفقة اليوم",
@@ -449,6 +467,17 @@ const additionalTranslations = {
         amazonLive: "Amazon en direct",
         categoryDetails: "Détails de la catégorie",
         categoryDescription: "Découvrez les offres disponibles dans cette catégorie.",
+        categoriesHeading: "Acheter par catégorie",
+        catalogFashion: "Mode et vêtements",
+        catalogAccessories: "Bijoux et accessoires",
+        catalogElectronics: "Électronique et technologie",
+        catalogHome: "Maison et cuisine",
+        catalogBeauty: "Beauté et soins personnels",
+        catalogShoes: "Chaussures et sacs",
+        catalogGaming: "Jeux et gadgets",
+        backToCategories: "Retour aux catégories",
+        searchResults: "Résultats de recherche",
+        emptyProducts: "Aucun produit n’est encore disponible dans cette catégorie.",
         temuOfferPrice: "29 DH",
         featuredDealBadge: "Bon plan",
         featuredDealHeading: "Meilleure offre du jour",
@@ -520,6 +549,17 @@ const additionalTranslations = {
         amazonLive: "Amazon Store",
         categoryDetails: "Category details",
         categoryDescription: "Explore the offers available in this category.",
+        categoriesHeading: "Shop by category",
+        catalogFashion: "Fashion & Clothing",
+        catalogAccessories: "Jewelry & Accessories",
+        catalogElectronics: "Electronics & Technology",
+        catalogHome: "Home & Kitchen",
+        catalogBeauty: "Beauty & Personal Care",
+        catalogShoes: "Shoes & Bags",
+        catalogGaming: "Gaming & Gadgets",
+        backToCategories: "Back to categories",
+        searchResults: "Search results",
+        emptyProducts: "No products are available in this category yet.",
         temuOfferPrice: "29 DH",
         featuredDealBadge: "Best Deal",
         featuredDealHeading: "Today's Best Deal",
@@ -602,6 +642,7 @@ const englishProductTitles = {
 
 let currentLang = 'ar';
 let currentCategory = 'all';
+let selectedCatalogCategory = null;
 let isAdminAuthenticated = false;
 let adminSessionToken = "";
 let featuredDealIndex = 0;
@@ -651,6 +692,73 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function getAllProducts() {
     return [...products, ...communityProducts];
+}
+
+function getCatalogCategoryProducts(categoryKey) {
+    return getAllProducts().filter(product => {
+        switch (categoryKey) {
+            case 'fashion':
+                return product.category === 'fashion' && !product.catalogCategory;
+            case 'accessories':
+            case 'beauty':
+            case 'shoes':
+            case 'gaming':
+                return product.catalogCategory === categoryKey;
+            case 'electronics':
+                return product.category === 'tech' && !product.catalogCategory;
+            case 'home':
+                return product.category === 'home' && !product.catalogCategory;
+            default:
+                return false;
+        }
+    });
+}
+
+function getCurrentCategoryProducts() {
+    if (selectedCatalogCategory) {
+        return getCatalogCategoryProducts(selectedCatalogCategory);
+    }
+    if (currentCategory === 'all') return getAllProducts();
+    if (['aliexpress', 'amazon', 'jumia', 'alibaba', 'temu'].includes(currentCategory)) {
+        return getAllProducts().filter(product =>
+            product.platform.toLowerCase() === currentCategory
+        );
+    }
+    return getAllProducts().filter(product => product.category === currentCategory);
+}
+
+function getVisibleProducts() {
+    const query = document.getElementById('searchInput')?.value.trim().toLowerCase() || '';
+    const visibleProducts = getCurrentCategoryProducts();
+    if (!query) return visibleProducts;
+    return visibleProducts.filter(product =>
+        getProductTitle(product).toLowerCase().includes(query) ||
+        product.platform.toLowerCase().includes(query)
+    );
+}
+
+function updateProductViewTitle() {
+    const title = document.querySelector('#sectionTitle span');
+    if (!title) return;
+    if (selectedCatalogCategory) {
+        const categoryTranslationKey = {
+            fashion: 'catalogFashion',
+            accessories: 'catalogAccessories',
+            electronics: 'catalogElectronics',
+            home: 'catalogHome',
+            beauty: 'catalogBeauty',
+            shoes: 'catalogShoes',
+            gaming: 'catalogGaming'
+        }[selectedCatalogCategory];
+        title.textContent = translations[currentLang][categoryTranslationKey];
+    } else if (document.getElementById('searchInput').value.trim()) {
+        title.textContent = translations[currentLang].searchResults;
+    } else if (currentCategory !== 'all') {
+        const description = (localizedCategoryDescriptions[currentLang] || categoryDescriptions)[currentCategory];
+        title.textContent = description?.title || translations[currentLang].allDeals;
+    } else {
+        title.textContent = translations[currentLang].categoriesHeading;
+    }
 }
 
 function getSavedLanguage() {
@@ -1070,15 +1178,9 @@ function setLanguage(lang) {
     document.title = translations[lang].siteTitle;
     document.getElementById('floatingWhatsappBtn').href =
         `https://wa.me/${siteConfig.cleanPhone}?text=${encodeURIComponent(translations[lang].whatsappContactMessage)}`;
-    const visibleProducts = currentCategory === 'all'
-        ? getAllProducts()
-        : getAllProducts().filter(product =>
-            ['aliexpress', 'amazon', 'jumia', 'alibaba', 'temu'].includes(currentCategory)
-                ? product.platform.toLowerCase() === currentCategory
-                : product.category === currentCategory
-        );
-    renderProducts(visibleProducts);
+    renderProducts(getVisibleProducts(), Boolean(selectedCatalogCategory));
     renderFeaturedDeals();
+    updateProductViewTitle();
     document.getElementById('announcementText').textContent = translations[lang].announcementText;
     const productId = new URLSearchParams(window.location.search).get('product');
     if (productId) {
@@ -1113,15 +1215,22 @@ function toggleTheme() {
 }
 
 function filterProducts() {
-    const query = document.getElementById('searchInput').value.toLowerCase();
-    renderProducts(getAllProducts().filter(p =>
-        getProductTitle(p).toLowerCase().includes(query) || p.platform.toLowerCase().includes(query)
-    ));
+    const query = document.getElementById('searchInput').value.trim();
+    if (!query && !selectedCatalogCategory && currentCategory === 'all') {
+        document.getElementById('categoryLanding').hidden = false;
+        document.getElementById('categoryProductsPanel').hidden = true;
+        updateProductViewTitle();
+        return;
+    }
+    document.getElementById('categoryLanding').hidden = true;
+    document.getElementById('categoryProductsPanel').hidden = false;
+    updateProductViewTitle();
+    renderProducts(getVisibleProducts(), Boolean(selectedCatalogCategory));
 }
 
 function sortProducts() {
     const sortBy = document.getElementById('sortSelect').value;
-    let sorted = getAllProducts();
+    let sorted = getVisibleProducts();
 
     if (sortBy === 'price-low') {
         sorted.sort((a, b) => {
@@ -1142,7 +1251,7 @@ function sortProducts() {
     } else {
         sorted.reverse();
     }
-    renderProducts(sorted);
+    renderProducts(sorted, Boolean(selectedCatalogCategory));
 }
 
 // مشاركة الواتساب
