@@ -662,7 +662,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const savedLanguage = getSavedLanguage();
     if (savedLanguage && translations[savedLanguage]) setLanguage(savedLanguage);
-    renderProducts(getAllProducts());
+    renderProducts(getVisibleProducts());
     renderFeaturedDeals();
     updateStats();
 
@@ -898,7 +898,7 @@ async function loadApprovedProducts() {
     if (!API_BASE_URL) return;
     const result = await apiRequest("/api/products");
     communityProducts = result.products;
-    renderProducts(getAllProducts());
+    renderProducts(getVisibleProducts(), Boolean(selectedCatalogCategory));
     renderFeaturedDeals();
     updateStats();
 }
@@ -1003,7 +1003,7 @@ function renderProductDetail(productId) {
 }
 
 // عرض المنتجات
-function renderProducts(items) {
+function renderProducts(items, directDealLinks = false) {
     const grid = document.getElementById('productsGrid');
     grid.innerHTML = '';
 
@@ -1032,7 +1032,9 @@ function renderProducts(items) {
                         ${product.contactOnly ? '' : `<span class="first-time-offer">${escapeHtml(translations[currentLang].firstTimeOffer)}</span>`}
                     </div>
                     <div class="product-actions">
-                        <a href="?product=${encodeURIComponent(product.id)}" class="affiliate-btn">${escapeHtml(translations[currentLang].viewDetails)}</a>
+                        ${directDealLinks
+                            ? `<a href="${escapeHtml(product.contactOnly ? getContactProductUrl(product) : (product.affLink || `?product=${encodeURIComponent(product.id)}`))}" class="affiliate-btn" ${product.contactOnly || product.affLink ? 'target="_blank" rel="noopener noreferrer"' : ''}>${escapeHtml(translations[currentLang].viewDeal)}</a>`
+                            : `<a href="?product=${encodeURIComponent(product.id)}" class="affiliate-btn">${escapeHtml(translations[currentLang].viewDetails)}</a>`}
                         <button class="whatsapp-share-btn" type="button" title="${escapeHtml(translations[currentLang].whatsappShare)}" aria-label="${escapeHtml(translations[currentLang].whatsappShare)}">
                             <i class="ri-whatsapp-line"></i>
                         </button>
@@ -1051,18 +1053,49 @@ function renderProducts(items) {
     });
 }
 
-// الفلترة وإظهار وصف المنشور الصنف عند الضغط
+function openCatalogCategory(categoryKey) {
+    selectedCatalogCategory = categoryKey;
+    currentCategory = 'all';
+    document.getElementById('searchInput').value = '';
+    document.getElementById('categoryLanding').hidden = true;
+    document.getElementById('categoryProductsPanel').hidden = false;
+    document.getElementById('categoryDescBox').style.display = 'none';
+    document.querySelectorAll('.cat-chip').forEach(chip => {
+        chip.classList.toggle('active', chip.dataset.category === 'all');
+    });
+    updateProductViewTitle();
+    renderProducts(getVisibleProducts(), true);
+}
+
+function returnToCategories() {
+    selectedCatalogCategory = null;
+    currentCategory = 'all';
+    document.getElementById('searchInput').value = '';
+    document.getElementById('categoryLanding').hidden = false;
+    document.getElementById('categoryProductsPanel').hidden = true;
+    document.getElementById('categoryDescBox').style.display = 'none';
+    document.querySelectorAll('.cat-chip').forEach(chip => {
+        chip.classList.toggle('active', chip.dataset.category === 'all');
+    });
+}
+
+// Keep the existing navigation filters while showing the category landing by default.
 function filterCategory(cat, element) {
     currentCategory = cat;
-    document.querySelectorAll('.cat-chip').forEach(chip => chip.classList.remove('active'));
-    element.classList.add('active');
+    selectedCatalogCategory = null;
+    document.querySelectorAll('.cat-chip').forEach(chip => {
+        chip.classList.toggle('active', chip.dataset.category === cat);
+    });
+    if (element && element.classList && !element.classList.contains('cat-chip')) {
+        element.classList.add('active');
+    }
 
     const descBox = document.getElementById('categoryDescBox');
     const titleEl = document.getElementById('catDescTitle');
     const textEl = document.getElementById('catDescText');
-
     const descriptions = localizedCategoryDescriptions[currentLang] || categoryDescriptions;
-    if (descriptions[cat]) {
+
+    if (cat !== 'all' && descriptions[cat]) {
         descBox.style.display = 'block';
         titleEl.innerHTML = `<i class="ri-information-fill"></i> ${escapeHtml(descriptions[cat].title)}`;
         textEl.innerText = descriptions[cat].desc;
@@ -1070,13 +1103,12 @@ function filterCategory(cat, element) {
         descBox.style.display = 'none';
     }
 
-    if (cat === 'all') {
-        renderProducts(getAllProducts());
-    } else if (['aliexpress', 'amazon', 'jumia', 'alibaba', 'temu'].includes(cat)) {
-        renderProducts(getAllProducts().filter(p => p.platform === cat));
-    } else {
-        renderProducts(getAllProducts().filter(p => p.category === cat));
-    }
+    const hasSearch = document.getElementById('searchInput').value.trim().length > 0;
+    const showLanding = cat === 'all' && !hasSearch;
+    document.getElementById('categoryLanding').hidden = !showLanding;
+    document.getElementById('categoryProductsPanel').hidden = showLanding;
+    updateProductViewTitle();
+    if (!showLanding) renderProducts(getVisibleProducts());
 }
 
 async function renderAdminProductsTable() {
