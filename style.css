@@ -717,6 +717,10 @@ body[data-theme="dark"] .featured-product {
     line-height: 1.4;
     margin: 0;
     overflow-wrap: anywhere;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
 }
 
 .featured-body p {
@@ -724,6 +728,10 @@ body[data-theme="dark"] .featured-product {
     font-size: 0.82rem;
     line-height: 1.5;
     margin: 0;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
 }
 
 .featured-meta {
