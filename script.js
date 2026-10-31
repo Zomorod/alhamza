@@ -174,7 +174,7 @@ let products = [
         ],
         price: "",
         oldPrice: "",
-        platform: "AL_HAMZZA",
+        platform: "ALHAMZA",
         category: "home",
         image: "https://i.etsystatic.com/62845644/r/il/c5e544/7768904807/il_1588xN.7768904807_t789.jpg",
         contactOnly: true
@@ -286,7 +286,7 @@ const translations = {
         viewDetails: "تفاصيل المنتج",
         checkoutAtStore: "كمل الشراء والدفع فالمتجر",
         purchaseOnStore: "منين تضغط على زر الشراء، غادي تمشي لمتجر المنتج باش تكمل الطلب وتخلص تما. الثمن النهائي والشحن كيتأكدو فصفحة المتجر.",
-        aiTitle: "مساعد AL_HAMZZA الذكي",
+        aiTitle: "مساعد ALHAMZA الذكي",
         aiDesc: "قل ليا ش بغيتي تشري ولا شحال الميزانية ديالك، وأنا نقترح عليك أحسن همزة كاين دابا:",
         footerDesc: "الوجهة الأولى للمغاربة لاكتشاف أفضل الصفقات، العروض الحصرية، وربط المشتريات العالمية والمحلية بكل سهولة وثقة.",
         contactTitle: "تواصل معنا المباشر",
@@ -333,7 +333,7 @@ const translations = {
         viewDetails: "Détails du produit",
         checkoutAtStore: "Continuer l’achat et payer sur la boutique",
         purchaseOnStore: "Le bouton vous redirigera vers la boutique du produit pour finaliser et payer la commande. Le prix final et la livraison sont confirmés sur sa page.",
-        aiTitle: "Assistant IA AL_HAMZZA",
+        aiTitle: "Assistant IA ALHAMZA",
         aiDesc: "Dites-moi ce que vous cherchez ou votre budget, et je vous trouve la meilleure offre :",
         footerDesc: "La première destination des Marocains pour découvrir les meilleures offres et produits exclusifs.",
         contactTitle: "Contact Direct",
@@ -380,7 +380,7 @@ const translations = {
         viewDetails: "Product details",
         checkoutAtStore: "Continue to the store to buy and pay",
         purchaseOnStore: "The button will take you to the product store to complete and pay for your order. Confirm the final price and shipping on the store page.",
-        aiTitle: "AL_HAMZZA AI Assistant",
+        aiTitle: "ALHAMZA AI Assistant",
         aiDesc: "Tell me what you want to buy or your budget, and I'll recommend the best deal:",
         footerDesc: "Morocco's premier destination to discover the best deals, exclusive offers, and trusted links.",
         contactTitle: "Direct Contact",
@@ -391,9 +391,9 @@ const translations = {
 
 const additionalTranslations = {
     ar: {
-        siteTitle: "AL_HAMZZA - أحسن الصفقات وأقوى الهمزات",
+        siteTitle: "ALHAMZA - أحسن الصفقات وأقوى الهمزات",
         siteSlogan: "أحسن الصفقات وأقوى الهمزات بالمغرب",
-        brandName: "AL_HAMZZA",
+        brandName: "ALHAMZA",
         searchPlaceholder: "قلّب على أي همزة، منتج، أو عرض...",
         aiSearchButton: "مساعد AI",
         themeToggle: "تغيير المظهر",
@@ -449,7 +449,7 @@ const additionalTranslations = {
         actions: "الإجراءات",
         whatsapp: "WhatsApp:",
         email: "البريد الإلكتروني:",
-        copyright: "© 2026 AL_HAMZZA - صُمم بكل حب لـ Mehdi Abbad. جميع الحقوق محفوظة.",
+        copyright: "© 2026 ALHAMZA - صُمم بكل حب لـ Mehdi Abbad. جميع الحقوق محفوظة.",
         contactWhatsapp: "تواصل معنا عبر واتساب",
         whatsappContactMessage: "سلام، بغيت نسول على شي منتج فموقع الهمزة",
         emptyProducts: "ما كاين حتى منتج حالياً بهذا المعيار.",
@@ -473,9 +473,9 @@ const additionalTranslations = {
         contactViaWhatsapp: "تواصل معنا عبر واتساب"
     },
     fr: {
-        siteTitle: "AL_HAMZZA - Les meilleures offres et promotions",
+        siteTitle: "ALHAMZA - Les meilleures offres et promotions",
         siteSlogan: "Les meilleures offres au Maroc",
-        brandName: "AL_HAMZZA",
+        brandName: "ALHAMZA",
         searchPlaceholder: "Rechercher des offres et des produits...",
         aiSearchButton: "Assistant IA",
         themeToggle: "Changer le thème",
@@ -531,7 +531,7 @@ const additionalTranslations = {
         actions: "Actions",
         whatsapp: "WhatsApp :",
         email: "E-mail :",
-        copyright: "© 2026 AL_HAMZZA - Créé avec soin pour Mehdi Abbad. Tous droits réservés.",
+        copyright: "© 2026 ALHAMZA - Créé avec soin pour Mehdi Abbad. Tous droits réservés.",
         contactWhatsapp: "Contactez-nous sur WhatsApp",
         whatsappContactMessage: "Bonjour, j’aimerais poser une question sur un produit de Lhamzza",
         emptyProducts: "Aucun produit ne correspond à ce critère.",
@@ -555,9 +555,9 @@ const additionalTranslations = {
         contactViaWhatsapp: "Nous contacter sur WhatsApp"
     },
     en: {
-        siteTitle: "AL_HAMZZA - The Best Deals and Shopping Offers",
+        siteTitle: "ALHAMZA - The Best Deals and Shopping Offers",
         siteSlogan: "The best deals and offers in Morocco",
-        brandName: "AL_HAMZZA",
+        brandName: "ALHAMZA",
         searchPlaceholder: "Search deals, products, and offers...",
         aiSearchButton: "AI Assistant",
         themeToggle: "Change theme",
@@ -613,7 +613,7 @@ const additionalTranslations = {
         actions: "Actions",
         whatsapp: "WhatsApp:",
         email: "Email:",
-        copyright: "© 2026 AL_HAMZZA - Made with care for Mehdi Abbad. All rights reserved.",
+        copyright: "© 2026 ALHAMZA - Made with care for Mehdi Abbad. All rights reserved.",
         contactWhatsapp: "Contact us on WhatsApp",
         whatsappContactMessage: "Hello, I have a question about a product on Lhamzza",
         emptyProducts: "No products match this filter.",
@@ -1318,10 +1318,10 @@ function getProductPageUrl(productId) {
 function shareToWhatsApp(product) {
     const link = getProductPageUrl(product.id);
     const greeting = currentLang === 'en'
-        ? "Hi, I found this deal on AL_HAMZZA:"
+        ? "Hi, I found this deal on ALHAMZA:"
         : currentLang === 'fr'
-            ? "Bonjour, j’ai trouvé cette offre sur AL_HAMZZA :"
-            : "سلام، عجبني هاد العرض ف موقع AL_HAMZZA:";
+            ? "Bonjour, j’ai trouvé cette offre sur ALHAMZA :"
+            : "سلام، عجبني هاد العرض ف موقع ALHAMZA:";
     const title = getProductTitle(product);
     const priceLabel = currentLang === 'en' ? "Price" : currentLang === 'fr' ? "Prix" : "الثمن";
     const linkLabel = currentLang === 'en' ? "Link" : currentLang === 'fr' ? "Lien" : "الرابط";
