@@ -85,62 +85,15 @@
     <!-- المحتوى الرئيسي -->
     <main class="main-content container">
         
-        <!-- قسم الترويج السريع (Hero Banner) -->
-        <section class="hero-banner">
-            <div class="hero-content">
-                <span class="hero-badge"><i class="ri-percent-line"></i> <span data-i18n="heroBadge">همزات حصرية بالمغرب</span></span>
-                <h1 data-i18n="heroTitle">أقوى الهمزات والعروض الثرابية بأسعار خيالية!</h1>
-                <p data-i18n="heroDesc">كنجمعو ليك أروع المنتجات من أمازون، أليكسبريس وجوميا، وبمساعدة الذكاء الاصطناعي كنعطيوك الخلاصة وأحسن ثمن.</p>
-                <div class="hero-stats">
-                    <div><strong id="totalDealsCount">0+</strong> <span data-i18n="statDeals">همزة متوفرة</span></div>
-                    <div><strong>100%</strong> <span data-i18n="statSecure">روابط مضمونة</span></div>
-                    <div><strong>24/7</strong> <span data-i18n="statSupport">دعم فوري</span></div>
+        <section class="top-deals" aria-labelledby="topDealsHeading">
+            <div class="top-deals-header">
+                <div>
+                    <span class="top-deals-kicker"><i class="ri-flashlight-fill" aria-hidden="true"></i> Top 10</span>
+                    <h1 id="topDealsHeading" data-i18n="topDealsHeading">أحسن 10 همزات</h1>
+                    <p data-i18n="topDealsDescription">آخر الهمزات المضافة — ضغط على أي منتج باش تشوف التفاصيل.</p>
                 </div>
             </div>
-            <div class="hero-card-preview">
-                <div class="live-ticker">
-                    <i class="ri-fire-fill"></i> <span data-i18n="liveDeal">صفقة ساخنة الآن!</span>
-                </div>
-                <div class="preview-card-inner">
-                    <div class="temu-hero-visual">
-                        <img src="https://img.kwcdn.com/product/fancy/511ca81b-a204-43b7-a51b-284afd8681b8.jpg?imageView2/2/w/800/q/70/format/avif" alt="سويتشيرت رجالي بقبعة وسحاب مزدوج" data-i18n-alt="temuOfferTitle">
-                    </div>
-                    <h3 data-i18n="temuOfferTitle">سويتشيرت رجالي بقبعة وسحاب مزدوج — عرض بـ 29 درهم</h3>
-                    <div class="price-box">
-                        <span class="new-price" data-i18n="temuOfferPrice">29 DH</span>
-                    </div>
-                    <p class="temu-hero-disclaimer" data-i18n="temuOfferDisclaimer">العرض متاح مرة واحدة لكل مستخدم للتطبيق. الثمن والتخفيض ممكن يتبدلو؛ تأكد من التفاصيل فالصفحة.</p>
-                    <a class="buy-now-btn temu-hero-cta" href="https://temu.to/k/edtftm7idw3" target="_blank" rel="noopener noreferrer">
-                        <i class="ri-external-link-line" aria-hidden="true"></i>
-                        <span data-i18n="temuOfferCta">اكتشف العرض والمكافآت</span>
-                    </a>
-                </div>
-            </div>
-            <div class="hero-photo-credit">
-                <span>Photos:</span>
-                <a href="https://commons.wikimedia.org/wiki/File:Sunshine_on_mosque_Hassan_II_in_Casablanca,_Morocco_-_Flickr_-_Milamber%27s_portfolio.jpg" target="_blank" rel="noopener noreferrer">Hassan II Mosque — Milamber's portfolio</a>
-                <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener noreferrer">CC BY 2.0</a>
-            </div>
-        </section>
-
-        <section class="featured-picks" aria-label="أحسن صفقة">
-            <div class="featured-header">
-                <span class="featured-tag"><i class="ri-flashlight-fill"></i> <span data-i18n="featuredDealBadge">Best Deal</span></span>
-                <h2 data-i18n="featuredDealHeading">أحسن صفقة اليوم</h2>
-            </div>
-
-            <div class="featured-viewport">
-                <div class="featured-track" id="featuredTrack" aria-live="polite"></div>
-                <div class="featured-controls">
-                    <button class="featured-arrow" id="featuredPrev" type="button" aria-label="الصفقة السابقة" data-i18n-aria="featuredPrevious">
-                        <i class="ri-arrow-right-s-line" aria-hidden="true"></i>
-                    </button>
-                    <button class="featured-arrow" id="featuredNext" type="button" aria-label="الصفقة التالية" data-i18n-aria="featuredNext">
-                        <i class="ri-arrow-left-s-line" aria-hidden="true"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="featured-dots" id="featuredDots" aria-label="اختيار الصفقة" data-i18n-aria="featuredChoose"></div>
+            <div class="top-deals-grid" id="topDealsGrid" aria-live="polite"></div>
         </section>
 
         <!-- شبكة المنتجات (Products Grid) -->
