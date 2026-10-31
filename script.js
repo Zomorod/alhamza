@@ -417,12 +417,8 @@ const additionalTranslations = {
         searchResults: "نتائج البحث",
         emptyProducts: "لا توجد منتجات في هذا الصنف حالياً.",
         temuOfferPrice: "29 DH",
-        featuredDealBadge: "عرض خاص",
-        featuredDealHeading: "أحسن صفقة اليوم",
-        featuredPrevious: "الصفقة السابقة",
-        featuredNext: "الصفقة التالية",
-        featuredChoose: "اختيار الصفقة",
-        featuredSlideLabel: "الصفقة",
+        topDealsHeading: "أحسن 10 همزات",
+        topDealsDescription: "تفرج على أقوى 10 منتجات — ضغط على أي منتج باش تشوف التفاصيل.",
         catalogLoading: "",
         aiGreeting: "أهلاً بك! أنا جاهز باش نعاونك تلقى أحسن المنتجات والصفقات. شنو بغيتي تقلب عليه اليوم؟",
         aiPlaceholder: "مثال: بغيت مقلاة هوائية ولا سماعات أقل من 200 درهم...",
@@ -499,12 +495,8 @@ const additionalTranslations = {
         searchResults: "Résultats de recherche",
         emptyProducts: "Aucun produit n’est encore disponible dans cette catégorie.",
         temuOfferPrice: "29 DH",
-        featuredDealBadge: "Bon plan",
-        featuredDealHeading: "Meilleure offre du jour",
-        featuredPrevious: "Offre précédente",
-        featuredNext: "Offre suivante",
-        featuredChoose: "Choisir une offre",
-        featuredSlideLabel: "Offre",
+        topDealsHeading: "Top 10 des bonnes affaires",
+        topDealsDescription: "Découvrez les 10 meilleures offres — sélectionnez un produit pour voir les détails.",
         catalogLoading: "",
         aiGreeting: "Bonjour ! Je peux vous aider à trouver les meilleurs produits et offres. Que recherchez-vous ?",
         aiPlaceholder: "Exemple : une friteuse ou des écouteurs à moins de 200 DH...",
@@ -581,12 +573,8 @@ const additionalTranslations = {
         searchResults: "Search results",
         emptyProducts: "No products are available in this category yet.",
         temuOfferPrice: "29 DH",
-        featuredDealBadge: "Best Deal",
-        featuredDealHeading: "Today's Best Deal",
-        featuredPrevious: "Previous deal",
-        featuredNext: "Next deal",
-        featuredChoose: "Choose a deal",
-        featuredSlideLabel: "Deal",
+        topDealsHeading: "Top 10 Deals",
+        topDealsDescription: "Explore the top 10 deals — select a product to see its details.",
         catalogLoading: "",
         aiGreeting: "Welcome! I can help you find great products and deals. What are you looking for today?",
         aiPlaceholder: "For example: an air fryer or earbuds under 200 DH...",
@@ -657,7 +645,9 @@ const englishProductTitles = {
     13: "Anti-theft motorcycle backpack that converts to a secure crossbody bag",
     14: "Programmable NFC epoxy keychain for Google Reviews, Facebook, Instagram, and custom URLs",
     15: "Men's vintage-style wallet with a printed design and multiple card and ID slots",
-    16: "Vintage Moroccan Taous Plate (Very Rare)"
+    16: "Vintage Moroccan Taous Plate (Very Rare)",
+    17: "X15 wireless gaming earbuds with digital charging case",
+    18: "9-in-1 cable and phone tool kit with USB adapters"
 };
 
 let currentLang = 'ar';
@@ -665,15 +655,12 @@ let currentCategory = 'all';
 let selectedCatalogCategory = null;
 let isAdminAuthenticated = false;
 let adminSessionToken = "";
-let featuredDealIndex = 0;
-
 // التشغيل الأولي
 document.addEventListener('DOMContentLoaded', () => {
     const productId = new URLSearchParams(window.location.search).get('product');
     if (productId) {
-        document.querySelector('.hero-banner').hidden = true;
         document.querySelector('.products-section').hidden = true;
-        document.querySelector('.featured-picks').hidden = true;
+        document.querySelector('.top-deals').hidden = true;
         document.getElementById('categoryDescBox').hidden = true;
         document.getElementById('productDetailView').hidden = false;
         document.querySelector('#productDetailView .product-detail-back span').textContent =
@@ -683,8 +670,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const savedLanguage = getSavedLanguage();
     if (savedLanguage && translations[savedLanguage]) setLanguage(savedLanguage);
     renderProducts(getVisibleProducts());
-    renderFeaturedDeals();
-    updateStats();
+    renderTopDeals();
 
     loadApprovedProducts().catch(error => {
         console.error('Failed to load approved products:', error);
@@ -692,18 +678,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }).finally(() => {
         if (productId) renderProductDetail(productId);
     });
-
-    document.getElementById('featuredPrev').addEventListener('click', () => {
-        showFeaturedDeal(featuredDealIndex - 1);
-    });
-    document.getElementById('featuredNext').addEventListener('click', () => {
-        showFeaturedDeal(featuredDealIndex + 1);
-    });
-    if (!productId && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        window.setInterval(() => {
-            showFeaturedDeal(featuredDealIndex + 1);
-        }, 4500);
-    }
 
     if (!productId && new URLSearchParams(window.location.search).get('admin') === '1') {
         openAdminModal();
@@ -806,84 +780,36 @@ function getProductPrice(product) {
         : product.price;
 }
 
-function renderFeaturedDeals() {
-    const track = document.getElementById('featuredTrack');
-    const dots = document.getElementById('featuredDots');
-    if (!track || !dots) return;
+function renderTopDeals() {
+    const track = document.getElementById('topDealsTrack');
+    if (!track) return;
 
-    const deals = getAllProducts();
-    featuredDealIndex = deals.length ? featuredDealIndex % deals.length : 0;
-    track.innerHTML = deals.map((product, index) => {
+    const deals = [...communityProducts, ...products.slice().reverse()].slice(0, 10);
+    const cards = deals.map((product, index) => {
         const title = getProductTitle(product);
-        const description = currentLang === 'en'
-            ? (product.descriptionEn || product.description || '')
-            : currentLang === 'fr'
-                ? (product.descriptionFr || product.description || '')
-                : (product.description || '');
         const image = product.images?.[0] || product.image;
-        const link = product.contactOnly
-            ? getContactProductUrl(product)
-            : (product.affLink || `?product=${encodeURIComponent(product.id)}`);
-        const contactClass = product.contactOnly ? 'featured-contact-link' : '';
-        const target = product.contactOnly || product.affLink
-            ? ' target="_blank" rel="noopener noreferrer"'
-            : '';
+        const productUrl = getProductPageUrl(product.id);
 
         return `
-            <article class="featured-product" aria-label="${escapeHtml(title)}" aria-hidden="${index !== featuredDealIndex}"${index !== featuredDealIndex ? ' inert' : ''}>
-                <div class="featured-image-wrap">
-                    <img src="${escapeHtml(image)}" alt="${escapeHtml(title)}" loading="${index === featuredDealIndex ? 'eager' : 'lazy'}">
-                </div>
-                <div class="featured-body">
-                    <span class="mini-badge">${escapeHtml(translations[currentLang].featuredDealBadge)}</span>
-                    <h3>${escapeHtml(title)}</h3>
-                    ${description ? `<p>${escapeHtml(description)}</p>` : ''}
-                    <div class="featured-meta">
-                        <strong>${escapeHtml(getProductPrice(product))}</strong>
-                        ${product.oldPrice ? `<span class="old-price">${escapeHtml(product.oldPrice)}</span>` : ''}
-                    </div>
-                    <a class="${contactClass}" href="${escapeHtml(link)}"${target}>${escapeHtml(translations[currentLang].viewDeal)}</a>
-                </div>
-            </article>
+            <a class="top-deal-card" href="${escapeHtml(productUrl)}" aria-label="${escapeHtml(title)} — ${escapeHtml(getProductPrice(product))}">
+                <span class="top-deal-image">
+                    <img src="${escapeHtml(image || '')}" alt="" loading="${index < 4 ? 'eager' : 'lazy'}">
+                    <span class="top-deal-rank">${String(index + 1).padStart(2, '0')}</span>
+                </span>
+                <span class="top-deal-info">
+                    <strong>${escapeHtml(title)}</strong>
+                    <span class="top-deal-price">${escapeHtml(getProductPrice(product))}</span>
+                </span>
+                <i class="ri-arrow-left-line top-deal-arrow" aria-hidden="true"></i>
+            </a>
         `;
     }).join('');
-
-    dots.innerHTML = deals.map((product, index) => `
-        <button class="featured-dot${index === featuredDealIndex ? ' active' : ''}" type="button"
-            aria-label="${escapeHtml(translations[currentLang].featuredSlideLabel)} ${index + 1}"
-            aria-current="${index === featuredDealIndex ? 'true' : 'false'}"
-            data-slide="${index}"></button>
-    `).join('');
-    dots.querySelectorAll('.featured-dot').forEach(button => {
-        button.addEventListener('click', () => showFeaturedDeal(Number(button.dataset.slide)));
-    });
-    updateFeaturedDealPosition();
-}
-
-function showFeaturedDeal(index) {
-    const count = getAllProducts().length;
-    if (!count) return;
-    featuredDealIndex = (index + count) % count;
-    document.querySelectorAll('#featuredTrack .featured-product').forEach((slide, slideIndex) => {
-        const inactive = slideIndex !== featuredDealIndex;
-        slide.setAttribute('aria-hidden', String(inactive));
-        if (inactive) {
-            slide.setAttribute('inert', '');
-        } else {
-            slide.removeAttribute('inert');
-        }
-    });
-    document.querySelectorAll('#featuredDots .featured-dot').forEach((dot, dotIndex) => {
-        const isCurrent = dotIndex === featuredDealIndex;
-        dot.classList.toggle('active', isCurrent);
-        dot.setAttribute('aria-current', String(isCurrent));
-    });
-    updateFeaturedDealPosition();
-}
-
-function updateFeaturedDealPosition() {
-    const track = document.getElementById('featuredTrack');
-    if (track) track.style.transform = `translateX(-${featuredDealIndex * 100}%)`;
+    const shouldAnimate = deals.length > 1
+        && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const duplicateSet = shouldAnimate
+        ? `<div class="top-deals-set" aria-hidden="true" inert>${cards}</div>`
+        : '';
+    track.innerHTML = `<div class="top-deals-set">${cards}</div>${duplicateSet}`;
 }
 
 function escapeHtml(value) {
@@ -919,8 +845,7 @@ async function loadApprovedProducts() {
     const result = await apiRequest("/api/products");
     communityProducts = result.products;
     renderProducts(getVisibleProducts(), Boolean(selectedCatalogCategory));
-    renderFeaturedDeals();
-    updateStats();
+    renderTopDeals();
 }
 
 function renderProductDetail(productId) {
@@ -1186,11 +1111,6 @@ async function renderAdminProductsTable() {
     });
 }
 
-// تحديث الإحصائيات
-function updateStats() {
-    document.getElementById('totalDealsCount').innerText = getAllProducts().length + '+';
-}
-
 // تغيير اللغة
 function setLanguage(lang) {
     if (!translations[lang]) return;
@@ -1231,7 +1151,7 @@ function setLanguage(lang) {
     document.getElementById('floatingWhatsappBtn').href =
         `https://wa.me/${siteConfig.cleanPhone}?text=${encodeURIComponent(translations[lang].whatsappContactMessage)}`;
     renderProducts(getVisibleProducts(), Boolean(selectedCatalogCategory));
-    renderFeaturedDeals();
+    renderTopDeals();
     updateProductViewTitle();
     document.getElementById('announcementText').textContent = translations[lang].announcementText;
     const productId = new URLSearchParams(window.location.search).get('product');
