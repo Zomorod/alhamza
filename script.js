@@ -417,12 +417,8 @@ const additionalTranslations = {
         searchResults: "نتائج البحث",
         emptyProducts: "لا توجد منتجات في هذا الصنف حالياً.",
         temuOfferPrice: "29 DH",
-        featuredDealBadge: "عرض خاص",
-        featuredDealHeading: "أحسن صفقة اليوم",
-        featuredPrevious: "الصفقة السابقة",
-        featuredNext: "الصفقة التالية",
-        featuredChoose: "اختيار الصفقة",
-        featuredSlideLabel: "الصفقة",
+        topDealsHeading: "أحسن 10 همزات",
+        topDealsDescription: "آخر الهمزات المضافة — ضغط على أي منتج باش تشوف التفاصيل.",
         catalogLoading: "",
         aiGreeting: "أهلاً بك! أنا جاهز باش نعاونك تلقى أحسن المنتجات والصفقات. شنو بغيتي تقلب عليه اليوم؟",
         aiPlaceholder: "مثال: بغيت مقلاة هوائية ولا سماعات أقل من 200 درهم...",
@@ -499,12 +495,8 @@ const additionalTranslations = {
         searchResults: "Résultats de recherche",
         emptyProducts: "Aucun produit n’est encore disponible dans cette catégorie.",
         temuOfferPrice: "29 DH",
-        featuredDealBadge: "Bon plan",
-        featuredDealHeading: "Meilleure offre du jour",
-        featuredPrevious: "Offre précédente",
-        featuredNext: "Offre suivante",
-        featuredChoose: "Choisir une offre",
-        featuredSlideLabel: "Offre",
+        topDealsHeading: "Top 10 des bonnes affaires",
+        topDealsDescription: "Les dernières offres ajoutées — sélectionnez un produit pour voir les détails.",
         catalogLoading: "",
         aiGreeting: "Bonjour ! Je peux vous aider à trouver les meilleurs produits et offres. Que recherchez-vous ?",
         aiPlaceholder: "Exemple : une friteuse ou des écouteurs à moins de 200 DH...",
@@ -581,12 +573,8 @@ const additionalTranslations = {
         searchResults: "Search results",
         emptyProducts: "No products are available in this category yet.",
         temuOfferPrice: "29 DH",
-        featuredDealBadge: "Best Deal",
-        featuredDealHeading: "Today's Best Deal",
-        featuredPrevious: "Previous deal",
-        featuredNext: "Next deal",
-        featuredChoose: "Choose a deal",
-        featuredSlideLabel: "Deal",
+        topDealsHeading: "Top 10 Deals",
+        topDealsDescription: "Recently added deals — select a product to see its details.",
         catalogLoading: "",
         aiGreeting: "Welcome! I can help you find great products and deals. What are you looking for today?",
         aiPlaceholder: "For example: an air fryer or earbuds under 200 DH...",
@@ -665,15 +653,13 @@ let currentCategory = 'all';
 let selectedCatalogCategory = null;
 let isAdminAuthenticated = false;
 let adminSessionToken = "";
-let featuredDealIndex = 0;
 
 // التشغيل الأولي
 document.addEventListener('DOMContentLoaded', () => {
     const productId = new URLSearchParams(window.location.search).get('product');
     if (productId) {
-        document.querySelector('.hero-banner').hidden = true;
         document.querySelector('.products-section').hidden = true;
-        document.querySelector('.featured-picks').hidden = true;
+        document.querySelector('.top-deals').hidden = true;
         document.getElementById('categoryDescBox').hidden = true;
         document.getElementById('productDetailView').hidden = false;
         document.querySelector('#productDetailView .product-detail-back span').textContent =
@@ -683,8 +669,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const savedLanguage = getSavedLanguage();
     if (savedLanguage && translations[savedLanguage]) setLanguage(savedLanguage);
     renderProducts(getVisibleProducts());
-    renderFeaturedDeals();
-    updateStats();
+    renderTopDeals();
 
     loadApprovedProducts().catch(error => {
         console.error('Failed to load approved products:', error);
@@ -692,18 +677,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }).finally(() => {
         if (productId) renderProductDetail(productId);
     });
-
-    document.getElementById('featuredPrev').addEventListener('click', () => {
-        showFeaturedDeal(featuredDealIndex - 1);
-    });
-    document.getElementById('featuredNext').addEventListener('click', () => {
-        showFeaturedDeal(featuredDealIndex + 1);
-    });
-    if (!productId && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        window.setInterval(() => {
-            showFeaturedDeal(featuredDealIndex + 1);
-        }, 4500);
-    }
 
     if (!productId && new URLSearchParams(window.location.search).get('admin') === '1') {
         openAdminModal();
