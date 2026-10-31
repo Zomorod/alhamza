@@ -100,7 +100,7 @@ body {
 
 .lang-btn.active, .lang-btn:hover {
     background: #fff;
-    color: #ea580c;
+    color: #176b67;
 }
 
 /* اللوجو العصري والشعار */
@@ -127,7 +127,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 10px rgba(194, 65, 12, 0.22);
+    box-shadow: 0 4px 10px rgba(23, 107, 103, 0.24);
 }
 
 .logo-text {
@@ -1724,6 +1724,42 @@ body[data-theme="dark"] .site-footer .footer-col .logo-slogan {
 body[data-theme="dark"] .pistache-text,
 body[data-theme="dark"] .pistache-phone-link {
     color: #6ee7b7 !important;
+}
+
+/* Moroccan zellij palette */
+.site-footer {
+    background-color: #1d5e59;
+    background-image: linear-gradient(rgba(23, 80, 75, 0.72), rgba(23, 80, 75, 0.72)), url("assets/zellij-pattern.svg");
+    background-size: auto, 180px 180px;
+    background-attachment: scroll, fixed;
+    box-shadow: 0 -12px 32px rgba(23, 80, 75, 0.2);
+}
+
+.site-footer .footer-col {
+    border-color: rgba(23, 107, 103, 0.2);
+    background: rgba(255, 253, 248, 0.96);
+}
+
+.site-footer .footer-col .logo-slogan {
+    color: #365c50;
+}
+
+.footer-col ul a:hover {
+    color: var(--accent);
+}
+
+body[data-theme="dark"] .site-footer {
+    background-color: #172d2b;
+    background-image: linear-gradient(rgba(18, 45, 43, 0.82), rgba(18, 45, 43, 0.82)), url("assets/zellij-pattern.svg");
+}
+
+body[data-theme="dark"] .site-footer .footer-col {
+    background: rgba(34, 43, 41, 0.96);
+    border-color: rgba(117, 184, 164, 0.24);
+}
+
+body[data-theme="dark"] .site-footer .footer-col .logo-slogan {
+    color: #a6d4c3;
 }
 
 /* زر الواتساب العائم بلون بيسطاش (Pistachio Green) */
