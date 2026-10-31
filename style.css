@@ -63,6 +63,12 @@ body {
     overflow-x: clip;
 }
 
+body[data-theme="dark"] {
+    background-image: linear-gradient(rgba(23, 29, 29, 0.84), rgba(23, 29, 29, 0.84)), url("assets/zellij-pattern.svg");
+    background-size: auto, 180px 180px;
+    background-attachment: fixed, fixed;
+}
+
 .container {
     width: 100%;
     max-width: none;
