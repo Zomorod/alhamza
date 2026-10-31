@@ -88,8 +88,8 @@ function validHttpsUrl(value) {
 }
 
 function validateSubmission(body) {
-    const platforms = new Set(["aliexpress", "amazon", "jumia", "alibaba", "temu"]);
-    const categories = new Set(["tech", "home", "fashion"]);
+    const platforms = new Set(["aliexpress", "amazon", "jumia", "alibaba", "temu", "riana.ma"]);
+    const categories = new Set(["tech", "home", "fashion", "jewelry"]);
     const fields = ["title", "price", "platform", "category", "image", "affLink"];
 
     if (!body || typeof body !== "object" || Array.isArray(body)) return "بيانات المنتج غير صالحة.";

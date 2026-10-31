@@ -62,6 +62,7 @@
             <button class="cat-chip" data-category="tech" onclick="filterCategory('tech', this)"><i class="ri-smartphone-line"></i> <span data-i18n="catTech">تكنولوجيا وواتساب</span></button>
             <button class="cat-chip" data-category="home" onclick="filterCategory('home', this)"><i class="ri-restaurant-line"></i> <span data-i18n="catHome">طبخ والمنزل</span></button>
             <button class="cat-chip" data-category="fashion" onclick="filterCategory('fashion', this)"><i class="ri-t-shirt-line"></i> <span data-i18n="catFashion">أناقة وموضة</span></button>
+            <button class="cat-chip" data-category="jewelry" onclick="filterCategory('jewelry', this)"><i class="ri-vip-diamond-line"></i> <span data-i18n="catJewelry">مجوهرات</span></button>
 
             <span class="nav-divider">|</span>
 
@@ -110,9 +111,14 @@
                         <span class="category-card-title" data-i18n="catalogFashion">الأزياء والملابس</span>
                         <i class="ri-arrow-left-line category-card-arrow" aria-hidden="true"></i>
                     </button>
-                    <button class="category-card" type="button" onclick="openCatalogCategory('accessories')">
+                    <button class="category-card" type="button" onclick="openCatalogCategory('jewelry')">
                         <span class="category-card-icon"><i class="ri-vip-diamond-line" aria-hidden="true"></i></span>
-                        <span class="category-card-title" data-i18n="catalogAccessories">المجوهرات والإكسسوارات</span>
+                        <span class="category-card-title" data-i18n="catalogJewelry">المجوهرات</span>
+                        <i class="ri-arrow-left-line category-card-arrow" aria-hidden="true"></i>
+                    </button>
+                    <button class="category-card" type="button" onclick="openCatalogCategory('accessories')">
+                        <span class="category-card-icon"><i class="ri-price-tag-3-line" aria-hidden="true"></i></span>
+                        <span class="category-card-title" data-i18n="catalogAccessories">الإكسسوارات</span>
                         <i class="ri-arrow-left-line category-card-arrow" aria-hidden="true"></i>
                     </button>
                     <button class="category-card" type="button" onclick="openCatalogCategory('electronics')">
@@ -224,6 +230,7 @@
                                 <option value="jumia">Jumia</option>
                                 <option value="alibaba">Alibaba</option>
                                 <option value="temu">Temu</option>
+                                <option value="riana.ma">Riana.ma</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -232,6 +239,7 @@
                                 <option value="tech" data-i18n="catTechShort">تكنولوجيا</option>
                                 <option value="home" data-i18n="catHome">طبخ والمنزل</option>
                                 <option value="fashion" data-i18n="catFashionShort">أناقة</option>
+                                <option value="jewelry" data-i18n="catJewelryShort">مجوهرات</option>
                             </select>
                         </div>
                     </div>
@@ -333,6 +341,6 @@
     </a>
 
     <!-- ملف الـ JavaScript -->
-    <script src="script.js?v=20261031-34"></script>
+    <script src="script.js?v=20261031-35"></script>
 </body>
 </html>

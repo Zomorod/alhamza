@@ -218,6 +218,19 @@ let products = [
         category: "tech",
         image: "https://img.kwcdn.com/product/fancy/ef4eb946-e37a-4be6-be8f-506a0d1ef54b.jpg?imageView2/2/w/800/q/70/format/avif",
         affLink: "https://temu.to/k/e8khcp3tbq7"
+    },
+    {
+        id: 21,
+        title: "أقراط Goutte Invisible من الذهب عيار 18 قيراط",
+        description: "أقراط مصنوعة يدوياً من مجموعة Goutte Invisible، متوفرة بالذهب الأبيض أو الأصفر أو الوردي عيار 18 قيراطاً حسب الصور.",
+        descriptionFr: "Boucles d’oreilles Goutte Invisible, fabriquées à la main et disponibles en or blanc, jaune ou rose 18 carats selon les photos.",
+        descriptionEn: "Handcrafted Goutte Invisible earrings, available in 18k white, yellow, or rose gold as shown in the product photos.",
+        price: "2664 DH",
+        oldPrice: "",
+        platform: "Riana.ma",
+        category: "jewelry",
+        image: "https://www.riana.ma/assets/images/boucles-doreilles/design/goutte-invisible-yellow.png",
+        affLink: "https://www.riana.ma/produit/goutte-invisible-126/"
     }
 ];
 
@@ -238,6 +251,10 @@ const categoryDescriptions = {
     fashion: {
         title: "قسم الأناقة والموضة",
         desc: "أحدث صيحات الملابس، المحافظ الجلدية، الساعات الأنيقة والإكسسوارات بأسعار مخفضة للغاية."
+    },
+    jewelry: {
+        title: "قسم المجوهرات",
+        desc: "تسوقوا المجوهرات الأنيقة مثل الخواتم والأساور والقلائد والأقراط."
     }
 };
 
@@ -246,13 +263,15 @@ const localizedCategoryDescriptions = {
         all: { title: "Toutes les offres", desc: "Parcourez les produits et offres disponibles au Maroc." },
         tech: { title: "Technologie et électronique", desc: "Découvrez des produits connectés, des écouteurs, des montres et des accessoires." },
         home: { title: "Cuisine et maison", desc: "Des appareils de cuisine et des accessoires pratiques pour la maison." },
-        fashion: { title: "Mode et style", desc: "Découvrez des vêtements, accessoires et articles de mode à prix réduits." }
+        fashion: { title: "Mode et style", desc: "Découvrez des vêtements, accessoires et articles de mode à prix réduits." },
+        jewelry: { title: "Bijoux", desc: "Découvrez des bijoux élégants : bagues, bracelets, colliers et boucles d’oreilles." }
     },
     en: {
         all: { title: "All deals and offers", desc: "Browse all products and deals currently available in Morocco." },
         tech: { title: "Technology and electronics", desc: "Explore smart products, wireless earbuds, watches, accessories, and chargers." },
         home: { title: "Kitchen and home", desc: "Discover kitchen appliances and practical accessories for your home." },
-        fashion: { title: "Fashion and style", desc: "Browse clothing, accessories, and fashion finds at great prices." }
+        fashion: { title: "Fashion and style", desc: "Browse clothing, accessories, and fashion finds at great prices." },
+        jewelry: { title: "Jewelry", desc: "Browse elegant jewelry, including rings, bracelets, necklaces, and earrings." }
     }
 };
 
@@ -427,7 +446,10 @@ const additionalTranslations = {
         categoryDescription: "وصف شامل ومفصل للهمزات المتاحة فـ هذا القسم...",
         categoriesHeading: "تسوق حسب الصنف",
         catalogFashion: "الأزياء والملابس",
-        catalogAccessories: "المجوهرات والإكسسوارات",
+        catalogJewelry: "المجوهرات",
+        catalogAccessories: "الإكسسوارات",
+        catJewelry: "مجوهرات",
+        catJewelryShort: "مجوهرات",
         catalogElectronics: "الإلكترونيات والتكنولوجيا",
         catalogHome: "المنزل والمطبخ",
         catalogBeauty: "الجمال والعناية الشخصية",
@@ -505,7 +527,10 @@ const additionalTranslations = {
         categoryDescription: "Découvrez les offres disponibles dans cette catégorie.",
         categoriesHeading: "Acheter par catégorie",
         catalogFashion: "Mode et vêtements",
-        catalogAccessories: "Bijoux et accessoires",
+        catalogJewelry: "Bijoux",
+        catalogAccessories: "Accessoires",
+        catJewelry: "Bijoux",
+        catJewelryShort: "Bijoux",
         catalogElectronics: "Électronique et technologie",
         catalogHome: "Maison et cuisine",
         catalogBeauty: "Beauté et soins personnels",
@@ -583,7 +608,10 @@ const additionalTranslations = {
         categoryDescription: "Explore the offers available in this category.",
         categoriesHeading: "Shop by category",
         catalogFashion: "Fashion & Clothing",
-        catalogAccessories: "Jewelry & Accessories",
+        catalogJewelry: "Jewelry",
+        catalogAccessories: "Accessories",
+        catJewelry: "Jewelry",
+        catJewelryShort: "Jewelry",
         catalogElectronics: "Electronics & Technology",
         catalogHome: "Home & Kitchen",
         catalogBeauty: "Beauty & Personal Care",
@@ -669,7 +697,8 @@ const englishProductTitles = {
     19: "22mm soft silicone sport strap for Huawei Watch GT 5 and GT 5 Pro (46mm)",
     20: "2026 smartwatch with HD display, wireless calling, message notifications, multiple sports modes and languages",
     17: "X15 wireless gaming earbuds with digital charging case",
-    18: "9-in-1 cable and phone tool kit with USB adapters"
+    18: "9-in-1 cable and phone tool kit with USB adapters",
+    21: "Goutte Invisible 18k gold earrings"
 };
 
 let currentLang = 'ar';
@@ -715,6 +744,8 @@ function getCatalogCategoryProducts(categoryKey) {
         switch (categoryKey) {
             case 'fashion':
                 return product.category === 'fashion' && !product.catalogCategory;
+            case 'jewelry':
+                return product.category === 'jewelry' && !product.catalogCategory;
             case 'accessories':
             case 'beauty':
             case 'shoes':
@@ -735,7 +766,7 @@ function getCurrentCategoryProducts() {
         return getCatalogCategoryProducts(selectedCatalogCategory);
     }
     if (currentCategory === 'all') return getAllProducts();
-    if (['aliexpress', 'amazon', 'jumia', 'alibaba', 'temu'].includes(currentCategory)) {
+    if (['aliexpress', 'amazon', 'jumia', 'alibaba', 'temu', 'riana.ma'].includes(currentCategory)) {
         return getAllProducts().filter(product =>
             product.platform.toLowerCase() === currentCategory
         );
@@ -759,6 +790,7 @@ function updateProductViewTitle() {
     if (selectedCatalogCategory) {
         const categoryTranslationKey = {
             fashion: 'catalogFashion',
+            jewelry: 'catalogJewelry',
             accessories: 'catalogAccessories',
             electronics: 'catalogElectronics',
             home: 'catalogHome',
