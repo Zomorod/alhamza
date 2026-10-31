@@ -286,7 +286,7 @@ const translations = {
         viewDetails: "تفاصيل المنتج",
         checkoutAtStore: "كمل الشراء والدفع فالمتجر",
         purchaseOnStore: "منين تضغط على زر الشراء، غادي تمشي لمتجر المنتج باش تكمل الطلب وتخلص تما. الثمن النهائي والشحن كيتأكدو فصفحة المتجر.",
-        aiTitle: "مساعد AL_HAMZZA الذكي (Gemini AI)",
+        aiTitle: "مساعد AL_HAMZZA الذكي",
         aiDesc: "قل ليا ش بغيتي تشري ولا شحال الميزانية ديالك، وأنا نقترح عليك أحسن همزة كاين دابا:",
         footerDesc: "الوجهة الأولى للمغاربة لاكتشاف أفضل الصفقات، العروض الحصرية، وربط المشتريات العالمية والمحلية بكل سهولة وثقة.",
         contactTitle: "تواصل معنا المباشر",
@@ -1514,7 +1514,7 @@ function askAiAssistant() {
 
     if (!query) return;
 
-    chatBox.innerHTML += `<div class="ai-msg user">${query}</div>`;
+    appendAiMessage(chatBox, 'user', query);
     input.value = '';
     chatBox.scrollTop = chatBox.scrollHeight;
 
@@ -1527,7 +1527,14 @@ function askAiAssistant() {
             reply = translations[currentLang].aiKitchenReply;
         }
 
-        chatBox.innerHTML += `<div class="ai-msg bot">${reply}</div>`;
+        appendAiMessage(chatBox, 'bot', reply);
         chatBox.scrollTop = chatBox.scrollHeight;
     }, 600);
+}
+
+function appendAiMessage(chatBox, type, message) {
+    const element = document.createElement('div');
+    element.className = `ai-msg ${type}`;
+    element.textContent = message;
+    chatBox.appendChild(element);
 }
