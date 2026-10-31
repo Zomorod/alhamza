@@ -188,6 +188,16 @@ let products = [
         category: "tech",
         image: "https://img.kwcdn.com/product/fancy/1b62b025-b9f0-4fb8-8470-45b7f140aed3.jpg",
         affLink: "https://www.temu.com/ma-en/x15-true-wireless-earbuds-cool-charging-case-in-ear-gaming-headset-with-hd-power-display-suitable-for-gaming-daily-use-no-latency-g-607117364837229.html?_oak_mp_inf=EO32%2BLa4hYoBGhZnb29kc19hMTY1YmNfcmVjb21tZW5kIIizvpuZNA%3D%3D&top_gallery_url=https%3A%2F%2Fimg.kwcdn.com%2Fproduct%2Ffancy%2F1b62b025-b9f0-4fb8-8470-45b7f140aed3.jpg&spec_gallery_id=46504571105&refer_page_sn=10032&freesia_scene=11&_oak_freesia_scene=11&_oak_rec_ext_1=NTUwMA&_oak_gallery_order=1460167737%2C1599284338%2C2134082724%2C810799752%2C903443386&refer_page_el_sn=200444&ab_scene=1&_x_sessn_id=88z338d3ap&refer_page_name=goods&refer_page_id=10032_1793474921675_kyb3o1bqc3"
+    },
+    {
+        id: 18,
+        title: "طقم أدوات وكابلات 9 في 1 للهاتف مع محول USB وعلبة تخزين",
+        price: "55 DH",
+        oldPrice: "",
+        platform: "temu",
+        category: "tech",
+        image: "https://img.kwcdn.com/product/fancy/82dcc9a1-8b21-4d12-b92e-987bd03de59d.jpg",
+        affLink: "https://www.temu.com/ma-en/9-in-1-cable-tool-kit-box-with-usb-adapter-cable-converter-storage-case-usb-type-c-to-micro-usb-lightning-usb-a-cables-supports-data-transfer-tools--sim-card-tray-ejector-pin--as-a-phone-stand-suitable-for-phones-tablets-g-601103111467066.html?_oak_mp_inf=ELrgusuz1ogBGhZnb29kc19hMTY1YmNfcmVjb21tZW5kIImzvpuZNA%3D%3D&top_gallery_url=https%3A%2F%2Fimg.kwcdn.com%2Fproduct%2Ffancy%2F82dcc9a1-8b21-4d12-b92e-987bd03de59d.jpg&spec_gallery_id=438485&refer_page_sn=10032&freesia_scene=11&_oak_freesia_scene=11&_oak_rec_ext_1=NTUwMA&_oak_gallery_order=1344948459%2C606895949%2C503141555%2C1488009720%2C1271182361&refer_page_el_sn=200444&ab_scene=1&_x_sessn_id=88z338d3ap&refer_page_name=goods&refer_page_id=10032_1793474921675_kyb3o1bqc3"
     }
 ];
 
