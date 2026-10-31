@@ -791,7 +791,7 @@ function renderTopDeals() {
         const productUrl = getProductPageUrl(product.id);
 
         return `
-            <a class="top-deal-card" href="${escapeHtml(productUrl)}" aria-label="${escapeHtml(title)} — ${escapeHtml(getProductPrice(product))}">
+            <a class="top-deal-card" href="${escapeHtml(productUrl)}" style="--deal-index:${index}" aria-label="${escapeHtml(title)} — ${escapeHtml(getProductPrice(product))}">
                 <span class="top-deal-image">
                     <img src="${escapeHtml(image || '')}" alt="" loading="${index < 4 ? 'eager' : 'lazy'}">
                     <span class="top-deal-rank">${String(index + 1).padStart(2, '0')}</span>
@@ -810,6 +810,7 @@ function renderTopDeals() {
         ? `<div class="top-deals-set" aria-hidden="true" inert>${cards}</div>`
         : '';
     track.innerHTML = `<div class="top-deals-set">${cards}</div>${duplicateSet}`;
+    track.classList.toggle('is-animated', shouldAnimate);
 }
 
 function escapeHtml(value) {
