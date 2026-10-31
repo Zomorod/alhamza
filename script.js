@@ -198,6 +198,26 @@ let products = [
         category: "tech",
         image: "https://img.kwcdn.com/product/fancy/82dcc9a1-8b21-4d12-b92e-987bd03de59d.jpg",
         affLink: "https://www.temu.com/ma-en/9-in-1-cable-tool-kit-box-with-usb-adapter-cable-converter-storage-case-usb-type-c-to-micro-usb-lightning-usb-a-cables-supports-data-transfer-tools--sim-card-tray-ejector-pin--as-a-phone-stand-suitable-for-phones-tablets-g-601103111467066.html?_oak_mp_inf=ELrgusuz1ogBGhZnb29kc19hMTY1YmNfcmVjb21tZW5kIImzvpuZNA%3D%3D&top_gallery_url=https%3A%2F%2Fimg.kwcdn.com%2Fproduct%2Ffancy%2F82dcc9a1-8b21-4d12-b92e-987bd03de59d.jpg&spec_gallery_id=438485&refer_page_sn=10032&freesia_scene=11&_oak_freesia_scene=11&_oak_rec_ext_1=NTUwMA&_oak_gallery_order=1344948459%2C606895949%2C503141555%2C1488009720%2C1271182361&refer_page_el_sn=200444&ab_scene=1&_x_sessn_id=88z338d3ap&refer_page_name=goods&refer_page_id=10032_1793474921675_kyb3o1bqc3"
+    },
+    {
+        id: 19,
+        title: "سوار سيليكون رياضي 22 مم لساعات Huawei Watch GT 5 Pro وGT 5 مقاس 46 مم",
+        price: "3 DH",
+        oldPrice: "",
+        platform: "temu",
+        category: "tech",
+        image: "https://img.kwcdn.com/product/fancy/15d64057-40ce-44ae-a8c7-e7089db051dd.jpg?imageView2/2/w/800/q/70/format/avif",
+        affLink: "https://temu.to/k/e6zc5z0w50r"
+    },
+    {
+        id: 20,
+        title: "ساعة ذكية بشاشة HD ومكالمات لاسلكية وإشعارات ورسائل وأنماط رياضية متعددة",
+        price: "199 DH",
+        oldPrice: "",
+        platform: "temu",
+        category: "tech",
+        image: "https://img.kwcdn.com/product/fancy/ef4eb946-e37a-4be6-be8f-506a0d1ef54b.jpg?imageView2/2/w/800/q/70/format/avif",
+        affLink: "https://temu.to/k/e8khcp3tbq7"
     }
 ];
 
@@ -646,6 +666,8 @@ const englishProductTitles = {
     14: "Programmable NFC epoxy keychain for Google Reviews, Facebook, Instagram, and custom URLs",
     15: "Men's vintage-style wallet with a printed design and multiple card and ID slots",
     16: "Vintage Moroccan Taous Plate (Very Rare)",
+    19: "22mm soft silicone sport strap for Huawei Watch GT 5 and GT 5 Pro (46mm)",
+    20: "2026 smartwatch with HD display, wireless calling, message notifications, multiple sports modes and languages",
     17: "X15 wireless gaming earbuds with digital charging case",
     18: "9-in-1 cable and phone tool kit with USB adapters"
 };
