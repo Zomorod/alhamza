@@ -166,6 +166,7 @@ let products = [
         id: 22,
         title: "سفينة خشبية مضيئة مصنوعة يدوياً للديكور",
         description: "تحفة فنية خشبية مضيئة مصنوعة يدوياً بعناية خلال يومين. تضيف لمسة من الفخامة إلى الصالون أو غرفة النوم أو المكتب، وتناسب كهدية مميزة.\nالكبيرة: الطول 60 سم × العرض 10 سم — 400 DH.\nالصغيرة: 40 × 10 سم — 350 DH.",
+        descriptionFr: "Maquette décorative de bateau en bois illuminée, fabriquée à la main avec soin en deux jours. Grande : 60 × 10 cm — 400 DH. Petite : 40 × 10 cm — 350 DH.",
         descriptionEn: "A handcrafted illuminated wooden ship, made with care over two days. A decorative piece for the living room, bedroom, or office.\nLarge: 60 × 10 cm — 400 DH.\nSmall: 40 × 10 cm — 350 DH.",
         price: "350–400 DH",
         oldPrice: "500–600 DH",
@@ -730,6 +731,31 @@ const englishProductTitles = {
     22: "Handcrafted illuminated wooden ship decoration"
 };
 
+const frenchProductTitles = {
+    1: "Écouteurs Bluetooth sport TA210 avec réduction de bruit ENC et quatre microphones",
+    2: "Gobelet de voyage isotherme de 50 oz en acier inoxydable, avec poignée et paille",
+    3: "Valise de diagnostic bidirectionnelle AUTEL MaxiCOM MK900-TS avec TPMS",
+    4: "Voiture télécommandée réversible à quatre roues motrices, avec contrôle gestuel, dérapage, lumières et musique",
+    5: "Gilet de sport léger multifonction avec rangement pour bouteille et téléphone",
+    6: "Chaussons d’hiver chauds à semelle épaisse, confortables pour la maison",
+    7: "Casquette de sport légère, respirante et à séchage rapide",
+    8: "Support réglable et respirant pour les doigts et les orteils",
+    9: "Kit de 115 tournevis de précision magnétiques pour téléphones, ordinateurs et montres",
+    10: "Mini tondeuse portable pour le nez, rechargeable par USB",
+    11: "Caméra embarquée à double objectif : 1080p à l’avant et 720p à l’arrière",
+    12: "Tondeuse rechargeable 3-en-1 / 4-en-1 pour le nez et les oreilles",
+    13: "Sac à dos antivol pour moto convertible en sac bandoulière sécurisé",
+    14: "Porte-clés NFC programmable pour Google Avis, Facebook, Instagram et autres liens",
+    15: "Portefeuille vintage pour homme avec motif imprimé et plusieurs emplacements pour cartes",
+    16: "Ancienne assiette marocaine Taous — pièce rare",
+    17: "Écouteurs sans fil X15 pour le gaming et le quotidien, avec boîtier de recharge à écran numérique",
+    18: "Kit 9-en-1 de câbles et d’outils pour téléphone avec adaptateurs USB",
+    19: "Bracelet sport souple en silicone 22 mm pour Huawei Watch GT 5 et GT 5 Pro (46 mm)",
+    20: "Montre connectée 2026 avec écran HD, appels sans fil, notifications et modes sportifs",
+    21: "Boucles d’oreilles Goutte Invisible en or 18 carats",
+    22: "Maquette décorative de bateau en bois illuminée, fabriquée à la main"
+};
+
 let currentLang = 'ar';
 let currentCategory = 'all';
 let selectedCatalogCategory = null;
@@ -851,6 +877,9 @@ function getProductTitle(product) {
     if (currentLang === 'en') {
         return englishProductTitles[product.id] || product.title;
     }
+    if (currentLang === 'fr') {
+        return product.titleFr || frenchProductTitles[product.id] || product.title;
+    }
     return product.title;
 }
 
@@ -950,7 +979,7 @@ function renderProductDetail(productId) {
     const description = currentLang === 'en'
         ? (product.descriptionEn || englishProductTitles[product.id] || product.description || title)
         : currentLang === 'fr'
-            ? (product.descriptionFr || product.description || product.title)
+            ? (product.descriptionFr || frenchProductTitles[product.id] || product.description || title)
             : (product.description || product.title);
     const productImages = product.images || [product.image];
     const contactOnly = product.contactOnly === true;
