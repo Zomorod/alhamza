@@ -304,6 +304,25 @@ let products = [
         ],
         image: "https://img.kwcdn.com/product/fancy/09877b0c-c1b7-4fd6-a071-ce191dcec583.jpg?imageView2/2/w/800/q/70/format/avif",
         affLink: "https://temu.to/k/ebdc0y1wq2z"
+    },
+    {
+        id: 26,
+        title: "مدلك ركبة قابل للشحن مع خاصية التدفئة",
+        description: "جهاز تدليك للركبة قابل للشحن، مصنوع من ألياف البوليستر ومصمم بتصميم مريح مع خاصية التدفئة. مناسب للاستخدام بعد يوم طويل أو أثناء الجلوس لفترات طويلة.",
+        descriptionFr: "Masseur de genou rechargeable en fibres de polyester, avec conception ergonomique et fonction chauffante. Pratique après une longue journée ou en cas de position assise prolongée.",
+        descriptionEn: "Rechargeable knee massager made of polyester fiber, with an ergonomic design and heating function. Suitable for use after a long day or during extended periods of sitting.",
+        price: "257 DH",
+        oldPrice: "",
+        platform: "temu",
+        category: "fashion",
+        catalogCategory: "beauty",
+        images: [
+            "https://img.kwcdn.com/product/fancy/afd7149f-f096-4d8e-8496-ae3fb738f735.jpg?imageView2/2/w/800/q/70/format/avif",
+            "https://img.kwcdn.com/product/fancy/e0692043-e7b1-4505-ab98-0138a7dd25dd.jpg?imageView2/2/w/800/q/70/format/avif",
+            "https://img.kwcdn.com/product/fancy/b40b839e-d2a2-449b-a35c-7ef7f2509419.jpg?imageView2/2/w/800/q/70/format/avif"
+        ],
+        image: "https://img.kwcdn.com/product/fancy/afd7149f-f096-4d8e-8496-ae3fb738f735.jpg?imageView2/2/w/800/q/70/format/avif",
+        affLink: "https://temu.to/k/erjxyokcoo5"
     }
 ];
 
@@ -781,7 +800,8 @@ const englishProductTitles = {
     22: "Handcrafted illuminated wooden ship decoration",
     23: "Vintage EKO electro-acoustic mandolin",
     24: "360-degree magnetic car phone and GPS holder",
-    25: "Men's beard-trimming bib, non-stick and one size fits all"
+    25: "Men's beard-trimming bib, non-stick and one size fits all",
+    26: "Rechargeable heated knee massager"
 };
 
 const frenchProductTitles = {
@@ -809,7 +829,8 @@ const frenchProductTitles = {
     22: "Maquette décorative de bateau en bois illuminée, fabriquée à la main",
     23: "Mandoline électro-acoustique vintage EKO",
     24: "Support magnétique pour téléphone et GPS, orientable à 360°",
-    25: "Bavoir de rasage pour homme, antiadhésif, taille unique"
+    25: "Bavoir de rasage pour homme, antiadhésif, taille unique",
+    26: "Masseur de genou rechargeable avec fonction chauffante"
 };
 
 let currentLang = 'ar';
