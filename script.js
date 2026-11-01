@@ -175,6 +175,7 @@ let products = [
         showWellWishes: true,
         platform: "ALHAMZA",
         category: "home",
+        catalogCategory: "accessories",
         images: [
             "https://i.ibb.co/600CSmpw/Whats-App-Image-2026-10-29-at-14-03-47.jpg",
             "https://i.ibb.co/VpBYBnjQ/Whats-App-Image-2026-10-29-at-14-03-42.jpg"
@@ -251,6 +252,20 @@ let products = [
         category: "jewelry",
         image: "https://www.riana.ma/assets/images/boucles-doreilles/design/goutte-invisible-yellow.png",
         affLink: "https://www.riana.ma/produit/goutte-invisible-126/"
+    },
+    {
+        id: 23,
+        title: "مندولين EKO فينتاج كهربائي-أكوستيكي",
+        description: "مندولين فينتاج من ماركة EKO الإيطالية الشهيرة، بجسم على شكل دمعة وخشب طبيعي بلون عسلي دافئ. صوت أصيل مع بيكاب كهربائي ومخرج جاك للوصل بالأمبلي والعزف على المسرح أو في الحفلات.\n\nالمواصفات:\nالماركة: EKO\nالنوع: مندولين فينتاج بجسم دمعة\nالخشب: جسم خشبي طبيعي وزند بلون داكن\nالإلكترونيك: بيكاب فوق الفتحة ومخرج جاك على الجنب\nمفاتيح الضبط: 12 مفتاحاً معدنياً\nالزخرفة: علامات صدفية على الزند\nالذيل: قطعة ذيل معدنية\n\nعلاش تشريها:\nماركة EKO معروفة عند عشاق الآلات الفينتاج. شكل مميز وخشب زوين للعزف والتصوير والديكور. جاهزة للوصل بالأمبلي ومناسبة للعازفين المبتدئين والمحترفين وللمهتمين بجمع الآلات.\n\nالحالة: آلة مستعملة بحالة جيدة وبدون كسر في الجسم. الأوتار محتاجة تبديل قبل العزف. الصور كتعبر على الحالة الحقيقية.",
+        descriptionFr: "Mandoline électro-acoustique vintage de la célèbre marque italienne EKO, avec une caisse en forme de larme en bois naturel couleur miel. Son authentique, micro intégré et sortie jack pour la brancher à un amplificateur, sur scène ou en concert.\n\nCaractéristiques :\nMarque : EKO\nType : mandoline vintage, caisse en forme de larme\nBois : caisse en bois naturel, manche foncé\nÉlectronique : micro au-dessus de l’ouverture et sortie jack latérale\nMécaniques : 12 mécaniques métalliques\nDécoration : repères nacrés sur le manche\nChevalet de cordier : métal\n\nPourquoi la choisir :\nLa marque EKO est appréciée des amateurs d’instruments vintage. Sa forme distinctive et son beau bois conviennent au jeu, à la photographie ou à la décoration. Prête à être branchée à un amplificateur, elle convient aux débutants, aux musiciens confirmés et aux collectionneurs.\n\nÉtat : instrument d’occasion en bon état, sans fissure sur la caisse. Les cordes sont à remplacer avant de jouer. Les photos montrent l’état réel.",
+        descriptionEn: "Vintage electro-acoustic mandolin by the well-known Italian brand EKO, with a teardrop-shaped body in natural honey-colored wood. It has an authentic vintage sound, a pickup, and a side jack output for connecting to an amplifier and playing on stage or at events.\n\nSpecifications:\nBrand: EKO\nType: vintage teardrop-body mandolin\nWood: natural wood body with a dark-colored neck\nElectronics: pickup above the sound hole and side jack output\nTuning machines: 12 metal tuners\nDecoration: pearloid fretboard markers\nTailpiece: metal\n\nWhy choose it:\nEKO is well known among vintage instrument enthusiasts. Its distinctive shape and attractive wood make it suitable for playing, photography, or display. Ready to connect to an amplifier; suitable for beginners, experienced musicians, and collectors.\n\nCondition: used and in good condition, with no cracks in the body. The strings need replacing before playing. Photos show the actual condition.",
+        price: "2500 DH",
+        oldPrice: "",
+        platform: "ALHAMZA",
+        category: "tech",
+        catalogCategory: "accessories",
+        image: "https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Fassets.catawiki.nl%2Fassets%2F2024%2F10%2F9%2F5%2Fd%2Fd%2F5dd3f9ee-6571-4d10-8e47-c36b4c836247.jpg&sp=1793567335Ta2c485a9cad521598b156f771a3969c8d4cb70bb47e3c7e9395d0ddd0ea87f2b",
+        affLink: "https://api.whatsapp.com/send/?phone=212726294311"
     }
 ];
 
@@ -728,7 +743,8 @@ const englishProductTitles = {
     17: "X15 wireless gaming earbuds with digital charging case",
     18: "9-in-1 cable and phone tool kit with USB adapters",
     21: "Goutte Invisible 18k gold earrings",
-    22: "Handcrafted illuminated wooden ship decoration"
+    22: "Handcrafted illuminated wooden ship decoration",
+    23: "Vintage EKO electro-acoustic mandolin"
 };
 
 const frenchProductTitles = {
@@ -753,7 +769,8 @@ const frenchProductTitles = {
     19: "Bracelet sport souple en silicone 22 mm pour Huawei Watch GT 5 et GT 5 Pro (46 mm)",
     20: "Montre connectée 2026 avec écran HD, appels sans fil, notifications et modes sportifs",
     21: "Boucles d’oreilles Goutte Invisible en or 18 carats",
-    22: "Maquette décorative de bateau en bois illuminée, fabriquée à la main"
+    22: "Maquette décorative de bateau en bois illuminée, fabriquée à la main",
+    23: "Mandoline électro-acoustique vintage EKO"
 };
 
 let currentLang = 'ar';
