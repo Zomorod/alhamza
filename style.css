@@ -1199,13 +1199,6 @@ body[data-theme="dark"] .top-deals {
     font-size: 0.9rem;
 }
 
-.product-detail-purchase-note {
-    margin: 8px 0 16px;
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-    line-height: 1.7;
-}
-
 .product-detail-actions {
     width: 100%;
     display: grid;
