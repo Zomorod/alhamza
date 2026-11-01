@@ -361,7 +361,6 @@ const translations = {
         shareFailed: "ما قدرناش نشاركو المنتج. جرب تنسخ الرابط.",
         viewDetails: "تفاصيل المنتج",
         checkoutAtStore: "كمل الشراء والدفع فالمتجر",
-        purchaseOnStore: "منين تضغط على زر الشراء، غادي تمشي لمتجر المنتج باش تكمل الطلب وتخلص تما. الثمن النهائي والشحن كيتأكدو فصفحة المتجر.",
         aiTitle: "مساعد ALHAMZA الذكي",
         aiDesc: "قل ليا ش بغيتي تشري ولا شحال الميزانية ديالك، وأنا نقترح عليك أحسن همزة كاين دابا:",
         footerDesc: "الوجهة الأولى للمغاربة لاكتشاف أفضل الصفقات، العروض الحصرية، وربط المشتريات العالمية والمحلية بكل سهولة وثقة.",
@@ -410,7 +409,6 @@ const translations = {
         shareFailed: "Impossible de partager le produit. Essayez de copier le lien.",
         viewDetails: "Détails du produit",
         checkoutAtStore: "Continuer l’achat et payer sur la boutique",
-        purchaseOnStore: "Le bouton vous redirigera vers la boutique du produit pour finaliser et payer la commande. Le prix final et la livraison sont confirmés sur sa page.",
         aiTitle: "Assistant IA ALHAMZA",
         aiDesc: "Dites-moi ce que vous cherchez ou votre budget, et je vous trouve la meilleure offre :",
         footerDesc: "La première destination des Marocains pour découvrir les meilleures offres et produits exclusifs.",
@@ -459,7 +457,6 @@ const translations = {
         shareFailed: "Couldn't share the product. Try copying the link.",
         viewDetails: "Product details",
         checkoutAtStore: "Continue to the store to buy and pay",
-        purchaseOnStore: "The button will take you to the product store to complete and pay for your order. Confirm the final price and shipping on the store page.",
         aiTitle: "ALHAMZA AI Assistant",
         aiDesc: "Tell me what you want to buy or your budget, and I'll recommend the best deal:",
         footerDesc: "Morocco's premier destination to discover the best deals, exclusive offers, and trusted links.",
@@ -1026,7 +1023,6 @@ function renderProductDetail(productId) {
                     ${product.freeDelivery ? `<span class="free-delivery-note">${escapeHtml(translations[currentLang].freeDelivery)}</span>` : ''}
                     ${contactOnly || product.showFirstTimeOffer === false ? '' : `<span class="first-time-offer">${escapeHtml(translations[currentLang].firstTimeOffer)}</span>`}
                 </div>
-                <p class="product-detail-purchase-note">${escapeHtml(product.showWellWishes ? translations[currentLang].productWellWishes : translations[currentLang][contactOnly ? 'contactForProduct' : 'purchaseOnStore'])}</p>
                 <div class="product-detail-actions">
                     <a class="product-detail-buy${contactOnly ? ' product-detail-contact' : ''}" href="${escapeHtml(contactOnly ? getContactProductUrl(product) : product.affLink)}" target="_blank" rel="noopener noreferrer">
                         <i class="${contactOnly ? 'ri-whatsapp-line' : 'ri-shopping-bag-line'}" aria-hidden="true"></i>
