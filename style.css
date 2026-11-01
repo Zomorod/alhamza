@@ -560,6 +560,24 @@ body[data-theme="dark"] .hero-banner::before {
     line-height: 1.45;
 }
 
+.free-delivery-note {
+    flex-basis: 100%;
+    color: #176b67;
+    font-size: 0.82rem;
+    font-weight: 800;
+}
+
+.product-well-wishes {
+    flex-basis: 100%;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+body[data-theme="dark"] .free-delivery-note {
+    color: #79c7ad;
+}
+
 .buy-now-btn {
     width: 100%;
     background: var(--whatsapp);

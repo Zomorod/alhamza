@@ -170,6 +170,8 @@ let products = [
         price: "350–400 DH",
         oldPrice: "500–600 DH",
         showFirstTimeOffer: false,
+        freeDelivery: true,
+        showWellWishes: true,
         platform: "ALHAMZA",
         category: "home",
         images: [
@@ -325,6 +327,8 @@ const translations = {
         sortLow: "الثمن: من الأرخص للأغلى",
         sortHigh: "الثمن: من الأغلى للأرخص",
         firstTimeOffer: "عرض خاص للمستخدمين لأول مرة — حسب شروط المتجر",
+        freeDelivery: "توصيل مجاني",
+        productWellWishes: "بصحتك",
         temuOfferTitle: "سويتشيرت رجالي بقبعة وسحاب مزدوج — عرض بـ 29 درهم",
         temuOfferDisclaimer: "العرض متاح مرة واحدة لكل مستخدم للتطبيق. الثمن والتخفيض ممكن يتبدلو؛ تأكد من التفاصيل فالصفحة.",
         temuOfferCta: "اكتشف العرض والمكافآت",
@@ -372,6 +376,8 @@ const translations = {
         sortLow: "Prix: Croissant",
         sortHigh: "Prix: Décroissant",
         firstTimeOffer: "Offre spéciale pour les nouveaux utilisateurs — selon les conditions de la boutique",
+        freeDelivery: "Livraison gratuite",
+        productWellWishes: "Bon achat !",
         temuOfferTitle: "Sweat-shirt homme à capuche et double fermeture — offre à 29 DH",
         temuOfferDisclaimer: "Offre disponible une seule fois par utilisateur de l’application. Le prix et la réduction peuvent varier ; vérifiez les détails sur la page.",
         temuOfferCta: "Découvrir l’offre et les récompenses",
@@ -419,6 +425,8 @@ const translations = {
         sortLow: "Price: Low to High",
         sortHigh: "Price: High to Low",
         firstTimeOffer: "Special offer for first-time users — subject to store terms",
+        freeDelivery: "Free delivery",
+        productWellWishes: "Enjoy!",
         temuOfferTitle: "Men's hooded sweatshirt with double zipper — 29 DH offer",
         temuOfferDisclaimer: "Available once per app user. Price and discount may vary; check the offer page for details.",
         temuOfferCta: "Explore the offer and rewards",
@@ -966,9 +974,10 @@ function renderProductDetail(productId) {
                 <div class="price-box product-detail-price">
                     ${product.oldPrice ? `<span class="old-price">${escapeHtml(product.oldPrice)}</span>` : ''}
                     <span class="new-price">${escapeHtml(getProductPrice(product))}</span>
+                    ${product.freeDelivery ? `<span class="free-delivery-note">${escapeHtml(translations[currentLang].freeDelivery)}</span>` : ''}
                     ${contactOnly || product.showFirstTimeOffer === false ? '' : `<span class="first-time-offer">${escapeHtml(translations[currentLang].firstTimeOffer)}</span>`}
                 </div>
-                <p class="product-detail-purchase-note">${escapeHtml(translations[currentLang][contactOnly ? 'contactForProduct' : 'purchaseOnStore'])}</p>
+                <p class="product-detail-purchase-note">${escapeHtml(product.showWellWishes ? translations[currentLang].productWellWishes : translations[currentLang][contactOnly ? 'contactForProduct' : 'purchaseOnStore'])}</p>
                 <div class="product-detail-actions">
                     <a class="product-detail-buy${contactOnly ? ' product-detail-contact' : ''}" href="${escapeHtml(contactOnly ? getContactProductUrl(product) : product.affLink)}" target="_blank" rel="noopener noreferrer">
                         <i class="${contactOnly ? 'ri-whatsapp-line' : 'ri-shopping-bag-line'}" aria-hidden="true"></i>
@@ -1047,6 +1056,8 @@ function renderProducts(items, directDealLinks = false) {
                     <div class="price-box">
                         ${product.oldPrice ? `<span class="old-price">${escapeHtml(product.oldPrice)}</span>` : ''}
                         <span class="new-price">${escapeHtml(getProductPrice(product))}</span>
+                        ${product.freeDelivery ? `<span class="free-delivery-note">${escapeHtml(translations[currentLang].freeDelivery)}</span>` : ''}
+                        ${product.showWellWishes ? `<span class="product-well-wishes">${escapeHtml(translations[currentLang].productWellWishes)}</span>` : ''}
                         ${product.contactOnly || product.showFirstTimeOffer === false ? '' : `<span class="first-time-offer">${escapeHtml(translations[currentLang].firstTimeOffer)}</span>`}
                     </div>
                     <div class="product-actions">
