@@ -323,6 +323,25 @@ let products = [
         ],
         image: "https://img.kwcdn.com/product/fancy/afd7149f-f096-4d8e-8496-ae3fb738f735.jpg?imageView2/2/w/800/q/70/format/avif",
         affLink: "https://temu.to/k/erjxyokcoo5"
+    },
+    {
+        id: 27,
+        title: "جوارب سيليكون مرطبة للقدمين مع جل الألوفيرا، عبوتان",
+        description: "جوارب عناية بالقدمين من السيليكون مع جل ناعم مرطب بالألوفيرا، مناسبة للعناية المنزلية والباديكير. تساعد على ترطيب البشرة الجافة وتنعيم الكعبين. عبوة من زوجين.",
+        descriptionFr: "Chaussettes de soin des pieds en silicone avec gel doux hydratant à l’aloe vera. Idéales pour les soins à domicile et la pédicure, elles aident à hydrater les pieds secs et à adoucir les talons. Lot de deux paires.",
+        descriptionEn: "Silicone foot-care socks with soft aloe vera moisturizing gel, suitable for at-home spa and pedicure routines. Help moisturize dry feet and soften heels. Pack of two pairs.",
+        price: "3 DH",
+        oldPrice: "",
+        platform: "temu",
+        category: "fashion",
+        catalogCategory: "beauty",
+        video: "https://goods-vod.kwcdn.com/goods-video/1e44d9af790a42c51fe049fcb79ced6f953dd7dags2CV.f30.mp4",
+        images: [
+            "https://img.kwcdn.com/product/fancy/d387e78b-f022-4dc9-99b5-454f112e7cad.jpg?imageView2/2/w/800/q/70/format/avif",
+            "https://img.kwcdn.com/product/fancy/2466b58b-3766-493e-84b2-073867fa6c3f.jpg?imageView2/2/w/800/q/70/format/avif"
+        ],
+        image: "https://img.kwcdn.com/product/fancy/d387e78b-f022-4dc9-99b5-454f112e7cad.jpg?imageView2/2/w/800/q/70/format/avif",
+        affLink: "https://temu.to/k/eq8n8w5z6dj"
     }
 ];
 
@@ -801,7 +820,8 @@ const englishProductTitles = {
     23: "Vintage EKO electro-acoustic mandolin",
     24: "360-degree magnetic car phone and GPS holder",
     25: "Men's beard-trimming bib, non-stick and one size fits all",
-    26: "Rechargeable heated knee massager"
+    26: "Rechargeable heated knee massager",
+    27: "Two pairs of silicone moisturizing foot-care socks with aloe vera gel"
 };
 
 const frenchProductTitles = {
@@ -830,7 +850,8 @@ const frenchProductTitles = {
     23: "Mandoline électro-acoustique vintage EKO",
     24: "Support magnétique pour téléphone et GPS, orientable à 360°",
     25: "Bavoir de rasage pour homme, antiadhésif, taille unique",
-    26: "Masseur de genou rechargeable avec fonction chauffante"
+    26: "Masseur de genou rechargeable avec fonction chauffante",
+    27: "Deux paires de chaussettes de soin hydratantes en silicone au gel d’aloe vera"
 };
 
 let currentLang = 'ar';
@@ -1070,11 +1091,18 @@ function renderProductDetail(productId) {
             <div class="product-detail-gallery">
                 <div class="product-detail-image-wrap">
                     <img class="product-detail-image" src="${escapeHtml(product.image)}" alt="${escapeHtml(title)}">
+                    ${product.video ? `<video class="product-detail-video" src="${escapeHtml(product.video)}" controls playsinline preload="metadata" poster="${escapeHtml(product.image)}" hidden></video>` : ''}
                 </div>
-                ${productImages.length > 1 ? `
+                ${productImages.length > 1 || product.video ? `
                     <div class="product-detail-thumbnails" aria-label="${escapeHtml(title)}">
+                        ${product.video ? `
+                            <button class="product-detail-thumbnail product-detail-video-thumbnail" type="button" data-video="true" aria-label="${escapeHtml(title)} video">
+                                <img src="${escapeHtml(product.image)}" alt="">
+                                <i class="ri-play-fill" aria-hidden="true"></i>
+                            </button>
+                        ` : ''}
                         ${productImages.map((image, index) => `
-                            <button class="product-detail-thumbnail${index === 0 ? ' active' : ''}" type="button" data-image="${escapeHtml(image)}" aria-label="${escapeHtml(title)} ${index + 1}">
+                            <button class="product-detail-thumbnail${index === 0 && !product.video ? ' active' : ''}" type="button" data-image="${escapeHtml(image)}" aria-label="${escapeHtml(title)} ${index + 1}">
                                 <img src="${escapeHtml(image)}" alt="">
                             </button>
                         `).join('')}
@@ -1121,7 +1149,15 @@ function renderProductDetail(productId) {
     `;
     container.querySelectorAll('.product-detail-thumbnail').forEach(button => {
         button.addEventListener('click', () => {
-            container.querySelector('.product-detail-image').src = button.dataset.image;
+            const image = container.querySelector('.product-detail-image');
+            const video = container.querySelector('.product-detail-video');
+            const showVideo = button.dataset.video === 'true';
+            if (video) {
+                video.hidden = !showVideo;
+                if (!showVideo) video.pause();
+            }
+            image.hidden = showVideo;
+            if (!showVideo) image.src = button.dataset.image;
             container.querySelectorAll('.product-detail-thumbnail').forEach(thumbnail => {
                 thumbnail.classList.toggle('active', thumbnail === button);
             });
