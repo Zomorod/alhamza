@@ -285,6 +285,25 @@ let products = [
         ],
         image: "https://img.kwcdn.com/product/fancy/cb72fb57-2428-41e2-9b09-98727295df87.jpg?imageView2/2/w/800/q/70/format/avif",
         affLink: "https://temu.to/k/e5i1l38m1my"
+    },
+    {
+        id: 25,
+        title: "مريول حلاقة اللحية للرجال، قماش غير لاصق لتسهيل التشذيب والتصفيف",
+        description: "مريول عملي لالتقاط شعر اللحية أثناء الحلاقة والتشذيب، مصنوع من مادة غير لاصقة وبمقاس واحد يناسب الجميع. متوفر بقطعة واحدة أو ثلاث قطع.",
+        descriptionFr: "Bavoir de rasage pour homme, en matière antiadhésive pour recueillir les poils pendant la taille et le coiffage. Taille unique, disponible en lot de 1 ou 3 pièces.",
+        descriptionEn: "Men's beard-trimming bib made from non-stick material to catch hair while styling and trimming. One size fits all; available as a 1-piece or 3-piece set.",
+        price: "3 DH",
+        oldPrice: "",
+        platform: "temu",
+        category: "fashion",
+        catalogCategory: "beauty",
+        images: [
+            "https://img.kwcdn.com/product/fancy/09877b0c-c1b7-4fd6-a071-ce191dcec583.jpg?imageView2/2/w/800/q/70/format/avif",
+            "https://img.kwcdn.com/product/algo_check/auto/6333567acd2ecea14545562da95d0817_1730444335681.jpg?imageView2/2/w/800/q/70/format/avif",
+            "https://img.kwcdn.com/product/fancy/a0553a2c-eae4-4ac9-a3e8-d66617337be4.jpg?imageView2/2/w/800/q/70/format/avif"
+        ],
+        image: "https://img.kwcdn.com/product/fancy/09877b0c-c1b7-4fd6-a071-ce191dcec583.jpg?imageView2/2/w/800/q/70/format/avif",
+        affLink: "https://temu.to/k/ebdc0y1wq2z"
     }
 ];
 
@@ -761,7 +780,8 @@ const englishProductTitles = {
     21: "Goutte Invisible 18k gold earrings",
     22: "Handcrafted illuminated wooden ship decoration",
     23: "Vintage EKO electro-acoustic mandolin",
-    24: "360-degree magnetic car phone and GPS holder"
+    24: "360-degree magnetic car phone and GPS holder",
+    25: "Men's beard-trimming bib, non-stick and one size fits all"
 };
 
 const frenchProductTitles = {
@@ -788,7 +808,8 @@ const frenchProductTitles = {
     21: "Boucles d’oreilles Goutte Invisible en or 18 carats",
     22: "Maquette décorative de bateau en bois illuminée, fabriquée à la main",
     23: "Mandoline électro-acoustique vintage EKO",
-    24: "Support magnétique pour téléphone et GPS, orientable à 360°"
+    24: "Support magnétique pour téléphone et GPS, orientable à 360°",
+    25: "Bavoir de rasage pour homme, antiadhésif, taille unique"
 };
 
 let currentLang = 'ar';
