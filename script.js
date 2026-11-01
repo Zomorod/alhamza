@@ -162,26 +162,21 @@ let products = [
         image: "https://img.kwcdn.com/product/fancy/62e1a664-8a4d-4c93-bddb-ec7e22f10ead.jpg",
         affLink: "https://www.temu.com/ma-en/1-mens-vintage-credit-card-wallet--print-design--and-soft-multi-card-slot--id-card-holder--purse-great-gift---g-605915948393318.html?_oak_mp_inf=EObG%2BOa84okBGhZnb29kc19xdWhtcnBfcmVjb21tZW5kILC%2FvdGXNA%3D%3D&top_gallery_url=https%3A%2F%2Fimg.kwcdn.com%2Fproduct%2Ffancy%2F62e1a664-8a4d-4c93-bddb-ec7e22f10ead.jpg&spec_gallery_id=32600622619&refer_page_sn=10032&freesia_scene=11&_oak_freesia_scene=11&_oak_rec_ext_1=NDYwMA&_oak_gallery_order=1889977121%2C188015209%2C1200905879%2C1820568421%2C754588854&refer_page_el_sn=200444&ab_scene=1&_x_ads_csite=pc_bottom_union&_x_sessn_id=nm6eukvy37&refer_page_name=goods&refer_page_id=10032_1793050073878_mepzrjcgdx"
     },
-     {
-        id: 15A,
-        title: "سفينة دافئة مضيئة – تحفة فنية مصنوعة يدوياً ⛵✨
-أضف لمسة من الفخامة والأناقة إلى منزلك مع هذه السفينة الخشبية الديكورية المضيئة.
- تم إنتاجها بكل شغف وعناية خلال يومين من العمل اليدوي المتقن (Handmade 100%) لتكون تحفة فريدة تزين الصالون، غرفة النوم، أو المكتب.
-
-💡 إضاءة دافئة: تمنح أجواءً دافئة ومريحة للمكان.
-
-🛠️ صناعة يدوية: 2 أيام من العمل اليدوي الدقيق والتفاصيل الإبداعية.
-
-🎁 هدية مثالية: اختيار رائع للمناسبات والأشخاص المميزين.
-",
-        price: "S= 350 DH",
-    
-        price: "L= 400 DH",
-     
-        category: "fashion",
-        catalogCategory: "accessories",
-        image: "https://ibb.co/fddwW2KF",
-        image: "https://ibb.co/S7vwvYsd",
+    {
+        id: 22,
+        title: "سفينة خشبية مضيئة مصنوعة يدوياً للديكور",
+        description: "تحفة فنية خشبية مضيئة مصنوعة يدوياً بعناية خلال يومين. تضيف لمسة من الفخامة إلى الصالون أو غرفة النوم أو المكتب، وتناسب كهدية مميزة.\nالكبيرة: الطول 60 سم × العرض 10 سم — 400 DH.\nالصغيرة: 40 × 10 سم — 350 DH.",
+        descriptionEn: "A handcrafted illuminated wooden ship, made with care over two days. A decorative piece for the living room, bedroom, or office.\nLarge: 60 × 10 cm — 400 DH.\nSmall: 40 × 10 cm — 350 DH.",
+        price: "350–400 DH",
+        oldPrice: "500–600 DH",
+        showFirstTimeOffer: false,
+        platform: "ALHAMZA",
+        category: "home",
+        images: [
+            "https://i.ibb.co/600CSmpw/Whats-App-Image-2026-10-29-at-14-03-47.jpg",
+            "https://i.ibb.co/VpBYBnjQ/Whats-App-Image-2026-10-29-at-14-03-42.jpg"
+        ],
+        image: "https://i.ibb.co/600CSmpw/Whats-App-Image-2026-10-29-at-14-03-47.jpg",
         affLink: "https://api.whatsapp.com/send/?phone=212726294311"
     },
     {
@@ -720,7 +715,8 @@ const englishProductTitles = {
     20: "2026 smartwatch with HD display, wireless calling, message notifications, multiple sports modes and languages",
     17: "X15 wireless gaming earbuds with digital charging case",
     18: "9-in-1 cable and phone tool kit with USB adapters",
-    21: "Goutte Invisible 18k gold earrings"
+    21: "Goutte Invisible 18k gold earrings",
+    22: "Handcrafted illuminated wooden ship decoration"
 };
 
 let currentLang = 'ar';
@@ -970,7 +966,7 @@ function renderProductDetail(productId) {
                 <div class="price-box product-detail-price">
                     ${product.oldPrice ? `<span class="old-price">${escapeHtml(product.oldPrice)}</span>` : ''}
                     <span class="new-price">${escapeHtml(getProductPrice(product))}</span>
-                    ${contactOnly ? '' : `<span class="first-time-offer">${escapeHtml(translations[currentLang].firstTimeOffer)}</span>`}
+                    ${contactOnly || product.showFirstTimeOffer === false ? '' : `<span class="first-time-offer">${escapeHtml(translations[currentLang].firstTimeOffer)}</span>`}
                 </div>
                 <p class="product-detail-purchase-note">${escapeHtml(translations[currentLang][contactOnly ? 'contactForProduct' : 'purchaseOnStore'])}</p>
                 <div class="product-detail-actions">
@@ -1051,7 +1047,7 @@ function renderProducts(items, directDealLinks = false) {
                     <div class="price-box">
                         ${product.oldPrice ? `<span class="old-price">${escapeHtml(product.oldPrice)}</span>` : ''}
                         <span class="new-price">${escapeHtml(getProductPrice(product))}</span>
-                        ${product.contactOnly ? '' : `<span class="first-time-offer">${escapeHtml(translations[currentLang].firstTimeOffer)}</span>`}
+                        ${product.contactOnly || product.showFirstTimeOffer === false ? '' : `<span class="first-time-offer">${escapeHtml(translations[currentLang].firstTimeOffer)}</span>`}
                     </div>
                     <div class="product-actions">
                         ${directDealLinks
