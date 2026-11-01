@@ -162,6 +162,28 @@ let products = [
         image: "https://img.kwcdn.com/product/fancy/62e1a664-8a4d-4c93-bddb-ec7e22f10ead.jpg",
         affLink: "https://www.temu.com/ma-en/1-mens-vintage-credit-card-wallet--print-design--and-soft-multi-card-slot--id-card-holder--purse-great-gift---g-605915948393318.html?_oak_mp_inf=EObG%2BOa84okBGhZnb29kc19xdWhtcnBfcmVjb21tZW5kILC%2FvdGXNA%3D%3D&top_gallery_url=https%3A%2F%2Fimg.kwcdn.com%2Fproduct%2Ffancy%2F62e1a664-8a4d-4c93-bddb-ec7e22f10ead.jpg&spec_gallery_id=32600622619&refer_page_sn=10032&freesia_scene=11&_oak_freesia_scene=11&_oak_rec_ext_1=NDYwMA&_oak_gallery_order=1889977121%2C188015209%2C1200905879%2C1820568421%2C754588854&refer_page_el_sn=200444&ab_scene=1&_x_ads_csite=pc_bottom_union&_x_sessn_id=nm6eukvy37&refer_page_name=goods&refer_page_id=10032_1793050073878_mepzrjcgdx"
     },
+     {
+        id: 15A,
+        title: "سفينة دافئة مضيئة – تحفة فنية مصنوعة يدوياً ⛵✨
+أضف لمسة من الفخامة والأناقة إلى منزلك مع هذه السفينة الخشبية الديكورية المضيئة.
+ تم إنتاجها بكل شغف وعناية خلال يومين من العمل اليدوي المتقن (Handmade 100%) لتكون تحفة فريدة تزين الصالون، غرفة النوم، أو المكتب.
+
+💡 إضاءة دافئة: تمنح أجواءً دافئة ومريحة للمكان.
+
+🛠️ صناعة يدوية: 2 أيام من العمل اليدوي الدقيق والتفاصيل الإبداعية.
+
+🎁 هدية مثالية: اختيار رائع للمناسبات والأشخاص المميزين.
+",
+        price: "S= 350 DH",
+    
+        price: "L= 400 DH",
+     
+        category: "fashion",
+        catalogCategory: "accessories",
+        image: "https://ibb.co/fddwW2KF",
+        image: "https://ibb.co/S7vwvYsd",
+        affLink: "https://api.whatsapp.com/send/?phone=212726294311"
+    },
     {
         id: 16,
         title: "طبسيل الطاووس المغربي العتيق — Vintage Moroccan Taous Plate (Very Rare)",
