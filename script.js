@@ -266,6 +266,25 @@ let products = [
         catalogCategory: "accessories",
         image: "https://www.startpage.com/av/proxy-image?piurl=https%3A%2F%2Fassets.catawiki.nl%2Fassets%2F2024%2F10%2F9%2F5%2Fd%2Fd%2F5dd3f9ee-6571-4d10-8e47-c36b4c836247.jpg&sp=1793567335Ta2c485a9cad521598b156f771a3969c8d4cb70bb47e3c7e9395d0ddd0ea87f2b",
         affLink: "https://api.whatsapp.com/send/?phone=212726294311"
+    },
+    {
+        id: 24,
+        title: "حامل هاتف مغناطيسي للسيارة بدوران 360 درجة، سهل التركيب والإزالة",
+        description: "حامل هاتف مغناطيسي لأجهزة GPS، يدور 360 درجة ويسهل تركيبه وإزالته. مناسب لتثبيت الهاتف أو جهاز الملاحة داخل السيارة.",
+        descriptionFr: "Support magnétique pour téléphone ou GPS, orientable à 360° et facile à installer et à retirer. Idéal pour fixer votre appareil dans la voiture.",
+        descriptionEn: "Magnetic phone and GPS holder that rotates 360 degrees and is easy to install and remove. Designed to keep your device mounted in the car.",
+        price: "3 DH",
+        oldPrice: "",
+        platform: "temu",
+        category: "tech",
+        catalogCategories: ["accessories", "electronics"],
+        images: [
+            "https://img.kwcdn.com/product/fancy/cb72fb57-2428-41e2-9b09-98727295df87.jpg?imageView2/2/w/800/q/70/format/avif",
+            "https://img.kwcdn.com/product/fancy/b6d092bb-1ddd-462f-8ce1-4ca0cb67ba40.jpg?imageView2/2/w/800/q/70/format/avif",
+            "https://img.kwcdn.com/product/fancy/58799c99-4806-465c-b08d-5d31e1546766.jpg?imageView2/2/w/800/q/70/format/avif"
+        ],
+        image: "https://img.kwcdn.com/product/fancy/cb72fb57-2428-41e2-9b09-98727295df87.jpg?imageView2/2/w/800/q/70/format/avif",
+        affLink: "https://temu.to/k/e5i1l38m1my"
     }
 ];
 
@@ -741,7 +760,8 @@ const englishProductTitles = {
     18: "9-in-1 cable and phone tool kit with USB adapters",
     21: "Goutte Invisible 18k gold earrings",
     22: "Handcrafted illuminated wooden ship decoration",
-    23: "Vintage EKO electro-acoustic mandolin"
+    23: "Vintage EKO electro-acoustic mandolin",
+    24: "360-degree magnetic car phone and GPS holder"
 };
 
 const frenchProductTitles = {
@@ -767,7 +787,8 @@ const frenchProductTitles = {
     20: "Montre connectée 2026 avec écran HD, appels sans fil, notifications et modes sportifs",
     21: "Boucles d’oreilles Goutte Invisible en or 18 carats",
     22: "Maquette décorative de bateau en bois illuminée, fabriquée à la main",
-    23: "Mandoline électro-acoustique vintage EKO"
+    23: "Mandoline électro-acoustique vintage EKO",
+    24: "Support magnétique pour téléphone et GPS, orientable à 360°"
 };
 
 let currentLang = 'ar';
@@ -819,9 +840,10 @@ function getCatalogCategoryProducts(categoryKey) {
             case 'beauty':
             case 'shoes':
             case 'gaming':
-                return product.catalogCategory === categoryKey;
+                return product.catalogCategory === categoryKey || product.catalogCategories?.includes(categoryKey);
             case 'electronics':
-                return product.category === 'tech' && !product.catalogCategory;
+                return product.category === 'tech' &&
+                    (!product.catalogCategory || product.catalogCategory === categoryKey || product.catalogCategories?.includes(categoryKey));
             case 'home':
                 return product.category === 'home' && !product.catalogCategory;
             default:
@@ -840,7 +862,10 @@ function getCurrentCategoryProducts() {
             product.platform.toLowerCase() === currentCategory
         );
     }
-    return getAllProducts().filter(product => product.category === currentCategory);
+    return getAllProducts().filter(product =>
+        product.category === currentCategory &&
+        (!product.catalogCategory || (currentCategory === 'tech' && product.catalogCategories?.includes('electronics')))
+    );
 }
 
 function getVisibleProducts() {
