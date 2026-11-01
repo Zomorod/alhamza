@@ -997,6 +997,7 @@ function renderProductDetail(productId) {
             : (product.description || product.title);
     const productImages = product.images || [product.image];
     const contactOnly = product.contactOnly === true;
+    const whatsappOrder = contactOnly || product.platform === 'ALHAMZA';
     container.innerHTML = `
         <article class="product-detail-card">
             <div class="product-detail-gallery">
@@ -1024,9 +1025,9 @@ function renderProductDetail(productId) {
                     ${contactOnly || product.showFirstTimeOffer === false ? '' : `<span class="first-time-offer">${escapeHtml(translations[currentLang].firstTimeOffer)}</span>`}
                 </div>
                 <div class="product-detail-actions">
-                    <a class="product-detail-buy${contactOnly ? ' product-detail-contact' : ''}" href="${escapeHtml(contactOnly ? getContactProductUrl(product) : product.affLink)}" target="_blank" rel="noopener noreferrer">
-                        <i class="${contactOnly ? 'ri-whatsapp-line' : 'ri-shopping-bag-line'}" aria-hidden="true"></i>
-                        ${escapeHtml(translations[currentLang][contactOnly ? 'contactViaWhatsapp' : 'checkoutAtStore'])}
+                    <a class="product-detail-buy${whatsappOrder ? ' product-detail-contact' : ''}" href="${escapeHtml(contactOnly ? getContactProductUrl(product) : product.affLink)}" target="_blank" rel="noopener noreferrer">
+                        <i class="${whatsappOrder ? 'ri-whatsapp-line' : 'ri-shopping-bag-line'}" aria-hidden="true"></i>
+                        ${escapeHtml(translations[currentLang][whatsappOrder ? 'contactViaWhatsapp' : 'checkoutAtStore'])}
                     </a>
                 </div>
                 <div class="product-detail-share-actions" aria-label="${escapeHtml(translations[currentLang].detailShare)}">
