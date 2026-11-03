@@ -342,6 +342,20 @@ let products = [
         ],
         image: "https://img.kwcdn.com/product/fancy/d387e78b-f022-4dc9-99b5-454f112e7cad.jpg?imageView2/2/w/800/q/70/format/avif",
         affLink: "https://temu.to/k/eq8n8w5z6dj"
+    },
+    {
+        id: 28,
+        title: "فواصل أصابع القدم من السيليكون الناعم، قطعتان بحلقتين للراحة والاسترخاء",
+        description: "فواصل مرنة لأصابع القدم مصنوعة من جل السيليكون الناعم. تصميم بحلقتين قابل لإعادة الاستخدام، مناسب لليوغا والاسترخاء والعناية اليومية بالقدمين.",
+        descriptionFr: "Séparateurs d’orteils souples en gel de silicone, lot de deux avec deux boucles. Flexibles et réutilisables, ils conviennent au yoga, à la détente et au soin quotidien des pieds.",
+        descriptionEn: "Soft silicone gel toe separators, two pieces with two loops. Flexible and reusable, suitable for yoga, relaxation, and everyday foot care.",
+        price: "18 DH",
+        oldPrice: "",
+        platform: "temu",
+        category: "fashion",
+        catalogCategory: "beauty",
+        image: "https://img.kwcdn.com/product/fancy/506ecb15-2798-4eed-bae8-5681ada03317.jpg",
+        affLink: "https://www.temu.com/ma-en/2pcs-soft-gel-toe-separators-with-2-loops-silicone-toe-spacers-for-yoga-and-everyday-relaxation-flexible-durable-and-reusable-design-toe-spreaders-for--care-ideal-for-men-women-g-601099552915851.html?top_gallery_url=https%3A%2F%2Fimg.kwcdn.com%2Fproduct%2Ffancy%2F506ecb15-2798-4eed-bae8-5681ada03317.jpg&spec_gallery_id=1&sku_id=17592368390792&_oak_page_source=10082&_x_ads_csite=pc_bottom_union&_x_sessn_id=qxxrl2nkzv&refer_page_name=afc_share_goods&refer_page_id=13788_1793734751382_efargy34f0&refer_page_sn=13788"
     }
 ];
 
