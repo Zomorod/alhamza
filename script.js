@@ -370,6 +370,20 @@ let products = [
         catalogCategory: "beauty",
         image: "https://img.kwcdn.com/product/open/f74ea2f6ec5e4d589aa2c762b068333e-goods.jpeg",
         affLink: "https://www.temu.com/ma-en/-version-single-pack-professional-ankle-support-lightweight-compression-design-thin-and-breathable-doesnt-cause--sweating-provides-stable-support-during-exercise-reduces-the--of-ankles-g-605842061533360.html?top_gallery_url=https%3A%2F%2Fimg.kwcdn.com%2Fproduct%2Fopen%2Ff74ea2f6ec5e4d589aa2c762b068333e-goods.jpeg&spec_gallery_id=35541301110&_oak_page_source=10082&_x_ads_csite=pc_bottom_union&_x_sessn_id=qxxrl2nkzv&refer_page_name=afc_share_goods&refer_page_id=13788_1793734751382_efargy34f0&refer_page_sn=13788"
+    },
+    {
+        id: 30,
+        title: "فاصل أصابع القدم بأربع حلقات، مرن وخفيف للاستعمال اليومي",
+        description: "فاصل أصابع قدم ناعم ومرن بأربع حلقات، خفيف وقابل للغسل. إكسسوار عملي للعناية اليومية بالقدمين ويمكن ارتداؤه في المنزل أو مع الأحذية.",
+        descriptionFr: "Séparateur d’orteils souple à quatre boucles, léger et lavable, conçu pour le quotidien, à la maison ou avec des chaussures.",
+        descriptionEn: "Soft, flexible four-loop toe separator. Lightweight and washable, designed for everyday foot care at home or with shoes.",
+        price: "16 DH",
+        oldPrice: "",
+        platform: "temu",
+        category: "fashion",
+        catalogCategory: "beauty",
+        image: "https://img.kwcdn.com/product/open/4dca91046e1a4fdc8e7bfa8ffdbd3cc4-goods.jpeg",
+        affLink: "https://www.temu.com/ma-en/4-loop-toe-separator-soft-flexible-toe-spacers-for-daily-wear-lightweight-washable--care-accessory-for-home-shoes-everyday--g-607143637966365.html?top_gallery_url=https%3A%2F%2Fimg.kwcdn.com%2Fproduct%2Fopen%2F4dca91046e1a4fdc8e7bfa8ffdbd3cc4-goods.jpeg&spec_gallery_id=49685458257&_oak_page_source=10082&_x_ads_csite=pc_bottom_union&_x_sessn_id=qxxrl2nkzv&refer_page_name=afc_share_goods&refer_page_id=13788_1793734751382_efargy34f0&refer_page_sn=13788"
     }
 ];
 
