@@ -486,6 +486,45 @@ let products = [
         category: "fashion",
         image: "https://img.kwcdn.com/product/fancy/13a55e94-c79c-4993-87fb-23fc640bc6a7.jpg?imageView2/2/w/500/q/70/format/avif",
         affLink: "https://www.temu.com/ma-en/mens--hooded-sweatshirt-casual-drawstring-hoodie-with-prints-featuring-letter-designs-and--kangaroo-pocket-suitable-for-mens-tops-g-601103016735055.html"
+    },
+    {
+        id: 38,
+        title: "سويتشيرت رجالي محبوك بنقشة جاكار وقبعة وسحاب نصفي وجيب",
+        description: "سويتشيرت رجالي جديد من نسيج جاكار محبوك، بقبعة وسحاب نصفي وجيب عملي. الثمن المعروض 256 درهم حسب العرض؛ قد يتغير التخفيض، تحقق من الثمن النهائي في صفحة Temu.",
+        descriptionFr: "Sweat-shirt homme en maille jacquard, avec capuche, demi-zip et poche pratique. Le prix promotionnel indiqué est de 256 DH ; la remise peut varier, vérifiez le prix final sur Temu.",
+        descriptionEn: "Men's jacquard-knit hooded sweatshirt with a half zip and practical pocket. The listed coupon price is 256 DH; discounts may vary, so check the final price on Temu.",
+        price: "256 DH",
+        oldPrice: "",
+        platform: "temu",
+        category: "fashion",
+        image: "https://img.kwcdn.com/product/fancy/c047daec-0602-4bf4-9b97-613fbd279131.jpg?imageView2/2/w/500/q/70/format/avif",
+        affLink: "https://temu.to/k/ell5n41tmgq"
+    },
+    {
+        id: 39,
+        title: "هودي رجالي بطبعة عصرية على الظهر والأكمام، دافئ بجيب كنغر",
+        description: "هودي رجالي بطبعة عصرية على الظهر والأكمام، بقبعة ورباط وجيب كنغر عملي. الثمن المعروض 205 دراهم حسب الكوبون؛ قد يتغير التخفيض، تحقق من الثمن النهائي في صفحة Temu.",
+        descriptionFr: "Sweat à capuche homme avec imprimé tendance au dos et sur les manches, cordon et poche kangourou. Le prix avec coupon indiqué est de 205 DH ; la remise peut varier, vérifiez le prix final sur Temu.",
+        descriptionEn: "Men's hoodie with a trendy back and sleeve print, drawstring hood, and kangaroo pocket. The listed coupon price is 205 DH; discounts may vary, so check the final price on Temu.",
+        price: "205 DH",
+        oldPrice: "",
+        platform: "temu",
+        category: "fashion",
+        image: "https://img.kwcdn.com/product/open/a51801db864c4e6793ff1496512da4c8-goods.jpeg?imageView2/2/w/500/q/70/format/avif",
+        affLink: "https://temu.to/k/e7q3yc6aarb"
+    },
+    {
+        id: 40,
+        title: "قميص بولو رجالي بنقشة إيطالية وياقة وأكمام قصيرة، سريع الجفاف",
+        description: "قميص بولو رجالي بنقشة إيطالية أنيقة، بياقة وأكمام قصيرة وقماش سريع الجفاف؛ مناسب للرياضة والخروجات الصيفية. الثمن المعروض 125 درهماً حسب الكوبون؛ قد يتغير التخفيض، تحقق من الثمن النهائي في صفحة Temu.",
+        descriptionFr: "Polo homme à imprimé italien élégant, col et manches courtes, en tissu à séchage rapide. Idéal pour le sport et les sorties estivales. Le prix avec coupon indiqué est de 125 DH ; la remise peut varier, vérifiez le prix final sur Temu.",
+        descriptionEn: "Men's Italian-pattern polo shirt with a collar, short sleeves, and quick-dry fabric, suitable for sports and summer outings. The listed coupon price is 125 DH; discounts may vary, so check the final price on Temu.",
+        price: "125 DH",
+        oldPrice: "",
+        platform: "temu",
+        category: "fashion",
+        image: "https://img.kwcdn.com/product/open/b71a5a71490e4358a5af836838319f33-goods.jpeg?imageView2/2/w/500/q/70/format/avif",
+        affLink: "https://temu.to/k/e2gyujc513v"
     }
 ];
 
@@ -973,7 +1012,10 @@ const englishProductTitles = {
     34: "Women's T-shirt with navy wave and zebra print",
     35: "Women's colorful printed crew-neck sweatshirt",
     36: "Women's short-sleeve koi stream print dress",
-    37: "Men's hooded sweatshirt with printed lettering and kangaroo pocket"
+    37: "Men's hooded sweatshirt with printed lettering and kangaroo pocket",
+    38: "Men's jacquard-knit hooded sweatshirt with half zip and pocket",
+    39: "Men's printed hoodie with kangaroo pocket",
+    40: "Men's Italian-pattern quick-dry polo shirt"
 };
 
 const frenchProductTitles = {
@@ -1003,6 +1045,9 @@ const frenchProductTitles = {
     35: "Sweat-shirt femme imprimé à col rond",
     36: "Robe femme à manches courtes et imprimé de carpes koï",
     37: "Sweat-shirt homme à capuche avec imprimé et poche kangourou",
+    38: "Sweat-shirt homme en maille jacquard à capuche, demi-zip et poche",
+    39: "Sweat à capuche homme imprimé avec poche kangourou",
+    40: "Polo homme à imprimé italien et séchage rapide",
     22: "Maquette décorative de bateau en bois illuminée, fabriquée à la main",
     23: "Mandoline électro-acoustique vintage EKO",
     24: "Support magnétique pour téléphone et GPS, orientable à 360°",
