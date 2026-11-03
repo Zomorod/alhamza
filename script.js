@@ -428,6 +428,51 @@ let products = [
         catalogCategory: "accessories",
         image: "https://img.kwcdn.com/product/fancy/f74dbe4c-d55c-4145-8fcf-63d64a0c91d9.jpg?imageView2/2/w/800/q/80",
         affLink: "https://temu.to/k/e3uzyylh5az"
+    },
+    {
+        id: 34,
+        title: "تيشيرت نسائي بطبعة موجات وحمار وحشي، تصميم كاجوال",
+        description: "تيشيرت نسائي بطبعة موجات وحمار وحشي على خلفية بيضاء، مناسب للإطلالات اليومية الكاجوال. الثمن والتخفيض قابلان للتغيير حسب المقاس والتوفر؛ تأكدي من التفاصيل في صفحة Temu.",
+        descriptionFr: "T-shirt femme à imprimé vagues et zèbre sur fond blanc, pour un style décontracté au quotidien. Le prix et la réduction peuvent varier selon la taille et la disponibilité ; vérifiez les détails sur Temu.",
+        descriptionEn: "Women's T-shirt with a navy wave and zebra print on a white background, suited to casual daily wear. Price and discount may vary by size and availability; check the Temu page for details.",
+        price: "85 DH",
+        oldPrice: "148 DH",
+        showFirstTimeOffer: false,
+        platform: "temu",
+        category: "fashion",
+        catalogCategory: "women",
+        image: "https://img.kwcdn.com/product/open/9fee9879b3654c81a8b83dc1a2af9d40-goods.jpeg",
+        affLink: "https://www.temu.com/ma-en/printed-design-not-textured-womens-t-shirt-white-background-navy-irregular-wave-zebra--daily-wear-g-606700585216883.html?_x_ads_channel=kol_affiliate&_x_campaign=affiliate&_x_cid=4090376849kol_affiliate&_x_ads_csite=pc_bottom_union"
+    },
+    {
+        id: 35,
+        title: "سويتشيرت نسائي بياقة دائرية وطبعة ملونة، واسع ومريح",
+        description: "سويتشيرت نسائي بياقة دائرية وطبعة ملونة، بأكمام طويلة وخطوط جانبية وقصة واسعة ومريحة. مناسب للأجواء الباردة والإطلالات الكاجوال. الثمن والتخفيض قابلان للتغيير؛ تحققي من صفحة Temu.",
+        descriptionFr: "Sweat-shirt femme à col rond et imprimé coloré, manches longues, bandes latérales et coupe ample et confortable. Le prix et la réduction peuvent varier ; vérifiez la page Temu.",
+        descriptionEn: "Women's crew-neck sweatshirt with a colorful print, long sleeves, side stripes, and a relaxed comfortable fit. Price and discount may change; check the Temu page for current details.",
+        price: "204 DH",
+        oldPrice: "341 DH",
+        showFirstTimeOffer: false,
+        platform: "temu",
+        category: "fashion",
+        catalogCategory: "women",
+        image: "https://img.kwcdn.com/product/open/ee53227d84ac4e28859e5034c85b2f61-goods.jpeg",
+        affLink: "https://www.temu.com/ma-en/womens-color-block-crew-neck-sweatshirt-with-beautiful-printed-pattern-new-autumn-winter-pullover-long-sleeves-with-dual-side-stripes-loose-fit-versatile-casual-comfortable-and-stylish-top-womens-apparel-machine-washable-and-easy-to-care-g-607106459628678.html?_x_ads_channel=kol_affiliate&_x_campaign=affiliate&_x_cid=4090376849kol_affiliate&_x_ads_csite=pc_bottom_union"
+    },
+    {
+        id: 36,
+        title: "فستان نسائي قصير الأكمام بطبعة جسر وجدول أسماك كوي",
+        description: "فستان نسائي قصير الأكمام بطبعة مستوحاة من جسر وجدول أسماك كوي، مناسب للخروجات الصيفية والعطلات والاستعمال اليومي. الثمن والتخفيض قابلان للتغيير حسب المقاس والتوفر؛ تحققي من صفحة Temu.",
+        descriptionFr: "Robe femme à manches courtes avec imprimé représentant un pont et un ruisseau de carpes koï. Adaptée aux sorties estivales, aux vacances et au quotidien. Le prix et la réduction peuvent varier selon la taille et la disponibilité ; vérifiez Temu.",
+        descriptionEn: "Women's short-sleeve dress with a koi stream and bridge print, suitable for summer outings, vacations, and everyday wear. Price and discount may vary by size and availability; check Temu for current details.",
+        price: "270 DH",
+        oldPrice: "397 DH",
+        showFirstTimeOffer: false,
+        platform: "temu",
+        category: "fashion",
+        catalogCategory: "women",
+        image: "https://img.kwcdn.com/product/open/d30a340e05374010a48fb2da11f6de16-goods.jpeg",
+        affLink: "https://www.temu.com/ma-en/1pc-koi-stream-bridge-scenery-womens-dress-womens-versatile-trendy-short-sleeve-dress-suitable-for-summer--holiday-wear-casual-daily-wear--for-special-people-g-605556160983449.html?_x_ads_channel=kol_affiliate&_x_campaign=affiliate&_x_cid=4090376849kol_affiliate&_x_ads_csite=pc_bottom_union"
     }
 ];
 
@@ -646,6 +691,7 @@ const additionalTranslations = {
         categoryDescription: "وصف شامل ومفصل للهمزات المتاحة فـ هذا القسم...",
         categoriesHeading: "تسوق حسب الصنف",
         catalogFashion: "الأزياء والملابس",
+        catalogWomen: "الملابس النسائية",
         catalogJewelry: "المجوهرات",
         catalogAccessories: "الإكسسوارات",
         catJewelry: "مجوهرات",
@@ -728,6 +774,7 @@ const additionalTranslations = {
         categoryDescription: "Découvrez les offres disponibles dans cette catégorie.",
         categoriesHeading: "Acheter par catégorie",
         catalogFashion: "Mode et vêtements",
+        catalogWomen: "Mode femme",
         catalogJewelry: "Bijoux",
         catalogAccessories: "Accessoires",
         catJewelry: "Bijoux",
@@ -810,6 +857,7 @@ const additionalTranslations = {
         categoryDescription: "Explore the offers available in this category.",
         categoriesHeading: "Shop by category",
         catalogFashion: "Fashion & Clothing",
+        catalogWomen: "Women's Fashion",
         catalogJewelry: "Jewelry",
         catalogAccessories: "Accessories",
         catJewelry: "Jewelry",
@@ -908,7 +956,10 @@ const englishProductTitles = {
     25: "Men's beard-trimming bib, non-stick and one size fits all",
     26: "Rechargeable heated knee massager",
     27: "Two pairs of silicone moisturizing foot-care socks with aloe vera gel",
-    33: "Vintage floral waist chain, an elegant bohemian dress belt for women"
+    33: "Vintage floral waist chain, an elegant bohemian dress belt for women",
+    34: "Women's T-shirt with navy wave and zebra print",
+    35: "Women's colorful printed crew-neck sweatshirt",
+    36: "Women's short-sleeve koi stream print dress"
 };
 
 const frenchProductTitles = {
@@ -934,6 +985,9 @@ const frenchProductTitles = {
     20: "Montre connectée 2026 avec écran HD, appels sans fil, notifications et modes sportifs",
     21: "Boucles d’oreilles Goutte Invisible en or 18 carats",
     33: "Chaîne de taille florale vintage, ceinture bohème élégante pour femme",
+    34: "T-shirt femme à imprimé vagues et zèbre",
+    35: "Sweat-shirt femme imprimé à col rond",
+    36: "Robe femme à manches courtes et imprimé de carpes koï",
     22: "Maquette décorative de bateau en bois illuminée, fabriquée à la main",
     23: "Mandoline électro-acoustique vintage EKO",
     24: "Support magnétique pour téléphone et GPS, orientable à 360°",
@@ -991,6 +1045,7 @@ function getCatalogCategoryProducts(categoryKey) {
             case 'beauty':
             case 'shoes':
             case 'gaming':
+            case 'women':
                 return product.catalogCategory === categoryKey || product.catalogCategories?.includes(categoryKey);
             case 'electronics':
                 return product.category === 'tech' &&
@@ -1035,6 +1090,7 @@ function updateProductViewTitle() {
     if (selectedCatalogCategory) {
         const categoryTranslationKey = {
             fashion: 'catalogFashion',
+            women: 'catalogWomen',
             jewelry: 'catalogJewelry',
             accessories: 'catalogAccessories',
             electronics: 'catalogElectronics',
