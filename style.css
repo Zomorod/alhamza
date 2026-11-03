@@ -2419,8 +2419,8 @@ body[data-theme="dark"] .temu-promo-chip {
 }
 
 .top-deals-promo-strip {
-    width: calc(100% + clamp(14px, 2vw, 32px) * 2);
-    margin: 0 calc(-1 * clamp(14px, 2vw, 32px)) 18px;
+    width: 100%;
+    margin: 0 0 18px;
     overflow: hidden;
     border-block: 1px solid rgba(210, 173, 113, 0.4);
     background: #203b30;
