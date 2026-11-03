@@ -398,6 +398,20 @@ let products = [
         catalogCategory: "electronics",
         image: "https://img.kwcdn.com/product/fancy/64566467-d4f7-4a9f-94d5-04a9a3ad01ec.jpg",
         affLink: "https://www.temu.com/ma-en/1pc-led--car-glass-decorative-neon-light-suction-cup--light-induction-dynamic-multi-mode-high-brightness-ambient-light--supply--car-accessories-g-606111704947257.html?top_gallery_url=https%3A%2F%2Fimg.kwcdn.com%2Fproduct%2Ffancy%2F64566467-d4f7-4a9f-94d5-04a9a3ad01ec.jpg&spec_gallery_id=38825752208&_oak_page_source=10082&_x_ads_csite=pc_bottom_union&_x_sessn_id=qxxrl2nkzv&refer_page_name=afc_share_goods&refer_page_id=13788_1793734751382_efargy34f0&refer_page_sn=13788"
+    },
+    {
+        id: 32,
+        title: "كابل شحن قابل للسحب 3 في 1 بثلاثة موصلات",
+        description: "كابل شحن متعدد الاستخدامات قابل للسحب، يجمع موصلات Lightning وMicro USB وType-C، مناسب لشحن أجهزة iPhone وiPad وSamsung وأجهزة أخرى. ثمن العرض 3 دراهم للمستخدمين الجدد في Temu فقط؛ تحقق من شروط العرض والسعر النهائي في صفحة المتجر.",
+        descriptionFr: "Câble de charge rétractable 3-en-1 avec connecteurs Lightning, Micro-USB et Type-C, compatible avec iPhone, iPad, Samsung et d’autres appareils. Offre à 3 DH réservée aux nouveaux utilisateurs de Temu ; vérifiez les conditions et le prix final sur la boutique.",
+        descriptionEn: "Retractable 3-in-1 charging cable with Lightning, Micro-USB, and Type-C connectors for iPhone, iPad, Samsung, and more. The 3 DH offer is for new Temu users only; check the offer terms and final price on the store page.",
+        price: "3 DH",
+        oldPrice: "",
+        platform: "temu",
+        category: "tech",
+        catalogCategory: "electronics",
+        image: "https://img.kwcdn.com/product/fancy/c576a790-0609-41e3-b1e7-0f537d4cdbcd.jpg",
+        affLink: "https://www.temu.com/ma-en/retractable--charging-cord-3-in-1-multi-charger-cable-charging-cable-retractable-charger-with-lightning-micro-type-c-for-iphone-ipad-samsung-ps-tablets-and-more-g-601099683578563.html?top_gallery_url=https%3A%2F%2Fimg.kwcdn.com%2Fproduct%2Ffancy%2Fc576a790-0609-41e3-b1e7-0f537d4cdbcd.jpg&spec_gallery_id=1&sku_id=17592846321863&_oak_page_source=10082&_x_ads_csite=pc_bottom_union&_x_sessn_id=qxxrl2nkzv&refer_page_name=afc_share_goods&refer_page_id=13788_1793734751382_efargy34f0&refer_page_sn=13788"
     }
 ];
 
