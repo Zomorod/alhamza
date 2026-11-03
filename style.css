@@ -2418,34 +2418,37 @@ body[data-theme="dark"] .temu-promo-chip {
     color: #fed7aa;
 }
 
-.temu-promo-banner {
-    width: 100%;
-    margin: 0 0 18px;
+.temu-affiliate-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(260px, 1fr);
+    align-items: stretch;
+    gap: 20px;
+    margin-bottom: 32px;
 }
 
-.temu-promo-banner img {
-    display: block;
-    width: 100%;
-    max-height: 240px;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    object-fit: contain;
+.temu-index-promo {
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid rgba(210, 173, 113, 0.32);
+    border-radius: 16px;
     background: #fff;
 }
 
-.temu-promo-banner p {
-    margin: 6px 2px 0;
-    color: var(--text-secondary);
-    font-size: 0.78rem;
-    line-height: 1.5;
+.temu-index-promo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 .affiliate-invite {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
     gap: 20px;
-    margin-bottom: 32px;
+    min-width: 0;
+    margin-bottom: 0;
     padding: 20px 24px;
     border: 1px solid rgba(210, 173, 113, 0.32);
     border-radius: 16px;
@@ -2481,9 +2484,13 @@ body[data-theme="dark"] .temu-promo-chip {
 }
 
 @media (max-width: 600px) {
+    .temu-affiliate-row {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 14px;
+    }
+
     .affiliate-invite {
         align-items: stretch;
-        flex-direction: column;
         padding: 18px;
     }
 

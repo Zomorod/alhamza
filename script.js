@@ -1338,12 +1338,6 @@ function renderProductDetail(productId) {
                     ${product.freeDelivery ? `<span class="free-delivery-note">${escapeHtml(translations[currentLang].freeDelivery)}</span>` : ''}
                     ${contactOnly || product.showFirstTimeOffer === false ? '' : `<span class="first-time-offer">${escapeHtml(translations[currentLang].firstTimeOffer)}</span>`}
                 </div>
-                    ${String(product.platform).toLowerCase() === 'temu' ? `
-                        <aside class="temu-promo-banner">
-                            <img src="assets/temu-promo.gif" alt="${escapeHtml(translations[currentLang].temuPromoTitle)}: ${escapeHtml(translations[currentLang].temuPromoChip)}" loading="lazy">
-                            <p>${escapeHtml(translations[currentLang].temuPromoCaption)}</p>
-                        </aside>
-                    ` : ''}
                     <div class="product-detail-actions">
                     <a class="product-detail-buy${whatsappOrder ? ' product-detail-contact' : ''}" href="${escapeHtml(contactOnly ? getContactProductUrl(product) : product.affLink)}" target="_blank" rel="noopener noreferrer">
                         <i class="${whatsappOrder ? 'ri-whatsapp-line' : 'ri-shopping-bag-line'}" aria-hidden="true"></i>
