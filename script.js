@@ -604,6 +604,12 @@ const translations = {
         firstTimeOffer: "عرض خاص للمستخدمين لأول مرة — حسب شروط المتجر",
         freeDelivery: "توصيل مجاني",
         productWellWishes: "بصحتك",
+        temuPromoChip: "Temu • تخفيض 30% • الكود alt134756",
+        temuPromoTitle: "عرض خاص من Temu",
+        temuPromoCaption: "للمستخدمين الجدد فالتطبيق، حسب أهلية الحساب والعرض المعروض.",
+        affiliateInviteTitle: "بغيتي تنضم لبرنامج Temu Affiliate؟",
+        affiliateInviteText: "سجّل عبر رابط الدعوة ديالي، ويمكن ليا نستافد إلا انضمّيتي من خلاله.",
+        affiliateInviteCta: "انضم عبر رابط الدعوة",
         temuOfferTitle: "سويتشيرت رجالي بقبعة وسحاب مزدوج — عرض بـ 29 درهم",
         temuOfferDisclaimer: "العرض متاح مرة واحدة لكل مستخدم للتطبيق. الثمن والتخفيض ممكن يتبدلو؛ تأكد من التفاصيل فالصفحة.",
         temuOfferCta: "اكتشف العرض والمكافآت",
@@ -652,6 +658,12 @@ const translations = {
         firstTimeOffer: "Offre spéciale pour les nouveaux utilisateurs — selon les conditions de la boutique",
         freeDelivery: "Livraison gratuite",
         productWellWishes: "Bon achat !",
+        temuPromoChip: "Temu • -30 % • Code alt134756",
+        temuPromoTitle: "Offre spéciale Temu",
+        temuPromoCaption: "Pour les nouveaux utilisateurs de l’application, selon l’éligibilité du compte et l’offre affichée.",
+        affiliateInviteTitle: "Rejoignez le programme d’affiliation Temu",
+        affiliateInviteText: "Inscrivez-vous via mon lien d’invitation. Je peux recevoir une récompense si vous rejoignez le programme par ce lien.",
+        affiliateInviteCta: "Rejoindre via le lien d’invitation",
         temuOfferTitle: "Sweat-shirt homme à capuche et double fermeture — offre à 29 DH",
         temuOfferDisclaimer: "Offre disponible une seule fois par utilisateur de l’application. Le prix et la réduction peuvent varier ; vérifiez les détails sur la page.",
         temuOfferCta: "Découvrir l’offre et les récompenses",
@@ -700,6 +712,12 @@ const translations = {
         firstTimeOffer: "Special offer for first-time users — subject to store terms",
         freeDelivery: "Free delivery",
         productWellWishes: "Enjoy!",
+        temuPromoChip: "Temu • 30% off • Code alt134756",
+        temuPromoTitle: "Special Temu offer",
+        temuPromoCaption: "For new app users, subject to account eligibility and the offer shown.",
+        affiliateInviteTitle: "Join the Temu Affiliate Program",
+        affiliateInviteText: "Sign up using my invitation link. I may receive a reward if you join through it.",
+        affiliateInviteCta: "Join with my invitation link",
         temuOfferTitle: "Men's hooded sweatshirt with double zipper — 29 DH offer",
         temuOfferDisclaimer: "Available once per app user. Price and discount may vary; check the offer page for details.",
         temuOfferCta: "Explore the offer and rewards",
@@ -1323,7 +1341,13 @@ function renderProductDetail(productId) {
                     ${product.freeDelivery ? `<span class="free-delivery-note">${escapeHtml(translations[currentLang].freeDelivery)}</span>` : ''}
                     ${contactOnly || product.showFirstTimeOffer === false ? '' : `<span class="first-time-offer">${escapeHtml(translations[currentLang].firstTimeOffer)}</span>`}
                 </div>
-                <div class="product-detail-actions">
+                    ${String(product.platform).toLowerCase() === 'temu' ? `
+                        <aside class="temu-promo-banner">
+                            <img src="assets/temu-promo.gif" alt="${escapeHtml(translations[currentLang].temuPromoTitle)}: ${escapeHtml(translations[currentLang].temuPromoChip)}" loading="lazy">
+                            <p>${escapeHtml(translations[currentLang].temuPromoCaption)}</p>
+                        </aside>
+                    ` : ''}
+                    <div class="product-detail-actions">
                     <a class="product-detail-buy${whatsappOrder ? ' product-detail-contact' : ''}" href="${escapeHtml(contactOnly ? getContactProductUrl(product) : product.affLink)}" target="_blank" rel="noopener noreferrer">
                         <i class="${whatsappOrder ? 'ri-whatsapp-line' : 'ri-shopping-bag-line'}" aria-hidden="true"></i>
                         ${escapeHtml(translations[currentLang][whatsappOrder ? 'contactViaWhatsapp' : 'checkoutAtStore'])}
@@ -1405,6 +1429,7 @@ function renderProducts(items, directDealLinks = false) {
             </a>
             <div class="product-body">
                 <h3 class="product-title"><a class="product-title-link" href="?product=${encodeURIComponent(product.id)}">${escapeHtml(title)}</a></h3>
+                ${String(product.platform).toLowerCase() === 'temu' ? `<p class="temu-promo-chip"><i class="ri-price-tag-3-line" aria-hidden="true"></i>${escapeHtml(translations[currentLang].temuPromoChip)}</p>` : ''}
                 <div class="product-footer">
                     <div class="price-box">
                         ${product.oldPrice ? `<span class="old-price">${escapeHtml(product.oldPrice)}</span>` : ''}

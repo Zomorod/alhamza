@@ -2390,3 +2390,104 @@ body[data-theme="dark"] .site-footer .footer-col {
         padding: 14px;
     }
 }
+
+.temu-promo-chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 0 10px;
+    padding: 6px 9px;
+    border: 1px solid rgba(224, 120, 25, 0.28);
+    border-radius: 999px;
+    background: rgba(255, 237, 213, 0.58);
+    color: #9a4c0b;
+    font-size: 0.72rem;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.temu-promo-chip i {
+    flex: 0 0 auto;
+}
+
+body[data-theme="dark"] .temu-promo-chip {
+    border-color: rgba(253, 186, 116, 0.32);
+    background: rgba(124, 45, 18, 0.2);
+    color: #fed7aa;
+}
+
+.temu-promo-banner {
+    width: 100%;
+    margin: 0 0 18px;
+}
+
+.temu-promo-banner img {
+    display: block;
+    width: 100%;
+    max-height: 240px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    object-fit: contain;
+    background: #fff;
+}
+
+.temu-promo-banner p {
+    margin: 6px 2px 0;
+    color: var(--text-secondary);
+    font-size: 0.78rem;
+    line-height: 1.5;
+}
+
+.affiliate-invite {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 32px;
+    padding: 20px 24px;
+    border: 1px solid rgba(210, 173, 113, 0.32);
+    border-radius: 16px;
+    background: rgba(255, 254, 250, 0.08);
+}
+
+.affiliate-invite h4 {
+    margin: 0 0 6px;
+    color: #e2c48e;
+    font-size: 1.05rem;
+}
+
+.affiliate-invite p {
+    margin: 0;
+    color: #e5e0d5;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.affiliate-invite > a {
+    flex: 0 0 auto;
+    padding: 10px 16px;
+    border-radius: 10px;
+    background: #e2c48e;
+    color: #203b30;
+    font-weight: 800;
+    text-align: center;
+    text-decoration: none;
+}
+
+.affiliate-invite > a:hover {
+    background: #f0d7a9;
+}
+
+@media (max-width: 600px) {
+    .affiliate-invite {
+        align-items: stretch;
+        flex-direction: column;
+        padding: 18px;
+    }
+
+    .affiliate-invite > a {
+        width: 100%;
+    }
+}
