@@ -356,6 +356,20 @@ let products = [
         catalogCategory: "beauty",
         image: "https://img.kwcdn.com/product/fancy/506ecb15-2798-4eed-bae8-5681ada03317.jpg",
         affLink: "https://www.temu.com/ma-en/2pcs-soft-gel-toe-separators-with-2-loops-silicone-toe-spacers-for-yoga-and-everyday-relaxation-flexible-durable-and-reusable-design-toe-spreaders-for--care-ideal-for-men-women-g-601099552915851.html?top_gallery_url=https%3A%2F%2Fimg.kwcdn.com%2Fproduct%2Ffancy%2F506ecb15-2798-4eed-bae8-5681ada03317.jpg&spec_gallery_id=1&sku_id=17592368390792&_oak_page_source=10082&_x_ads_csite=pc_bottom_union&_x_sessn_id=qxxrl2nkzv&refer_page_name=afc_share_goods&refer_page_id=13788_1793734751382_efargy34f0&refer_page_sn=13788"
+    },
+    {
+        id: 29,
+        title: "دعامة خفيفة للكاحل بتصميم ضاغط، رقيقة ومهوّاة للرياضة",
+        description: "دعامة للكاحل بتصميم خفيف وضاغط، مصنوعة من نسيج رقيق ومهوّى لتوفير دعم ثابت أثناء التمرين دون التسبب بتعرّق زائد.",
+        descriptionFr: "Chevillère légère à compression, fine et respirante, conçue pour offrir un maintien stable pendant l’exercice.",
+        descriptionEn: "Lightweight compression ankle support with a thin, breathable design for stable support during exercise.",
+        price: "40 DH",
+        oldPrice: "",
+        platform: "temu",
+        category: "fashion",
+        catalogCategory: "beauty",
+        image: "https://img.kwcdn.com/product/open/f74ea2f6ec5e4d589aa2c762b068333e-goods.jpeg",
+        affLink: "https://www.temu.com/ma-en/-version-single-pack-professional-ankle-support-lightweight-compression-design-thin-and-breathable-doesnt-cause--sweating-provides-stable-support-during-exercise-reduces-the--of-ankles-g-605842061533360.html?top_gallery_url=https%3A%2F%2Fimg.kwcdn.com%2Fproduct%2Fopen%2Ff74ea2f6ec5e4d589aa2c762b068333e-goods.jpeg&spec_gallery_id=35541301110&_oak_page_source=10082&_x_ads_csite=pc_bottom_union&_x_sessn_id=qxxrl2nkzv&refer_page_name=afc_share_goods&refer_page_id=13788_1793734751382_efargy34f0&refer_page_sn=13788"
     }
 ];
 
