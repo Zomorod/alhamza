@@ -412,6 +412,22 @@ let products = [
         catalogCategory: "electronics",
         image: "https://img.kwcdn.com/product/fancy/c576a790-0609-41e3-b1e7-0f537d4cdbcd.jpg",
         affLink: "https://www.temu.com/ma-en/retractable--charging-cord-3-in-1-multi-charger-cable-charging-cable-retractable-charger-with-lightning-micro-type-c-for-iphone-ipad-samsung-ps-tablets-and-more-g-601099683578563.html?top_gallery_url=https%3A%2F%2Fimg.kwcdn.com%2Fproduct%2Ffancy%2Fc576a790-0609-41e3-b1e7-0f537d4cdbcd.jpg&spec_gallery_id=1&sku_id=17592846321863&_oak_page_source=10082&_x_ads_csite=pc_bottom_union&_x_sessn_id=qxxrl2nkzv&refer_page_name=afc_share_goods&refer_page_id=13788_1793734751382_efargy34f0&refer_page_sn=13788"
+    },
+    {
+        id: 33,
+        title: "حزام خصر بسلسلة وزهور بطابع بوهيمي أنيق للنساء",
+        titleFr: "Chaîne de taille florale vintage, ceinture bohème élégante pour femme",
+        description: "حزام خصر أنيق على شكل سلسلة مزينة بالزهور، بطابع بوهيمي وفينتاج. مناسب للتجمعات اليومية والعطلات ومختلف المناسبات. عرض 6 دراهم متاح لمستخدمي التطبيق مرة واحدة فقط؛ قد يختلف التخفيض، تحقق من الثمن والشروط في صفحة Temu.",
+        descriptionFr: "Chaîne de taille florale vintage au style bohème élégant, idéale pour les réunions quotidiennes, les vacances et diverses occasions. Offre à 6 DH utilisable une seule fois par utilisateur de l’application ; la réduction peut varier, vérifiez le prix et les conditions sur Temu.",
+        descriptionEn: "Vintage floral waist chain with an elegant bohemian style, suitable for everyday gatherings, vacations, and various occasions. The 6 DH offer can be used once per app user; the discount may vary, so check the price and terms on Temu.",
+        price: "6 DH",
+        oldPrice: "",
+        showFirstTimeOffer: false,
+        platform: "temu",
+        category: "fashion",
+        catalogCategory: "accessories",
+        image: "https://img.kwcdn.com/product/fancy/f74dbe4c-d55c-4145-8fcf-63d64a0c91d9.jpg?imageView2/2/w/800/q/80",
+        affLink: "https://temu.to/k/e3uzyylh5az"
     }
 ];
 
@@ -891,7 +907,8 @@ const englishProductTitles = {
     24: "360-degree magnetic car phone and GPS holder",
     25: "Men's beard-trimming bib, non-stick and one size fits all",
     26: "Rechargeable heated knee massager",
-    27: "Two pairs of silicone moisturizing foot-care socks with aloe vera gel"
+    27: "Two pairs of silicone moisturizing foot-care socks with aloe vera gel",
+    33: "Vintage floral waist chain, an elegant bohemian dress belt for women"
 };
 
 const frenchProductTitles = {
@@ -916,6 +933,7 @@ const frenchProductTitles = {
     19: "Bracelet sport souple en silicone 22 mm pour Huawei Watch GT 5 et GT 5 Pro (46 mm)",
     20: "Montre connectée 2026 avec écran HD, appels sans fil, notifications et modes sportifs",
     21: "Boucles d’oreilles Goutte Invisible en or 18 carats",
+    33: "Chaîne de taille florale vintage, ceinture bohème élégante pour femme",
     22: "Maquette décorative de bateau en bois illuminée, fabriquée à la main",
     23: "Mandoline électro-acoustique vintage EKO",
     24: "Support magnétique pour téléphone et GPS, orientable à 360°",
