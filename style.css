@@ -2418,20 +2418,20 @@ body[data-theme="dark"] .temu-promo-chip {
     color: #fed7aa;
 }
 
-.top-deals-header {
-    gap: 16px;
+.top-deals-promo-strip {
+    width: calc(100% + clamp(14px, 2vw, 32px) * 2);
+    margin: 0 calc(-1 * clamp(14px, 2vw, 32px)) 18px;
+    overflow: hidden;
+    border-block: 1px solid rgba(210, 173, 113, 0.4);
+    background: #203b30;
+    box-shadow: 0 8px 24px rgba(24, 38, 33, 0.14);
 }
 
-.top-deals-promo {
+.top-deals-promo-strip img {
     display: block;
-    flex: 0 1 clamp(170px, 25vw, 270px);
-    width: clamp(170px, 25vw, 270px);
-    height: auto;
-    aspect-ratio: 4.1 / 1;
-    border: 1px solid rgba(210, 173, 113, 0.42);
-    border-radius: 12px;
+    width: 100%;
+    height: clamp(72px, 9vw, 132px);
     object-fit: cover;
-    box-shadow: 0 6px 18px rgba(24, 38, 33, 0.12);
 }
 
 .affiliate-invite {
@@ -2477,17 +2477,11 @@ body[data-theme="dark"] .temu-promo-chip {
 }
 
 @media (max-width: 600px) {
-    .top-deals-header {
-        align-items: flex-start;
-        flex-wrap: wrap;
+    .top-deals-promo-strip {
+        margin-bottom: 12px;
     }
 
-    .top-deals-header > div {
-        flex: 1 1 100%;
-    }
-
-    .top-deals-promo {
-        flex-basis: clamp(180px, 60vw, 230px);
-        width: clamp(180px, 60vw, 230px);
+    .top-deals-promo-strip img {
+        height: clamp(42px, 13vw, 72px);
     }
 }
