@@ -2430,8 +2430,8 @@ body[data-theme="dark"] .temu-promo-chip {
 .top-deals-promo-strip img {
     display: block;
     width: 100%;
-    height: clamp(72px, 9vw, 132px);
-    object-fit: cover;
+    height: clamp(36px, 7.8125vw, 132px);
+    object-fit: contain;
 }
 
 .affiliate-invite {
@@ -2479,9 +2479,5 @@ body[data-theme="dark"] .temu-promo-chip {
 @media (max-width: 600px) {
     .top-deals-promo-strip {
         margin-bottom: 12px;
-    }
-
-    .top-deals-promo-strip img {
-        height: clamp(42px, 13vw, 72px);
     }
 }
