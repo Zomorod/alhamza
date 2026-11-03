@@ -384,6 +384,20 @@ let products = [
         catalogCategory: "beauty",
         image: "https://img.kwcdn.com/product/open/4dca91046e1a4fdc8e7bfa8ffdbd3cc4-goods.jpeg",
         affLink: "https://www.temu.com/ma-en/4-loop-toe-separator-soft-flexible-toe-spacers-for-daily-wear-lightweight-washable--care-accessory-for-home-shoes-everyday--g-607143637966365.html?top_gallery_url=https%3A%2F%2Fimg.kwcdn.com%2Fproduct%2Fopen%2F4dca91046e1a4fdc8e7bfa8ffdbd3cc4-goods.jpeg&spec_gallery_id=49685458257&_oak_page_source=10082&_x_ads_csite=pc_bottom_union&_x_sessn_id=qxxrl2nkzv&refer_page_name=afc_share_goods&refer_page_id=13788_1793734751382_efargy34f0&refer_page_sn=13788"
+    },
+    {
+        id: 31,
+        title: "ضوء نيون LED للسيارة يعمل بالاستشعار، متعدد الأوضاع",
+        description: "ضوء LED زخرفي للسيارة يثبت بكوب شفط على الزجاج، مع استشعار ضوئي وأوضاع إضاءة متعددة. ثمن العرض 6 دراهم للمستخدمين الجدد في Temu فقط؛ تحقق من شروط العرض والسعر النهائي في صفحة المتجر.",
+        descriptionFr: "Lumière décorative néon LED pour voiture, à ventouse pour vitre, avec détection lumineuse et plusieurs modes. Offre à 6 DH réservée aux nouveaux utilisateurs de Temu ; vérifiez les conditions et le prix final sur la boutique.",
+        descriptionEn: "Decorative LED neon light for car windows with a suction cup, light sensor, and multiple modes. The 6 DH offer is for new Temu users only; check the offer terms and final price on the store page.",
+        price: "6 DH",
+        oldPrice: "",
+        platform: "temu",
+        category: "tech",
+        catalogCategory: "electronics",
+        image: "https://img.kwcdn.com/product/fancy/64566467-d4f7-4a9f-94d5-04a9a3ad01ec.jpg",
+        affLink: "https://www.temu.com/ma-en/1pc-led--car-glass-decorative-neon-light-suction-cup--light-induction-dynamic-multi-mode-high-brightness-ambient-light--supply--car-accessories-g-606111704947257.html?top_gallery_url=https%3A%2F%2Fimg.kwcdn.com%2Fproduct%2Ffancy%2F64566467-d4f7-4a9f-94d5-04a9a3ad01ec.jpg&spec_gallery_id=38825752208&_oak_page_source=10082&_x_ads_csite=pc_bottom_union&_x_sessn_id=qxxrl2nkzv&refer_page_name=afc_share_goods&refer_page_id=13788_1793734751382_efargy34f0&refer_page_sn=13788"
     }
 ];
 
