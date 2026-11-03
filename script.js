@@ -424,8 +424,7 @@ let products = [
         oldPrice: "",
         showFirstTimeOffer: false,
         platform: "temu",
-        category: "fashion",
-        catalogCategory: "accessories",
+        category: "jewelry",
         image: "https://img.kwcdn.com/product/fancy/f74dbe4c-d55c-4145-8fcf-63d64a0c91d9.jpg?imageView2/2/w/800/q/80",
         affLink: "https://temu.to/k/e3uzyylh5az"
     },
@@ -473,6 +472,20 @@ let products = [
         catalogCategory: "women",
         image: "https://img.kwcdn.com/product/open/d30a340e05374010a48fb2da11f6de16-goods.jpeg",
         affLink: "https://www.temu.com/ma-en/1pc-koi-stream-bridge-scenery-womens-dress-womens-versatile-trendy-short-sleeve-dress-suitable-for-summer--holiday-wear-casual-daily-wear--for-special-people-g-605556160983449.html?_x_ads_channel=kol_affiliate&_x_campaign=affiliate&_x_cid=4090376849kol_affiliate&_x_ads_csite=pc_bottom_union"
+    },
+    {
+        id: 37,
+        title: "سويتشيرت رجالي بقبعة ورباط وطبعة عصرية وجيب أمامي",
+        description: "سويتشيرت رجالي بقبعة ورباط وطبعة حروف وجيب أمامي واسع، مناسب للإطلالات الكاجوال. الثمن والتخفيض قابلان للتغيير؛ تأكد من السعر والتوفر في صفحة Temu.",
+        descriptionFr: "Sweat-shirt à capuche pour homme avec cordon, imprimé graphique et poche kangourou. Le prix et la réduction peuvent varier ; vérifiez le prix et la disponibilité sur Temu.",
+        descriptionEn: "Men's hooded sweatshirt with drawstring, printed lettering, and a front kangaroo pocket. Price and discount may change; check the Temu page for current price and availability.",
+        price: "180 DH",
+        oldPrice: "266 DH",
+        showFirstTimeOffer: false,
+        platform: "temu",
+        category: "fashion",
+        image: "https://img.kwcdn.com/product/fancy/13a55e94-c79c-4993-87fb-23fc640bc6a7.jpg?imageView2/2/w/500/q/70/format/avif",
+        affLink: "https://www.temu.com/ma-en/mens--hooded-sweatshirt-casual-drawstring-hoodie-with-prints-featuring-letter-designs-and--kangaroo-pocket-suitable-for-mens-tops-g-601103016735055.html"
     }
 ];
 
@@ -690,7 +703,7 @@ const additionalTranslations = {
         categoryDetails: "تفاصيل الصنف",
         categoryDescription: "وصف شامل ومفصل للهمزات المتاحة فـ هذا القسم...",
         categoriesHeading: "تسوق حسب الصنف",
-        catalogFashion: "الأزياء والملابس",
+        catalogFashion: "أزياء رجالية",
         catalogWomen: "الملابس النسائية",
         catalogJewelry: "المجوهرات",
         catalogAccessories: "الإكسسوارات",
@@ -773,7 +786,7 @@ const additionalTranslations = {
         categoryDetails: "Détails de la catégorie",
         categoryDescription: "Découvrez les offres disponibles dans cette catégorie.",
         categoriesHeading: "Acheter par catégorie",
-        catalogFashion: "Mode et vêtements",
+        catalogFashion: "Mode homme",
         catalogWomen: "Mode femme",
         catalogJewelry: "Bijoux",
         catalogAccessories: "Accessoires",
@@ -856,7 +869,7 @@ const additionalTranslations = {
         categoryDetails: "Category details",
         categoryDescription: "Explore the offers available in this category.",
         categoriesHeading: "Shop by category",
-        catalogFashion: "Fashion & Clothing",
+        catalogFashion: "Mens fashions",
         catalogWomen: "Women's Fashion",
         catalogJewelry: "Jewelry",
         catalogAccessories: "Accessories",
@@ -959,7 +972,8 @@ const englishProductTitles = {
     33: "Vintage floral waist chain, an elegant bohemian dress belt for women",
     34: "Women's T-shirt with navy wave and zebra print",
     35: "Women's colorful printed crew-neck sweatshirt",
-    36: "Women's short-sleeve koi stream print dress"
+    36: "Women's short-sleeve koi stream print dress",
+    37: "Men's hooded sweatshirt with printed lettering and kangaroo pocket"
 };
 
 const frenchProductTitles = {
@@ -988,6 +1002,7 @@ const frenchProductTitles = {
     34: "T-shirt femme à imprimé vagues et zèbre",
     35: "Sweat-shirt femme imprimé à col rond",
     36: "Robe femme à manches courtes et imprimé de carpes koï",
+    37: "Sweat-shirt homme à capuche avec imprimé et poche kangourou",
     22: "Maquette décorative de bateau en bois illuminée, fabriquée à la main",
     23: "Mandoline électro-acoustique vintage EKO",
     24: "Support magnétique pour téléphone et GPS, orientable à 360°",
