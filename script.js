@@ -626,6 +626,45 @@ let products = [
         ],
         image: "https://www.dishisjewels.com/image/cache/catalog/74-545x545.jpg",
         affLink: "https://www.dishisjewels.com/aahna-gold-and-diamond-pendant"
+    },
+    {
+        id: 44,
+        title: "قلادة Bhawana من الذهب والألماس والعقيق الصناعي",
+        titleEn: "Bhawana gold and diamond pendant with synthetic garnet",
+        titleFr: "Pendentif Bhawana en or, diamant et grenat synthétique",
+        description: "قلادة Bhawana ذهبية مرصعة بالألماس وحجر عقيق صناعي بقصة كمثرية. الثمن المعروض في المتجر ₹23,968.77، أي حوالي 2,484.89 درهم مغربي أو 252.75 دولار أمريكي بسعر الصرف بتاريخ 4 نوفمبر 2026. التحويل تقريبي وقد يتغير حسب الخيارات. القلادة بدون سلسلة.",
+        descriptionFr: "Pendentif Bhawana en or, serti de diamants et d’un grenat synthétique taillé en poire. Prix affiché : ₹23 968,77, soit environ 2 484,89 MAD ou 252,75 USD au taux du 4 novembre 2026. Conversion indicative ; le prix peut varier selon les options. Pendentif vendu sans chaîne.",
+        descriptionEn: "Bhawana gold pendant set with diamonds and a pear-cut synthetic garnet. The store lists it at ₹23,968.77, approximately 2,484.89 MAD or $252.75 USD using the November 4, 2026 exchange rate. Conversion is an estimate and may vary by options. Pendant comes without a chain.",
+        price: "2484.89 DH",
+        priceMAD: 2484.89,
+        priceUSD: 252.75,
+        oldPrice: "3549.84 DH",
+        oldPriceMAD: 3549.84,
+        oldPriceUSD: 361.07,
+        priceApproximate: true,
+        priceVerified: true,
+        showFirstTimeOffer: false,
+        platform: "Dishis Jewels",
+        category: "jewelry",
+        images: [
+            "https://www.dishisjewels.com/image/cache/catalog/sophia-9-545x545.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/13image-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/sophia-4-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/sophia-10-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/sophia-11-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/sophia-0-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/sophia-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/sophia-1-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/sophia-2-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/sophia-5-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/sophia-3-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/sophia-12-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/sophia-6-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/sophia-7-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/sophia-8-1000x1000.jpg"
+        ],
+        image: "https://www.dishisjewels.com/image/cache/catalog/sophia-9-545x545.jpg",
+        affLink: "https://www.dishisjewels.com/bhawana-gold-and-diamond-pendant"
     }
 ];
 
