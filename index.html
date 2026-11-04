@@ -9,7 +9,7 @@
     <!-- مكتبة الأيقونات العصرية RemixIcon -->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <!-- رابط ملف الـ CSS -->
-    <link rel="stylesheet" href="style.css?v=20261104-65">
+    <link rel="stylesheet" href="style.css?v=20261104-66">
 </head>
 <body data-theme="light">
 
@@ -222,7 +222,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p class="product-add-note" data-i18n="productAddNote">عمّر المعلومات وحمّل ملف JSON. باش يبان المنتج فالموقع، حدّث temu-products.json فـGitHub ودفع التغيير.</p>
+                <p class="product-add-note" data-i18n="productAddNote">اقتراحك غادي يبقى قيد المراجعة وما غاديش يبان فالموقع حتى تتم الموافقة عليه. حمّل ملف الاقتراح وصيفطو للإدارة للمراجعة.</p>
                 <form id="productAddForm" onsubmit="downloadProductFeed(event)">
                     <div class="form-group">
                         <label for="addProductTitle" data-i18n="productTitleLabel">عنوان المنتج والوصف</label>
@@ -254,17 +254,23 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="addProductImage" data-i18n="imageUrl">رابط صورة المنتج (HTTPS)</label>
-                        <input type="url" id="addProductImage" required placeholder="https://...">
+                        <label for="addProductImage" data-i18n="imageUrl">صورة المنتج</label>
+                        <label class="product-image-dropzone" id="productImageDropzone" for="addProductImage">
+                            <input type="file" id="addProductImage" accept="image/jpeg,image/png,image/webp" aria-describedby="productImageHint">
+                            <img class="product-image-preview" id="productImagePreview" alt="" hidden>
+                            <i class="ri-upload-cloud-2-line" aria-hidden="true"></i>
+                            <span id="productImageName" data-i18n="imageDropPrompt">سحب الصورة لهنا أو ضغط باش تختار ملف</span>
+                            <small id="productImageHint" data-i18n="imageDropHint">JPG أو PNG أو WEBP — الحد الأقصى 2 ميغابايت</small>
+                        </label>
                     </div>
                     <div class="form-group">
-                        <label for="addProductAffiliate" data-i18n="productUrl">رابط Temu Affiliate (HTTPS)</label>
-                        <input type="url" id="addProductAffiliate" required placeholder="https://temu.com/...">
+                        <label for="addProductAffiliate" data-i18n="productUrl">رابط Temu Affiliate (اختياري)</label>
+                        <input type="url" id="addProductAffiliate" placeholder="https://temu.com/...">
                     </div>
                     <p class="form-feedback" id="productAddFeedback" role="status" aria-live="polite"></p>
                     <button type="submit" class="submit-product-btn">
                         <i class="ri-download-2-line" aria-hidden="true"></i>
-                        <span data-i18n="downloadFeed">تحميل ملف المنتجات</span>
+                        <span data-i18n="downloadFeed">تحميل الاقتراح للمراجعة</span>
                     </button>
                 </form>
             </div>
@@ -332,6 +338,6 @@
     </a>
 
     <!-- ملف الـ JavaScript -->
-    <script src="script.js?v=20261104-65"></script>
+    <script src="script.js?v=20261104-66"></script>
 </body>
 </html>

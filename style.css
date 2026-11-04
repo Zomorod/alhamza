@@ -2559,6 +2559,59 @@ body[data-theme="dark"] .temu-promo-chip {
     margin-bottom: 12px;
 }
 
+.product-image-dropzone {
+    position: relative;
+    display: flex !important;
+    min-height: 112px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 14px;
+    border: 1px dashed var(--border);
+    border-radius: 10px;
+    background: var(--bg-primary);
+    color: var(--text-secondary);
+    cursor: pointer;
+    text-align: center;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.product-image-dropzone:hover,
+.product-image-dropzone.is-dragging,
+.product-image-dropzone:focus-within {
+    border-color: var(--accent);
+    background: var(--bg-secondary);
+}
+
+.product-image-dropzone input[type="file"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    clip-path: inset(50%);
+}
+
+.product-image-dropzone > i {
+    font-size: 1.6rem;
+    color: var(--accent);
+}
+
+.product-image-dropzone small {
+    font-size: 0.76rem;
+    color: var(--text-secondary);
+}
+
+.product-image-preview {
+    max-width: 100%;
+    max-height: 150px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
 .product-add-card .form-feedback {
     line-height: 1.6;
 }

@@ -60,6 +60,22 @@ test('rejects invalid URLs and categories', () => {
     }
 });
 
+test('accepts uploaded images and optional affiliate links without republishing duplicates', () => {
+    const uploaded = {
+        ...product(1),
+        image_url: `data:image/png;base64,${Buffer.from('image').toString('base64')}`,
+        affiliate_url: ''
+    };
+    const selected = selectDailyProducts([uploaded, uploaded], [], '2026-11-04');
+    assert.equal(selected.length, 1);
+    assert.equal(selected[0].affiliate_url, '');
+    assert.equal(selectDailyProducts([uploaded], selected, '2026-11-05').length, 0);
+
+    assert.throws(() => selectDailyProducts([
+        { ...uploaded, image_url: 'data:image/svg+xml;base64,PHN2Zy8+' }
+    ], [], '2026-11-04'), /invalid or oversized uploaded image/);
+});
+
 test('writes the published file only during the Morocco 10 AM hour', async () => {
     const directory = await mkdtemp(join(tmpdir(), 'temu-publisher-'));
     const feedPath = join(directory, 'feed.json');

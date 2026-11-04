@@ -16,6 +16,7 @@ const categories = new Map([
     ['cars', 'cars'],
     ['bicycles', 'bicycles']
 ]);
+const maxImageBytes = 2 * 1024 * 1024;
 
 export function getMoroccoDateTime(timestamp = new Date()) {
     const parts = new Intl.DateTimeFormat('en-CA', {
@@ -64,24 +65,50 @@ function validateProduct(product, index) {
         throw new Error(`${prefix} has an unsupported category.`);
     }
 
-    let imageUrl;
-    let affiliateUrl;
-    try {
-        imageUrl = new URL(normalized.image_url);
-        affiliateUrl = new URL(normalized.affiliate_url);
-    } catch {
-        throw new Error(`${prefix} has an invalid image or affiliate URL.`);
+    if (normalized.image_url.startsWith('data:')) {
+        const match = normalized.image_url.match(/^data:image\/(?:jpeg|png|webp);base64,([A-Za-z0-9+/]+={0,2})$/);
+        if (!match || Buffer.from(match[1], 'base64').length > maxImageBytes) {
+            throw new Error(`${prefix} has an invalid or oversized uploaded image.`);
+        }
+    } else {
+        let imageUrl;
+        try {
+            imageUrl = new URL(normalized.image_url);
+        } catch {
+            throw new Error(`${prefix} has an invalid image URL.`);
+        }
+        if (imageUrl.protocol !== 'https:') {
+            throw new Error(`${prefix} image URL must use HTTPS.`);
+        }
     }
-    if (imageUrl.protocol !== 'https:' || affiliateUrl.protocol !== 'https:') {
-        throw new Error(`${prefix} must use HTTPS URLs.`);
-    }
-    const affiliateHost = affiliateUrl.hostname.toLowerCase();
-    if (!(affiliateHost === 'temu.com' || affiliateHost.endsWith('.temu.com') ||
-        affiliateHost === 'temu.to' || affiliateHost.endsWith('.temu.to'))) {
-        throw new Error(`${prefix} affiliate URL must point to Temu.`);
+
+    if (normalized.affiliate_url) {
+        let affiliateUrl;
+        try {
+            affiliateUrl = new URL(normalized.affiliate_url);
+        } catch {
+            throw new Error(`${prefix} has an invalid affiliate URL.`);
+        }
+        if (affiliateUrl.protocol !== 'https:') {
+            throw new Error(`${prefix} affiliate URL must use HTTPS.`);
+        }
+        const affiliateHost = affiliateUrl.hostname.toLowerCase();
+        if (!(affiliateHost === 'temu.com' || affiliateHost.endsWith('.temu.com') ||
+            affiliateHost === 'temu.to' || affiliateHost.endsWith('.temu.to'))) {
+            throw new Error(`${prefix} affiliate URL must point to Temu.`);
+        }
     }
 
     return normalized;
+}
+
+function getProductIdentity(product) {
+    if (product.affiliate_url) return `affiliate:${product.affiliate_url}`;
+    return `product:${JSON.stringify([
+        product.title?.trim().toLowerCase() || '',
+        product.category?.trim().toLowerCase() || '',
+        product.image_url?.trim() || ''
+    ])}`;
 }
 
 export function selectDailyProducts(feedProducts, publishedProducts, date, dailyLimit = 3) {
@@ -94,7 +121,7 @@ export function selectDailyProducts(feedProducts, publishedProducts, date, daily
         if (!product || typeof product.affiliate_url !== 'string') {
             throw new Error('Published products file contains an invalid entry.');
         }
-        alreadyPublished.add(product.affiliate_url);
+        alreadyPublished.add(getProductIdentity(product));
         if (product.published_at === date) publishedToday += 1;
     }
 
@@ -103,9 +130,10 @@ export function selectDailyProducts(feedProducts, publishedProducts, date, daily
     const selected = [];
     for (const [index, product] of feedProducts.entries()) {
         const validProduct = validateProduct(product, index);
-        if (alreadyPublished.has(validProduct.affiliate_url)) continue;
+        const identity = getProductIdentity(validProduct);
+        if (alreadyPublished.has(identity)) continue;
         selected.push({ ...validProduct, published_at: date });
-        alreadyPublished.add(validProduct.affiliate_url);
+        alreadyPublished.add(identity);
         if (selected.length >= remaining) break;
     }
     return selected;

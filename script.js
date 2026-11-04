@@ -756,11 +756,14 @@ const additionalTranslations = {
         amazonLive: "Amazon مباشر",
         addProduct: "إضافة منتج",
         homeProductsHeading: "أحدث المنتجات",
-        productAddNote: "عمّر المعلومات وحمّل ملف JSON. باش يبان المنتج فالموقع، حدّث temu-products.json فـGitHub ودفع التغيير.",
-        downloadFeed: "تحميل ملف المنتجات",
-        productFeedDownloaded: "تحمّل الملف. بدّل به temu-products.json فالمشروع ودفع التغيير لـGitHub باش يكمل النشر.",
-        productFeedDuplicate: "هاد الرابط كاين من قبل فملف المنتجات.",
-        productFeedError: "ما قدرناش نقراو ملف المنتجات الحالي. عاود المحاولة أو تحقق من الاتصال.",
+        productAddNote: "اقتراحك غادي يبقى قيد المراجعة وما غاديش يبان فالموقع حتى تتم الموافقة عليه. حمّل ملف الاقتراح وصيفطو للإدارة للمراجعة.",
+        downloadFeed: "تحميل الاقتراح للمراجعة",
+        productFeedDownloaded: "تحمّل ملف الاقتراح. صيفطو للإدارة للمراجعة؛ ما غاديش يبان فالموقع حتى تتم الموافقة عليه.",
+        productFeedError: "ما قدرناش نوجدوا ملف الاقتراح. عاود المحاولة.",
+        productImageInvalid: "اختار صورة بصيغة JPG أو PNG أو WEBP، وبحجم ما يفوتش 2 ميغابايت.",
+        imageDropPrompt: "سحب الصورة لهنا أو ضغط باش تختار ملف",
+        imageDropHint: "JPG أو PNG أو WEBP — الحد الأقصى 2 ميغابايت",
+        productUrl: "رابط Temu Affiliate (اختياري)",
         productCategoryRequired: "اختار صنف صالح.",
         catalogFurniture: "المفروشات والديكور",
         catalogCurtains: "الستائر",
@@ -802,8 +805,7 @@ const additionalTranslations = {
         category: "الصنف",
         catTechShort: "تكنولوجيا",
         catFashionShort: "أناقة",
-        imageUrl: "رابط صورة المنتج (HTTPS)",
-        productUrl: "رابط المنتج أو الأفلييت (HTTPS)",
+        imageUrl: "صورة المنتج",
         submitForReview: "إرسال للمراجعة",
         adminLoginTitle: "دخول مراجعة الاقتراحات",
         adminPassword: "كلمة سر الإدارة",
@@ -852,11 +854,14 @@ const additionalTranslations = {
         amazonLive: "Amazon en direct",
         addProduct: "Ajouter un produit",
         homeProductsHeading: "Derniers produits",
-        productAddNote: "Remplissez les informations pour télécharger un fichier JSON mis à jour. Remplacez temu-products.json dans le projet et envoyez-le sur GitHub pour publier.",
-        downloadFeed: "Télécharger le fichier produits",
-        productFeedDownloaded: "Fichier téléchargé. Remplacez temu-products.json dans le projet et envoyez la modification sur GitHub pour publier.",
-        productFeedDuplicate: "Ce lien d’affiliation existe déjà dans le flux produits.",
-        productFeedError: "Impossible de lire le flux produits actuel. Réessayez ou vérifiez votre connexion.",
+        productAddNote: "Votre proposition sera examinée et ne sera publiée qu’après approbation. Téléchargez le fichier de proposition et envoyez-le à l’administration pour examen.",
+        downloadFeed: "Télécharger la proposition pour examen",
+        productFeedDownloaded: "Fichier de proposition téléchargé. Envoyez-le à l’administration pour examen ; il ne sera publié qu’après approbation.",
+        productFeedError: "Impossible de préparer le fichier de proposition. Réessayez.",
+        productImageInvalid: "Choisissez une image JPG, PNG ou WEBP de 2 Mo maximum.",
+        imageDropPrompt: "Déposez votre image ici ou cliquez pour choisir un fichier",
+        imageDropHint: "JPG, PNG ou WEBP — 2 Mo maximum",
+        productUrl: "Lien Temu Affiliate (facultatif)",
         productCategoryRequired: "Choisissez une catégorie valide.",
         catalogFurniture: "Ameublement et décoration",
         catalogCurtains: "Rideaux",
@@ -899,8 +904,7 @@ const additionalTranslations = {
         category: "Catégorie",
         catTechShort: "Technologie",
         catFashionShort: "Mode",
-        imageUrl: "Lien de l’image du produit (HTTPS)",
-        productUrl: "Lien du produit ou d’affiliation (HTTPS)",
+        imageUrl: "Image du produit",
         submitForReview: "Envoyer pour examen",
         adminLoginTitle: "Connexion à la modération",
         adminPassword: "Mot de passe administrateur",
@@ -949,11 +953,14 @@ const additionalTranslations = {
         amazonLive: "Amazon Store",
         addProduct: "Add new product",
         homeProductsHeading: "Latest products",
-        productAddNote: "Fill in the details to download an updated JSON file. Replace temu-products.json in the project and push it to GitHub to publish.",
-        downloadFeed: "Download product file",
-        productFeedDownloaded: "File downloaded. Replace temu-products.json in the project and push the change to GitHub to publish.",
-        productFeedDuplicate: "This affiliate link is already in the product feed.",
-        productFeedError: "Could not read the current product feed. Try again or check your connection.",
+        productAddNote: "Your suggestion will be reviewed and will not appear on the site until approved. Download the suggestion file and send it to the site administrator for review.",
+        downloadFeed: "Download suggestion for review",
+        productFeedDownloaded: "Suggestion file downloaded. Send it to the site administrator for review; it will not appear until approved.",
+        productFeedError: "Could not prepare the suggestion file. Please try again.",
+        productImageInvalid: "Choose a JPG, PNG, or WEBP image no larger than 2 MB.",
+        imageDropPrompt: "Drop your file here, or click to browse",
+        imageDropHint: "JPG, PNG or WEBP — up to 2 MB",
+        productUrl: "Temu Affiliate link (optional)",
         productCategoryRequired: "Choose a valid category.",
         catalogFurniture: "Furnishings & decor",
         catalogCurtains: "Curtains",
@@ -996,8 +1003,7 @@ const additionalTranslations = {
         category: "Category",
         catTechShort: "Technology",
         catFashionShort: "Fashion",
-        imageUrl: "Product image URL (HTTPS)",
-        productUrl: "Product or affiliate URL (HTTPS)",
+        imageUrl: "Product image",
         submitForReview: "Submit for review",
         adminLoginTitle: "Moderator sign in",
         adminPassword: "Admin password",
@@ -1115,6 +1121,8 @@ const frenchProductTitles = {
 let currentLang = 'ar';
 let currentCategory = 'all';
 let selectedCatalogCategory = null;
+let selectedProductImageFile = null;
+let productImagePreviewUrl = null;
 // التشغيل الأولي
 document.addEventListener('DOMContentLoaded', () => {
     const productId = new URLSearchParams(window.location.search).get('product');
@@ -1129,6 +1137,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const savedLanguage = getSavedLanguage();
     if (savedLanguage && translations[savedLanguage]) setLanguage(savedLanguage);
+    setupProductImageUpload();
     renderProducts(getVisibleProducts());
     renderHomepageProducts();
     renderTopDeals();
@@ -1366,7 +1375,7 @@ function renderProductDetail(productId) {
             : (product.description || product.title);
     const productImages = product.images || [product.image];
     const contactOnly = product.contactOnly === true;
-    const whatsappOrder = contactOnly || product.platform === 'ALHAMZA';
+    const whatsappOrder = contactOnly || product.platform === 'ALHAMZA' || !product.affLink;
     container.innerHTML = `
         <article class="product-detail-card">
             <div class="product-detail-gallery">
@@ -1401,7 +1410,7 @@ function renderProductDetail(productId) {
                     ${contactOnly || product.showFirstTimeOffer === false ? '' : `<span class="first-time-offer">${escapeHtml(translations[currentLang].firstTimeOffer)}</span>`}
                 </div>
                     <div class="product-detail-actions">
-                    <a class="product-detail-buy${whatsappOrder ? ' product-detail-contact' : ''}" href="${escapeHtml(contactOnly ? getContactProductUrl(product) : product.affLink)}" target="_blank" rel="noopener noreferrer">
+                    <a class="product-detail-buy${whatsappOrder ? ' product-detail-contact' : ''}" href="${escapeHtml(whatsappOrder ? getContactProductUrl(product) : product.affLink)}" target="_blank" rel="noopener noreferrer">
                         <i class="${whatsappOrder ? 'ri-whatsapp-line' : 'ri-shopping-bag-line'}" aria-hidden="true"></i>
                         ${escapeHtml(translations[currentLang][whatsappOrder ? 'contactViaWhatsapp' : 'checkoutAtStore'])}
                     </a>
@@ -1771,62 +1780,119 @@ function closeProductModal() {
     document.getElementById('productAddModal').classList.remove('active');
 }
 
+function setupProductImageUpload() {
+    const input = document.getElementById('addProductImage');
+    const dropzone = document.getElementById('productImageDropzone');
+    input.addEventListener('change', () => setProductImageFile(input.files[0]));
+    dropzone.addEventListener('dragover', event => {
+        event.preventDefault();
+        dropzone.classList.add('is-dragging');
+    });
+    dropzone.addEventListener('dragleave', event => {
+        if (!dropzone.contains(event.relatedTarget)) dropzone.classList.remove('is-dragging');
+    });
+    dropzone.addEventListener('drop', event => {
+        event.preventDefault();
+        dropzone.classList.remove('is-dragging');
+        setProductImageFile(event.dataTransfer.files[0]);
+    });
+}
+
+function setProductImageFile(file) {
+    if (!file) return;
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+    if (!allowedTypes.includes(file.type) || file.size > 2 * 1024 * 1024) {
+        selectedProductImageFile = null;
+        document.getElementById('addProductImage').value = '';
+        document.getElementById('productAddFeedback').className = 'form-feedback error';
+        document.getElementById('productAddFeedback').textContent = translations[currentLang].productImageInvalid;
+        clearProductImagePreview();
+        return;
+    }
+
+    selectedProductImageFile = file;
+    if (productImagePreviewUrl) URL.revokeObjectURL(productImagePreviewUrl);
+    productImagePreviewUrl = URL.createObjectURL(file);
+    const preview = document.getElementById('productImagePreview');
+    preview.src = productImagePreviewUrl;
+    preview.hidden = false;
+    document.getElementById('productImageName').textContent = file.name;
+    document.getElementById('productAddFeedback').textContent = '';
+    document.getElementById('productAddFeedback').className = 'form-feedback';
+}
+
+function clearProductImagePreview() {
+    if (productImagePreviewUrl) URL.revokeObjectURL(productImagePreviewUrl);
+    productImagePreviewUrl = null;
+    const preview = document.getElementById('productImagePreview');
+    preview.removeAttribute('src');
+    preview.hidden = true;
+    document.getElementById('productImageName').textContent = translations[currentLang].imageDropPrompt;
+}
+
+function readProductImage(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.addEventListener('load', () => {
+            if (typeof reader.result !== 'string') {
+                reject(new Error('The selected image could not be read.'));
+                return;
+            }
+            resolve(reader.result);
+        });
+        reader.addEventListener('error', () => reject(reader.error || new Error('The selected image could not be read.')));
+        reader.readAsDataURL(file);
+    });
+}
+
 async function downloadProductFeed(event) {
     event.preventDefault();
     const form = document.getElementById('productAddForm');
     const feedback = document.getElementById('productAddFeedback');
     const submitButton = form.querySelector('button[type="submit"]');
+    if (!selectedProductImageFile) {
+        feedback.className = 'form-feedback error';
+        feedback.textContent = translations[currentLang].productImageInvalid;
+        return;
+    }
     const product = {
         title: document.getElementById('addProductTitle').value.trim(),
         price: document.getElementById('addProductPrice').value.trim(),
         old_price: document.getElementById('addProductOldPrice').value.trim(),
         category: document.getElementById('addProductCategory').value,
-        image_url: document.getElementById('addProductImage').value.trim(),
+        image_url: '',
         affiliate_url: document.getElementById('addProductAffiliate').value.trim()
     };
 
-    let imageUrl;
-    let affiliateUrl;
-    try {
-        imageUrl = new URL(product.image_url);
-        affiliateUrl = new URL(product.affiliate_url);
-    } catch {
-        feedback.className = 'form-feedback error';
-        feedback.textContent = translations[currentLang].productFeedError;
-        return;
-    }
-
-    if (imageUrl.protocol !== 'https:' || affiliateUrl.protocol !== 'https:' ||
-        !['temu.com', 'temu.to'].some(host =>
-            affiliateUrl.hostname === host || affiliateUrl.hostname.endsWith(`.${host}`)
-        )) {
-        feedback.className = 'form-feedback error';
-        feedback.textContent = translations[currentLang].productFeedError;
-        return;
+    if (product.affiliate_url) {
+        let affiliateUrl;
+        try {
+            affiliateUrl = new URL(product.affiliate_url);
+        } catch {
+            feedback.className = 'form-feedback error';
+            feedback.textContent = translations[currentLang].productFeedError;
+            return;
+        }
+        if (affiliateUrl.protocol !== 'https:' ||
+            !['temu.com', 'temu.to'].some(host =>
+                affiliateUrl.hostname === host || affiliateUrl.hostname.endsWith(`.${host}`)
+            )) {
+            feedback.className = 'form-feedback error';
+            feedback.textContent = translations[currentLang].productFeedError;
+            return;
+        }
     }
 
     submitButton.disabled = true;
     feedback.className = 'form-feedback';
     feedback.textContent = '';
     try {
-        const response = await fetch(new URL('temu-products.json', document.baseURI), { cache: 'no-store' });
-        if (!response.ok) throw new Error(`Product feed request failed with HTTP ${response.status}.`);
-        const feed = await response.json();
-        if (!feed || !Array.isArray(feed.products)) {
-            throw new Error('Product feed does not contain a products array.');
-        }
-        if (feed.products.some(existing => existing?.affiliate_url === product.affiliate_url)) {
-            feedback.className = 'form-feedback error';
-            feedback.textContent = translations[currentLang].productFeedDuplicate;
-            return;
-        }
-
-        feed.products.push(product);
-        const file = new Blob([`${JSON.stringify(feed, null, 2)}\n`], { type: 'application/json' });
+        product.image_url = await readProductImage(selectedProductImageFile);
+        const file = new Blob([`${JSON.stringify({ products: [product] }, null, 2)}\n`], { type: 'application/json' });
         const downloadUrl = URL.createObjectURL(file);
         const downloadLink = document.createElement('a');
         downloadLink.href = downloadUrl;
-        downloadLink.download = 'temu-products.json';
+        downloadLink.download = 'product-suggestion.json';
         document.body.appendChild(downloadLink);
         downloadLink.click();
         downloadLink.remove();
@@ -1835,8 +1901,10 @@ async function downloadProductFeed(event) {
         feedback.className = 'form-feedback success';
         feedback.textContent = translations[currentLang].productFeedDownloaded;
         form.reset();
+        selectedProductImageFile = null;
+        clearProductImagePreview();
     } catch (error) {
-        console.error('Could not generate the Temu product feed:', error);
+        console.error('Could not generate the product suggestion:', error);
         feedback.className = 'form-feedback error';
         feedback.textContent = translations[currentLang].productFeedError;
     } finally {
@@ -1844,6 +1912,10 @@ async function downloadProductFeed(event) {
     }
 }
 
+/*
+ * The suggestion is downloaded separately from the publishing feed so it can be reviewed
+ * before an administrator adds it to temu-products.json.
+ */
 
 // AI Assistant
 function handleAiKey(e) { if (e.key === 'Enter') askAiAssistant(); }

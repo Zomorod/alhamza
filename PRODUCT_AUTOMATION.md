@@ -17,7 +17,7 @@ The site uses a manually maintained feed; it does not fetch products from Temu. 
 }
 ```
 
-Accepted categories are `Hot Items`, `tech`, `home`, `furniture`, `curtains`, `remote_services`, `cars`, `bicycles`, `fashion`, and `jewelry`. Image and Temu affiliate URLs must use HTTPS. New products should be appended to the feed; affiliate links already present in `published-temu-products.json` are not published again.
+Accepted categories are `Hot Items`, `tech`, `home`, `furniture`, `curtains`, `remote_services`, `cars`, `bicycles`, `fashion`, and `jewelry`. Image URLs must use HTTPS, or may be an uploaded JPG, PNG, or WEBP image encoded in the suggestion JSON (maximum 2 MB). The Temu affiliate URL is optional; when present, it must use HTTPS and point to Temu. Products without affiliate links are deduplicated by title, category, and image.
 
 GitHub Actions checks hourly and publishes up to three new products during the 10:00 hour in `Africa/Casablanca`. The published products are saved to the static JSON files and deployed to Firebase Hosting. GitHub scheduled runs are best-effort and can be delayed; the publisher skips runs that start outside the Morocco 10:00 hour.
 
@@ -28,4 +28,4 @@ To enable it:
 3. Keep the existing `FIREBASE_SERVICE_ACCOUNT_ZOMOROD_58438` repository secret available so the scheduled workflow can deploy the updated site.
 4. Open `Actions` → `Publish daily Temu products` to check run results. A manual run also publishes only during the Morocco 10:00 hour.
 
-The site's **Add new product** form downloads an updated JSON feed. Replace `temu-products.json` in the project with that downloaded file and push the change to GitHub; the next scheduled run can then publish its first three products. Without a server, the form cannot write directly to GitHub.
+The site's **Add new product** form downloads a separate `product-suggestion.json` file. Send it to the site administrator for review; suggestions do not enter the publishing feed or appear on the site automatically. After approval, an administrator can add the product to `temu-products.json`; the next scheduled run can then publish up to three approved products. The form does not upload suggestions to a server.
