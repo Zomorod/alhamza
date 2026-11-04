@@ -665,6 +665,35 @@ let products = [
         ],
         image: "https://www.dishisjewels.com/image/cache/catalog/sophia-9-545x545.jpg",
         affLink: "https://www.dishisjewels.com/bhawana-gold-and-diamond-pendant"
+    },
+    {
+        id: 45,
+        title: "قلادة Rabiya من الذهب والألماس",
+        titleEn: "Rabiya gold and diamond pendant",
+        titleFr: "Pendentif Rabiya en or et diamant",
+        description: "قلادة Rabiya من الذهب مرصعة بالألماس. الثمن المعروض في المتجر ₹15,199.42، أي حوالي 1,575.75 درهم مغربي أو 160.28 دولار أمريكي بسعر الصرف بتاريخ 4 نوفمبر 2026. التحويل تقريبي وقد يتغير حسب خيارات المتجر. القلادة بدون سلسلة.",
+        descriptionFr: "Pendentif Rabiya en or orné de diamants. Prix affiché : ₹15 199,42, soit environ 1 575,75 MAD ou 160,28 USD au taux du 4 novembre 2026. Conversion indicative ; le prix peut varier selon les options de la boutique. Pendentif vendu sans chaîne.",
+        descriptionEn: "Rabiya gold pendant adorned with diamonds. The store lists it at ₹15,199.42, approximately 1,575.75 MAD or $160.28 USD using the November 4, 2026 exchange rate. Conversion is an estimate and may vary by store options. Pendant comes without a chain.",
+        price: "1575.75 DH",
+        priceMAD: 1575.75,
+        priceUSD: 160.28,
+        oldPrice: "2251.08 DH",
+        oldPriceMAD: 2251.08,
+        oldPriceUSD: 228.97,
+        priceApproximate: true,
+        priceVerified: true,
+        showFirstTimeOffer: false,
+        platform: "Dishis Jewels",
+        category: "jewelry",
+        images: [
+            "https://www.dishisjewels.com/image/cache/catalog/Rabiya%20Gold%20and%20Diamond%20Pendant1-545x545.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/Rabiya%20Gold%20and%20Diamond%20Pendant2-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/Rabiya%20Gold%20and%20Diamond%20Pendant3-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/Rabiya%20Gold%20and%20Diamond%20Pendant4-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/Rabiya%20Gold%20and%20Diamond%20Pendant5-1000x1000.jpg"
+        ],
+        image: "https://www.dishisjewels.com/image/cache/catalog/Rabiya%20Gold%20and%20Diamond%20Pendant1-545x545.jpg",
+        affLink: "https://www.dishisjewels.com/rabiya-gold-and-diamond-pendant"
     }
 ];
 
