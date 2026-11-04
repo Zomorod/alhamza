@@ -694,6 +694,45 @@ let products = [
         ],
         image: "https://www.dishisjewels.com/image/cache/catalog/Rabiya%20Gold%20and%20Diamond%20Pendant1-545x545.jpg",
         affLink: "https://www.dishisjewels.com/rabiya-gold-and-diamond-pendant"
+    },
+    {
+        id: 46,
+        title: "قلادة Neeru من الذهب والألماس",
+        titleEn: "Neeru gold and diamond pendant",
+        titleFr: "Pendentif Neeru en or et diamant",
+        description: "قلادة Neeru أنيقة من الذهب مرصعة بالألماس. الثمن المعروض في المتجر ₹38,586.67، أي حوالي 4,000.36 درهم مغربي أو 406.90 دولار أمريكي بسعر الصرف بتاريخ 4 نوفمبر 2026. التحويل تقريبي وقد يتغير حسب خيارات المتجر. القلادة بدون سلسلة؛ يمكن طلب سلسلة فضة إسترلينية عيار 925.",
+        descriptionFr: "Élégant pendentif Neeru en or orné de diamants. Prix affiché : ₹38 586,67, soit environ 4 000,36 MAD ou 406,90 USD au taux du 4 novembre 2026. Conversion indicative ; le prix peut varier selon les options. Pendentif vendu sans chaîne ; une chaîne en argent sterling 925 peut être demandée.",
+        descriptionEn: "Elegant Neeru gold pendant set with diamonds. The store lists it at ₹38,586.67, approximately 4,000.36 MAD or $406.90 USD using the November 4, 2026 exchange rate. Conversion is an estimate and may vary by store options. Pendant comes without a chain; a 925 sterling silver chain can be requested.",
+        price: "4000.36 DH",
+        priceMAD: 4000.36,
+        priceUSD: 406.90,
+        oldPrice: "5714.80 DH",
+        oldPriceMAD: 5714.80,
+        oldPriceUSD: 581.28,
+        priceApproximate: true,
+        priceVerified: true,
+        showFirstTimeOffer: false,
+        platform: "Dishis Jewels",
+        category: "jewelry",
+        images: [
+            "https://www.dishisjewels.com/image/cache/catalog/audrey-2-545x545.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/audrey-12-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/audrey-5-min-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/audrey-6-min-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/audrey-7-min-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/audrey-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/audrey-11-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/audrey-0-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/audrey-1-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/audrey-4-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/audrey-3-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/18image-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/audrey-8-min-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/audrey-9-min-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/audrey-10-min-1000x1000.jpg"
+        ],
+        image: "https://www.dishisjewels.com/image/cache/catalog/audrey-2-545x545.jpg",
+        affLink: "https://www.dishisjewels.com/neeru-gold-and-diamond-pendant"
     }
 ];
 
