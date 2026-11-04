@@ -588,6 +588,44 @@ let products = [
         ],
         image: "https://www.dishisjewels.com/image/cache/catalog/Blaise%20Diamond%20Pendant1-545x545.jpeg",
         affLink: "https://www.dishisjewels.com/blaise-diamond-pendant"
+    },
+    {
+        id: 43,
+        title: "قلادة Aahna من الذهب والألماس والزمرد الصناعي",
+        titleEn: "Aahna gold and diamond pendant with synthetic emerald",
+        titleFr: "Pendentif Aahna en or, diamant et émeraude synthétique",
+        description: "قلادة Aahna من الذهب مرصعة بالألماس وحجر زمرد صناعي. الثمن المعروض في المتجر ₹51,064.25، أي حوالي 5,293.93 درهم مغربي أو 538.47 دولار أمريكي بسعر الصرف بتاريخ 4 نوفمبر 2026. التحويل تقريبي وقد يتغير الثمن حسب الخيارات. القلادة بدون سلسلة؛ يمكن طلب سلسلة من الفضة الإسترلينية عيار 925 من المتجر.",
+        descriptionFr: "Pendentif Aahna en or, serti de diamants et d’une émeraude synthétique. Prix affiché : ₹51 064,25, soit environ 5 293,93 MAD ou 538,47 USD au taux du 4 novembre 2026. Conversion indicative ; le prix peut varier selon les options. Pendentif vendu sans chaîne ; une chaîne en argent sterling 925 peut être demandée à la boutique.",
+        descriptionEn: "Aahna gold pendant set with diamonds and a synthetic emerald. The store lists it at ₹51,064.25, approximately 5,293.93 MAD or $538.47 USD using the November 4, 2026 exchange rate. Conversion is an estimate; price may vary by options. Pendant comes without a chain; a 925 sterling silver chain can be requested from the store.",
+        price: "5293.93 DH",
+        priceMAD: 5293.93,
+        priceUSD: 538.47,
+        oldPrice: "7562.76 DH",
+        oldPriceMAD: 7562.76,
+        oldPriceUSD: 769.25,
+        priceApproximate: true,
+        priceVerified: true,
+        showFirstTimeOffer: false,
+        platform: "Dishis Jewels",
+        category: "jewelry",
+        images: [
+            "https://www.dishisjewels.com/image/cache/catalog/74-545x545.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/catherine-0-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/catherine-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/catherine-1-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/catherine-2-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/catherine-5-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/catherine-6-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/catherine-3-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/catherine-7-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/catherine-8-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/catherine-4-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/20image-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/catherine-10-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/catherine-11-1000x1000.jpg"
+        ],
+        image: "https://www.dishisjewels.com/image/cache/catalog/74-545x545.jpg",
+        affLink: "https://www.dishisjewels.com/aahna-gold-and-diamond-pendant"
     }
 ];
 
