@@ -560,6 +560,34 @@ let products = [
         ],
         image: "https://www.dishisjewels.com/image/cache/catalog/4999-Gopala%20pearl%20gold%20diamond%20ring-01-545x545.jpg",
         affLink: "https://www.dishisjewels.com/gopala-pearl-gold-diamond-ring"
+    },
+    {
+        id: 42,
+        title: "قلادة Blaise مرصعة بالألماس وحجر الأونيكس والعقيق الستريني",
+        titleEn: "Blaise diamond pendant with black onyx and citrine",
+        titleFr: "Pendentif Blaise en diamant, onyx noir et citrine",
+        description: "قلادة Blaise أنيقة مرصعة بالألماس وحجر الأونيكس الأسود والعقيق الستريني. الثمن المعروض في المتجر ₹49,568.46، أي حوالي 5,138.86 درهم مغربي أو 522.70 دولار أمريكي بسعر الصرف بتاريخ 4 نوفمبر 2026. التحويل تقريبي وقد يتغير الثمن حسب خيارات الحجر. القلادة بدون سلسلة؛ يمكن طلب سلسلة من الفضة الإسترلينية عيار 925 من المتجر.",
+        descriptionFr: "Élégant pendentif Blaise orné de diamants, d’onyx noir et de citrine. Prix affiché : ₹49 568,46, soit environ 5 138,86 MAD ou 522,70 USD au taux du 4 novembre 2026. Conversion indicative ; le prix peut varier selon les options de pierre. Pendentif vendu sans chaîne ; une chaîne en argent sterling 925 peut être demandée à la boutique.",
+        descriptionEn: "Elegant Blaise pendant set with diamonds, black onyx, and citrine. The store lists it at ₹49,568.46, approximately 5,138.86 MAD or $522.70 USD using the November 4, 2026 exchange rate. Conversion is an estimate; price may vary by stone options. Pendant comes without a chain; a 925 sterling silver chain can be requested from the store.",
+        price: "5138.86 DH",
+        priceMAD: 5138.86,
+        priceUSD: 522.70,
+        oldPrice: "7341.23 DH",
+        oldPriceMAD: 7341.23,
+        oldPriceUSD: 746.71,
+        priceApproximate: true,
+        priceVerified: true,
+        showFirstTimeOffer: false,
+        platform: "Dishis Jewels",
+        category: "jewelry",
+        images: [
+            "https://www.dishisjewels.com/image/cache/catalog/Blaise%20Diamond%20Pendant1-545x545.jpeg",
+            "https://www.dishisjewels.com/image/cache/catalog/Blaise%20Diamond%20Pendant2-1000x1000.jpeg",
+            "https://www.dishisjewels.com/image/cache/catalog/Blaise%20Diamond%20Pendant3-1000x1000.jpeg",
+            "https://www.dishisjewels.com/image/cache/catalog/Blaise%20Diamond%20Pendant4-1000x1000.jpeg"
+        ],
+        image: "https://www.dishisjewels.com/image/cache/catalog/Blaise%20Diamond%20Pendant1-545x545.jpeg",
+        affLink: "https://www.dishisjewels.com/blaise-diamond-pendant"
     }
 ];
 
