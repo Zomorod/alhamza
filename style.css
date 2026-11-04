@@ -543,6 +543,13 @@ body[data-theme="dark"] .hero-banner::before {
     font-size: 0.9rem;
 }
 
+.old-price .currency-amount > *,
+.old-price .currency-separator {
+    text-decoration: line-through;
+    text-decoration-color: currentColor;
+    text-decoration-thickness: 1px;
+}
+
 .new-price {
     color: var(--accent);
     font-size: 1.3rem;
