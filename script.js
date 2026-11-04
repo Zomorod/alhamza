@@ -524,6 +524,42 @@ let products = [
         category: "fashion",
         image: "https://img.kwcdn.com/product/open/b71a5a71490e4358a5af836838319f33-goods.jpeg?imageView2/2/w/500/q/70/format/avif",
         affLink: "https://temu.to/k/e2gyujc513v"
+    },
+    {
+        id: 41,
+        title: "خاتم غوبالا من الذهب واللؤلؤ والألماس",
+        titleEn: "Gopala pearl gold diamond ring",
+        titleFr: "Bague Gopala en or, perle et diamant",
+        description: "خاتم Gopala أنيق من الذهب، مرصع بلؤلؤة وألماس. الثمن المعروض في المتجر ₹26,512.32، أي حوالي 2,748.59 درهم أو 279.57 دولار، حسب سعر الصرف بتاريخ 4 نوفمبر 2026. التحويل تقريبي، والثمن النهائي يقدر يتغير حسب قياس الخاتم وخيارات المتجر.",
+        descriptionFr: "Élégante bague Gopala en or, ornée d’une perle et de diamants. Le prix affiché par la boutique est de ₹26 512,32, soit environ 2 748,59 MAD ou 279,57 USD au taux du 4 novembre 2026. Conversion indicative ; le prix final peut varier selon la taille et les options.",
+        descriptionEn: "Elegant Gopala gold ring set with a pearl and diamonds. The store lists it at ₹26,512.32, approximately 2,748.59 MAD or $279.57 USD using the November 4, 2026 exchange rate. Conversion is an estimate; the final price may vary by ring size and store options.",
+        price: "2748.59 DH",
+        priceMAD: 2748.59,
+        priceUSD: 279.57,
+        oldPrice: "3926.55 DH",
+        oldPriceMAD: 3926.55,
+        oldPriceUSD: 399.39,
+        priceApproximate: true,
+        priceVerified: true,
+        showFirstTimeOffer: false,
+        platform: "Dishis Jewels",
+        category: "jewelry",
+        images: [
+            "https://www.dishisjewels.com/image/cache/catalog/4999-Gopala%20pearl%20gold%20diamond%20ring-01-545x545.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/4999-Gopala%20pearl%20gold%20diamond%20ring-2-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/4999-Gopala%20pearl%20gold%20diamond%20ring-3-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/4999-Gopala%20pearl%20gold%20diamond%20ring-4-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/4999-Gopala%20pearl%20gold%20diamond%20ring-5-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/4999-Gopala%20pearl%20gold%20diamond%20ring-6-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/4999-Gopala%20pearl%20gold%20diamond%20ring-7-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/4999-Gopala%20pearl%20gold%20diamond%20ring-8-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/4999-Gopala%20pearl%20gold%20diamond%20ring-9-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/1024-diamond%20-certificate-01-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/1024-diamond%20-certificate-02-1000x1000.jpg",
+            "https://www.dishisjewels.com/image/cache/catalog/1024-diamond-certificate-03-1000x1000.jpg"
+        ],
+        image: "https://www.dishisjewels.com/image/cache/catalog/4999-Gopala%20pearl%20gold%20diamond%20ring-01-545x545.jpg",
+        affLink: "https://www.dishisjewels.com/gopala-pearl-gold-diamond-ring"
     }
 ];
 
@@ -617,8 +653,6 @@ const translations = {
         detailNotFoundText: "يمكن تحيد أو الرابط ما بقاش صالح.",
         detailShare: "مشاركة عبر واتساب",
         shareFacebook: "Facebook",
-        shareSnapchat: "Snapchat / تطبيقات أخرى",
-        copyProductLink: "نسخ رابط المنتج",
         productLinkCopied: "تنسخ رابط صفحة المنتج. تقدر تلصقو فـ Snapchat أو أي تطبيق.",
         productLinkCopyFailed: "ما قدرناش ننسخو الرابط تلقائياً. ها هو باش تنسخو:",
         shareCancelled: "تلغات المشاركة.",
@@ -670,8 +704,6 @@ const translations = {
         detailNotFoundText: "Ce produit a peut-être été retiré ou le lien n’est plus valide.",
         detailShare: "Partager sur WhatsApp",
         shareFacebook: "Facebook",
-        shareSnapchat: "Snapchat / autres applications",
-        copyProductLink: "Copier le lien du produit",
         productLinkCopied: "Lien de la page produit copié. Vous pouvez le coller dans Snapchat ou une autre application.",
         productLinkCopyFailed: "Impossible de copier automatiquement. Voici le lien à copier :",
         shareCancelled: "Partage annulé.",
@@ -723,8 +755,6 @@ const translations = {
         detailNotFoundText: "This product may have been removed or the link is no longer valid.",
         detailShare: "Share on WhatsApp",
         shareFacebook: "Facebook",
-        shareSnapchat: "Snapchat / other apps",
-        copyProductLink: "Copy product link",
         productLinkCopied: "Product page link copied. You can paste it into Snapchat or another app.",
         productLinkCopyFailed: "Couldn't copy automatically. Copy this link:",
         shareCancelled: "Sharing cancelled.",
@@ -1257,7 +1287,7 @@ function getSavedLanguage() {
 
 function getProductTitle(product) {
     if (currentLang === 'en') {
-        return englishProductTitles[product.id] || product.title;
+        return product.titleEn || englishProductTitles[product.id] || product.title;
     }
     if (currentLang === 'fr') {
         return product.titleFr || frenchProductTitles[product.id] || product.title;
@@ -1269,9 +1299,51 @@ function getProductPrice(product) {
     if (product.contactOnly) {
         return translations[currentLang].contactForPrice;
     }
-    return product.priceVerified === false
-        ? translations[currentLang].priceAtStore
-        : product.price;
+    if (product.priceVerified === false) return translations[currentLang].priceAtStore;
+    if (product.priceMAD != null && product.priceUSD != null) {
+        const currencyNames = getLocalizedCurrencyNames();
+        return `≈ ${formatProductCurrency(product.priceMAD)} ${currencyNames.mad} / ≈ $${formatProductCurrency(product.priceUSD)} ${currencyNames.usd}`;
+    }
+    const prefix = product.priceApproximate ? '≈ ' : '';
+    return `${prefix}${product.price}`;
+}
+
+function getProductOldPrice(product) {
+    if (!product.oldPrice) return '';
+    if (product.oldPriceMAD != null && product.oldPriceUSD != null) {
+        const currencyNames = getLocalizedCurrencyNames();
+        return `≈ ${formatProductCurrency(product.oldPriceMAD)} ${currencyNames.mad} / ≈ $${formatProductCurrency(product.oldPriceUSD)} ${currencyNames.usd}`;
+    }
+    const prefix = product.priceApproximate ? '≈ ' : '';
+    return `${prefix}${product.oldPrice}`;
+}
+
+function getLocalizedCurrencyNames() {
+    if (currentLang === 'ar') {
+        return { mad: 'درهم مغربي', usd: 'دولار أمريكي' };
+    }
+    return { mad: 'MAD', usd: 'USD' };
+}
+
+function formatProductCurrency(amount) {
+    return new Intl.NumberFormat('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    }).format(amount);
+}
+
+function getProductPriceMarkup(product, oldPrice = false) {
+    const madAmount = oldPrice ? product.oldPriceMAD : product.priceMAD;
+    const usdAmount = oldPrice ? product.oldPriceUSD : product.priceUSD;
+    if (madAmount == null || usdAmount == null) {
+        return escapeHtml(oldPrice ? getProductOldPrice(product) : getProductPrice(product));
+    }
+
+    const currencyNames = getLocalizedCurrencyNames();
+    const approximate = product.priceApproximate ? '≈ ' : '';
+    const direction = currentLang === 'ar' ? 'rtl' : 'ltr';
+    const dollarAmount = `$${formatProductCurrency(usdAmount)}`;
+    return `<span class="product-currency-prices" dir="ltr"><span class="currency-amount" dir="${direction}"><bdi dir="ltr">${approximate}${formatProductCurrency(madAmount)}</bdi><span>${currencyNames.mad}</span></span><span class="currency-separator">/</span><span class="currency-amount" dir="${direction}"><bdi dir="ltr">${approximate}${dollarAmount}</bdi><span>${currencyNames.usd}</span></span></span>`;
 }
 
 function renderTopDeals() {
@@ -1292,7 +1364,7 @@ function renderTopDeals() {
                 </span>
                 <span class="top-deal-info">
                     <strong>${escapeHtml(title)}</strong>
-                    <span class="top-deal-price">${escapeHtml(getProductPrice(product))}</span>
+                    <span class="top-deal-price"${product.priceUSD != null ? ' dir="auto"' : ''}>${escapeHtml(getProductPrice(product))}</span>
                 </span>
                 <i class="ri-arrow-left-line top-deal-arrow" aria-hidden="true"></i>
             </a>
@@ -1404,8 +1476,8 @@ function renderProductDetail(productId) {
                 <h1>${escapeHtml(title)}</h1>
                 <p class="product-detail-description">${escapeHtml(description)}</p>
                 <div class="price-box product-detail-price">
-                    ${product.oldPrice ? `<span class="old-price">${escapeHtml(product.oldPrice)}</span>` : ''}
-                    <span class="new-price">${escapeHtml(getProductPrice(product))}</span>
+                    ${product.oldPrice ? `<span class="old-price">${getProductPriceMarkup(product, true)}</span>` : ''}
+                    <span class="new-price">${getProductPriceMarkup(product)}</span>
                     ${product.freeDelivery ? `<span class="free-delivery-note">${escapeHtml(translations[currentLang].freeDelivery)}</span>` : ''}
                     ${contactOnly || product.showFirstTimeOffer === false ? '' : `<span class="first-time-offer">${escapeHtml(translations[currentLang].firstTimeOffer)}</span>`}
                 </div>
@@ -1424,14 +1496,6 @@ function renderProductDetail(productId) {
                         <i class="ri-facebook-fill" aria-hidden="true"></i>
                         ${escapeHtml(translations[currentLang].shareFacebook)}
                     </a>
-                    <button class="product-detail-share product-detail-share-snapchat" type="button">
-                        <i class="ri-snapchat-fill" aria-hidden="true"></i>
-                        ${escapeHtml(translations[currentLang].shareSnapchat)}
-                    </button>
-                    <button class="product-detail-share product-detail-copy-link" type="button">
-                        <i class="ri-links-line" aria-hidden="true"></i>
-                        ${escapeHtml(translations[currentLang].copyProductLink)}
-                    </button>
                 </div>
                 <p class="product-share-feedback" role="status" aria-live="polite"></p>
             </div>
@@ -1459,12 +1523,6 @@ function renderProductDetail(productId) {
         } else {
             shareToWhatsApp(product);
         }
-    });
-    container.querySelector('.product-detail-share-snapchat').addEventListener('click', () => {
-        shareProductWithApps(product, container.querySelector('.product-share-feedback'));
-    });
-    container.querySelector('.product-detail-copy-link').addEventListener('click', () => {
-        copyProductLink(product, container.querySelector('.product-share-feedback'));
     });
 }
 
@@ -1494,8 +1552,8 @@ function renderProducts(items, directDealLinks = false, gridId = 'productsGrid')
                 ${String(product.platform).toLowerCase() === 'temu' ? `<p class="temu-promo-chip"><i class="ri-price-tag-3-line" aria-hidden="true"></i>${escapeHtml(translations[currentLang].temuPromoChip)}</p>` : ''}
                 <div class="product-footer">
                     <div class="price-box">
-                        ${product.oldPrice ? `<span class="old-price">${escapeHtml(product.oldPrice)}</span>` : ''}
-                        <span class="new-price">${escapeHtml(getProductPrice(product))}</span>
+                        ${product.oldPrice ? `<span class="old-price">${getProductPriceMarkup(product, true)}</span>` : ''}
+                        <span class="new-price">${getProductPriceMarkup(product)}</span>
                         ${product.freeDelivery ? `<span class="free-delivery-note">${escapeHtml(translations[currentLang].freeDelivery)}</span>` : ''}
                         ${product.showWellWishes ? `<span class="product-well-wishes">${escapeHtml(translations[currentLang].productWellWishes)}</span>` : ''}
                         ${product.contactOnly || product.showFirstTimeOffer === false ? '' : `<span class="first-time-offer">${escapeHtml(translations[currentLang].firstTimeOffer)}</span>`}

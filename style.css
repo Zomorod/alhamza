@@ -549,6 +549,29 @@ body[data-theme="dark"] .hero-banner::before {
     font-weight: bold;
 }
 
+.product-currency-prices {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0 6px;
+    direction: ltr;
+}
+
+.currency-amount {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 4px;
+    white-space: nowrap;
+}
+
+.currency-amount bdi {
+    unicode-bidi: isolate;
+}
+
+.currency-separator {
+    unicode-bidi: isolate;
+}
+
 .first-time-offer {
     flex-basis: 100%;
     color: var(--text-secondary);
@@ -1264,16 +1287,6 @@ body[data-theme="dark"] .top-deals {
 
 .product-detail-share-facebook {
     background: #1877f2;
-}
-
-.product-detail-share-snapchat {
-    background: #fffc00;
-    color: #111;
-}
-
-.product-detail-copy-link {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border);
 }
 
 .product-share-feedback {
