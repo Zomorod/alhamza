@@ -1,0 +1,48 @@
+name: Publish daily Temu products
+
+on:
+  schedule:
+    - cron: "0 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-temu-products
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Publish up to three products at 10 AM Morocco time
+        run: node scripts/publish-temu-products.mjs
+      - name: Sync the Firebase public-folder copy
+        run: cp published-temu-products.json public/published-temu-products.json
+      - name: Save newly published products
+        id: save
+        run: |
+          if git diff --quiet -- published-temu-products.json public/published-temu-products.json; then
+            echo "No product changes to publish."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add published-temu-products.json public/published-temu-products.json
+          git commit -m "Publish daily Temu products"
+          git push
+      - name: Deploy updated site to Firebase Hosting
+        if: steps.save.outputs.changed == 'true'
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ZOMOROD_58438 }}
+          channelId: live
+          projectId: zomorod-58438

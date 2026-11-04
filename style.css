@@ -2481,3 +2481,182 @@ body[data-theme="dark"] .temu-promo-chip {
         margin-bottom: 12px;
     }
 }
+
+.header-actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+}
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.header-actions .lang-selector {
+    padding: 3px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--bg-primary);
+}
+
+.header-actions .lang-btn {
+    padding: 5px 9px;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--text-secondary);
+}
+
+.header-actions .lang-btn.active,
+.header-actions .lang-btn:hover {
+    background: #203b30;
+    color: #fffefa;
+}
+
+.header-actions .theme-toggle {
+    width: 36px;
+    height: 36px;
+}
+
+.header-actions .admin-trigger-btn {
+    min-height: 36px;
+    padding: 6px 12px;
+    white-space: nowrap;
+}
+
+.home-featured-products {
+    margin-top: clamp(26px, 4vw, 48px);
+}
+
+.home-featured-products .section-header {
+    margin-bottom: 18px;
+}
+
+.home-featured-products .section-header h2 {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.home-featured-products .section-header i {
+    color: var(--accent);
+}
+
+.product-add-note {
+    margin-bottom: 16px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.7;
+}
+
+.product-add-card .modal-body {
+    overflow-y: auto;
+}
+
+.product-add-card .form-group {
+    margin-bottom: 12px;
+}
+
+.product-add-card .form-feedback {
+    line-height: 1.6;
+}
+
+.site-footer {
+    margin-top: 20px;
+    padding: 16px 0 8px;
+}
+
+.footer-grid {
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.site-footer .footer-col {
+    padding: 10px 12px;
+}
+
+.footer-col p {
+    margin-top: 5px;
+    font-size: 0.8rem;
+    line-height: 1.4;
+}
+
+.footer-col h4 {
+    margin-bottom: 5px;
+    font-size: 0.92rem;
+}
+
+.footer-col ul {
+    gap: 3px;
+}
+
+.footer-col ul a {
+    font-size: 0.78rem;
+}
+
+.affiliate-invite {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 14px;
+    border-radius: 12px;
+}
+
+.affiliate-invite h4 {
+    margin: 0;
+    font-size: 0.92rem;
+}
+
+.affiliate-invite > a {
+    padding: 7px 12px;
+    border-radius: 8px;
+}
+
+.footer-bottom {
+    margin-top: 8px;
+    padding-top: 7px;
+}
+
+@media (max-width: 768px) {
+    .header-actions {
+        align-self: center;
+    }
+
+    .site-footer {
+        padding: 14px 0 8px;
+    }
+
+    .footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+        margin-bottom: 8px;
+    }
+
+    .site-footer .footer-col {
+        padding: 9px 10px;
+    }
+
+    .site-footer .footer-col:first-child {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 420px) {
+    .header-actions .admin-trigger-btn {
+        min-height: 34px;
+    }
+
+    .header-actions .theme-toggle {
+        width: 34px;
+        height: 34px;
+    }
+
+    .affiliate-invite {
+        align-items: center;
+        flex-direction: row;
+        gap: 10px;
+    }
+}

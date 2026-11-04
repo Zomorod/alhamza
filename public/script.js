@@ -1,6 +1,5 @@
 // قاعدة بيانات المنتجات الابتدائية
-const API_BASE_URL = "https://alhamza-products-api.m939.workers.dev";
-let communityProducts = [];
+let publishedTemuProducts = [];
 let products = [
     {
         id: 1,
@@ -663,8 +662,6 @@ const englishProductTitles = {
 let currentLang = 'ar';
 let currentCategory = 'all';
 let selectedCatalogCategory = null;
-let isAdminAuthenticated = false;
-let adminSessionToken = "";
 let featuredDealIndex = 0;
 
 // التشغيل الأولي
@@ -686,8 +683,8 @@ document.addEventListener('DOMContentLoaded', () => {
     renderFeaturedDeals();
     updateStats();
 
-    loadApprovedProducts().catch(error => {
-        console.error('Failed to load approved products:', error);
+    loadPublishedTemuProducts().catch(error => {
+        console.error('Failed to load published Temu products:', error);
         document.getElementById('catalogStatus').textContent = error.message;
     }).finally(() => {
         if (productId) renderProductDetail(productId);
@@ -705,13 +702,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 4500);
     }
 
-    if (!productId && new URLSearchParams(window.location.search).get('admin') === '1') {
-        openAdminModal();
-    }
+
 });
 
 function getAllProducts() {
-    return [...products, ...communityProducts];
+    return [...products, ...publishedTemuProducts];
 }
 
 function getCatalogCategoryProducts(categoryKey) {
@@ -896,28 +891,24 @@ function escapeHtml(value) {
     })[character]);
 }
 
-async function apiRequest(path, options = {}) {
-    if (!API_BASE_URL) {
-        throw new Error("خدمة اقتراح المنتجات مازال ما تجهزاتش. عاود المحاولة من بعد.");
-    }
-
-    const response = await fetch(`${API_BASE_URL}${path}`, {
-        ...options,
-        headers: {
-            ...(options.body ? { "Content-Type": "application/json" } : {}),
-            ...(options.token ? { Authorization: `Bearer ${options.token}` } : {}),
-            ...options.headers
+async function loadPublishedTemuProducts() {
+    const response = await fetch(new URL('published-temu-products.json', document.baseURI));
+    if (!response.ok) throw new Error(`Unable to load published Temu products (HTTP ${response.status}).`);
+    const result = await response.json();
+    if (!result || !Array.isArray(result.products)) throw new Error('Published Temu products file is invalid.');
+    publishedTemuProducts = result.products.map((product, index) => {
+        if (!product || typeof product !== 'object' ||
+            typeof product.title !== 'string' || typeof product.price !== 'string' ||
+            typeof product.old_price !== 'string' || typeof product.category !== 'string' ||
+            typeof product.image_url !== 'string' || typeof product.affiliate_url !== 'string') {
+            throw new Error(`Invalid published Temu product at position ${index + 1}.`);
         }
+        return {
+            id: `temu-auto-${index + 1}`, title: product.title, price: product.price,
+            oldPrice: product.old_price, platform: 'temu', category: product.category,
+            image: product.image_url, affLink: product.affiliate_url
+        };
     });
-    const result = await response.json().catch(() => ({}));
-    if (!response.ok) throw new Error(result.error || "تعذر إكمال الطلب. عاود المحاولة.");
-    return result;
-}
-
-async function loadApprovedProducts() {
-    if (!API_BASE_URL) return;
-    const result = await apiRequest("/api/products");
-    communityProducts = result.products;
     renderProducts(getVisibleProducts(), Boolean(selectedCatalogCategory));
     renderFeaturedDeals();
     updateStats();
@@ -1131,67 +1122,7 @@ function filterCategory(cat, element) {
     if (!showLanding) renderProducts(getVisibleProducts());
 }
 
-async function renderAdminProductsTable() {
-    const tbody = document.getElementById('pendingSubmissionsList');
-    tbody.replaceChildren();
-    const result = await apiRequest('/api/admin/submissions', { token: adminSessionToken });
 
-    if (result.submissions.length === 0) {
-        const row = document.createElement('tr');
-        const cell = document.createElement('td');
-        cell.colSpan = 4;
-        cell.textContent = translations[currentLang].noPendingSuggestions;
-        row.appendChild(cell);
-        tbody.appendChild(row);
-        return;
-    }
-
-    result.submissions.forEach(submission => {
-        const row = document.createElement('tr');
-        const imageCell = document.createElement('td');
-        const image = document.createElement('img');
-        image.src = submission.image;
-        image.alt = submission.title;
-        imageCell.appendChild(image);
-
-        const productCell = document.createElement('td');
-        const title = document.createElement('strong');
-        title.textContent = submission.title;
-        const price = document.createElement('p');
-        price.textContent = `${submission.price}${submission.oldPrice ? ` (${translations[currentLang].oldPrice}: ${submission.oldPrice})` : ''}`;
-        const link = document.createElement('a');
-        link.href = submission.affLink;
-        link.target = '_blank';
-        link.rel = 'noopener noreferrer';
-        link.textContent = translations[currentLang].openProductLink;
-        productCell.append(title, price, link);
-
-        const platformCell = document.createElement('td');
-        platformCell.textContent = submission.platform;
-        const actionsCell = document.createElement('td');
-        const approveButton = document.createElement('button');
-        approveButton.type = 'button';
-        approveButton.className = 'approve-btn';
-        approveButton.textContent = translations[currentLang].approve;
-        approveButton.addEventListener('click', () => reviewSubmission(submission.id, 'approve'));
-        const rejectButton = document.createElement('button');
-        rejectButton.type = 'button';
-        rejectButton.className = 'delete-btn';
-        rejectButton.textContent = translations[currentLang].reject;
-        rejectButton.addEventListener('click', () => reviewSubmission(submission.id, 'reject'));
-        actionsCell.append(approveButton, rejectButton);
-
-        row.append(imageCell, productCell, platformCell, actionsCell);
-        tbody.appendChild(row);
-    });
-}
-
-// تحديث الإحصائيات
-function updateStats() {
-    document.getElementById('totalDealsCount').innerText = getAllProducts().length + '+';
-}
-
-// تغيير اللغة
 function setLanguage(lang) {
     if (!translations[lang]) return;
     currentLang = lang;
@@ -1378,131 +1309,6 @@ async function copyProductLink(product, feedback) {
 function openAiAssistant() { document.getElementById('aiModal').classList.add('active'); }
 function closeAiAssistant() { document.getElementById('aiModal').classList.remove('active'); }
 
-function openSubmissionModal() {
-    document.getElementById('submissionFeedback').textContent = '';
-    document.getElementById('productSubmitModal').classList.add('active');
-}
-
-function closeSubmissionModal() {
-    document.getElementById('productSubmitModal').classList.remove('active');
-}
-
-async function submitProductSuggestion(event) {
-    event.preventDefault();
-    const form = document.getElementById('productSubmitForm');
-    const feedback = document.getElementById('submissionFeedback');
-    const submitButton = form.querySelector('button[type="submit"]');
-    const suggestion = {
-        title: document.getElementById('newTitle').value.trim(),
-        price: document.getElementById('newPrice').value.trim(),
-        oldPrice: document.getElementById('newOldPrice').value.trim(),
-        platform: document.getElementById('newPlatform').value,
-        category: document.getElementById('newCategory').value,
-        image: document.getElementById('newImage').value.trim(),
-        affLink: document.getElementById('newAffLink').value.trim()
-    };
-
-    submitButton.disabled = true;
-    feedback.className = 'form-feedback';
-    feedback.textContent = translations[currentLang].suggestionSending;
-    try {
-        const result = await apiRequest('/api/submissions', {
-            method: 'POST',
-            body: JSON.stringify(suggestion)
-        });
-        feedback.classList.add('success');
-        feedback.textContent = translations[currentLang].suggestionSubmitted;
-        form.reset();
-    } catch (error) {
-        feedback.classList.add('error');
-        feedback.textContent = error.message;
-    } finally {
-        submitButton.disabled = false;
-    }
-}
-
-function openAdminModal() {
-    if (isAdminAuthenticated) {
-        document.getElementById('adminModal').classList.add('active');
-        renderAdminProductsTable().catch(error => {
-            document.getElementById('adminFeedback').textContent = error.message;
-        });
-        return;
-    }
-    document.getElementById('adminPassword').value = '';
-    document.getElementById('adminLoginError').textContent = '';
-    document.getElementById('adminLoginModal').classList.add('active');
-    document.getElementById('adminPassword').focus();
-}
-
-function toggleAdminModal() {
-    document.getElementById('adminModal').classList.remove('active');
-    document.getElementById('adminLoginModal').classList.remove('active');
-    isAdminAuthenticated = false;
-    adminSessionToken = '';
-}
-
-async function authenticateAdmin(event) {
-    event.preventDefault();
-    const passwordInput = document.getElementById('adminPassword');
-    const error = document.getElementById('adminLoginError');
-    error.textContent = '';
-
-    let result;
-    try {
-        result = await apiRequest('/api/admin/login', {
-            method: 'POST',
-            body: JSON.stringify({ password: passwordInput.value })
-        });
-    } catch (loginError) {
-        error.textContent = loginError.message;
-        passwordInput.value = '';
-        passwordInput.focus();
-        return;
-    }
-
-    adminSessionToken = result.token;
-    isAdminAuthenticated = true;
-    document.getElementById('adminLoginModal').classList.remove('active');
-    document.getElementById('adminModal').classList.add('active');
-    document.getElementById('adminFeedback').textContent = '';
-    try {
-        await renderAdminProductsTable();
-    } catch (loadError) {
-        document.getElementById('adminFeedback').textContent = loadError.message;
-    }
-}
-
-function closeAdminLogin() {
-    document.getElementById('adminLoginModal').classList.remove('active');
-    document.getElementById('adminLoginError').textContent = '';
-    document.getElementById('adminPassword').value = '';
-}
-
-async function reviewSubmission(id, action) {
-    const feedback = document.getElementById('adminFeedback');
-    feedback.className = 'form-feedback';
-    feedback.textContent = translations[currentLang].adminUpdating;
-    try {
-        await apiRequest(`/api/admin/submissions/${id}/${action}`, {
-            method: 'PATCH',
-            token: adminSessionToken
-        });
-        if (action === 'approve') await loadApprovedProducts();
-        await renderAdminProductsTable();
-        feedback.classList.add('success');
-        feedback.textContent = action === 'approve'
-            ? translations[currentLang].productApproved
-            : translations[currentLang].productRejected;
-    } catch (error) {
-        feedback.classList.add('error');
-        feedback.textContent = error.message;
-        if (error.message.includes('سجل الدخول')) {
-            toggleAdminModal();
-            openAdminModal();
-        }
-    }
-}
 
 // AI Assistant
 function handleAiKey(e) { if (e.key === 'Enter') askAiAssistant(); }

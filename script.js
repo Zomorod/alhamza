@@ -1,6 +1,5 @@
 // قاعدة بيانات المنتجات الابتدائية
-const API_BASE_URL = "https://alhamza-products-api.m939.workers.dev";
-let communityProducts = [];
+let publishedTemuProducts = [];
 let products = [
     {
         id: 1,
@@ -589,6 +588,7 @@ const translations = {
         catTech: "تكنولوجيا وواتساب",
         catHome: "طبخ والمنزل",
         catFashion: "أناقة وموضة",
+        catHotItems: "الأكثر رواجاً",
         heroBadge: "همزات حصرية بالمغرب",
         heroTitle: "أقوى الهمزات والعروض الثرابية بأسعار خيالية!",
         heroDesc: "كنجمعو ليك أروع المنتجات من أمازون، أليكسبريس وجوميا، وبمساعدة الذكاء الاصطناعي كنعطيوك الخلاصة وأحسن ثمن.",
@@ -754,6 +754,19 @@ const additionalTranslations = {
         alibabaLive: "Alibaba مباشر",
         temuLive: "Temu مباشر",
         amazonLive: "Amazon مباشر",
+        addProduct: "إضافة منتج",
+        homeProductsHeading: "أحدث المنتجات",
+        productAddNote: "عمّر المعلومات وحمّل ملف JSON. باش يبان المنتج فالموقع، حدّث temu-products.json فـGitHub ودفع التغيير.",
+        downloadFeed: "تحميل ملف المنتجات",
+        productFeedDownloaded: "تحمّل الملف. بدّل به temu-products.json فالمشروع ودفع التغيير لـGitHub باش يكمل النشر.",
+        productFeedDuplicate: "هاد الرابط كاين من قبل فملف المنتجات.",
+        productFeedError: "ما قدرناش نقراو ملف المنتجات الحالي. عاود المحاولة أو تحقق من الاتصال.",
+        productCategoryRequired: "اختار صنف صالح.",
+        catalogFurniture: "المفروشات والديكور",
+        catalogCurtains: "الستائر",
+        catalogRemoteServices: "خدمات عن بُعد",
+        catalogCars: "السيارات",
+        catalogBicycles: "الدراجات",
         categoryDetails: "تفاصيل الصنف",
         categoryDescription: "وصف شامل ومفصل للهمزات المتاحة فـ هذا القسم...",
         categoriesHeading: "تسوق حسب الصنف",
@@ -837,6 +850,19 @@ const additionalTranslations = {
         alibabaLive: "Alibaba en direct",
         temuLive: "Temu en direct",
         amazonLive: "Amazon en direct",
+        addProduct: "Ajouter un produit",
+        homeProductsHeading: "Derniers produits",
+        productAddNote: "Remplissez les informations pour télécharger un fichier JSON mis à jour. Remplacez temu-products.json dans le projet et envoyez-le sur GitHub pour publier.",
+        downloadFeed: "Télécharger le fichier produits",
+        productFeedDownloaded: "Fichier téléchargé. Remplacez temu-products.json dans le projet et envoyez la modification sur GitHub pour publier.",
+        productFeedDuplicate: "Ce lien d’affiliation existe déjà dans le flux produits.",
+        productFeedError: "Impossible de lire le flux produits actuel. Réessayez ou vérifiez votre connexion.",
+        productCategoryRequired: "Choisissez une catégorie valide.",
+        catalogFurniture: "Ameublement et décoration",
+        catalogCurtains: "Rideaux",
+        catalogRemoteServices: "Services à distance",
+        catalogCars: "Voitures",
+        catalogBicycles: "Vélos",
         categoryDetails: "Détails de la catégorie",
         categoryDescription: "Découvrez les offres disponibles dans cette catégorie.",
         categoriesHeading: "Acheter par catégorie",
@@ -846,6 +872,7 @@ const additionalTranslations = {
         catalogAccessories: "Accessoires",
         catJewelry: "Bijoux",
         catJewelryShort: "Bijoux",
+        catHotItems: "Articles tendance",
         catalogElectronics: "Électronique et technologie",
         catalogHome: "Maison et cuisine",
         catalogBeauty: "Beauté et soins personnels",
@@ -920,6 +947,19 @@ const additionalTranslations = {
         alibabaLive: "Alibaba Store",
         temuLive: "Temu Store",
         amazonLive: "Amazon Store",
+        addProduct: "Add new product",
+        homeProductsHeading: "Latest products",
+        productAddNote: "Fill in the details to download an updated JSON file. Replace temu-products.json in the project and push it to GitHub to publish.",
+        downloadFeed: "Download product file",
+        productFeedDownloaded: "File downloaded. Replace temu-products.json in the project and push the change to GitHub to publish.",
+        productFeedDuplicate: "This affiliate link is already in the product feed.",
+        productFeedError: "Could not read the current product feed. Try again or check your connection.",
+        productCategoryRequired: "Choose a valid category.",
+        catalogFurniture: "Furnishings & decor",
+        catalogCurtains: "Curtains",
+        catalogRemoteServices: "Remote services",
+        catalogCars: "Cars",
+        catalogBicycles: "Bicycles",
         categoryDetails: "Category details",
         categoryDescription: "Explore the offers available in this category.",
         categoriesHeading: "Shop by category",
@@ -929,6 +969,7 @@ const additionalTranslations = {
         catalogAccessories: "Accessories",
         catJewelry: "Jewelry",
         catJewelryShort: "Jewelry",
+        catHotItems: "Hot Items",
         catalogElectronics: "Electronics & Technology",
         catalogHome: "Home & Kitchen",
         catalogBeauty: "Beauty & Personal Care",
@@ -1074,8 +1115,6 @@ const frenchProductTitles = {
 let currentLang = 'ar';
 let currentCategory = 'all';
 let selectedCatalogCategory = null;
-let isAdminAuthenticated = false;
-let adminSessionToken = "";
 // التشغيل الأولي
 document.addEventListener('DOMContentLoaded', () => {
     const productId = new URLSearchParams(window.location.search).get('product');
@@ -1091,22 +1130,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const savedLanguage = getSavedLanguage();
     if (savedLanguage && translations[savedLanguage]) setLanguage(savedLanguage);
     renderProducts(getVisibleProducts());
+    renderHomepageProducts();
     renderTopDeals();
 
-    loadApprovedProducts().catch(error => {
-        console.error('Failed to load approved products:', error);
+    loadPublishedTemuProducts().catch(error => {
+        console.error('Failed to load published Temu products:', error);
         document.getElementById('catalogStatus').textContent = error.message;
     }).finally(() => {
         if (productId) renderProductDetail(productId);
     });
-
-    if (!productId && new URLSearchParams(window.location.search).get('admin') === '1') {
-        openAdminModal();
-    }
 });
 
 function getAllProducts() {
-    return [...products, ...communityProducts];
+    return [...products, ...publishedTemuProducts];
 }
 
 function getCatalogCategoryProducts(categoryKey) {
@@ -1127,6 +1163,17 @@ function getCatalogCategoryProducts(categoryKey) {
                     (!product.catalogCategory || product.catalogCategory === categoryKey || product.catalogCategories?.includes(categoryKey));
             case 'home':
                 return product.category === 'home' && !product.catalogCategory;
+            case 'furniture':
+                return ['furniture', 'curtains'].includes(product.category) ||
+                    ['furniture', 'curtains'].includes(product.catalogCategory) ||
+                    product.catalogCategories?.some(category => ['furniture', 'curtains'].includes(category));
+            case 'curtains':
+            case 'remote_services':
+            case 'cars':
+            case 'bicycles':
+                return product.category === categoryKey ||
+                    product.catalogCategory === categoryKey ||
+                    product.catalogCategories?.includes(categoryKey);
             default:
                 return false;
         }
@@ -1172,7 +1219,12 @@ function updateProductViewTitle() {
             home: 'catalogHome',
             beauty: 'catalogBeauty',
             shoes: 'catalogShoes',
-            gaming: 'catalogGaming'
+            gaming: 'catalogGaming',
+            furniture: 'catalogFurniture',
+            curtains: 'catalogCurtains',
+            remote_services: 'catalogRemoteServices',
+            cars: 'catalogCars',
+            bicycles: 'catalogBicycles'
         }[selectedCatalogCategory];
         title.textContent = translations[currentLang][categoryTranslationKey];
     } else if (document.getElementById('searchInput').value.trim()) {
@@ -1217,7 +1269,7 @@ function renderTopDeals() {
     const track = document.getElementById('topDealsTrack');
     if (!track) return;
 
-    const deals = [...communityProducts, ...products.slice().reverse()].slice(0, 10);
+    const deals = [...publishedTemuProducts.slice().reverse(), ...products.slice().reverse()].slice(0, 10);
     const cards = deals.map((product, index) => {
         const title = getProductTitle(product);
         const image = product.images?.[0] || product.image;
@@ -1256,30 +1308,40 @@ function escapeHtml(value) {
     })[character]);
 }
 
-async function apiRequest(path, options = {}) {
-    if (!API_BASE_URL) {
-        throw new Error("خدمة اقتراح المنتجات مازال ما تجهزاتش. عاود المحاولة من بعد.");
+async function loadPublishedTemuProducts() {
+    const response = await fetch(new URL('published-temu-products.json', document.baseURI));
+    if (!response.ok) {
+        throw new Error(`Unable to load published Temu products (HTTP ${response.status}).`);
     }
-
-    const response = await fetch(`${API_BASE_URL}${path}`, {
-        ...options,
-        headers: {
-            ...(options.body ? { "Content-Type": "application/json" } : {}),
-            ...(options.token ? { Authorization: `Bearer ${options.token}` } : {}),
-            ...options.headers
+    const result = await response.json();
+    if (!result || !Array.isArray(result.products)) {
+        throw new Error('Published Temu products file is invalid.');
+    }
+    publishedTemuProducts = result.products.map((product, index) => {
+        if (!product || typeof product !== 'object' ||
+            typeof product.title !== 'string' || typeof product.price !== 'string' ||
+            typeof product.old_price !== 'string' || typeof product.category !== 'string' ||
+            typeof product.image_url !== 'string' || typeof product.affiliate_url !== 'string') {
+            throw new Error(`Invalid published Temu product at position ${index + 1}.`);
         }
+        return {
+            id: `temu-auto-${index + 1}`,
+            title: product.title,
+            price: product.price,
+            oldPrice: product.old_price,
+            platform: 'temu',
+            category: product.category,
+            image: product.image_url,
+            affLink: product.affiliate_url
+        };
     });
-    const result = await response.json().catch(() => ({}));
-    if (!response.ok) throw new Error(result.error || "تعذر إكمال الطلب. عاود المحاولة.");
-    return result;
+    renderProducts(getVisibleProducts(), Boolean(selectedCatalogCategory));
+    renderHomepageProducts();
+    renderTopDeals();
 }
 
-async function loadApprovedProducts() {
-    if (!API_BASE_URL) return;
-    const result = await apiRequest("/api/products");
-    communityProducts = result.products;
-    renderProducts(getVisibleProducts(), Boolean(selectedCatalogCategory));
-    renderTopDeals();
+function renderHomepageProducts() {
+    renderProducts(getAllProducts().slice(-8).reverse(), true, 'homeProductsGrid');
 }
 
 function renderProductDetail(productId) {
@@ -1398,8 +1460,8 @@ function renderProductDetail(productId) {
 }
 
 // عرض المنتجات
-function renderProducts(items, directDealLinks = false) {
-    const grid = document.getElementById('productsGrid');
+function renderProducts(items, directDealLinks = false, gridId = 'productsGrid') {
+    const grid = document.getElementById(gridId);
     grid.innerHTML = '';
 
     if (items.length === 0) {
@@ -1509,62 +1571,7 @@ function filterCategory(cat, element) {
     if (!showLanding) renderProducts(getVisibleProducts());
 }
 
-async function renderAdminProductsTable() {
-    const tbody = document.getElementById('pendingSubmissionsList');
-    tbody.replaceChildren();
-    const result = await apiRequest('/api/admin/submissions', { token: adminSessionToken });
 
-    if (result.submissions.length === 0) {
-        const row = document.createElement('tr');
-        const cell = document.createElement('td');
-        cell.colSpan = 4;
-        cell.textContent = translations[currentLang].noPendingSuggestions;
-        row.appendChild(cell);
-        tbody.appendChild(row);
-        return;
-    }
-
-    result.submissions.forEach(submission => {
-        const row = document.createElement('tr');
-        const imageCell = document.createElement('td');
-        const image = document.createElement('img');
-        image.src = submission.image;
-        image.alt = submission.title;
-        imageCell.appendChild(image);
-
-        const productCell = document.createElement('td');
-        const title = document.createElement('strong');
-        title.textContent = submission.title;
-        const price = document.createElement('p');
-        price.textContent = `${submission.price}${submission.oldPrice ? ` (${translations[currentLang].oldPrice}: ${submission.oldPrice})` : ''}`;
-        const link = document.createElement('a');
-        link.href = submission.affLink;
-        link.target = '_blank';
-        link.rel = 'noopener noreferrer';
-        link.textContent = translations[currentLang].openProductLink;
-        productCell.append(title, price, link);
-
-        const platformCell = document.createElement('td');
-        platformCell.textContent = submission.platform;
-        const actionsCell = document.createElement('td');
-        const approveButton = document.createElement('button');
-        approveButton.type = 'button';
-        approveButton.className = 'approve-btn';
-        approveButton.textContent = translations[currentLang].approve;
-        approveButton.addEventListener('click', () => reviewSubmission(submission.id, 'approve'));
-        const rejectButton = document.createElement('button');
-        rejectButton.type = 'button';
-        rejectButton.className = 'delete-btn';
-        rejectButton.textContent = translations[currentLang].reject;
-        rejectButton.addEventListener('click', () => reviewSubmission(submission.id, 'reject'));
-        actionsCell.append(approveButton, rejectButton);
-
-        row.append(imageCell, productCell, platformCell, actionsCell);
-        tbody.appendChild(row);
-    });
-}
-
-// تغيير اللغة
 function setLanguage(lang) {
     if (!translations[lang]) return;
     currentLang = lang;
@@ -1604,6 +1611,7 @@ function setLanguage(lang) {
     document.getElementById('floatingWhatsappBtn').href =
         `https://wa.me/${siteConfig.cleanPhone}?text=${encodeURIComponent(translations[lang].whatsappContactMessage)}`;
     renderProducts(getVisibleProducts(), Boolean(selectedCatalogCategory));
+    renderHomepageProducts();
     renderTopDeals();
     updateProductViewTitle();
     document.getElementById('announcementText').textContent = translations[lang].announcementText;
@@ -1751,131 +1759,91 @@ async function copyProductLink(product, feedback) {
 function openAiAssistant() { document.getElementById('aiModal').classList.add('active'); }
 function closeAiAssistant() { document.getElementById('aiModal').classList.remove('active'); }
 
-function openSubmissionModal() {
-    document.getElementById('submissionFeedback').textContent = '';
-    document.getElementById('productSubmitModal').classList.add('active');
+function openProductModal() {
+    const feedback = document.getElementById('productAddFeedback');
+    feedback.textContent = '';
+    feedback.className = 'form-feedback';
+    document.getElementById('productAddModal').classList.add('active');
+    document.getElementById('addProductTitle').focus();
 }
 
-function closeSubmissionModal() {
-    document.getElementById('productSubmitModal').classList.remove('active');
+function closeProductModal() {
+    document.getElementById('productAddModal').classList.remove('active');
 }
 
-async function submitProductSuggestion(event) {
+async function downloadProductFeed(event) {
     event.preventDefault();
-    const form = document.getElementById('productSubmitForm');
-    const feedback = document.getElementById('submissionFeedback');
+    const form = document.getElementById('productAddForm');
+    const feedback = document.getElementById('productAddFeedback');
     const submitButton = form.querySelector('button[type="submit"]');
-    const suggestion = {
-        title: document.getElementById('newTitle').value.trim(),
-        price: document.getElementById('newPrice').value.trim(),
-        oldPrice: document.getElementById('newOldPrice').value.trim(),
-        platform: document.getElementById('newPlatform').value,
-        category: document.getElementById('newCategory').value,
-        image: document.getElementById('newImage').value.trim(),
-        affLink: document.getElementById('newAffLink').value.trim()
+    const product = {
+        title: document.getElementById('addProductTitle').value.trim(),
+        price: document.getElementById('addProductPrice').value.trim(),
+        old_price: document.getElementById('addProductOldPrice').value.trim(),
+        category: document.getElementById('addProductCategory').value,
+        image_url: document.getElementById('addProductImage').value.trim(),
+        affiliate_url: document.getElementById('addProductAffiliate').value.trim()
     };
+
+    let imageUrl;
+    let affiliateUrl;
+    try {
+        imageUrl = new URL(product.image_url);
+        affiliateUrl = new URL(product.affiliate_url);
+    } catch {
+        feedback.className = 'form-feedback error';
+        feedback.textContent = translations[currentLang].productFeedError;
+        return;
+    }
+
+    if (imageUrl.protocol !== 'https:' || affiliateUrl.protocol !== 'https:' ||
+        !['temu.com', 'temu.to'].some(host =>
+            affiliateUrl.hostname === host || affiliateUrl.hostname.endsWith(`.${host}`)
+        )) {
+        feedback.className = 'form-feedback error';
+        feedback.textContent = translations[currentLang].productFeedError;
+        return;
+    }
 
     submitButton.disabled = true;
     feedback.className = 'form-feedback';
-    feedback.textContent = translations[currentLang].suggestionSending;
+    feedback.textContent = '';
     try {
-        const result = await apiRequest('/api/submissions', {
-            method: 'POST',
-            body: JSON.stringify(suggestion)
-        });
-        feedback.classList.add('success');
-        feedback.textContent = translations[currentLang].suggestionSubmitted;
+        const response = await fetch(new URL('temu-products.json', document.baseURI), { cache: 'no-store' });
+        if (!response.ok) throw new Error(`Product feed request failed with HTTP ${response.status}.`);
+        const feed = await response.json();
+        if (!feed || !Array.isArray(feed.products)) {
+            throw new Error('Product feed does not contain a products array.');
+        }
+        if (feed.products.some(existing => existing?.affiliate_url === product.affiliate_url)) {
+            feedback.className = 'form-feedback error';
+            feedback.textContent = translations[currentLang].productFeedDuplicate;
+            return;
+        }
+
+        feed.products.push(product);
+        const file = new Blob([`${JSON.stringify(feed, null, 2)}\n`], { type: 'application/json' });
+        const downloadUrl = URL.createObjectURL(file);
+        const downloadLink = document.createElement('a');
+        downloadLink.href = downloadUrl;
+        downloadLink.download = 'temu-products.json';
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        downloadLink.remove();
+        window.setTimeout(() => URL.revokeObjectURL(downloadUrl), 1000);
+
+        feedback.className = 'form-feedback success';
+        feedback.textContent = translations[currentLang].productFeedDownloaded;
         form.reset();
     } catch (error) {
-        feedback.classList.add('error');
-        feedback.textContent = error.message;
+        console.error('Could not generate the Temu product feed:', error);
+        feedback.className = 'form-feedback error';
+        feedback.textContent = translations[currentLang].productFeedError;
     } finally {
         submitButton.disabled = false;
     }
 }
 
-function openAdminModal() {
-    if (isAdminAuthenticated) {
-        document.getElementById('adminModal').classList.add('active');
-        renderAdminProductsTable().catch(error => {
-            document.getElementById('adminFeedback').textContent = error.message;
-        });
-        return;
-    }
-    document.getElementById('adminPassword').value = '';
-    document.getElementById('adminLoginError').textContent = '';
-    document.getElementById('adminLoginModal').classList.add('active');
-    document.getElementById('adminPassword').focus();
-}
-
-function toggleAdminModal() {
-    document.getElementById('adminModal').classList.remove('active');
-    document.getElementById('adminLoginModal').classList.remove('active');
-    isAdminAuthenticated = false;
-    adminSessionToken = '';
-}
-
-async function authenticateAdmin(event) {
-    event.preventDefault();
-    const passwordInput = document.getElementById('adminPassword');
-    const error = document.getElementById('adminLoginError');
-    error.textContent = '';
-
-    let result;
-    try {
-        result = await apiRequest('/api/admin/login', {
-            method: 'POST',
-            body: JSON.stringify({ password: passwordInput.value })
-        });
-    } catch (loginError) {
-        error.textContent = loginError.message;
-        passwordInput.value = '';
-        passwordInput.focus();
-        return;
-    }
-
-    adminSessionToken = result.token;
-    isAdminAuthenticated = true;
-    document.getElementById('adminLoginModal').classList.remove('active');
-    document.getElementById('adminModal').classList.add('active');
-    document.getElementById('adminFeedback').textContent = '';
-    try {
-        await renderAdminProductsTable();
-    } catch (loadError) {
-        document.getElementById('adminFeedback').textContent = loadError.message;
-    }
-}
-
-function closeAdminLogin() {
-    document.getElementById('adminLoginModal').classList.remove('active');
-    document.getElementById('adminLoginError').textContent = '';
-    document.getElementById('adminPassword').value = '';
-}
-
-async function reviewSubmission(id, action) {
-    const feedback = document.getElementById('adminFeedback');
-    feedback.className = 'form-feedback';
-    feedback.textContent = translations[currentLang].adminUpdating;
-    try {
-        await apiRequest(`/api/admin/submissions/${id}/${action}`, {
-            method: 'PATCH',
-            token: adminSessionToken
-        });
-        if (action === 'approve') await loadApprovedProducts();
-        await renderAdminProductsTable();
-        feedback.classList.add('success');
-        feedback.textContent = action === 'approve'
-            ? translations[currentLang].productApproved
-            : translations[currentLang].productRejected;
-    } catch (error) {
-        feedback.classList.add('error');
-        feedback.textContent = error.message;
-        if (error.message.includes('سجل الدخول')) {
-            toggleAdminModal();
-            openAdminModal();
-        }
-    }
-}
 
 // AI Assistant
 function handleAiKey(e) { if (e.key === 'Enter') askAiAssistant(); }
