@@ -892,7 +892,9 @@ function escapeHtml(value) {
 }
 
 async function loadPublishedAffiliateProducts() {
-    const response = await fetch(new URL('published-affiliate-products.json', document.baseURI));
+    const response = await fetch(new URL('published-affiliate-products.json', document.baseURI), {
+        cache: 'no-store'
+    });
     if (!response.ok) throw new Error(`Unable to load published affiliate products (HTTP ${response.status}).`);
     const result = await response.json();
     if (!result || !Array.isArray(result.products)) throw new Error('Published affiliate products file is invalid.');
@@ -906,6 +908,7 @@ async function loadPublishedAffiliateProducts() {
         return {
             id: `dishis-auto-${index + 1}`, title: product.title, price: product.price,
             oldPrice: product.old_price, priceApproximate: product.price_approximate === true,
+            showFirstTimeOffer: false,
             platform: 'Dishis', category: product.category,
             image: product.image_url, affLink: product.affiliate_url
         };

@@ -832,6 +832,7 @@ const translations = {
         shareFailed: "ما قدرناش نشاركو المنتج. جرب تنسخ الرابط.",
         viewDetails: "تفاصيل المنتج",
         checkoutAtStore: "كمل الشراء والدفع فالمتجر",
+        purchaseOnStore: "منين تضغط على زر الشراء، غادي تمشي لمتجر المنتج باش تكمل الطلب وتخلص تما. الثمن النهائي والشحن كيتأكدو فصفحة المتجر.",
         aiTitle: "مساعد ALHAMZA الذكي",
         aiDesc: "قل ليا ش بغيتي تشري ولا شحال الميزانية ديالك، وأنا نقترح عليك أحسن همزة كاين دابا:",
         footerDesc: "الوجهة الأولى للمغاربة لاكتشاف أفضل الصفقات، العروض الحصرية، وربط المشتريات العالمية والمحلية بكل سهولة وثقة.",
@@ -883,6 +884,7 @@ const translations = {
         shareFailed: "Impossible de partager le produit. Essayez de copier le lien.",
         viewDetails: "Détails du produit",
         checkoutAtStore: "Continuer l’achat et payer sur la boutique",
+        purchaseOnStore: "Le bouton vous redirigera vers la boutique du produit pour finaliser et payer la commande. Le prix final et la livraison sont confirmés sur sa page.",
         aiTitle: "Assistant IA ALHAMZA",
         aiDesc: "Dites-moi ce que vous cherchez ou votre budget, et je vous trouve la meilleure offre :",
         footerDesc: "La première destination des Marocains pour découvrir les meilleures offres et produits exclusifs.",
@@ -934,6 +936,7 @@ const translations = {
         shareFailed: "Couldn't share the product. Try copying the link.",
         viewDetails: "Product details",
         checkoutAtStore: "Continue to the store to buy and pay",
+        purchaseOnStore: "The button will take you to the product store to complete and pay for your order. Confirm the final price and shipping on the store page.",
         aiTitle: "ALHAMZA AI Assistant",
         aiDesc: "Tell me what you want to buy or your budget, and I'll recommend the best deal:",
         footerDesc: "Morocco's premier destination to discover the best deals, exclusive offers, and trusted links.",
@@ -1566,7 +1569,9 @@ function escapeHtml(value) {
 }
 
 async function loadPublishedAffiliateProducts() {
-    const response = await fetch(new URL('published-affiliate-products.json', document.baseURI));
+    const response = await fetch(new URL('published-affiliate-products.json', document.baseURI), {
+        cache: 'no-store'
+    });
     if (!response.ok) {
         throw new Error(`Unable to load published affiliate products (HTTP ${response.status}).`);
     }
@@ -1587,6 +1592,7 @@ async function loadPublishedAffiliateProducts() {
             price: product.price,
             oldPrice: product.old_price,
             priceApproximate: product.price_approximate === true,
+            showFirstTimeOffer: false,
             platform: 'Dishis',
             category: product.category,
             image: product.image_url,

@@ -30,8 +30,23 @@ function productCard(index, price = 1000) {
               <img src="/image/${index}.jpg" alt="Catalog title ${index}"/>
             </a></figure>
             <h3><a href="https://www.dishisjewels.com/product-${index}">Catalog title ${index}&hellip;</a></h3>
-            <span class="price-new">₹${price.toLocaleString('en-IN')}.00</span>
-            <span class="price-old">₹${(price * 1.2).toLocaleString('en-IN')}.00</span>
+            <p class="price">
+              <span class="price-new">₹${price.toLocaleString('en-IN')}.00</span>
+              <span class="price-old">₹${(price * 1.2).toLocaleString('en-IN')}.00</span>
+            </p>
+          </div>
+        </div>`;
+}
+
+function regularPriceProductCard(index, price = 3691.52) {
+    return `
+        <div class="product-layout product-list col-xs-12">
+          <div class="probox">
+            <figure><a href="https://www.dishisjewels.com/product-${index}">
+              <img src="/image/${index}.jpg" alt="Catalog title ${index}"/>
+            </a></figure>
+            <h3><a href="https://www.dishisjewels.com/product-${index}">Catalog title ${index}</a></h3>
+            <p class="price"><span>₹${price.toLocaleString('en-IN')}</span></p>
           </div>
         </div>`;
 }
@@ -65,7 +80,7 @@ test('Morocco local time handles both UTC offsets', () => {
 
 test('parses Dishis catalog products and converts rupees to dollars', () => {
     const parsed = parseDishisCatalog(
-        `${productCard(1, 1000)}${productCard(2, 2500)}`,
+        `${productCard(1, 1000)}${regularPriceProductCard(2, 2500)}`,
         0.01
     );
     assert.equal(parsed.length, 2);
@@ -75,6 +90,7 @@ test('parses Dishis catalog products and converts rupees to dollars', () => {
     assert.equal(parsed[0].category, 'jewelry');
     assert.equal(parsed[0].image_url, 'https://www.dishisjewels.com/image/1.jpg');
     assert.equal(parsed[1].price, '$25.00 USD');
+    assert.equal(parsed[1].old_price, '');
 });
 
 test('adds only the affiliate tracking parameter to Dishis product URLs', () => {

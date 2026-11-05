@@ -100,9 +100,11 @@ export function parseDishisCatalog(html, usdPerInr) {
         const card = html.slice(start, end);
         const productMatch = card.match(/<figure>\s*<a href="([^"]+)"[^>]*>[\s\S]*?<img\b[^>]*\bsrc="([^"]+)"/i);
         const titleMatch = card.match(/<h3>\s*<a\b[^>]*>([\s\S]*?)<\/a>/i);
-        const currentPriceMatch = card.match(/<span class="price-new">([\s\S]*?)<\/span>/i);
+        const priceBlockMatch = card.match(/<p class="price">([\s\S]*?)<\/p>/i);
+        const currentPriceMatch = card.match(/<span class="price-new">([\s\S]*?)<\/span>/i) ??
+            priceBlockMatch?.[1].match(/(₹\s*[\d,]+(?:\.\d+)?)/);
         const oldPriceMatch = card.match(/<span class="price-old">([\s\S]*?)<\/span>/i);
-        if (!productMatch || !titleMatch || !currentPriceMatch) {
+        if (!productMatch || !titleMatch || !priceBlockMatch || !currentPriceMatch) {
             throw new Error(`Dishis product ${index + 1} has incomplete catalog data.`);
         }
 
