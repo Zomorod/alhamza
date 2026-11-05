@@ -33,17 +33,16 @@ test('Morocco local time handles both UTC offsets', () => {
     });
 });
 
-test('publishes at most three unique Temu affiliate links per day', () => {
+test('publishes at most two unique Temu affiliate links per day', () => {
     const feed = [product(1), product(2), product(1), product(3), product(4)];
     const selected = selectDailyProducts(feed, [], '2026-11-04');
-    assert.equal(selected.length, 3);
+    assert.equal(selected.length, 2);
     assert.deepEqual(selected.map(item => item.affiliate_url), [
         'https://www.temu.com/product-1',
-        'https://www.temu.com/product-2',
-        'https://www.temu.com/product-3'
+        'https://www.temu.com/product-2'
     ]);
     assert.equal(selectDailyProducts(feed, selected, '2026-11-04').length, 0);
-    assert.equal(selectDailyProducts(feed, selected, '2026-11-05').length, 1);
+    assert.equal(selectDailyProducts(feed, selected, '2026-11-05').length, 2);
 });
 
 test('rejects invalid URLs and categories', () => {
@@ -97,8 +96,8 @@ test('writes the published file only during the Morocco 10 AM hour', async () =>
             feedPath,
             publishedPath
         });
-        assert.equal(result.published, 3);
-        assert.equal(JSON.parse(await readFile(publishedPath, 'utf8')).products.length, 3);
+        assert.equal(result.published, 2);
+        assert.equal(JSON.parse(await readFile(publishedPath, 'utf8')).products.length, 2);
     } finally {
         await rm(directory, { recursive: true, force: true });
     }

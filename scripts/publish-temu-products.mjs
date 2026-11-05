@@ -111,7 +111,7 @@ function getProductIdentity(product) {
     ])}`;
 }
 
-export function selectDailyProducts(feedProducts, publishedProducts, date, dailyLimit = 3) {
+export function selectDailyProducts(feedProducts, publishedProducts, date, dailyLimit = 2) {
     if (!Array.isArray(feedProducts) || !Array.isArray(publishedProducts)) {
         throw new Error('Both feed and published data must contain a products array.');
     }

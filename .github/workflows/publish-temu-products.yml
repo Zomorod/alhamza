@@ -20,7 +20,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Publish up to three products at 10 AM Morocco time
+      - name: Publish up to two products at 10 AM Morocco time
         run: node scripts/publish-temu-products.mjs
       - name: Sync the Firebase public-folder copy
         run: cp published-temu-products.json public/published-temu-products.json
