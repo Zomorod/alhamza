@@ -1,3 +1,13 @@
 {
-  "products": []
+  "products": [
+    {
+      "title": "Browser test product",
+      "price": "100 DH",
+      "old_price": "",
+      "category": "cars",
+      "image_url": "https://example.com/image.jpg",
+      "affiliate_url": "https://temu.com/affiliate_link_here?code=test",
+      "published_at": "2026-11-05"
+    }
+  ]
 }
