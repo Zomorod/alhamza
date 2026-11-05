@@ -1,5 +1,5 @@
 // قاعدة بيانات المنتجات الابتدائية
-let publishedTemuProducts = [];
+let publishedAffiliateProducts = [];
 let products = [
     {
         id: 1,
@@ -1348,8 +1348,8 @@ document.addEventListener('DOMContentLoaded', () => {
     renderHomepageProducts();
     renderTopDeals();
 
-    loadPublishedTemuProducts().catch(error => {
-        console.error('Failed to load published Temu products:', error);
+    loadPublishedAffiliateProducts().catch(error => {
+        console.error('Failed to load published affiliate products:', error);
         document.getElementById('catalogStatus').textContent = error.message;
     }).finally(() => {
         if (productId) renderProductDetail(productId);
@@ -1357,7 +1357,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function getAllProducts() {
-    return [...products, ...publishedTemuProducts];
+    return [...products, ...publishedAffiliateProducts];
 }
 
 function getCatalogCategoryProducts(categoryKey) {
@@ -1526,7 +1526,7 @@ function renderTopDeals() {
     const track = document.getElementById('topDealsTrack');
     if (!track) return;
 
-    const deals = [...publishedTemuProducts.slice().reverse(), ...products.slice().reverse()].slice(0, 10);
+    const deals = [...publishedAffiliateProducts.slice().reverse(), ...products.slice().reverse()].slice(0, 10);
     const cards = deals.map((product, index) => {
         const title = getProductTitle(product);
         const image = product.images?.[0] || product.image;
@@ -1565,28 +1565,29 @@ function escapeHtml(value) {
     })[character]);
 }
 
-async function loadPublishedTemuProducts() {
-    const response = await fetch(new URL('published-temu-products.json', document.baseURI));
+async function loadPublishedAffiliateProducts() {
+    const response = await fetch(new URL('published-affiliate-products.json', document.baseURI));
     if (!response.ok) {
-        throw new Error(`Unable to load published Temu products (HTTP ${response.status}).`);
+        throw new Error(`Unable to load published affiliate products (HTTP ${response.status}).`);
     }
     const result = await response.json();
     if (!result || !Array.isArray(result.products)) {
-        throw new Error('Published Temu products file is invalid.');
+        throw new Error('Published affiliate products file is invalid.');
     }
-    publishedTemuProducts = result.products.map((product, index) => {
+    publishedAffiliateProducts = result.products.map((product, index) => {
         if (!product || typeof product !== 'object' ||
             typeof product.title !== 'string' || typeof product.price !== 'string' ||
             typeof product.old_price !== 'string' || typeof product.category !== 'string' ||
             typeof product.image_url !== 'string' || typeof product.affiliate_url !== 'string') {
-            throw new Error(`Invalid published Temu product at position ${index + 1}.`);
+            throw new Error(`Invalid published affiliate product at position ${index + 1}.`);
         }
         return {
-            id: `temu-auto-${index + 1}`,
+            id: `dishis-auto-${index + 1}`,
             title: product.title,
             price: product.price,
             oldPrice: product.old_price,
-            platform: 'temu',
+            priceApproximate: product.price_approximate === true,
+            platform: 'Dishis',
             category: product.category,
             image: product.image_url,
             affLink: product.affiliate_url

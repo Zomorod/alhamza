@@ -1,4 +1,4 @@
-name: Publish daily Temu products
+name: Publish daily Dishis products
 
 on:
   schedule:
@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: publish-temu-products
+  group: publish-dishis-products
   cancel-in-progress: false
 
 jobs:
@@ -21,13 +21,15 @@ jobs:
         with:
           node-version: 20
       - name: Publish up to two products at 10 AM Morocco time
-        run: node scripts/publish-temu-products.mjs
+        env:
+          DISHIS_TRACKING_CODE: ${{ secrets.DISHIS_TRACKING_CODE }}
+        run: node scripts/publish-dishis-products.mjs
       - name: Sync the Firebase public-folder copy
-        run: cp published-temu-products.json public/published-temu-products.json
+        run: cp published-affiliate-products.json public/published-affiliate-products.json
       - name: Save newly published products
         id: save
         run: |
-          if git diff --quiet -- published-temu-products.json public/published-temu-products.json; then
+          if git diff --quiet -- published-affiliate-products.json public/published-affiliate-products.json; then
             echo "No product changes to publish."
             echo "changed=false" >> "$GITHUB_OUTPUT"
             exit 0
@@ -35,8 +37,8 @@ jobs:
           echo "changed=true" >> "$GITHUB_OUTPUT"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add published-temu-products.json public/published-temu-products.json
-          git commit -m "Publish daily Temu products"
+          git add published-affiliate-products.json public/published-affiliate-products.json
+          git commit -m "Publish daily Dishis products"
           git push
       - name: Deploy updated site to Firebase Hosting
         if: steps.save.outputs.changed == 'true'
