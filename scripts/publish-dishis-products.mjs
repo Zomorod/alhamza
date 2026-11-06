@@ -54,14 +54,14 @@ function textFromHtml(value) {
     return decodeHtml(value.replace(/<[^>]*>/g, '')).replace(/\s+/g, ' ').trim();
 }
 
-function parseRupees(value, field, index) {
-    const amount = value.match(/₹\s*([\d,]+(?:\.\d+)?)/);
+function parseRupees(value) {
+    const amount = textFromHtml(value).match(/(?:₹|Rs\.?|INR)\s*([\d,]+(?:\.\d+)?)/i);
     if (!amount) {
-        throw new Error(`Dishis product ${index + 1} has no valid ${field} price.`);
+        return null;
     }
     const parsedAmount = Number(amount[1].replace(/,/g, ''));
     if (!Number.isFinite(parsedAmount) || parsedAmount <= 0) {
-        throw new Error(`Dishis product ${index + 1} has an invalid ${field} price.`);
+        return null;
     }
     return parsedAmount;
 }
@@ -94,18 +94,28 @@ export function parseDishisCatalog(html, usdPerInr) {
         throw new Error('Dishis catalog page did not contain the expected product listing.');
     }
 
-    return starts.map((match, index) => {
+    let skippedWithoutPrice = 0;
+    const products = starts.flatMap((match, index) => {
         const start = match.index;
         const end = starts[index + 1]?.index ?? html.length;
         const card = html.slice(start, end);
         const productMatch = card.match(/<figure>\s*<a href="([^"]+)"[^>]*>[\s\S]*?<img\b[^>]*\bsrc="([^"]+)"/i);
         const titleMatch = card.match(/<h3>\s*<a\b[^>]*>([\s\S]*?)<\/a>/i);
         const priceBlockMatch = card.match(/<p class="price">([\s\S]*?)<\/p>/i);
-        const currentPriceMatch = card.match(/<span class="price-new">([\s\S]*?)<\/span>/i) ??
-            priceBlockMatch?.[1].match(/(₹\s*[\d,]+(?:\.\d+)?)/);
+        const currentPriceMatch = card.match(/<span class="price-new">([\s\S]*?)<\/span>/i);
         const oldPriceMatch = card.match(/<span class="price-old">([\s\S]*?)<\/span>/i);
-        if (!productMatch || !titleMatch || !priceBlockMatch || !currentPriceMatch) {
+        if (!productMatch || !titleMatch) {
             throw new Error(`Dishis product ${index + 1} has incomplete catalog data.`);
+        }
+        if (!priceBlockMatch || (!currentPriceMatch && oldPriceMatch)) {
+            skippedWithoutPrice += 1;
+            return [];
+        }
+
+        const currentPrice = parseRupees(currentPriceMatch?.[1] ?? priceBlockMatch[1]);
+        if (currentPrice == null) {
+            skippedWithoutPrice += 1;
+            return [];
         }
 
         const imageUrl = new URL(productMatch[2], catalogUrl);
@@ -120,19 +130,20 @@ export function parseDishisCatalog(html, usdPerInr) {
             throw new Error(`Dishis product ${index + 1} has an invalid product URL.`);
         }
 
-        const currentPrice = parseRupees(textFromHtml(currentPriceMatch[1]), 'current', index);
-        const oldPrice = oldPriceMatch
-            ? parseRupees(textFromHtml(oldPriceMatch[1]), 'old', index)
-            : null;
-        return {
+        const oldPrice = oldPriceMatch ? parseRupees(oldPriceMatch[1]) : null;
+        return [{
             title: textFromHtml(titleMatch[1]),
             price: formatUsd(currentPrice, usdPerInr),
             old_price: oldPrice == null ? '' : formatUsd(oldPrice, usdPerInr),
             category: 'jewelry',
             image_url: imageUrl.href,
             product_url: productUrl.href
-        };
+        }];
     });
+    if (skippedWithoutPrice > 0) {
+        console.warn(`Skipped ${skippedWithoutPrice} Dishis catalog product(s) without a valid INR price.`);
+    }
+    return products;
 }
 
 export function selectDailyProducts(feedProducts, publishedProducts, date, trackingCode, limit = dailyLimit) {

@@ -4,7 +4,7 @@ GitHub Actions checks hourly and, during the 10:00 hour in `Africa/Casablanca`, 
 
 Dishis lists prices in Indian rupees. The publisher converts them to approximate US dollars using the latest INR-to-USD rate from [ExchangeRate-API](https://open.er-api.com/v6/latest/INR). The displayed dollar amount is approximate and may differ from the store's checkout price. A currency conversion does not mean Dishis ships to Morocco; check the store's delivery terms before promoting products to Moroccan customers.
 
-The publisher reads the public catalog pages because no product feed or API was provided. If Dishis changes its page markup, the workflow reports an error instead of publishing incomplete products.
+The publisher reads the public catalog pages because no product feed or API was provided. Listings without a usable INR price are skipped with a warning so one incomplete listing does not stop that day's publishing. If Dishis changes other required product markup, the workflow reports an error instead of publishing incomplete products.
 
 ## Setup
 

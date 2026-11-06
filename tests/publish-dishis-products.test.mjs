@@ -51,6 +51,32 @@ function regularPriceProductCard(index, price = 3691.52) {
         </div>`;
 }
 
+function unpricedProductCard(index) {
+    return `
+        <div class="product-layout product-list col-xs-12">
+          <div class="probox">
+            <figure><a href="https://www.dishisjewels.com/product-${index}">
+              <img src="/image/${index}.jpg" alt="Catalog title ${index}"/>
+            </a></figure>
+            <h3><a href="https://www.dishisjewels.com/product-${index}">Catalog title ${index}</a></h3>
+            <p class="price"><span>Price unavailable</span></p>
+          </div>
+        </div>`;
+}
+
+function oldPriceOnlyProductCard(index) {
+    return `
+        <div class="product-layout product-list col-xs-12">
+          <div class="probox">
+            <figure><a href="https://www.dishisjewels.com/product-${index}">
+              <img src="/image/${index}.jpg" alt="Catalog title ${index}"/>
+            </a></figure>
+            <h3><a href="https://www.dishisjewels.com/product-${index}">Catalog title ${index}</a></h3>
+            <p class="price"><span class="price-old">₹2,500.00</span></p>
+          </div>
+        </div>`;
+}
+
 function response({ body, data, status = 200 }) {
     return {
         ok: status >= 200 && status < 300,
@@ -91,6 +117,26 @@ test('parses Dishis catalog products and converts rupees to dollars', () => {
     assert.equal(parsed[0].image_url, 'https://www.dishisjewels.com/image/1.jpg');
     assert.equal(parsed[1].price, '$25.00 USD');
     assert.equal(parsed[1].old_price, '');
+});
+
+test('skips products without an INR price and continues parsing the catalog', () => {
+    const warnings = [];
+    const originalWarn = console.warn;
+    console.warn = message => warnings.push(message);
+    try {
+        const parsed = parseDishisCatalog(
+            `${unpricedProductCard(1)}${oldPriceOnlyProductCard(2)}${regularPriceProductCard(3, 2500)}`,
+            0.01
+        );
+        assert.equal(parsed.length, 1);
+        assert.equal(parsed[0].product_url, 'https://www.dishisjewels.com/product-3');
+        assert.equal(parsed[0].price, '$25.00 USD');
+        assert.deepEqual(warnings, [
+            'Skipped 2 Dishis catalog product(s) without a valid INR price.'
+        ]);
+    } finally {
+        console.warn = originalWarn;
+    }
 });
 
 test('adds only the affiliate tracking parameter to Dishis product URLs', () => {
