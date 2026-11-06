@@ -970,7 +970,7 @@ const additionalTranslations = {
         productImageInvalid: "اختار صورة بصيغة JPG أو PNG أو WEBP، وبحجم ما يفوتش 2 ميغابايت.",
         imageDropPrompt: "سحب الصورة لهنا أو ضغط باش تختار ملف",
         imageDropHint: "JPG أو PNG أو WEBP — الحد الأقصى 2 ميغابايت",
-        productUrl: "رابط Temu Affiliate (اختياري)",
+        productUrl: "رابط الأفلييت (اختياري)",
         productCategoryRequired: "اختار صنف صالح.",
         catalogFurniture: "المفروشات والديكور",
         catalogCurtains: "الستائر",
@@ -1069,7 +1069,7 @@ const additionalTranslations = {
         productImageInvalid: "Choisissez une image JPG, PNG ou WEBP de 2 Mo maximum.",
         imageDropPrompt: "Déposez votre image ici ou cliquez pour choisir un fichier",
         imageDropHint: "JPG, PNG ou WEBP — 2 Mo maximum",
-        productUrl: "Lien Temu Affiliate (facultatif)",
+        productUrl: "Lien d’affiliation (facultatif)",
         productCategoryRequired: "Choisissez une catégorie valide.",
         catalogFurniture: "Ameublement et décoration",
         catalogCurtains: "Rideaux",
@@ -1169,7 +1169,7 @@ const additionalTranslations = {
         productImageInvalid: "Choose a JPG, PNG, or WEBP image no larger than 2 MB.",
         imageDropPrompt: "Drop your file here, or click to browse",
         imageDropHint: "JPG, PNG or WEBP — up to 2 MB",
-        productUrl: "Temu Affiliate link (optional)",
+        productUrl: "Affiliate link (optional)",
         productCategoryRequired: "Choose a valid category.",
         catalogFurniture: "Furnishings & decor",
         catalogCurtains: "Curtains",
@@ -2096,10 +2096,12 @@ async function downloadProductFeed(event) {
         feedback.textContent = translations[currentLang].productImageInvalid;
         return;
     }
+    const price = document.getElementById('addProductPrice').value.trim();
     const product = {
         title: document.getElementById('addProductTitle').value.trim(),
-        price: document.getElementById('addProductPrice').value.trim(),
-        old_price: document.getElementById('addProductOldPrice').value.trim(),
+        price,
+        old_price: price ? document.getElementById('addProductOldPrice').value.trim() : '',
+        price_verified: Boolean(price),
         category: document.getElementById('addProductCategory').value,
         image_url: '',
         affiliate_url: document.getElementById('addProductAffiliate').value.trim()
@@ -2114,10 +2116,7 @@ async function downloadProductFeed(event) {
             feedback.textContent = translations[currentLang].productFeedError;
             return;
         }
-        if (affiliateUrl.protocol !== 'https:' ||
-            !['temu.com', 'temu.to'].some(host =>
-                affiliateUrl.hostname === host || affiliateUrl.hostname.endsWith(`.${host}`)
-            )) {
+        if (affiliateUrl.protocol !== 'https:' || !affiliateUrl.hostname) {
             feedback.className = 'form-feedback error';
             feedback.textContent = translations[currentLang].productFeedError;
             return;
