@@ -81,7 +81,6 @@ async function loadPendingSubmissions() {
     submissionList.replaceChildren();
     const snapshot = await db.collection('productSubmissions')
         .where('status', '==', 'pending')
-        .orderBy('createdAt', 'desc')
         .get();
 
     if (snapshot.empty) {
@@ -90,7 +89,12 @@ async function loadPendingSubmissions() {
     }
 
     const fragment = document.createDocumentFragment();
-    snapshot.docs.forEach(document => fragment.append(renderSubmission(document)));
+    const submissions = [...snapshot.docs].sort((left, right) => {
+        const leftTime = left.data().createdAt?.toMillis?.() ?? 0;
+        const rightTime = right.data().createdAt?.toMillis?.() ?? 0;
+        return rightTime - leftTime;
+    });
+    submissions.forEach(document => fragment.append(renderSubmission(document)));
     submissionList.append(fragment);
     showFeedback(`كاينين ${snapshot.size} اقتراحات للمراجعة.`);
 }
