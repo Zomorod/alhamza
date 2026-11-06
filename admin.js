@@ -24,8 +24,8 @@ function makeTextElement(tagName, className, text) {
     return element;
 }
 
-function renderSubmission(document) {
-    const product = document.data();
+function renderSubmission(submission) {
+    const product = submission.data();
     const card = document.createElement('article');
     card.className = 'submission-card';
 
@@ -68,7 +68,7 @@ function renderSubmission(document) {
         button.type = 'button';
         button.className = `decision-button ${style}`;
         button.textContent = label;
-        button.addEventListener('click', () => reviewSubmission(document.id, status, button));
+        button.addEventListener('click', () => reviewSubmission(submission.id, status, button));
         actions.append(button);
     }
     details.append(actions);
@@ -94,7 +94,7 @@ async function loadPendingSubmissions() {
         const rightTime = right.data().createdAt?.toMillis?.() ?? 0;
         return rightTime - leftTime;
     });
-    submissions.forEach(document => fragment.append(renderSubmission(document)));
+    submissions.forEach(submission => fragment.append(renderSubmission(submission)));
     submissionList.append(fragment);
     showFeedback(`كاينين ${snapshot.size} اقتراحات للمراجعة.`);
 }
