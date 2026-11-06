@@ -907,7 +907,7 @@ async function loadPublishedAffiliateProducts() {
         }
         return {
             id: `dishis-auto-${index + 1}`, title: product.title, price: product.price,
-            oldPrice: product.old_price, priceApproximate: product.price_approximate === true,
+            oldPrice: product.old_price, priceVerified: product.price_verified !== false,
             showFirstTimeOffer: false,
             platform: 'Dishis', category: product.category,
             image: product.image_url, affLink: product.affiliate_url

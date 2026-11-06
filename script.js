@@ -1591,7 +1591,7 @@ async function loadPublishedAffiliateProducts() {
             title: product.title,
             price: product.price,
             oldPrice: product.old_price,
-            priceApproximate: product.price_approximate === true,
+            priceVerified: product.price_verified !== false,
             showFirstTimeOffer: false,
             platform: 'Dishis',
             category: product.category,

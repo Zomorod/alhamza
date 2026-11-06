@@ -104,39 +104,30 @@ test('Morocco local time handles both UTC offsets', () => {
     });
 });
 
-test('parses Dishis catalog products and converts rupees to dollars', () => {
+test('parses Dishis products without pricing so prices can be added later', () => {
     const parsed = parseDishisCatalog(
         `${productCard(1, 1000)}${regularPriceProductCard(2, 2500)}`,
-        0.01
     );
     assert.equal(parsed.length, 2);
     assert.equal(parsed[0].title, 'Catalog title 1…');
-    assert.equal(parsed[0].price, '$10.00 USD');
-    assert.equal(parsed[0].old_price, '$12.00 USD');
+    assert.equal(parsed[0].price, '');
+    assert.equal(parsed[0].old_price, '');
+    assert.equal(parsed[0].price_verified, false);
     assert.equal(parsed[0].category, 'jewelry');
     assert.equal(parsed[0].image_url, 'https://www.dishisjewels.com/image/1.jpg');
-    assert.equal(parsed[1].price, '$25.00 USD');
+    assert.equal(parsed[1].price, '');
+    assert.equal(parsed[1].price_verified, false);
     assert.equal(parsed[1].old_price, '');
 });
 
-test('skips products without an INR price and continues parsing the catalog', () => {
-    const warnings = [];
-    const originalWarn = console.warn;
-    console.warn = message => warnings.push(message);
-    try {
-        const parsed = parseDishisCatalog(
-            `${unpricedProductCard(1)}${oldPriceOnlyProductCard(2)}${regularPriceProductCard(3, 2500)}`,
-            0.01
-        );
-        assert.equal(parsed.length, 1);
-        assert.equal(parsed[0].product_url, 'https://www.dishisjewels.com/product-3');
-        assert.equal(parsed[0].price, '$25.00 USD');
-        assert.deepEqual(warnings, [
-            'Skipped 2 Dishis catalog product(s) without a valid INR price.'
-        ]);
-    } finally {
-        console.warn = originalWarn;
-    }
+test('keeps listings without prices and marks all catalog prices unverified', () => {
+    const parsed = parseDishisCatalog(
+        `${unpricedProductCard(1)}${oldPriceOnlyProductCard(2)}${regularPriceProductCard(3, 2500)}`
+    );
+    assert.equal(parsed.length, 3);
+    assert.equal(parsed[0].price_verified, false);
+    assert.equal(parsed[1].price_verified, false);
+    assert.equal(parsed[2].price_verified, false);
 });
 
 test('adds only the affiliate tracking parameter to Dishis product URLs', () => {
@@ -169,15 +160,6 @@ test('publishes two real catalog entries from mocked responses only during Moroc
         await writeFile(publishedPath, JSON.stringify({ products: [] }));
         const fetchImpl = async url => {
             const requestedUrl = new URL(url);
-            if (requestedUrl.hostname === 'open.er-api.com') {
-                return response({
-                    data: {
-                        result: 'success',
-                        time_last_update_unix: Math.floor(now.getTime() / 1000),
-                        rates: { USD: 0.01 }
-                    }
-                });
-            }
             if (requestedUrl.hostname === 'www.dishisjewels.com' &&
                 requestedUrl.pathname === '/all-jewellery') {
                 catalogRequests += 1;
@@ -206,8 +188,9 @@ test('publishes two real catalog entries from mocked responses only during Moroc
         const published = JSON.parse(await readFile(publishedPath, 'utf8')).products;
         assert.equal(published.length, 2);
         assert.equal(published[0].title, 'Full Product Title 1');
-        assert.equal(published[0].price, '$10.00 USD');
-        assert.equal(published[0].price_approximate, true);
+        assert.equal(published[0].price, '');
+        assert.equal(published[0].old_price, '');
+        assert.equal(published[0].price_verified, false);
         assert.equal(published[0].published_at, '2026-11-04');
         assert.equal(published[1].affiliate_url, 'https://www.dishisjewels.com/product-2?tracking=aff123');
 
@@ -228,9 +211,14 @@ test('publishes two real catalog entries from mocked responses only during Moroc
     }
 });
 
-test('rejects invalid exchange rates and malformed catalog data', () => {
-    assert.throws(() => parseDishisCatalog('<html></html>', 0.01), /expected product listing/);
-    assert.throws(() => parseDishisCatalog(productCard(1), 0), /valid INR-to-USD rate/);
+test('rejects malformed catalog data and unpriced entries not explicitly marked unverified', () => {
+    assert.throws(() => parseDishisCatalog('<html></html>'), /expected product listing/);
+    assert.throws(() => parseDishisCatalog(null), /catalog HTML is required/);
+    assert.throws(() => selectDailyProducts([{
+        ...product(1),
+        price: '',
+        price_verified: true
+    }], [], '2026-11-04', 'aff123'), /invalid catalog data/);
     assert.throws(() => selectDailyProducts([{
         ...product(1),
         product_url: 'https://example.com/product-1'
