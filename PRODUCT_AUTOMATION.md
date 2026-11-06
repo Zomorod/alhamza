@@ -2,7 +2,7 @@
 
 GitHub Actions checks hourly and, during the 10:00 hour in `Africa/Casablanca`, reads the public Dishis All Jewellery catalog and publishes up to two products that have not been published before. Each product link receives the referral tracking code, and the product page is deployed to Firebase Hosting. Scheduled runs are best-effort and may be delayed.
 
-Products are published without a listed price so the site owner can set the price later. Until then, the site shows its localized “check the current price in the store” label. To add a price, edit the product in `published-affiliate-products.json` and set `price` to the desired display string, `old_price` if applicable, and `price_verified` to `true`. The publisher will not overwrite products that have already been published.
+Products are published without a listed price. The site shows its localized “check the current price in the store” label, and no price entry or follow-up action is required from the site owner. The publisher does not copy prices from Dishis.
 
 The publisher reads the public catalog pages because no product feed or API was provided. Product prices shown by Dishis are intentionally not copied. If Dishis changes required product markup, the workflow reports an error instead of publishing incomplete products.
 

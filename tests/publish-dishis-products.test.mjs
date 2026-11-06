@@ -106,7 +106,7 @@ test('Morocco local time handles both UTC offsets', () => {
 
 test('parses Dishis products without pricing so prices can be added later', () => {
     const parsed = parseDishisCatalog(
-        `${productCard(1, 1000)}${regularPriceProductCard(2, 2500)}`,
+        `${productCard(1, 1000)}${regularPriceProductCard(2, 2500)}`
     );
     assert.equal(parsed.length, 2);
     assert.equal(parsed[0].title, 'Catalog title 1…');
