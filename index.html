@@ -222,8 +222,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p class="product-add-note" data-i18n="productAddNote">اقتراحك غادي يبقى قيد المراجعة وما غاديش يبان فالموقع حتى تتم الموافقة عليه. حمّل ملف الاقتراح وصيفطو للإدارة للمراجعة.</p>
-                <form id="productAddForm" onsubmit="downloadProductFeed(event)">
+                <p class="product-add-note" data-i18n="productAddNote">صيفط اقتراحك للمراجعة. المنتج غادي يبان فالموقع غير من بعد ما توافق عليه الإدارة.</p>
+                <form id="productAddForm" onsubmit="submitProductSuggestion(event)">
                     <div class="form-group">
                         <label for="addProductTitle" data-i18n="productTitleLabel">عنوان المنتج والوصف</label>
                         <input type="text" id="addProductTitle" required maxlength="180" data-i18n-placeholder="productTitlePlaceholder" placeholder="مثال: سماعات لاسلكية">
@@ -269,8 +269,8 @@
                     </div>
                     <p class="form-feedback" id="productAddFeedback" role="status" aria-live="polite"></p>
                     <button type="submit" class="submit-product-btn">
-                        <i class="ri-download-2-line" aria-hidden="true"></i>
-                        <span data-i18n="downloadFeed">تحميل الاقتراح للمراجعة</span>
+                        <i class="ri-send-plane-line" aria-hidden="true"></i>
+                        <span data-i18n="downloadFeed">إرسال للمراجعة</span>
                     </button>
                 </form>
             </div>
@@ -338,6 +338,9 @@
     </a>
 
     <!-- ملف الـ JavaScript -->
-    <script src="script.js?v=20261106-75"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+    <script src="firebase-config.js?v=20261107-1"></script>
+    <script src="script.js?v=20261107-1"></script>
 </body>
 </html>

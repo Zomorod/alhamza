@@ -1,0 +1,191 @@
+:root {
+    color-scheme: light;
+    font-family: Tahoma, Arial, sans-serif;
+    color: #23322c;
+    background: #f4f2ec;
+    font-synthesis: none;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+}
+
+button,
+a {
+    font: inherit;
+}
+
+.admin-shell {
+    width: min(920px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 32px 0 64px;
+}
+
+.admin-header,
+.queue-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.admin-header {
+    margin-bottom: 24px;
+}
+
+.brand {
+    color: #1d3b30;
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+}
+
+h1,
+h2,
+p {
+    margin-top: 0;
+}
+
+h1 {
+    margin-bottom: 0;
+    font-size: clamp(1.35rem, 4vw, 2rem);
+}
+
+h2 {
+    margin-bottom: 0;
+    font-size: 1.25rem;
+}
+
+.site-link {
+    color: #315746;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.login-panel,
+.queue-panel {
+    padding: clamp(18px, 4vw, 30px);
+    border: 1px solid #e3dfd4;
+    border-radius: 16px;
+    background: #fffefa;
+    box-shadow: 0 12px 36px rgb(34 49 42 / 8%);
+}
+
+.login-panel p {
+    line-height: 1.8;
+}
+
+.primary-button,
+.secondary-button,
+.decision-button {
+    min-height: 44px;
+    padding: 10px 16px;
+    border: 0;
+    border-radius: 9px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.primary-button,
+.decision-button.approve {
+    color: white;
+    background: #1d3b30;
+}
+
+.secondary-button {
+    color: #283a32;
+    background: #eeece5;
+}
+
+button:disabled {
+    cursor: wait;
+    opacity: 0.65;
+}
+
+.signed-in-as,
+.feedback {
+    margin-bottom: 8px;
+    color: #68756e;
+    overflow-wrap: anywhere;
+}
+
+.feedback.error {
+    color: #b42318;
+}
+
+.submission-list {
+    display: grid;
+    gap: 16px;
+    margin-top: 18px;
+}
+
+.submission-card {
+    display: grid;
+    grid-template-columns: minmax(120px, 190px) minmax(0, 1fr);
+    gap: 18px;
+    padding: 16px;
+    border: 1px solid #e5e1d7;
+    border-radius: 12px;
+}
+
+.submission-image {
+    width: 100%;
+    max-height: 210px;
+    border-radius: 9px;
+    background: #f1efe9;
+    object-fit: contain;
+}
+
+.submission-title {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.submission-meta {
+    margin: 0 0 8px;
+    color: #59665f;
+    overflow-wrap: anywhere;
+}
+
+.affiliate-link {
+    color: #27604a;
+    overflow-wrap: anywhere;
+}
+
+.decision-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.decision-button.reject {
+    color: #9b1c1c;
+    background: #fbe9e7;
+}
+
+@media (max-width: 600px) {
+    .admin-shell {
+        width: min(100% - 20px, 920px);
+        padding-top: 18px;
+    }
+
+    .admin-header,
+    .queue-header {
+        align-items: flex-start;
+    }
+
+    .submission-card {
+        grid-template-columns: 1fr;
+    }
+
+    .submission-image {
+        max-height: 240px;
+    }
+}

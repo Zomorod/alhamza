@@ -1,0 +1,75 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email == 'medmehdi939@gmail.com'
+        && request.auth.token.email_verified == true;
+    }
+
+    match /productSubmissions/{submissionId} {
+      allow create: if request.resource.data.keys().hasOnly([
+          'title',
+          'price',
+          'old_price',
+          'price_verified',
+          'category',
+          'image_url',
+          'affiliate_url',
+          'status',
+          'createdAt'
+        ])
+        && request.resource.data.keys().hasAll([
+          'title',
+          'price',
+          'old_price',
+          'price_verified',
+          'category',
+          'image_url',
+          'affiliate_url',
+          'status',
+          'createdAt'
+        ])
+        && request.resource.data.title is string
+        && request.resource.data.title.size() > 0
+        && request.resource.data.title.size() <= 180
+        && request.resource.data.price is string
+        && request.resource.data.price.size() <= 40
+        && request.resource.data.old_price is string
+        && request.resource.data.old_price.size() <= 40
+        && request.resource.data.price_verified == (request.resource.data.price.size() > 0)
+        && request.resource.data.category in [
+          'hot_items',
+          'tech',
+          'home',
+          'furniture',
+          'curtains',
+          'remote_services',
+          'cars',
+          'bicycles',
+          'fashion',
+          'jewelry'
+        ]
+        && request.resource.data.image_url is string
+        && request.resource.data.image_url.size() <= 700000
+        && request.resource.data.image_url.matches('^data:image/jpeg;base64,[A-Za-z0-9+/=]+$')
+        && request.resource.data.affiliate_url is string
+        && request.resource.data.affiliate_url.size() <= 2048
+        && (request.resource.data.affiliate_url == ''
+          || request.resource.data.affiliate_url.matches('^https://.*$'))
+        && request.resource.data.status == 'pending'
+        && request.resource.data.createdAt == request.time;
+
+      allow get, list: if isAdmin() || resource.data.status == 'approved';
+
+      allow update: if isAdmin()
+        && resource.data.status == 'pending'
+        && request.resource.data.diff(resource.data).affectedKeys()
+          .hasOnly(['status', 'reviewedAt'])
+        && request.resource.data.status in ['approved', 'rejected']
+        && request.resource.data.reviewedAt == request.time;
+
+      allow delete: if false;
+    }
+  }
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <title>إدارة اقتراحات المنتجات | ALHAMZA</title>
+    <link rel="stylesheet" href="admin.css?v=20261107-1">
+</head>
+<body>
+    <main class="admin-shell">
+        <header class="admin-header">
+            <div>
+                <a class="brand" href="./index.html">ALHAMZA</a>
+                <h1>مراجعة اقتراحات المنتجات</h1>
+            </div>
+            <a class="site-link" href="./index.html">الرجوع للموقع</a>
+        </header>
+
+        <section class="login-panel" id="loginPanel">
+            <p>سجّل الدخول بحساب Google ديال الإدارة باش تشوف الاقتراحات وتوافق عليها أو ترفضها.</p>
+            <button class="primary-button" id="signInButton" type="button">الدخول بحساب Google</button>
+        </section>
+
+        <section class="queue-panel" id="queuePanel" hidden>
+            <div class="queue-header">
+                <div>
+                    <p class="signed-in-as" id="signedInAs"></p>
+                    <h2>الاقتراحات المعلّقة</h2>
+                </div>
+                <button class="secondary-button" id="signOutButton" type="button">تسجيل الخروج</button>
+            </div>
+            <p class="feedback" id="adminFeedback" role="status" aria-live="polite"></p>
+            <div class="submission-list" id="submissionList"></div>
+        </section>
+    </main>
+
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+    <script src="firebase-config.js?v=20261107-1"></script>
+    <script src="admin.js?v=20261107-1"></script>
+</body>
+</html>

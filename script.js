@@ -963,10 +963,11 @@ const additionalTranslations = {
         amazonLive: "Amazon مباشر",
         addProduct: "إضافة منتج",
         homeProductsHeading: "أحدث المنتجات",
-        productAddNote: "اقتراحك غادي يبقى قيد المراجعة وما غاديش يبان فالموقع حتى تتم الموافقة عليه. حمّل ملف الاقتراح وصيفطو للإدارة للمراجعة.",
-        downloadFeed: "تحميل الاقتراح للمراجعة",
-        productFeedDownloaded: "تحمّل ملف الاقتراح. صيفطو للإدارة للمراجعة؛ ما غاديش يبان فالموقع حتى تتم الموافقة عليه.",
-        productFeedError: "ما قدرناش نوجدوا ملف الاقتراح. عاود المحاولة.",
+        productAddNote: "صيفط اقتراحك للمراجعة. المنتج غادي يبان فالموقع غير من بعد ما توافق عليه الإدارة.",
+        downloadFeed: "إرسال للمراجعة",
+        productFeedDownloaded: "توصلنا باقتراحك. غادي يبان فالموقع من بعد الموافقة عليه.",
+        productFeedError: "ما قدرناش نصيفطو الاقتراح. عاود المحاولة.",
+        productSubmitting: "كنصيفطو الاقتراح...",
         productImageInvalid: "اختار صورة بصيغة JPG أو PNG أو WEBP، وبحجم ما يفوتش 2 ميغابايت.",
         imageDropPrompt: "سحب الصورة لهنا أو ضغط باش تختار ملف",
         imageDropHint: "JPG أو PNG أو WEBP — الحد الأقصى 2 ميغابايت",
@@ -1062,10 +1063,11 @@ const additionalTranslations = {
         amazonLive: "Amazon en direct",
         addProduct: "Ajouter un produit",
         homeProductsHeading: "Derniers produits",
-        productAddNote: "Votre proposition sera examinée et ne sera publiée qu’après approbation. Téléchargez le fichier de proposition et envoyez-le à l’administration pour examen.",
-        downloadFeed: "Télécharger la proposition pour examen",
-        productFeedDownloaded: "Fichier de proposition téléchargé. Envoyez-le à l’administration pour examen ; il ne sera publié qu’après approbation.",
-        productFeedError: "Impossible de préparer le fichier de proposition. Réessayez.",
+        productAddNote: "Envoyez votre proposition pour examen. Le produit apparaîtra sur le site après approbation par l’administration.",
+        downloadFeed: "Envoyer pour examen",
+        productFeedDownloaded: "Votre proposition a été reçue. Elle apparaîtra sur le site après approbation.",
+        productFeedError: "Impossible d’envoyer la proposition. Réessayez.",
+        productSubmitting: "Envoi de la proposition...",
         productImageInvalid: "Choisissez une image JPG, PNG ou WEBP de 2 Mo maximum.",
         imageDropPrompt: "Déposez votre image ici ou cliquez pour choisir un fichier",
         imageDropHint: "JPG, PNG ou WEBP — 2 Mo maximum",
@@ -1162,10 +1164,11 @@ const additionalTranslations = {
         amazonLive: "Amazon Store",
         addProduct: "Add new product",
         homeProductsHeading: "Latest products",
-        productAddNote: "Your suggestion will be reviewed and will not appear on the site until approved. Download the suggestion file and send it to the site administrator for review.",
-        downloadFeed: "Download suggestion for review",
-        productFeedDownloaded: "Suggestion file downloaded. Send it to the site administrator for review; it will not appear until approved.",
-        productFeedError: "Could not prepare the suggestion file. Please try again.",
+        productAddNote: "Send your suggestion for review. The product will appear on the site only after an administrator approves it.",
+        downloadFeed: "Send for review",
+        productFeedDownloaded: "Your suggestion was received. It will appear on the site after approval.",
+        productFeedError: "Could not submit the suggestion. Please try again.",
+        productSubmitting: "Sending suggestion...",
         productImageInvalid: "Choose a JPG, PNG, or WEBP image no larger than 2 MB.",
         imageDropPrompt: "Drop your file here, or click to browse",
         imageDropHint: "JPG, PNG or WEBP — up to 2 MB",
@@ -1602,6 +1605,40 @@ async function loadPublishedAffiliateProducts() {
     renderProducts(getVisibleProducts(), Boolean(selectedCatalogCategory));
     renderHomepageProducts();
     renderTopDeals();
+
+    const approvedSnapshot = await getProductSubmissionsDb()
+        .collection('productSubmissions')
+        .where('status', '==', 'approved')
+        .get();
+    const approvedProducts = approvedSnapshot.docs.map(document => {
+        const product = document.data();
+        return {
+            id: `approved-${document.id}`,
+            title: product.title,
+            price: product.price,
+            oldPrice: product.old_price,
+            priceVerified: product.price_verified === true,
+            showFirstTimeOffer: false,
+            platform: 'Affiliate',
+            category: product.category,
+            image: product.image_url,
+            affLink: product.affiliate_url
+        };
+    });
+    publishedAffiliateProducts.push(...approvedProducts);
+    renderProducts(getVisibleProducts(), Boolean(selectedCatalogCategory));
+    renderHomepageProducts();
+    renderTopDeals();
+}
+
+function getProductSubmissionsDb() {
+    if (!window.firebase || !window.firebaseConfig) {
+        throw new Error('Firebase product submission services are not configured.');
+    }
+    const app = firebase.apps.length
+        ? firebase.app()
+        : firebase.initializeApp(window.firebaseConfig);
+    return app.firestore();
 }
 
 function renderHomepageProducts() {
@@ -2072,21 +2109,45 @@ function clearProductImagePreview() {
 }
 
 function readProductImage(file) {
-    return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.addEventListener('load', () => {
-            if (typeof reader.result !== 'string') {
-                reject(new Error('The selected image could not be read.'));
-                return;
+    return createImageBitmap(file).then(bitmap => {
+        try {
+            let width = bitmap.width;
+            let height = bitmap.height;
+            const maxDimension = 1200;
+            const scale = Math.min(1, maxDimension / Math.max(width, height));
+            width = Math.max(1, Math.round(width * scale));
+            height = Math.max(1, Math.round(height * scale));
+
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            if (!context) throw new Error('Unable to prepare the selected image.');
+
+            let quality = 0.84;
+            for (let attempt = 0; attempt < 18; attempt += 1) {
+                canvas.width = width;
+                canvas.height = height;
+                context.fillStyle = '#fff';
+                context.fillRect(0, 0, width, height);
+                context.drawImage(bitmap, 0, 0, width, height);
+                const imageData = canvas.toDataURL('image/jpeg', quality);
+                if (imageData.length <= 700000) return imageData;
+
+                if (quality > 0.56) {
+                    quality -= 0.08;
+                } else {
+                    width = Math.max(1, Math.round(width * 0.8));
+                    height = Math.max(1, Math.round(height * 0.8));
+                    quality = 0.8;
+                }
             }
-            resolve(reader.result);
-        });
-        reader.addEventListener('error', () => reject(reader.error || new Error('The selected image could not be read.')));
-        reader.readAsDataURL(file);
+            throw new Error('The selected image could not be reduced to a supported size.');
+        } finally {
+            bitmap.close();
+        }
     });
 }
 
-async function downloadProductFeed(event) {
+async function submitProductSuggestion(event) {
     event.preventDefault();
     const form = document.getElementById('productAddForm');
     const feedback = document.getElementById('productAddFeedback');
@@ -2125,18 +2186,14 @@ async function downloadProductFeed(event) {
 
     submitButton.disabled = true;
     feedback.className = 'form-feedback';
-    feedback.textContent = '';
+    feedback.textContent = translations[currentLang].productSubmitting;
     try {
         product.image_url = await readProductImage(selectedProductImageFile);
-        const file = new Blob([`${JSON.stringify({ products: [product] }, null, 2)}\n`], { type: 'application/json' });
-        const downloadUrl = URL.createObjectURL(file);
-        const downloadLink = document.createElement('a');
-        downloadLink.href = downloadUrl;
-        downloadLink.download = 'product-suggestion.json';
-        document.body.appendChild(downloadLink);
-        downloadLink.click();
-        downloadLink.remove();
-        window.setTimeout(() => URL.revokeObjectURL(downloadUrl), 1000);
+        await getProductSubmissionsDb().collection('productSubmissions').add({
+            ...product,
+            status: 'pending',
+            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
 
         feedback.className = 'form-feedback success';
         feedback.textContent = translations[currentLang].productFeedDownloaded;
@@ -2151,11 +2208,6 @@ async function downloadProductFeed(event) {
         submitButton.disabled = false;
     }
 }
-
-/*
- * The suggestion is downloaded separately from the publishing feed so it can be reviewed
- * before an administrator adds it to temu-products.json.
- */
 
 // AI Assistant
 function handleAiKey(e) { if (e.key === 'Enter') askAiAssistant(); }
