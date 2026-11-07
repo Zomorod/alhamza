@@ -2,6 +2,7 @@
 <html lang="ar" dir="rtl" id="htmlRoot">
 <head>
     <meta charset="UTF-8">
+    <base href="/">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-i18n="siteTitle">ALHAMZA - أحسن الصفقات وأقوى الهمزات</title>
     <!-- خطوط عصرية -->
@@ -9,9 +10,9 @@
     <!-- مكتبة الأيقونات العصرية RemixIcon -->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <!-- رابط ملف الـ CSS -->
-    <link rel="stylesheet" href="style.css?v=20261104-69">
+    <link rel="stylesheet" href="style.css?v=20261107-themes-1">
 </head>
-<body data-theme="light">
+<body data-theme="general" data-mode="light">
 
     <!-- شريط الإعلانات العُلوي -->
     <div class="top-announcement">
@@ -68,6 +69,11 @@
             <button class="cat-chip" data-category="jewelry" onclick="filterCategory('jewelry', this)"><i class="ri-vip-diamond-line"></i> <span data-i18n="catJewelry">مجوهرات</span></button>
             <button class="cat-chip" data-category="hot_items" onclick="filterCategory('hot_items', this)"><i class="ri-fire-fill"></i> <span data-i18n="catHotItems">Hot Items</span></button>
 
+            <span class="nav-divider theme-nav-divider">|</span>
+            <a class="theme-nav-link" data-theme-link="jewelry" href="/category/jewelry"><i class="ri-vip-diamond-line" aria-hidden="true"></i><span>Jewelry</span></a>
+            <a class="theme-nav-link" data-theme-link="digital" href="/category/digital"><i class="ri-cpu-line" aria-hidden="true"></i><span>Digital &amp; IPTV</span></a>
+            <a class="theme-nav-link" data-theme-link="general" href="/category/general"><i class="ri-store-2-line" aria-hidden="true"></i><span>General store</span></a>
+
             <span class="nav-divider">|</span>
 
             <!-- روابط المتاجر الحية (Live Store Links) -->
@@ -92,6 +98,21 @@
 
     <!-- المحتوى الرئيسي -->
     <main class="main-content container">
+        <section class="category-hero" id="categoryHero" hidden aria-labelledby="categoryHeroTitle">
+            <div class="category-hero-copy">
+                <p class="category-hero-eyebrow" id="categoryHeroEyebrow"></p>
+                <h1 id="categoryHeroTitle"></h1>
+                <p class="category-hero-description" id="categoryHeroDescription"></p>
+                <a class="category-hero-cta" id="categoryHeroCta" href="#productsGrid"></a>
+            </div>
+            <div class="category-hero-art" aria-hidden="true">
+                <span class="category-hero-orbit category-hero-orbit-one"></span>
+                <span class="category-hero-orbit category-hero-orbit-two"></span>
+                <span class="category-hero-symbol" id="categoryHeroSymbol"></span>
+                <span class="category-hero-art-label" id="categoryHeroArtLabel"></span>
+            </div>
+        </section>
+
         <section class="top-deals" aria-labelledby="topDealsHeading">
             <div class="top-deals-header">
                 <div>
@@ -342,6 +363,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
     <script src="firebase-config.js?v=20261107-1"></script>
-    <script src="script.js?v=20261107-1"></script>
+    <script src="category-themes.js?v=20261107-1"></script>
+    <script src="script.js?v=20261107-themes-1"></script>
 </body>
 </html>
