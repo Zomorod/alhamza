@@ -978,6 +978,8 @@ const additionalTranslations = {
         catalogRemoteServices: "خدمات عن بُعد",
         catalogCars: "السيارات",
         catalogBicycles: "الدراجات",
+        catalogDigital: "الرقمي و IPTV",
+        catalogGeneral: "المتجر العام",
         categoryDetails: "تفاصيل الصنف",
         categoryDescription: "وصف شامل ومفصل للهمزات المتاحة فـ هذا القسم...",
         categoriesHeading: "تسوق حسب الصنف",
@@ -1078,6 +1080,8 @@ const additionalTranslations = {
         catalogRemoteServices: "Services à distance",
         catalogCars: "Voitures",
         catalogBicycles: "Vélos",
+        catalogDigital: "Numérique et IPTV",
+        catalogGeneral: "Boutique générale",
         categoryDetails: "Détails de la catégorie",
         categoryDescription: "Découvrez les offres disponibles dans cette catégorie.",
         categoriesHeading: "Acheter par catégorie",
@@ -1179,6 +1183,8 @@ const additionalTranslations = {
         catalogRemoteServices: "Remote services",
         catalogCars: "Cars",
         catalogBicycles: "Bicycles",
+        catalogDigital: "Digital & IPTV",
+        catalogGeneral: "General store",
         categoryDetails: "Category details",
         categoryDescription: "Explore the offers available in this category.",
         categoriesHeading: "Shop by category",
@@ -1335,8 +1341,34 @@ let currentCategory = 'all';
 let selectedCatalogCategory = null;
 let selectedProductImageFile = null;
 let productImagePreviewUrl = null;
+
+function showCategoryThemePage(page) {
+    if (!page) return;
+    const { theme, isCategoryRoute } = page;
+    const landing = document.getElementById('categoryLanding');
+    const productsPanel = document.getElementById('categoryProductsPanel');
+    const description = document.getElementById('categoryDescBox');
+    if (!landing || !productsPanel) return;
+
+    document.body.dataset.theme = theme;
+    currentCategory = 'all';
+    selectedCatalogCategory = isCategoryRoute ? theme : null;
+    document.getElementById('searchInput').value = '';
+    landing.hidden = isCategoryRoute;
+    productsPanel.hidden = !isCategoryRoute;
+    description.style.display = 'none';
+    document.querySelectorAll('.cat-chip').forEach(chip => {
+        chip.classList.toggle('active', !isCategoryRoute && chip.dataset.category === 'all');
+    });
+    document.querySelector('.top-deals').hidden = isCategoryRoute;
+    updateProductViewTitle();
+    if (isCategoryRoute) renderProducts(getVisibleProducts(), true);
+}
+
+window.addEventListener('categorythemechange', event => showCategoryThemePage(event.detail));
 // التشغيل الأولي
 document.addEventListener('DOMContentLoaded', () => {
+    showCategoryThemePage(window.categoryThemes.getCurrentPage());
     const productId = new URLSearchParams(window.location.search).get('product');
     if (productId) {
         document.querySelector('.products-section').hidden = true;
@@ -1395,6 +1427,14 @@ function getCatalogCategoryProducts(categoryKey) {
                 return product.category === categoryKey ||
                     product.catalogCategory === categoryKey ||
                     product.catalogCategories?.includes(categoryKey);
+            case 'digital':
+                return product.category === 'tech' || product.category === 'remote_services' ||
+                    product.digital === true || product.catalogCategory === 'digital' ||
+                    product.catalogCategories?.includes('digital');
+            case 'general':
+                return product.category !== 'jewelry' && product.category !== 'remote_services' &&
+                    product.digital !== true && product.catalogCategory !== 'digital' &&
+                    !product.catalogCategories?.includes('digital');
             default:
                 return false;
         }
@@ -1445,7 +1485,9 @@ function updateProductViewTitle() {
             curtains: 'catalogCurtains',
             remote_services: 'catalogRemoteServices',
             cars: 'catalogCars',
-            bicycles: 'catalogBicycles'
+            bicycles: 'catalogBicycles',
+            digital: 'catalogDigital',
+            general: 'catalogGeneral'
         }[selectedCatalogCategory];
         title.textContent = translations[currentLang][categoryTranslationKey];
     } else if (document.getElementById('searchInput').value.trim()) {
@@ -1801,6 +1843,17 @@ function renderProducts(items, directDealLinks = false, gridId = 'productsGrid')
 }
 
 function openCatalogCategory(categoryKey) {
+    if (categoryKey === 'jewelry') {
+        window.categoryThemes.navigateTo('jewelry');
+        return;
+    }
+    if (categoryKey === 'electronics' || categoryKey === 'remote_services') {
+        window.categoryThemes.navigateTo('digital');
+        return;
+    }
+    if (window.categoryThemes.getCurrentPage().isCategoryRoute) {
+        window.categoryThemes.navigateHome();
+    }
     selectedCatalogCategory = categoryKey;
     currentCategory = 'all';
     document.getElementById('searchInput').value = '';
@@ -1815,6 +1868,10 @@ function openCatalogCategory(categoryKey) {
 }
 
 function returnToCategories() {
+    if (window.categoryThemes.getCurrentPage().isCategoryRoute) {
+        window.categoryThemes.navigateHome();
+        return;
+    }
     selectedCatalogCategory = null;
     currentCategory = 'all';
     document.getElementById('searchInput').value = '';
@@ -1828,6 +1885,17 @@ function returnToCategories() {
 
 // Keep the existing navigation filters while showing the category landing by default.
 function filterCategory(cat, element) {
+    if (cat === 'jewelry') {
+        window.categoryThemes.navigateTo('jewelry');
+        return;
+    }
+    if (cat === 'tech') {
+        window.categoryThemes.navigateTo('digital');
+        return;
+    }
+    if (window.categoryThemes.getCurrentPage().isCategoryRoute) {
+        window.categoryThemes.navigateHome();
+    }
     currentCategory = cat;
     selectedCatalogCategory = null;
     document.querySelectorAll('.cat-chip').forEach(chip => {
@@ -1925,11 +1993,11 @@ function setLanguage(lang) {
 function toggleTheme() {
     const body = document.body;
     const icon = document.getElementById('themeIcon');
-    if (body.getAttribute('data-theme') === 'dark') {
-        body.setAttribute('data-theme', 'light');
+    if (body.getAttribute('data-mode') === 'dark') {
+        body.setAttribute('data-mode', 'light');
         icon.className = 'ri-moon-line';
     } else {
-        body.setAttribute('data-theme', 'dark');
+        body.setAttribute('data-mode', 'dark');
         icon.className = 'ri-sun-line';
     }
 }
