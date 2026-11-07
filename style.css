@@ -14,7 +14,7 @@
     --pistache-bright: #00e676;
 }
 
-[data-theme="light"] {
+[data-mode="light"] {
     --bg-primary: #f5f3ee;
     --bg-secondary: #fffefa;
     --bg-card: #fffefa;
@@ -27,7 +27,7 @@
     --card-shadow: 0 14px 36px -18px rgba(24, 38, 33, 0.26);
 }
 
-[data-theme="dark"] {
+[data-mode="dark"] {
     --bg-primary: #111a17;
     --bg-secondary: #1a2621;
     --bg-card: #1a2621;
@@ -61,7 +61,7 @@ body {
     overflow-x: clip;
 }
 
-body[data-theme="dark"] {
+body[data-mode="dark"] {
     background-image: radial-gradient(ellipse at 50% -18%, rgba(210, 173, 113, 0.1), transparent 58%);
 }
 
@@ -369,7 +369,7 @@ body[data-theme="dark"] {
     background-position: center 56%;
 }
 
-body[data-theme="dark"] .hero-banner::before {
+body[data-mode="dark"] .hero-banner::before {
     background-image:
         linear-gradient(90deg, rgba(15, 23, 42, 0.5), rgba(15, 23, 42, 0.68) 48%, rgba(15, 23, 42, 0.5)),
         url("assets/hassan-ii-mosque.jpg");
@@ -601,7 +601,7 @@ body[data-theme="dark"] .hero-banner::before {
     font-weight: 700;
 }
 
-body[data-theme="dark"] .free-delivery-note {
+body[data-mode="dark"] .free-delivery-note {
     color: #79c7ad;
 }
 
@@ -635,7 +635,7 @@ body[data-theme="dark"] .free-delivery-note {
     box-shadow: var(--card-shadow);
 }
 
-body[data-theme="dark"] .top-deals {
+body[data-mode="dark"] .top-deals {
     background: linear-gradient(135deg, rgba(39, 57, 52, 0.96), rgba(28, 37, 35, 0.94));
 }
 
@@ -1673,7 +1673,7 @@ body[data-theme="dark"] .top-deals {
     margin-top: 60px;
 }
 
-body[data-theme="dark"] .site-footer {
+body[data-mode="dark"] .site-footer {
     background-color: #14212a;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M0 0H100V100H0Z' fill='%2314212a'/%3E%3Cpath d='M50 2 62 20 84 16 80 38 98 50 80 62 84 84 62 80 50 98 38 80 16 84 20 62 2 50 20 38 16 16 38 20Z' fill='none' stroke='%2360a5fa' stroke-opacity='.28' stroke-width='2'/%3E%3Cpath d='M50 2 50 20 38 20 50 34 62 20 50 20M98 50 80 50 80 38 66 50 80 62 80 50M50 98 50 80 62 80 50 66 38 80 50 80M2 50 20 50 20 62 34 50 20 38 20 50' fill='%232dd4bf' fill-opacity='.14' stroke='%232dd4bf' stroke-opacity='.26' stroke-width='1.5'/%3E%3Cpath d='M50 34 66 50 50 66 34 50Z' fill='%23fb923c' fill-opacity='.16' stroke='%23fdba74' stroke-opacity='.25' stroke-width='1.5'/%3E%3Cpath d='M0 0 20 20M100 0 80 20M0 100 20 80M100 100 80 80' stroke='%2360a5fa' stroke-opacity='.22' stroke-width='1.5'/%3E%3C/svg%3E");
 }
@@ -1757,25 +1757,25 @@ body[data-theme="dark"] .site-footer {
     font-size: 0.85rem;
 }
 
-body[data-theme="dark"] .site-footer .footer-col {
+body[data-mode="dark"] .site-footer .footer-col {
     background: rgba(20, 33, 42, 0.94);
     border-color: rgba(94, 234, 212, 0.22);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
 }
 
-body[data-theme="dark"] .footer-col p,
-body[data-theme="dark"] .footer-col h4,
-body[data-theme="dark"] .footer-col ul a,
-body[data-theme="dark"] .footer-bottom {
+body[data-mode="dark"] .footer-col p,
+body[data-mode="dark"] .footer-col h4,
+body[data-mode="dark"] .footer-col ul a,
+body[data-mode="dark"] .footer-bottom {
     color: #e2e8f0;
 }
 
-body[data-theme="dark"] .site-footer .footer-col .logo-slogan {
+body[data-mode="dark"] .site-footer .footer-col .logo-slogan {
     color: #99d7c4;
 }
 
-body[data-theme="dark"] .pistache-text,
-body[data-theme="dark"] .pistache-phone-link {
+body[data-mode="dark"] .pistache-text,
+body[data-mode="dark"] .pistache-phone-link {
     color: #6ee7b7 !important;
 }
 
@@ -1801,17 +1801,17 @@ body[data-theme="dark"] .pistache-phone-link {
     color: var(--accent);
 }
 
-body[data-theme="dark"] .site-footer {
+body[data-mode="dark"] .site-footer {
     background-color: #172d2b;
     background-image: linear-gradient(rgba(18, 45, 43, 0.82), rgba(18, 45, 43, 0.82)), url("assets/zellij-pattern.svg");
 }
 
-body[data-theme="dark"] .site-footer .footer-col {
+body[data-mode="dark"] .site-footer .footer-col {
     background: rgba(34, 43, 41, 0.96);
     border-color: rgba(117, 184, 164, 0.24);
 }
 
-body[data-theme="dark"] .site-footer .footer-col .logo-slogan {
+body[data-mode="dark"] .site-footer .footer-col .logo-slogan {
     color: #a6d4c3;
 }
 
@@ -2094,7 +2094,7 @@ body {
     box-shadow: 0 22px 56px -38px rgba(24, 38, 33, 0.4);
 }
 
-body[data-theme="dark"] .top-deals {
+body[data-mode="dark"] .top-deals {
     background: linear-gradient(125deg, var(--bg-secondary), #202e27);
 }
 
@@ -2284,12 +2284,12 @@ body[data-theme="dark"] .top-deals {
     color: #e2c48e;
 }
 
-body[data-theme="dark"] .site-footer {
+body[data-mode="dark"] .site-footer {
     background-color: #101914;
     background-image: radial-gradient(ellipse at 15% 0%, rgba(210, 173, 113, 0.12), transparent 50%);
 }
 
-body[data-theme="dark"] .site-footer .footer-col {
+body[data-mode="dark"] .site-footer .footer-col {
     background: rgba(255, 255, 255, 0.045);
     border-color: rgba(210, 173, 113, 0.18);
 }
@@ -2433,7 +2433,7 @@ body[data-theme="dark"] .site-footer .footer-col {
     flex: 0 0 auto;
 }
 
-body[data-theme="dark"] .temu-promo-chip {
+body[data-mode="dark"] .temu-promo-chip {
     border-color: rgba(253, 186, 116, 0.32);
     background: rgba(124, 45, 18, 0.2);
     color: #fed7aa;
