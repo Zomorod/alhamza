@@ -1357,8 +1357,9 @@ function showCategoryThemePage(page) {
     landing.hidden = isCategoryRoute;
     productsPanel.hidden = !isCategoryRoute;
     description.style.display = 'none';
+    const activeLegacyCategory = theme === 'jewelry' ? 'jewelry' : theme === 'digital' ? 'tech' : 'all';
     document.querySelectorAll('.cat-chip').forEach(chip => {
-        chip.classList.toggle('active', !isCategoryRoute && chip.dataset.category === 'all');
+        chip.classList.toggle('active', chip.dataset.category === (isCategoryRoute ? activeLegacyCategory : 'all'));
     });
     document.querySelector('.top-deals').hidden = isCategoryRoute;
     updateProductViewTitle();
@@ -1373,8 +1374,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (productId) {
         document.querySelector('.products-section').hidden = true;
         document.querySelector('.top-deals').hidden = true;
+        document.getElementById('categoryHero').hidden = true;
         document.getElementById('categoryDescBox').hidden = true;
         document.getElementById('productDetailView').hidden = false;
+        document.querySelector('#productDetailView .product-detail-back').href =
+            window.categoryThemes.getCurrentPage().isCategoryRoute ? window.location.pathname : '/';
         document.querySelector('#productDetailView .product-detail-back span').textContent =
             translations[currentLang].detailBack;
     }
@@ -1428,11 +1432,11 @@ function getCatalogCategoryProducts(categoryKey) {
                     product.catalogCategory === categoryKey ||
                     product.catalogCategories?.includes(categoryKey);
             case 'digital':
-                return product.category === 'tech' || product.category === 'remote_services' ||
+                return product.category === 'digital' || product.category === 'tech' || product.category === 'remote_services' ||
                     product.digital === true || product.catalogCategory === 'digital' ||
                     product.catalogCategories?.includes('digital');
             case 'general':
-                return product.category !== 'jewelry' && product.category !== 'remote_services' &&
+                return product.category !== 'jewelry' && product.category !== 'digital' && product.category !== 'remote_services' &&
                     product.digital !== true && product.catalogCategory !== 'digital' &&
                     !product.catalogCategories?.includes('digital');
             default:
@@ -1542,6 +1546,27 @@ function getProductOldPrice(product) {
     return `${prefix}${product.oldPrice}`;
 }
 
+function getProductDiscountPercent(product) {
+    if (!product.oldPrice) return 0;
+    const currentPrice = Number(product.priceMAD) || Number.parseFloat(product.price);
+    const previousPrice = Number(product.oldPriceMAD) || Number.parseFloat(product.oldPrice);
+    if (!Number.isFinite(currentPrice) || !Number.isFinite(previousPrice) || previousPrice <= currentPrice) return 0;
+    return Math.min(99, Math.round(((previousPrice - currentPrice) / previousPrice) * 100));
+}
+
+function getProductRatingMarkup(product) {
+    const rating = Number(product.rating);
+    const reviewCount = Number(product.reviewCount) || 0;
+    if (!Number.isFinite(rating) || rating < 1 || rating > 5 || reviewCount < 1) {
+        const pendingText = currentLang === 'ar' ? 'مازال ما كايناش تقييمات' : currentLang === 'fr' ? 'Pas encore noté' : 'No reviews yet';
+        return `<div class="product-rating is-unrated" aria-label="${escapeHtml(pendingText)}"><span class="rating-stars" aria-hidden="true">☆☆☆☆☆</span><span>${escapeHtml(pendingText)}</span></div>`;
+    }
+    const roundedStars = Math.round(rating);
+    const starText = '★'.repeat(roundedStars) + '☆'.repeat(5 - roundedStars);
+    const reviewLabel = currentLang === 'ar' ? 'تقييم' : currentLang === 'fr' ? 'avis' : 'reviews';
+    return `<div class="product-rating" aria-label="${rating.toFixed(1)} out of 5"><span class="rating-stars" aria-hidden="true">${starText}</span><span>${rating.toFixed(1)} · ${reviewCount} ${reviewLabel}</span></div>`;
+}
+
 function getLocalizedCurrencyNames() {
     if (currentLang === 'ar') {
         return { mad: 'درهم مغربي', usd: 'دولار أمريكي' };
@@ -1638,6 +1663,8 @@ async function loadPublishedAffiliateProducts() {
             oldPrice: product.old_price,
             priceVerified: product.price_verified !== false,
             showFirstTimeOffer: false,
+            rating: Number(product.rating) || null,
+            reviewCount: Number(product.review_count) || 0,
             platform: 'Dishis',
             category: product.category,
             image: product.image_url,
@@ -1661,6 +1688,8 @@ async function loadPublishedAffiliateProducts() {
             oldPrice: product.old_price,
             priceVerified: product.price_verified === true,
             showFirstTimeOffer: false,
+            rating: Number(product.rating) || null,
+            reviewCount: Number(product.review_count) || 0,
             platform: 'Affiliate',
             category: product.category,
             image: product.image_url,
@@ -1802,15 +1831,18 @@ function renderProducts(items, directDealLinks = false, gridId = 'productsGrid')
         const title = getProductTitle(product);
         const card = document.createElement('div');
         card.className = 'product-card';
+        card.dataset.productCategory = product.category || 'general';
         card.innerHTML = `
             <span class="product-badge">${escapeHtml(product.platform)}</span>
-            <a class="product-image-link" href="?product=${encodeURIComponent(product.id)}" aria-label="${escapeHtml(translations[currentLang].productDetailsAria)} ${escapeHtml(title)}">
+            ${getProductDiscountPercent(product) ? `<span class="product-discount-badge">-${getProductDiscountPercent(product)}%</span>` : ''}
+            <a class="product-image-link" href="${escapeHtml(getProductPageUrl(product.id))}" aria-label="${escapeHtml(translations[currentLang].productDetailsAria)} ${escapeHtml(title)}">
                 <div class="product-img-wrap">
                     <img src="${escapeHtml(product.image)}" alt="${escapeHtml(title)}" loading="lazy">
                 </div>
             </a>
             <div class="product-body">
-                <h3 class="product-title"><a class="product-title-link" href="?product=${encodeURIComponent(product.id)}">${escapeHtml(title)}</a></h3>
+                <h3 class="product-title"><a class="product-title-link" href="${escapeHtml(getProductPageUrl(product.id))}">${escapeHtml(title)}</a></h3>
+                ${getProductRatingMarkup(product)}
                 ${String(product.platform).toLowerCase() === 'temu' ? `<p class="temu-promo-chip"><i class="ri-price-tag-3-line" aria-hidden="true"></i>${escapeHtml(translations[currentLang].temuPromoChip)}</p>` : ''}
                 <div class="product-footer">
                     <div class="price-box">
@@ -1822,8 +1854,8 @@ function renderProducts(items, directDealLinks = false, gridId = 'productsGrid')
                     </div>
                     <div class="product-actions">
                         ${directDealLinks
-                            ? `<a href="${escapeHtml(product.contactOnly ? getContactProductUrl(product) : (product.affLink || `?product=${encodeURIComponent(product.id)}`))}" class="affiliate-btn" ${product.contactOnly || product.affLink ? 'target="_blank" rel="noopener noreferrer"' : ''}>${escapeHtml(translations[currentLang].viewDeal)}</a>`
-                            : `<a href="?product=${encodeURIComponent(product.id)}" class="affiliate-btn">${escapeHtml(translations[currentLang].viewDetails)}</a>`}
+                            ? `<a href="${escapeHtml(product.contactOnly ? getContactProductUrl(product) : (product.affLink || getProductPageUrl(product.id)))}" class="affiliate-btn" ${product.contactOnly || product.affLink ? 'target="_blank" rel="noopener noreferrer"' : ''}>${escapeHtml(translations[currentLang].viewDeal)}</a>`
+                            : `<a href="${escapeHtml(getProductPageUrl(product.id))}" class="affiliate-btn">${escapeHtml(translations[currentLang].viewDetails)}</a>`}
                         <button class="whatsapp-share-btn" type="button" title="${escapeHtml(translations[currentLang].whatsappShare)}" aria-label="${escapeHtml(translations[currentLang].whatsappShare)}">
                             <i class="ri-whatsapp-line"></i>
                         </button>
@@ -1963,6 +1995,9 @@ function setLanguage(lang) {
         el.setAttribute('alt', translations[lang][el.dataset.i18nAlt]);
     });
     document.title = translations[lang].siteTitle;
+    window.dispatchEvent(new CustomEvent('categorylanguagechange', {
+        detail: { siteTitle: translations[lang].siteTitle }
+    }));
     document.getElementById('floatingWhatsappBtn').href =
         `https://wa.me/${siteConfig.cleanPhone}?text=${encodeURIComponent(translations[lang].whatsappContactMessage)}`;
     renderProducts(getVisibleProducts(), Boolean(selectedCatalogCategory));

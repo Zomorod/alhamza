@@ -1,6 +1,7 @@
 // Category page presentation and lightweight client-side routing.
 // Firebase Hosting rewrites /category/* to index.html, so these routes need no framework.
 (() => {
+    let homeDocumentTitle = document.title;
     const themes = {
         jewelry: {
             path: "/category/jewelry",
@@ -40,7 +41,10 @@
         if (!hero) return;
 
         hero.hidden = !isCategoryRoute;
-        if (!isCategoryRoute) return;
+        if (!isCategoryRoute) {
+            document.title = homeDocumentTitle;
+            return;
+        }
 
         const copy = themes[themeName][getLanguage()];
         document.getElementById("categoryHeroEyebrow").textContent = copy[0];
@@ -58,9 +62,16 @@
         const isCategoryRoute = Boolean(routeTheme);
 
         document.body.dataset.theme = themeName;
-        document.body.toggleAttribute("data-category-route", isCategoryRoute);
+        if (isCategoryRoute) document.body.dataset.categoryRoute = "true";
+        else delete document.body.dataset.categoryRoute;
+        const activeLegacyCategory = themeName === "jewelry" ? "jewelry" : themeName === "digital" ? "tech" : "all";
+        document.querySelectorAll(".cat-chip").forEach(chip => {
+            chip.classList.toggle("active", chip.dataset.category === activeLegacyCategory);
+        });
         document.querySelectorAll("[data-theme-link]").forEach(link => {
             const active = isCategoryRoute && link.dataset.themeLink === themeName;
+            const label = themes[link.dataset.themeLink]?.[getLanguage()]?.[5];
+            if (label) link.querySelector("span").textContent = label;
             link.classList.toggle("is-active", active);
             if (active) link.setAttribute("aria-current", "page");
             else link.removeAttribute("aria-current");
@@ -94,8 +105,13 @@
     });
 
     window.addEventListener("popstate", applyPageState);
-    window.addEventListener("categorylanguagechange", () => {
+    window.addEventListener("categorylanguagechange", event => {
+        if (event.detail?.siteTitle) homeDocumentTitle = event.detail.siteTitle;
         const routeTheme = categoryFromPath();
+        document.querySelectorAll("[data-theme-link]").forEach(link => {
+            const label = themes[link.dataset.themeLink]?.[getLanguage()]?.[5];
+            if (label) link.querySelector("span").textContent = label;
+        });
         renderHero(routeTheme || "general", Boolean(routeTheme));
     });
 
