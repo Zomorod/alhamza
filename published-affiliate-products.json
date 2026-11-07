@@ -1,3 +1,24 @@
 {
-  "products": []
+  "products": [
+    {
+      "title": "Aurelia Evil Eye Earrings",
+      "price": "",
+      "old_price": "",
+      "price_verified": false,
+      "category": "jewelry",
+      "image_url": "https://www.dishisjewels.com/image/cache/catalog/Aurelia%20Evil%20Eye%20Earrings%20Y%201-350x350.jpg",
+      "affiliate_url": "https://www.dishisjewels.com/14k-18k-aurelia-evil-eye-earrings?tracking=EQioWpWqoQ1jS4fVQFwSLIlBTXEqz0V1CIVQmTcyx00MsiRnhmT4ZO0p6aWUxyWW",
+      "published_at": "2026-11-07"
+    },
+    {
+      "title": "18K/14K Elegant Dual Tone Leaf Pendant Necklace For Women",
+      "price": "",
+      "old_price": "",
+      "price_verified": false,
+      "category": "jewelry",
+      "image_url": "https://www.dishisjewels.com/image/cache/catalog/5687%20%2018K-14K%20Elegant%20Dual%20Tone%20Leaf%20Pendant%20Necklace%20For%20Women%2001-350x350.jpg",
+      "affiliate_url": "https://www.dishisjewels.com/18K-14K-elegant-dual-tone-leaf-pendant-necklace-for-women?tracking=EQioWpWqoQ1jS4fVQFwSLIlBTXEqz0V1CIVQmTcyx00MsiRnhmT4ZO0p6aWUxyWW",
+      "published_at": "2026-11-07"
+    }
+  ]
 }
