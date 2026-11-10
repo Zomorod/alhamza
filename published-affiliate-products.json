@@ -43,7 +43,7 @@
     {
       "title": "925 Lemon Sterling Silver Ring | Silver Ring For Women",
       "price": "$25.00 USD",
-      "price_mad": 244.00,
+      "price_mad": 244,
       "price_usd": 25,
       "old_price": "",
       "old_price_mad": null,
@@ -54,6 +54,26 @@
       "image_url": "https://www.dishisjewels.com/image/cache/catalog/3608-01-350x350.jpg",
       "affiliate_url": "https://www.dishisjewels.com/925-lemon-sterling-silver-ring?tracking=EQioWpWqoQ1jS4fVQFwSLIlBTXEqz0V1CIVQmTcyx00MsiRnhmT4ZO0p6aWUxyWW",
       "published_at": "2026-11-08"
+    },
+    {
+      "title": "925 Piku Sterling Silver Ring",
+      "price": "",
+      "old_price": "",
+      "price_verified": false,
+      "category": "jewelry",
+      "image_url": "https://www.dishisjewels.com/image/cache/catalog/3610-925-piku-sterling-silver-ring-350x350.jpg",
+      "affiliate_url": "https://www.dishisjewels.com/925-piku-sterling-silver-ring?tracking=EQioWpWqoQ1jS4fVQFwSLIlBTXEqz0V1CIVQmTcyx00MsiRnhmT4ZO0p6aWUxyWW",
+      "published_at": "2026-11-10"
+    },
+    {
+      "title": "925 Sterling Silver Spritiual Shree Ram Pendant",
+      "price": "",
+      "old_price": "",
+      "price_verified": false,
+      "category": "jewelry",
+      "image_url": "https://www.dishisjewels.com/image/cache/catalog/925%20Sterling%20Silver%20Spritiual%20Shree%20Ram%20Pendant%201-350x350.jpg",
+      "affiliate_url": "https://www.dishisjewels.com/925-sterling-silver-spritiual-shree-ram-pendant?tracking=EQioWpWqoQ1jS4fVQFwSLIlBTXEqz0V1CIVQmTcyx00MsiRnhmT4ZO0p6aWUxyWW",
+      "published_at": "2026-11-10"
     }
   ]
 }
